@@ -202,5 +202,22 @@
     "isSponsored": false,
     "joinedYear": 2024,
     "avatarColor": "#BE185D"
+  },
+  {
+    "id": "c013",
+    "name": "Mohammed Soko Kamara",
+    "age": 15,
+    "grade": "9th Grade",
+    "school": "Esfans Academy",
+    "location": "West Point, Monrovia",
+    "story": "Mohammed is one of Zeal Care's most determined scholars. Despite losing his father at a young age, he maintained top marks and became a role model for younger students at Esfans Academy. He dreams of studying engineering and building bridges — both literal ones and between communities.",
+    "needs": [
+      "School Fees",
+      "Books",
+      "Transport"
+    ],
+    "isSponsored": false,
+    "joinedYear": 2024,
+    "avatarColor": "#1A44C0"
   }
 ]

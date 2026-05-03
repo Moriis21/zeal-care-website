@@ -5,9 +5,11 @@ import { useTranslation } from "react-i18next";
 import { useChildren, useSponsorChild, type Child } from "@/hooks/useChildren";
 import { useDonate } from "@/context/DonateContext";
 import mosesPhoto from "@assets/image_1777773678529.png";
+import mohammedPhoto from "@assets/image_1777780811027.png";
 
 const CHILD_PHOTOS: Record<string, string> = {
   c003: mosesPhoto,
+  c013: mohammedPhoto,
 };
 
 const NEEDS_COLORS: Record<string, string> = {
