@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import aboutMission from "@assets/Our_Mission_1777770914049.jpeg";
-import aboutPhilosophy from "@assets/Our_Philosophy_1777770914049.jpeg";
+import aboutTeamGroup from "@assets/pdf_images/img-055.jpg";
+import aboutTeam from "@assets/pdf_images/img-054.jpg";
 
 export function About() {
   return (
@@ -18,19 +18,19 @@ export function About() {
           >
             <div className="grid grid-cols-2 gap-4">
               <img 
-                src={aboutMission}
-                alt="Zeal Care team working in the field" 
-                className="col-span-2 rounded-2xl shadow-lg w-full h-[300px] object-cover"
+                src={aboutTeamGroup}
+                alt="Zeal Care team with students at Esfans Academy" 
+                className="col-span-2 rounded-2xl shadow-lg w-full h-[300px] object-cover object-top"
                 data-testid="img-about-1"
               />
               <div className="bg-secondary rounded-2xl p-8 flex flex-col justify-center items-center text-primary text-center shadow-lg">
-                <span className="text-4xl font-extrabold mb-2">12+</span>
+                <span className="text-4xl font-extrabold mb-2">5+</span>
                 <span className="font-semibold uppercase tracking-wider text-sm">Years of Impact</span>
               </div>
               <img 
-                src={aboutPhilosophy}
-                alt="Zeal Care students with backpacks" 
-                className="rounded-2xl shadow-lg w-full h-[200px] object-cover"
+                src={aboutTeam}
+                alt="Zeal Care team members in yellow shirts" 
+                className="rounded-2xl shadow-lg w-full h-[200px] object-cover object-top"
                 data-testid="img-about-2"
               />
             </div>
@@ -49,13 +49,13 @@ export function About() {
               Who We Are
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold text-foreground mb-6 leading-tight" data-testid="heading-about">
-              Igniting the genius in every child since 2014.
+              Igniting the genius in every child.
             </h2>
             <p className="text-lg text-muted-foreground mb-6" data-testid="text-about-p1">
               Zeal Care is a nonprofit organization headquartered in Monrovia, Liberia. We are dedicated to empowering Africa's future leaders through comprehensive education, focused mentorship, and crucial technology access.
             </p>
             <p className="text-lg text-muted-foreground mb-8" data-testid="text-about-p2">
-              For over a decade, we have partnered with local communities to break down barriers to success. We don't just provide resources; we build pathways for children to discover their potential and transform their communities.
+              We have partnered with local communities — including Esfans Academy at West Point Zone 405 — to break down barriers to success. We don't just provide resources; we build pathways for children to discover their potential and transform their communities.
             </p>
             
             <blockquote className="border-l-4 border-secondary pl-6 mb-8 italic text-xl font-medium text-foreground" data-testid="quote-about">

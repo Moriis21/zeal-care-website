@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import joinBg from "@assets/Social_Justice_1777770914049.jpeg";
+import joinBg from "@assets/pdf_images/img-067.jpg";
 
 export function JoinUs() {
   return (
@@ -9,7 +9,7 @@ export function JoinUs() {
       <div className="absolute inset-0 z-0">
         <img 
           src={joinBg}
-          alt="Zeal Care community gathering" 
+          alt="Zeal Care team with children in the community" 
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-[#061A32]/75"></div>

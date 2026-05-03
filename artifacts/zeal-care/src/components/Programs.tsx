@@ -1,33 +1,33 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import scholarImg from "@assets/WhatsApp_Image_2026-05-02_at_2.08.17_AM_(5)_1777770889390.jpeg";
+import scholarImg from "@assets/pdf_images/img-059.jpg";
 import techImg from "@assets/In_the_field_1777770914048.jpeg";
-import mentorshipImg from "@assets/WhatsApp_Image_2026-05-02_at_2.08.17_AM_(3)_1777770889390.jpeg";
-import communityImg from "@assets/Social_Justice_1777770914049.jpeg";
+import mentorshipImg from "@assets/pdf_images/img-058.jpg";
+import communityImg from "@assets/pdf_images/img-068.jpg";
 
 export function Programs() {
   const programs = [
     {
       title: "Scholar Support",
-      description: "Comprehensive scholarships covering tuition, uniforms, and daily meals for promising students.",
+      description: "Comprehensive scholarships covering tuition, school supplies, uniforms, and backpacks for promising students who need it most.",
       image: scholarImg,
       link: "#"
     },
     {
       title: "Tech Education",
-      description: "State-of-the-art computer labs teaching digital literacy, coding, and modern software skills.",
+      description: "State-of-the-art computer labs teaching digital literacy, coding, and modern software skills to prepare youth for the digital economy.",
       image: techImg,
       link: "#"
     },
     {
-      title: "Mentorship & Leadership",
-      description: "Structured programs fostering critical thinking, public speaking, and ethical leadership.",
+      title: "Classroom Engagement",
+      description: "Active school visits and interactive learning sessions that inspire curiosity, build confidence, and make education exciting.",
       image: mentorshipImg,
       link: "#"
     },
     {
       title: "Community Outreach",
-      description: "Engaging families and local leaders to build supportive environments for educational success.",
+      description: "Engaging families, local leaders, and households to build supportive environments where every child's education is valued.",
       image: communityImg,
       link: "#"
     }
