@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import img036 from "@assets/pdf_images/img-036.jpg";
 import img040 from "@assets/pdf_images/img-040.jpg";
 import img055 from "@assets/pdf_images/img-055.jpg";
@@ -28,6 +29,8 @@ const photos = [
 ];
 
 export function Gallery() {
+  const { t } = useTranslation();
+
   return (
     <section id="gallery" className="py-24 bg-[#061A32]">
       <div className="container mx-auto px-4">
@@ -39,7 +42,7 @@ export function Gallery() {
             viewport={{ once: true }}
             className="inline-block px-3 py-1 rounded-full bg-secondary/20 text-secondary text-sm font-bold tracking-wider mb-4 uppercase"
           >
-            In the Field
+            {t("gallery.badge")}
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -48,7 +51,7 @@ export function Gallery() {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-extrabold text-white mb-6"
           >
-            Moments of Change
+            {t("gallery.heading")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -57,7 +60,7 @@ export function Gallery() {
             transition={{ delay: 0.2 }}
             className="text-lg text-white/70"
           >
-            A glimpse into the real work happening every day — in classrooms, communities, and lives across Monrovia, Liberia.
+            {t("gallery.subtitle")}
           </motion.p>
         </div>
 
@@ -78,7 +81,6 @@ export function Gallery() {
                 loading="lazy"
                 decoding="async"
               />
-              {/* Hover overlay */}
               <div className="absolute inset-0 bg-[#061A32]/0 group-hover:bg-[#061A32]/50 transition-all duration-300 flex items-end p-4">
                 <p className="text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 leading-snug">
                   {photo.alt}

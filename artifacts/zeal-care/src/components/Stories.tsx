@@ -1,41 +1,44 @@
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import elishakaImg from "@assets/Elishaka_Fofana_Donzo_1777770889388.jpeg";
 import ruthImg from "@assets/Ruth_Flomo_1777770889389.jpeg";
 import melvinImg from "@assets/Melvin_Jarteh_1777770889388.jpeg";
 import varscoImg from "@assets/Varsco_Harris_1777770889389.jpeg";
 
+const STORY_DATA = [
+  {
+    name: "Elishaka Fofana Donzo",
+    age: 10,
+    location: "Monrovia",
+    quote: "Before Zeal Care, I didn't know if I could finish school. Now I have books, a uniform, and people who believe in me. I want to be a doctor one day.",
+    image: elishakaImg,
+  },
+  {
+    name: "Ruth Flomo",
+    age: 12,
+    location: "Monrovia",
+    quote: "Zeal Care gave me a backpack and school supplies, but they also gave me hope. My teacher says I am one of the best students in class.",
+    image: ruthImg,
+  },
+  {
+    name: "Melvin Jarteh",
+    age: 9,
+    location: "Monrovia",
+    quote: "I love going to school now. The people at Zeal Care are always there for us. I want to grow up and help children just like they helped me.",
+    image: melvinImg,
+  },
+  {
+    name: "Varsco Harris",
+    age: 11,
+    location: "Monrovia",
+    quote: "My family could not afford school fees. Zeal Care stepped in and now I go to school every day. I am learning and I am proud.",
+    image: varscoImg,
+  },
+];
+
 export function Stories() {
-  const stories = [
-    {
-      name: "Elishaka Fofana Donzo",
-      age: 10,
-      location: "Monrovia",
-      quote: "Before Zeal Care, I didn't know if I could finish school. Now I have books, a uniform, and people who believe in me. I want to be a doctor one day.",
-      image: elishakaImg
-    },
-    {
-      name: "Ruth Flomo",
-      age: 12,
-      location: "Monrovia",
-      quote: "Zeal Care gave me a backpack and school supplies, but they also gave me hope. My teacher says I am one of the best students in class.",
-      image: ruthImg
-    },
-    {
-      name: "Melvin Jarteh",
-      age: 9,
-      location: "Monrovia",
-      quote: "I love going to school now. The people at Zeal Care are always there for us. I want to grow up and help children just like they helped me.",
-      image: melvinImg
-    },
-    {
-      name: "Varsco Harris",
-      age: 11,
-      location: "Monrovia",
-      quote: "My family could not afford school fees. Zeal Care stepped in and now I go to school every day. I am learning and I am proud.",
-      image: varscoImg
-    }
-  ];
+  const { t } = useTranslation();
 
   return (
     <section id="stories" className="py-24 bg-foreground text-background">
@@ -43,18 +46,18 @@ export function Stories() {
         
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-block px-3 py-1 rounded-full bg-background/10 text-background text-sm font-bold tracking-wider mb-4 uppercase">
-            Impact Stories
+            {t("stories.badge")}
           </div>
           <h2 className="text-4xl md:text-5xl font-extrabold mb-6">
-            Voices of the Future
+            {t("stories.heading")}
           </h2>
           <p className="text-background/70 text-lg">
-            Real children. Real families. Real change. These are the faces behind our mission.
+            {t("stories.subtitle")}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-          {stories.map((story, index) => (
+          {STORY_DATA.map((story, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.95 }}
@@ -72,7 +75,7 @@ export function Stories() {
                 </div>
                 <div>
                   <h4 className="font-bold text-base leading-tight">{story.name}</h4>
-                  <p className="text-background/60 text-sm">Age {story.age} &bull; {story.location}</p>
+                  <p className="text-background/60 text-sm">{t("stories.age")} {story.age} &bull; {story.location}</p>
                 </div>
               </div>
 
