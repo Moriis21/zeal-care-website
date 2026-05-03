@@ -1,9 +1,12 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
+import { useTranslation } from "react-i18next";
 import aboutTeamGroup from "@assets/pdf_images/img-055.jpg";
 import aboutTeam from "@assets/pdf_images/img-054.jpg";
 
 export function About() {
+  const { t } = useTranslation();
+
   return (
     <section id="about" className="py-24 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
@@ -27,7 +30,7 @@ export function About() {
               />
               <div className="bg-secondary rounded-2xl p-8 flex flex-col justify-center items-center text-primary text-center shadow-lg">
                 <span className="text-4xl font-extrabold mb-2">5+</span>
-                <span className="font-semibold uppercase tracking-wider text-sm">Years of Impact</span>
+                <span className="font-semibold uppercase tracking-wider text-sm">{t("about.yearsImpact")}</span>
               </div>
               <img 
                 src={aboutTeam}
@@ -49,25 +52,25 @@ export function About() {
             transition={{ duration: 0.8 }}
           >
             <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold tracking-wider mb-4 uppercase" data-testid="badge-about">
-              Who We Are
+              {t("about.badge")}
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold text-foreground mb-6 leading-tight" data-testid="heading-about">
-              Igniting the genius in every child.
+              {t("about.heading")}
             </h2>
             <p className="text-lg text-muted-foreground mb-6" data-testid="text-about-p1">
-              Zeal Care is a nonprofit organization headquartered in Monrovia, Liberia. We are dedicated to empowering Africa's future leaders through comprehensive education, focused mentorship, and crucial technology access.
+              {t("about.p1")}
             </p>
             <p className="text-lg text-muted-foreground mb-8" data-testid="text-about-p2">
-              We have partnered with local communities — including Esfans Academy at West Point Zone 405 — to break down barriers to success. We don't just provide resources; we build pathways for children to discover their potential and transform their communities.
+              {t("about.p2")}
             </p>
             
             <blockquote className="border-l-4 border-secondary pl-6 mb-8 italic text-xl font-medium text-foreground" data-testid="quote-about">
-              "When you give a child the right tools and someone who believes in them, their potential is limitless."
+              "{t("about.quote")}"
             </blockquote>
             
             <Link href="/about">
-              <button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 py-4 font-bold text-base transition-all hover:scale-105" data-testid="button-about-learn-more">
-                Learn More About Us →
+              <button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-7 py-3 font-bold text-base transition-all hover:scale-105" data-testid="button-about-learn-more">
+                {t("about.learnMore")}
               </button>
             </Link>
           </motion.div>

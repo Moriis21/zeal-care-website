@@ -1,14 +1,15 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useDonate } from "@/context/DonateContext";
+import { useTranslation } from "react-i18next";
 import joinBg from "@assets/pdf_images/img-067.jpg";
 
 export function JoinUs() {
   const { openDonate } = useDonate();
+  const { t } = useTranslation();
 
   return (
-    <section id="join-us" className="relative py-32 overflow-hidden bg-[#1A44C0] text-primary-foreground">
-      {/* Background Image with Overlay */}
+    <section id="join-us" className="relative py-24 md:py-32 overflow-hidden bg-[#1A44C0] text-primary-foreground">
       <div className="absolute inset-0 z-0">
         <img 
           src={joinBg}
@@ -27,34 +28,32 @@ export function JoinUs() {
           transition={{ duration: 0.8 }}
         >
           <div className="inline-block px-4 py-1.5 rounded-full bg-secondary text-primary text-sm font-bold tracking-wider mb-8 uppercase" data-testid="badge-join">
-            Igniting Potential
+            {t("joinus.badge")}
           </div>
           
-          <h2 className="text-5xl md:text-7xl font-extrabold mb-8 leading-tight drop-shadow-lg" data-testid="heading-join">
-            Be the Spark.
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-extrabold mb-6 md:mb-8 leading-tight drop-shadow-lg" data-testid="heading-join">
+            {t("joinus.heading")}
           </h2>
           
-          <p className="text-xl md:text-2xl text-primary-foreground/90 mb-12 leading-relaxed max-w-2xl mx-auto drop-shadow-md">
-            Join our mission to empower the next generation. Whether you become a sponsor, a partner, or a volunteer, your contribution creates lasting change.
+          <p className="text-lg sm:text-xl md:text-2xl text-primary-foreground/90 mb-10 md:mb-12 leading-relaxed max-w-2xl mx-auto drop-shadow-md">
+            {t("joinus.subtitle")}
           </p>
           
-          <div className="flex flex-col sm:flex-row justify-center gap-6">
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button
-              size="lg"
               onClick={() => openDonate(150)}
-              className="bg-secondary text-primary hover:bg-secondary/90 rounded-full px-10 py-6 text-lg font-bold"
+              className="bg-secondary text-primary hover:bg-secondary/90 rounded-full px-7 py-3 text-base font-bold h-auto"
               data-testid="button-sponsor-large"
             >
-              SPONSOR A CHILD
+              {t("joinus.sponsorCTA")}
             </Button>
             <Button
-              size="lg"
               variant="outline"
-              className="bg-transparent border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary rounded-full px-10 py-6 text-lg font-bold"
+              className="bg-transparent border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary rounded-full px-7 py-3 text-base font-bold h-auto"
               data-testid="button-volunteer"
               onClick={() => window.location.href = "mailto:zealcare24@gmail.com?subject=Volunteer Inquiry"}
             >
-              VOLUNTEER NOW
+              {t("joinus.volunteerCTA")}
             </Button>
           </div>
         </motion.div>

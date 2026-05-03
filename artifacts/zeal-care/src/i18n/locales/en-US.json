@@ -60,6 +60,120 @@
     "transparency": "Transparency",
     "yearSuffix": "-Year"
   },
+  "about": {
+    "badge": "Who We Are",
+    "heading": "Igniting the genius in every child.",
+    "yearsImpact": "Years of Impact",
+    "p1": "Zeal Care is a nonprofit organization headquartered in Monrovia, Liberia. We are dedicated to empowering Africa's future leaders through comprehensive education, focused mentorship, and crucial technology access.",
+    "p2": "We have partnered with local communities — including Esfans Academy at West Point Zone 405 — to break down barriers to success. We don't just provide resources; we build pathways for children to discover their potential and transform their communities.",
+    "quote": "When you give a child the right tools and someone who believes in them, their potential is limitless.",
+    "learnMore": "Learn More About Us →"
+  },
+  "why": {
+    "badge": "Why Empowerment",
+    "heading": "A Holistic Approach to Change",
+    "subtitle": "We address the root causes of inequality through four core pillars, creating a comprehensive foundation for success.",
+    "features": [
+      {
+        "title": "Education Access",
+        "desc": "Providing scholarships, school supplies, and removing financial barriers so every child can attend school."
+      },
+      {
+        "title": "Technology Skills",
+        "desc": "Equipping students with modern computer labs and coding classes to prepare them for the digital economy."
+      },
+      {
+        "title": "Mentorship Programs",
+        "desc": "Pairing youth with dedicated role models who guide their personal and professional development."
+      },
+      {
+        "title": "Community Impact",
+        "desc": "Building sustainable local programs that uplift entire neighborhoods, not just individuals."
+      }
+    ]
+  },
+  "programs": {
+    "badge": "What We Do",
+    "heading": "Programs that build the future.",
+    "viewAll": "View All Programs",
+    "learnMore": "Learn more",
+    "items": [
+      {
+        "title": "Scholar Support",
+        "desc": "Comprehensive scholarships covering tuition, school supplies, uniforms, and backpacks for promising students who need it most."
+      },
+      {
+        "title": "Tech Education",
+        "desc": "State-of-the-art computer labs teaching digital literacy, coding, and modern software skills to prepare youth for the digital economy."
+      },
+      {
+        "title": "Classroom Engagement",
+        "desc": "Active school visits and interactive learning sessions that inspire curiosity, build confidence, and make education exciting."
+      },
+      {
+        "title": "Community Outreach",
+        "desc": "Engaging families, local leaders, and households to build supportive environments where every child's education is valued."
+      }
+    ]
+  },
+  "sponsor": {
+    "badge": "Make It Personal",
+    "heading": "Sponsor a Specific Child",
+    "subtitle": "Every child here has a name, a dream, and a story. Choose one to support directly — your $150 covers their full year of school.",
+    "tabs": {
+      "all": "All Children",
+      "available": "Needs Sponsor",
+      "sponsored": "Already Sponsored"
+    },
+    "sponsoredBadge": "Sponsored",
+    "needsSponsorBadge": "Needs Sponsor",
+    "age": "Age",
+    "cta": "Sponsor",
+    "perYear": "$150/yr",
+    "thanksMsg": "This child is sponsored — thank you!",
+    "loading": "Loading children profiles…",
+    "error": "Could not load profiles right now. Please try again shortly.",
+    "allSponsored": "All children are sponsored! 🎉",
+    "allSponsoredSub": "Your generosity has made this possible. Contact us to support the next intake.",
+    "progressOf": "of",
+    "stillNeed": "still need you",
+    "multipleGift": "Want to sponsor multiple children or give a general gift?",
+    "seeOptions": "See all giving options →"
+  },
+  "joinus": {
+    "badge": "Igniting Potential",
+    "heading": "Be the Spark.",
+    "subtitle": "Join our mission to empower the next generation. Whether you become a sponsor, a partner, or a volunteer, your contribution creates lasting change.",
+    "sponsorCTA": "SPONSOR A CHILD",
+    "volunteerCTA": "VOLUNTEER NOW"
+  },
+  "stories": {
+    "badge": "Impact Stories",
+    "heading": "Voices of the Future",
+    "subtitle": "Real children. Real families. Real change. These are the faces behind our mission.",
+    "age": "Age"
+  },
+  "ticker": {
+    "badge": "Live Impact",
+    "heading": "Real Donations. Real Children. Real Change.",
+    "children": "Children Sponsored",
+    "donors": "Generous Donors",
+    "raised": "USD Raised",
+    "months": "School Months Funded"
+  },
+  "gallery": {
+    "badge": "In the Field",
+    "heading": "Moments of Change",
+    "subtitle": "A glimpse into the real work happening every day — in classrooms, communities, and lives across Monrovia, Liberia."
+  },
+  "partners": {
+    "badge": "Strategic Global Ecosystem",
+    "heading": "Our Strategic Partners",
+    "subtitle": "Working alongside world-class organizations to amplify our impact and bring quality education to every underprivileged child in Liberia and across Africa.",
+    "ctaHeading": "Become a Strategic Partner",
+    "ctaSub": "Join world-class organizations transforming education across Africa.",
+    "ctaBtn": "Partner with Us →"
+  },
   "contact": {
     "badge": "Contact Us",
     "title": "Let's create change together.",

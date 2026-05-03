@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView, animate } from "framer-motion";
 import { Heart, Users, TrendingUp, Zap } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 type DonationStats = {
   totalCount: number;
@@ -32,7 +33,10 @@ function AnimatedNumber({
       duration: 2,
       ease: "easeOut",
       onUpdate(v) {
-        node.textContent = prefix + v.toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + suffix;
+        node.textContent =
+          prefix +
+          v.toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
+          suffix;
       },
     });
     return () => controls.stop();
@@ -40,7 +44,9 @@ function AnimatedNumber({
 
   return (
     <span ref={ref}>
-      {prefix}{value.toLocaleString()}{suffix}
+      {prefix}
+      {value.toLocaleString()}
+      {suffix}
     </span>
   );
 }
@@ -53,6 +59,7 @@ const PulseDot = () => (
 );
 
 export function DonationTicker({ stats }: { stats: DonationStats | null }) {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
@@ -67,7 +74,7 @@ export function DonationTicker({ stats }: { stats: DonationStats | null }) {
     {
       icon: <Users className="w-7 h-7" />,
       value: stats?.childrenSponsored ?? 0,
-      label: "Children Sponsored",
+      label: t("ticker.children"),
       suffix: stats?.childrenSponsored ? "+" : "",
       color: "from-secondary/20 to-secondary/5",
       iconColor: "text-secondary",
@@ -76,7 +83,7 @@ export function DonationTicker({ stats }: { stats: DonationStats | null }) {
     {
       icon: <Heart className="w-7 h-7" />,
       value: stats?.totalCount ?? 0,
-      label: "Generous Donors",
+      label: t("ticker.donors"),
       suffix: stats?.totalCount ? "+" : "",
       color: "from-blue-500/10 to-blue-500/5",
       iconColor: "text-blue-400",
@@ -85,7 +92,7 @@ export function DonationTicker({ stats }: { stats: DonationStats | null }) {
     {
       icon: <TrendingUp className="w-7 h-7" />,
       value: stats?.totalAmount ?? 0,
-      label: "USD Raised",
+      label: t("ticker.raised"),
       prefix: "$",
       color: "from-green-500/10 to-green-500/5",
       iconColor: "text-green-400",
@@ -94,7 +101,7 @@ export function DonationTicker({ stats }: { stats: DonationStats | null }) {
     {
       icon: <Zap className="w-7 h-7" />,
       value: schoolMonths,
-      label: "School Months Funded",
+      label: t("ticker.months"),
       suffix: schoolMonths ? "+" : "",
       color: "from-purple-500/10 to-purple-500/5",
       iconColor: "text-purple-400",
@@ -107,11 +114,13 @@ export function DonationTicker({ stats }: { stats: DonationStats | null }) {
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-4">
-            <span className="text-white/80 text-sm font-semibold tracking-wide uppercase">Live Impact</span>
+            <span className="text-white/80 text-sm font-semibold tracking-wide uppercase">
+              {t("ticker.badge")}
+            </span>
             <PulseDot />
           </div>
-          <h2 className="text-white font-black text-3xl md:text-4xl">
-            Real Donations. Real Children. Real Change.
+          <h2 className="text-white font-black text-2xl md:text-3xl lg:text-4xl">
+            {t("ticker.heading")}
           </h2>
         </div>
 
@@ -134,7 +143,7 @@ export function DonationTicker({ stats }: { stats: DonationStats | null }) {
                   suffix={item.suffix}
                 />
               </div>
-              <p className="text-white/60 text-sm font-semibold uppercase tracking-wider">
+              <p className="text-white/60 text-xs md:text-sm font-semibold uppercase tracking-wider">
                 {item.label}
               </p>
             </motion.div>
@@ -143,7 +152,12 @@ export function DonationTicker({ stats }: { stats: DonationStats | null }) {
 
         {stats?.lastUpdated && stats.totalCount > 0 && (
           <p className="text-center text-white/30 text-xs mt-6">
-            Last updated {new Date(stats.lastUpdated).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+            Last updated{" "}
+            {new Date(stats.lastUpdated).toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            })}
             <PulseDot />
           </p>
         )}

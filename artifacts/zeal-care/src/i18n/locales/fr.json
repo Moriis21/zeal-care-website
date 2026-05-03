@@ -60,6 +60,120 @@
     "transparency": "Transparence",
     "yearSuffix": " An"
   },
+  "about": {
+    "badge": "Qui Sommes-Nous",
+    "heading": "Allumer le génie en chaque enfant.",
+    "yearsImpact": "Ans d'Impact",
+    "p1": "Zeal Care est une organisation à but non lucratif dont le siège est à Monrovia, au Libéria. Nous nous consacrons à l'autonomisation des futurs leaders africains grâce à une éducation complète, un mentorat ciblé et un accès essentiel à la technologie.",
+    "p2": "Nous avons noué des partenariats avec des communautés locales — notamment Esfans Academy à West Point Zone 405 — pour lever les obstacles à la réussite. Nous ne nous contentons pas de fournir des ressources ; nous construisons des voies pour que les enfants découvrent leur potentiel et transforment leurs communautés.",
+    "quote": "Quand vous donnez à un enfant les bons outils et quelqu'un qui croit en lui, son potentiel est sans limites.",
+    "learnMore": "En Savoir Plus →"
+  },
+  "why": {
+    "badge": "Pourquoi l'Autonomisation",
+    "heading": "Une Approche Globale du Changement",
+    "subtitle": "Nous nous attaquons aux causes profondes des inégalités à travers quatre piliers essentiels, créant une base solide pour la réussite.",
+    "features": [
+      {
+        "title": "Accès à l'Éducation",
+        "desc": "Fournir des bourses, des fournitures scolaires et éliminer les barrières financières pour que chaque enfant puisse aller à l'école."
+      },
+      {
+        "title": "Compétences Technologiques",
+        "desc": "Doter les élèves de laboratoires informatiques modernes et de cours de codage pour les préparer à l'économie numérique."
+      },
+      {
+        "title": "Programmes de Mentorat",
+        "desc": "Associer les jeunes à des modèles dévoués qui guident leur développement personnel et professionnel."
+      },
+      {
+        "title": "Impact Communautaire",
+        "desc": "Créer des programmes locaux durables qui élèvent des quartiers entiers, pas seulement des individus."
+      }
+    ]
+  },
+  "programs": {
+    "badge": "Ce Que Nous Faisons",
+    "heading": "Des programmes qui bâtissent l'avenir.",
+    "viewAll": "Voir Tous les Programmes",
+    "learnMore": "En savoir plus",
+    "items": [
+      {
+        "title": "Soutien aux Étudiants",
+        "desc": "Des bourses complètes couvrant les frais de scolarité, les fournitures, les uniformes et les cartables pour les élèves prometteurs qui en ont le plus besoin."
+      },
+      {
+        "title": "Éducation Technologique",
+        "desc": "Des laboratoires informatiques de pointe enseignant la culture numérique, le codage et les logiciels modernes pour préparer les jeunes à l'économie numérique."
+      },
+      {
+        "title": "Engagement en Classe",
+        "desc": "Des visites scolaires actives et des séances d'apprentissage interactives qui éveillent la curiosité, renforcent la confiance et rendent l'éducation passionnante."
+      },
+      {
+        "title": "Rayonnement Communautaire",
+        "desc": "Mobiliser les familles, les leaders locaux et les ménages pour créer des environnements favorables où l'éducation de chaque enfant est valorisée."
+      }
+    ]
+  },
+  "sponsor": {
+    "badge": "Personnalisez Votre Don",
+    "heading": "Parrainer un Enfant Spécifique",
+    "subtitle": "Chaque enfant ici a un nom, un rêve et une histoire. Choisissez-en un à soutenir directement — vos 150 $ couvrent toute son année scolaire.",
+    "tabs": {
+      "all": "Tous les Enfants",
+      "available": "Besoin d'un Parrain",
+      "sponsored": "Déjà Parrainé"
+    },
+    "sponsoredBadge": "Parrainé",
+    "needsSponsorBadge": "Besoin d'un Parrain",
+    "age": "Âge",
+    "cta": "Parrainer",
+    "perYear": "150 $/an",
+    "thanksMsg": "Cet enfant est parrainé — merci !",
+    "loading": "Chargement des profils…",
+    "error": "Profils temporairement indisponibles. Réessayez dans un moment.",
+    "allSponsored": "Tous les enfants sont parrainés ! 🎉",
+    "allSponsoredSub": "Votre générosité a rendu cela possible. Contactez-nous pour soutenir la prochaine promotion.",
+    "progressOf": "sur",
+    "stillNeed": "ont encore besoin de vous",
+    "multipleGift": "Vous souhaitez parrainer plusieurs enfants ou faire un don général ?",
+    "seeOptions": "Voir toutes les options →"
+  },
+  "joinus": {
+    "badge": "Allumer le Potentiel",
+    "heading": "Soyez l'Étincelle.",
+    "subtitle": "Rejoignez notre mission pour autonomiser la prochaine génération. Que vous deveniez parrain, partenaire ou bénévole, votre contribution crée un changement durable.",
+    "sponsorCTA": "PARRAINER UN ENFANT",
+    "volunteerCTA": "DEVENIR BÉNÉVOLE"
+  },
+  "stories": {
+    "badge": "Histoires d'Impact",
+    "heading": "Les Voix du Futur",
+    "subtitle": "De vrais enfants. De vraies familles. Un vrai changement. Ce sont les visages derrière notre mission.",
+    "age": "Âge"
+  },
+  "ticker": {
+    "badge": "Impact en Direct",
+    "heading": "De Vrais Dons. De Vrais Enfants. Un Vrai Changement.",
+    "children": "Enfants Parrainés",
+    "donors": "Donateurs Généreux",
+    "raised": "USD Collectés",
+    "months": "Mois d'École Financés"
+  },
+  "gallery": {
+    "badge": "Sur le Terrain",
+    "heading": "Moments de Changement",
+    "subtitle": "Un aperçu du vrai travail qui se passe chaque jour — dans les salles de classe, les communautés et les vies à travers Monrovia, au Libéria."
+  },
+  "partners": {
+    "badge": "Écosystème Mondial Stratégique",
+    "heading": "Nos Partenaires Stratégiques",
+    "subtitle": "Nous travaillons aux côtés d'organisations de premier plan pour amplifier notre impact et offrir une éducation de qualité à chaque enfant défavorisé du Libéria et d'Afrique.",
+    "ctaHeading": "Devenir Partenaire Stratégique",
+    "ctaSub": "Rejoignez des organisations de classe mondiale qui transforment l'éducation à travers l'Afrique.",
+    "ctaBtn": "Partenariat →"
+  },
   "contact": {
     "badge": "Contactez-Nous",
     "title": "Créons ensemble le changement.",

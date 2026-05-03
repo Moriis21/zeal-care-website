@@ -1,29 +1,18 @@
 import { motion } from "framer-motion";
 import { BookOpen, Laptop, Users, Heart } from "lucide-react";
+import { useTranslation } from "react-i18next";
+
+const ICONS = [
+  <BookOpen className="w-8 h-8" />,
+  <Laptop className="w-8 h-8" />,
+  <Users className="w-8 h-8" />,
+  <Heart className="w-8 h-8" />,
+];
 
 export function WhyEmpowerment() {
-  const features = [
-    {
-      icon: <BookOpen className="w-8 h-8" />,
-      title: "Education Access",
-      description: "Providing scholarships, school supplies, and removing financial barriers so every child can attend school."
-    },
-    {
-      icon: <Laptop className="w-8 h-8" />,
-      title: "Technology Skills",
-      description: "Equipping students with modern computer labs and coding classes to prepare them for the digital economy."
-    },
-    {
-      icon: <Users className="w-8 h-8" />,
-      title: "Mentorship Programs",
-      description: "Pairing youth with dedicated role models who guide their personal and professional development."
-    },
-    {
-      icon: <Heart className="w-8 h-8" />,
-      title: "Community Impact",
-      description: "Building sustainable local programs that uplift entire neighborhoods, not just individuals."
-    }
-  ];
+  const { t } = useTranslation();
+
+  const features = (t("why.features", { returnObjects: true }) as { title: string; desc: string }[]);
 
   return (
     <section id="why-empowerment" className="py-24 bg-[#1A44C0] text-primary-foreground">
@@ -36,7 +25,7 @@ export function WhyEmpowerment() {
             viewport={{ once: true }}
             className="inline-block px-3 py-1 rounded-full bg-secondary/20 text-secondary text-sm font-bold tracking-wider mb-4 uppercase"
           >
-            Why Empowerment
+            {t("why.badge")}
           </motion.div>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
@@ -45,7 +34,7 @@ export function WhyEmpowerment() {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-extrabold mb-6"
           >
-            A Holistic Approach to Change
+            {t("why.heading")}
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -54,7 +43,7 @@ export function WhyEmpowerment() {
             transition={{ delay: 0.2 }}
             className="text-xl text-primary-foreground/80"
           >
-            We address the root causes of inequality through four core pillars, creating a comprehensive foundation for success.
+            {t("why.subtitle")}
           </motion.p>
         </div>
 
@@ -71,11 +60,11 @@ export function WhyEmpowerment() {
               data-testid={`card-feature-${index}`}
             >
               <div className="w-16 h-16 rounded-2xl bg-secondary/20 text-secondary flex items-center justify-center mb-6">
-                {feature.icon}
+                {ICONS[index]}
               </div>
               <h3 className="text-xl font-bold mb-4">{feature.title}</h3>
               <p className="text-primary-foreground/70 leading-relaxed">
-                {feature.description}
+                {feature.desc}
               </p>
             </motion.div>
           ))}
