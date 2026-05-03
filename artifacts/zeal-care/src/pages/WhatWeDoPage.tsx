@@ -1,40 +1,41 @@
 import { useParams } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { navConfig } from "@/lib/nav-config";
+import { BookOpen, Sparkles, Briefcase, FlaskConical, Monitor, Settings, Map, ClipboardList, BarChart2, Target, Home, Leaf, GraduationCap, CheckCircle2, Building2, TrendingUp, Calendar, Globe } from "lucide-react";
 
 const section = navConfig.find((s) => s.path === "/what-we-do")!;
 
 const programs = [
   {
-    icon: "📚",
+    icon: BookOpen,
     title: "Education Sponsorship, Support & Advocacy",
     quote: '"The best way to fight poverty is to empower people through access to quality education." – John Legend',
     desc: "This program empowers underprivileged children aged 4 to 17 who live in slums and rural communities and never enrolled or dropped out. We provide registration and tuition, school supplies, and resources to support academic success, and advocate for inclusive education, especially for the disabled.",
     img: "/attached_assets/pdf_images/img-059.jpg",
   },
   {
-    icon: "🌟",
+    icon: Sparkles,
     title: "Leadership Development Programs",
     quote: '"If your actions inspire others to dream more, learn more, do more, and become more, you are a leader." – John Quincy Adams',
     desc: "Structured initiatives developing key skills for underprivileged children, students, and Zeal Care volunteers. Focus areas include personal development, mentorship, coaching, communication, problem-solving, emotional intelligence, and negotiation through training, seminars, and summits.",
     img: "/attached_assets/pdf_images/img-067.jpg",
   },
   {
-    icon: "💼",
+    icon: Briefcase,
     title: "Entrepreneurship Programs",
     quote: '"It\'s not about ideas. It\'s about making ideas happen." — Scott Belsky',
     desc: "Structured training and developmental initiatives equipping underprivileged children, students, and young people with the knowledge, skills, and mindset required to identify business opportunities, develop new ventures, and manage business growth through seminars, summits, and more.",
     img: "/attached_assets/pdf_images/img-068.jpg",
   },
   {
-    icon: "🔬",
+    icon: FlaskConical,
     title: "Career Paths in STEM Programs",
     quote: '"Science is not a boy\'s game, it\'s not a girl\'s game. It\'s everyone\'s game." – Nichelle Nichols',
     desc: "Collaborate with high schools to provide information and resources on choosing career paths in STEM for high school students through workshops, seminars, and campaigns.",
     img: null,
   },
   {
-    icon: "💻",
+    icon: Monitor,
     title: "Digital Education Programs",
     quote: '"The illiterate of the 21st century will not be those who cannot read and write, but those who cannot learn, unlearn, and relearn." – Alvin Toffler',
     desc: "Providing digital literacy training and awareness in various ICT programs through seminars, bootcamp, coding, and others — ensuring young people are prepared for an increasingly digital world.",
@@ -53,13 +54,15 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
         <p className="text-muted-foreground leading-relaxed text-lg">We treat everyone we work with as an individual. But we do not support anyone in isolation. We work in partnership with slum and rural communities, founded on trust and deep respect for the expertise and commitment of community and school members.</p>
         <div className="grid sm:grid-cols-2 gap-5">
           {[
-            { label: "How We Operate", path: "/what-we-do/how-we-operate", icon: "⚙️", desc: "Our holistic, community-rooted model of educational support." },
-            { label: "Where We Operate", path: "/what-we-do/where-we-operate", icon: "🗺️", desc: "Currently serving 3 counties across Liberia." },
-            { label: "Our Programs", path: "/what-we-do/programs", icon: "📋", desc: "Five core programs from education to digital literacy." },
-            { label: "Impact in Numbers", path: "/what-we-do/impact", icon: "📊", desc: "105+ children sponsored, 100% retention rate." },
-          ].map(({ label, icon, desc }) => (
+            { label: "How We Operate", path: "/what-we-do/how-we-operate", icon: Settings, desc: "Our holistic, community-rooted model of educational support." },
+            { label: "Where We Operate", path: "/what-we-do/where-we-operate", icon: Map, desc: "Currently serving 3 counties across Liberia." },
+            { label: "Our Programs", path: "/what-we-do/programs", icon: ClipboardList, desc: "Five core programs from education to digital literacy." },
+            { label: "Impact in Numbers", path: "/what-we-do/impact", icon: BarChart2, desc: "105+ children sponsored, 100% retention rate." },
+          ].map(({ label, icon: Icon, desc }) => (
             <div key={label} className="bg-white border border-border rounded-2xl p-6 hover:shadow-md hover:border-primary/30 transition-all">
-              <div className="text-3xl mb-3">{icon}</div>
+              <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3">
+                <Icon className="w-5 h-5 text-primary" />
+              </div>
               <h3 className="font-bold text-primary mb-2">{label}</h3>
               <p className="text-muted-foreground text-sm">{desc}</p>
             </div>
@@ -125,7 +128,10 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
           ))}
         </div>
         <div className="bg-secondary/10 border border-secondary/30 rounded-2xl p-6 text-center">
-          <p className="font-bold text-primary mb-2">🌍 Vision: Beyond Liberia</p>
+          <div className="flex items-center justify-center gap-2 font-bold text-primary mb-2">
+            <Globe className="w-5 h-5" />
+            <span>Vision: Beyond Liberia</span>
+          </div>
           <p className="text-muted-foreground">Zeal Care's vision extends to West Africa and across the African continent. Our model is designed to be replicated in communities with similar challenges.</p>
         </div>
       </div>
@@ -137,19 +143,24 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
       <div className="space-y-8">
         <p className="text-muted-foreground leading-relaxed text-lg">As Zeal Care ignites potential and inspires change, we celebrate the hope and joy in supporting underprivileged children, students, and youth in realizing their dreams through five core programs.</p>
         <div className="space-y-8">
-          {programs.map((prog) => (
-            <div key={prog.title} className="bg-white border border-border rounded-2xl overflow-hidden hover:shadow-md transition-all">
-              {prog.img && <img src={prog.img} alt={prog.title} className="w-full h-56 object-cover" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />}
-              <div className="p-6">
-                <div className="text-3xl mb-3">{prog.icon}</div>
-                <h3 className="font-black text-primary text-xl mb-3">{prog.title}</h3>
-                <p className="text-muted-foreground leading-relaxed mb-4">{prog.desc}</p>
-                <div className="bg-secondary/10 border-l-4 border-secondary rounded-r-xl p-4">
-                  <p className="text-primary italic text-sm font-semibold">{prog.quote}</p>
+          {programs.map((prog) => {
+            const Icon = prog.icon;
+            return (
+              <div key={prog.title} className="bg-white border border-border rounded-2xl overflow-hidden hover:shadow-md transition-all">
+                {prog.img && <img src={prog.img} alt={prog.title} className="w-full h-56 object-cover" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />}
+                <div className="p-6">
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                    <Icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="font-black text-primary text-xl mb-3">{prog.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-4">{prog.desc}</p>
+                  <div className="bg-secondary/10 border-l-4 border-secondary rounded-r-xl p-4">
+                    <p className="text-primary italic text-sm font-semibold">{prog.quote}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     ),
@@ -161,14 +172,16 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
         <p className="text-muted-foreground leading-relaxed text-lg">Zeal Care is not just another education NGO. Our model is designed to create lasting, systemic change by addressing the root causes of educational inequality — not just its symptoms.</p>
         <div className="space-y-6">
           {[
-            { icon: "🎯", title: "Holistic Development, Not Just School Fees", desc: "Zeal Care goes beyond education sponsorship with mentorship and life-skills development. This ensures children not only stay in school but also build confidence and resilience, gain leadership and entrepreneurship skills, and learn how to choose a career path for long-term success. This integrated approach directly advances SDG 4 by improving access, retention, and learning outcomes." },
-            { icon: "🏘️", title: "Community-Rooted and Accountability-Driven", desc: "Zeal Care is deeply embedded within local communities, working closely with parents, schools, and community leaders to ensure sustainability. Our strong emphasis on transparency, monitoring, and donor accountability guarantees that every contribution delivers measurable and lasting impact. This aligns with SDG 17, Partnerships for the Goals." },
-            { icon: "📊", title: "Evidence-Based Selection and Monitoring", desc: "Our rigorous survey, interview, and vetting process ensures that support reaches those who need it most. We continuously monitor academic performance and well-being, providing accountability to donors and ensuring children receive their full entitlements." },
-            { icon: "🌱", title: "Youth-Led Movement", desc: "Zeal Care is led by young people who have personally experienced the barriers of poverty and educational inequality. This lived experience drives authentic, culturally sensitive programming that resonates with communities and beneficiaries." },
-          ].map(({ icon, title, desc }) => (
+            { icon: Target, title: "Holistic Development, Not Just School Fees", desc: "Zeal Care goes beyond education sponsorship with mentorship and life-skills development. This ensures children not only stay in school but also build confidence and resilience, gain leadership and entrepreneurship skills, and learn how to choose a career path for long-term success. This integrated approach directly advances SDG 4 by improving access, retention, and learning outcomes." },
+            { icon: Home, title: "Community-Rooted and Accountability-Driven", desc: "Zeal Care is deeply embedded within local communities, working closely with parents, schools, and community leaders to ensure sustainability. Our strong emphasis on transparency, monitoring, and donor accountability guarantees that every contribution delivers measurable and lasting impact. This aligns with SDG 17, Partnerships for the Goals." },
+            { icon: BarChart2, title: "Evidence-Based Selection and Monitoring", desc: "Our rigorous survey, interview, and vetting process ensures that support reaches those who need it most. We continuously monitor academic performance and well-being, providing accountability to donors and ensuring children receive their full entitlements." },
+            { icon: Leaf, title: "Youth-Led Movement", desc: "Zeal Care is led by young people who have personally experienced the barriers of poverty and educational inequality. This lived experience drives authentic, culturally sensitive programming that resonates with communities and beneficiaries." },
+          ].map(({ icon: Icon, title, desc }) => (
             <div key={title} className="bg-white border border-border rounded-2xl p-7 hover:shadow-md hover:border-primary/30 transition-all">
               <div className="flex items-start gap-4">
-                <span className="text-3xl flex-shrink-0">{icon}</span>
+                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Icon className="w-6 h-6 text-primary" />
+                </div>
                 <div>
                   <h3 className="font-black text-primary text-xl mb-3">{title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{desc}</p>
@@ -187,15 +200,17 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
         <p className="text-muted-foreground leading-relaxed text-lg">Numbers tell part of the story. Behind every statistic is a child who now has the chance to dream bigger.</p>
         <div className="grid sm:grid-cols-2 gap-5">
           {[
-            { num: "105+", label: "Underprivileged children provided with full educational sponsorship and support", icon: "🎓" },
-            { num: "100%", label: "Education sponsorship retention rate — every child we sponsor stays in school", icon: "✅" },
-            { num: "2+", label: "Communities impacted in Montserrado County, Liberia", icon: "🏘️" },
-            { num: "3+", label: "Schools reached through full sponsorship programs", icon: "🏫" },
-            { num: "10+", label: "Children, students, and youth provided with leadership, entrepreneurship, and digital training", icon: "📈" },
-            { num: "2+", label: "Years of supporting slum and rural communities in Liberia", icon: "📅" },
-          ].map(({ num, label, icon }) => (
+            { num: "105+", label: "Underprivileged children provided with full educational sponsorship and support", icon: GraduationCap },
+            { num: "100%", label: "Education sponsorship retention rate — every child we sponsor stays in school", icon: CheckCircle2 },
+            { num: "2+", label: "Communities impacted in Montserrado County, Liberia", icon: Home },
+            { num: "3+", label: "Schools reached through full sponsorship programs", icon: Building2 },
+            { num: "10+", label: "Children, students, and youth provided with leadership, entrepreneurship, and digital training", icon: TrendingUp },
+            { num: "2+", label: "Years of supporting slum and rural communities in Liberia", icon: Calendar },
+          ].map(({ num, label, icon: Icon }) => (
             <div key={label} className="bg-white border border-border rounded-2xl p-6 text-center hover:shadow-md hover:border-primary/30 transition-all">
-              <div className="text-4xl mb-3">{icon}</div>
+              <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-3 mx-auto">
+                <Icon className="w-7 h-7 text-primary" />
+              </div>
               <p className="text-5xl font-black text-primary mb-2">{num}</p>
               <p className="text-muted-foreground text-sm leading-relaxed">{label}</p>
             </div>

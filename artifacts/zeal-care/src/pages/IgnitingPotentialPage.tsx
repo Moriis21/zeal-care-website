@@ -2,7 +2,7 @@ import { useParams } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { navConfig } from "@/lib/nav-config";
 import { useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, Heart, Users, HelpCircle, Sparkles, BookOpen, Star } from "lucide-react";
 
 const section = navConfig.find((s) => s.path === "/igniting-potential")!;
 
@@ -59,13 +59,15 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
         <p className="text-muted-foreground leading-relaxed text-lg">Your support today can help a child secure an education. The child will be able to create the future they imagine for themselves, their community, and Africa.</p>
         <div className="grid sm:grid-cols-2 gap-5">
           {[
-            { label: "Ways to Give", path: "/igniting-potential/ways-to-give", icon: "💛", desc: "Explore all the ways you can support Zeal Care's mission." },
-            { label: "Appeals", path: "/igniting-potential/appeals", icon: "🙏", desc: "Specific urgent campaigns that need your support right now." },
-            { label: "Become a Partner", path: "/igniting-potential/become-a-partner", icon: "🤝", desc: "Partner with us to multiply our impact for thousands of children." },
-            { label: "Giving FAQ", path: "/igniting-potential/faq", icon: "❓", desc: "Find answers to all your questions about donating to Zeal Care." },
-          ].map(({ label, icon, desc }) => (
+            { label: "Ways to Give", path: "/igniting-potential/ways-to-give", icon: Heart, desc: "Explore all the ways you can support Zeal Care's mission." },
+            { label: "Appeals", path: "/igniting-potential/appeals", icon: Sparkles, desc: "Specific urgent campaigns that need your support right now." },
+            { label: "Become a Partner", path: "/igniting-potential/become-a-partner", icon: Users, desc: "Partner with us to multiply our impact for thousands of children." },
+            { label: "Giving FAQ", path: "/igniting-potential/faq", icon: HelpCircle, desc: "Find answers to all your questions about donating to Zeal Care." },
+          ].map(({ label, icon: Icon, desc }) => (
             <div key={label} className="bg-white border border-border rounded-2xl p-6 hover:shadow-md hover:border-primary/30 transition-all">
-              <div className="text-3xl mb-3">{icon}</div>
+              <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3">
+                <Icon className="w-5 h-5 text-primary" />
+              </div>
               <h3 className="font-bold text-primary mb-2">{label}</h3>
               <p className="text-muted-foreground text-sm">{desc}</p>
             </div>
@@ -121,7 +123,11 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
 
         {/* Donate CTA */}
         <div className="bg-primary/5 border border-primary/20 rounded-2xl p-8 text-center">
-          <p className="text-3xl mb-4">🌟</p>
+          <div className="flex justify-center mb-4">
+            <div className="w-14 h-14 bg-secondary/20 rounded-2xl flex items-center justify-center">
+              <Star className="w-7 h-7 text-secondary" />
+            </div>
+          </div>
           <p className="font-black text-primary text-xl mb-2">Ready to Make a Difference?</p>
           <p className="text-muted-foreground mb-5">When you educate one child, you educate many. Every child you support through Zeal Care will go on to help at least two others, multiplying your impact far into the future.</p>
           <div className="space-y-3">
@@ -145,14 +151,17 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
         </div>
         <div className="space-y-6">
           {[
-            { icon: "🎒", title: "No Child Should Be Left Behind in Education", urgency: "ACTIVE APPEAL", desc: "Zeal Care is seeking to expand beyond our current 105+ beneficiaries. We are currently raising funds to sponsor additional children from West Point and other slum communities in Liberia for the 2025–2026 academic year. Every child deserves the chance to learn, dream, and succeed.", target: "$7,200 sponsors 25 children" },
-            { icon: "📚", title: "School Supplies Drive", urgency: "ONGOING", desc: "Cash donations to support procurement of school materials — books, bags, pens, pencils, shoes, and uniforms for newly enrolled beneficiaries. Your gift ensures no child walks into school without the tools they need to succeed.", target: "$50 supplies one child for the year" },
-            { icon: "🌟", title: "Leadership & Entrepreneurship Training Fund", urgency: "PLANNING", desc: "We are raising funds to launch our first structured Leadership Development and Entrepreneurship training program for sponsored beneficiaries and youth in partner communities.", target: "$500 trains 10 young people" },
-          ].map(({ icon, title, urgency, desc, target }) => (
+            { icon: Users, title: "No Child Should Be Left Behind in Education", urgency: "ACTIVE APPEAL", desc: "Zeal Care is seeking to expand beyond our current 105+ beneficiaries. We are currently raising funds to sponsor additional children from West Point and other slum communities in Liberia for the 2025–2026 academic year. Every child deserves the chance to learn, dream, and succeed.", target: "$7,200 sponsors 25 children" },
+            { icon: BookOpen, title: "School Supplies Drive", urgency: "ONGOING", desc: "Cash donations to support procurement of school materials — books, bags, pens, pencils, shoes, and uniforms for newly enrolled beneficiaries. Your gift ensures no child walks into school without the tools they need to succeed.", target: "$50 supplies one child for the year" },
+            { icon: Sparkles, title: "Leadership & Entrepreneurship Training Fund", urgency: "PLANNING", desc: "We are raising funds to launch our first structured Leadership Development and Entrepreneurship training program for sponsored beneficiaries and youth in partner communities.", target: "$500 trains 10 young people" },
+          ].map(({ icon: Icon, title, urgency, desc, target }) => (
             <div key={title} className="bg-white border border-border rounded-2xl overflow-hidden hover:shadow-md transition-all">
               <div className="bg-primary px-6 py-3 flex items-center justify-between">
-                <span className="text-white font-bold flex items-center gap-2">{icon} {title}</span>
-                <span className="text-secondary text-xs font-black bg-secondary/20 px-3 py-1 rounded-full">{urgency}</span>
+                <span className="text-white font-bold flex items-center gap-2">
+                  <Icon className="w-4 h-4 flex-shrink-0" />
+                  {title}
+                </span>
+                <span className="text-secondary text-xs font-black bg-secondary/20 px-3 py-1 rounded-full whitespace-nowrap ml-3">{urgency}</span>
               </div>
               <div className="p-6">
                 <p className="text-muted-foreground leading-relaxed mb-4">{desc}</p>

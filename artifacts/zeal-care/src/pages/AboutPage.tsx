@@ -1,7 +1,7 @@
 import { useParams } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { navConfig } from "@/lib/nav-config";
-import { Target, Eye, Star, Heart, Lightbulb, Globe, Users } from "lucide-react";
+import { Target, Eye, Star, Heart, Lightbulb, Globe, Users, ShieldCheck, Zap, Brain, Link2, Scale, Monitor, Unlock } from "lucide-react";
 
 const section = navConfig.find((s) => s.path === "/about")!;
 
@@ -122,15 +122,17 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
         </p>
         <div className="grid sm:grid-cols-2 gap-5">
           {[
-            { icon: "🤝", title: "Integrity", desc: "We do what we say and say what we mean. Every decision we make is guided by honesty, ethics, and accountability." },
-            { icon: "💪", title: "Commitment", desc: "We are passionately committed to our mission and to the children, families, and communities we serve — even when the work is hard." },
-            { icon: "🌍", title: "Diversity & Inclusion", desc: "We celebrate the diversity of every individual and create a culture of belonging where every child and team member feels valued and respected." },
-            { icon: "🔍", title: "Transparency & Accountability", desc: "We are open and honest about our work, our finances, and our impact, so that donors, partners, and communities can trust us completely." },
-            { icon: "💡", title: "Innovation", desc: "We are committed to finding creative, effective, and scalable solutions to the complex challenge of educational inequality." },
-            { icon: "🤲", title: "Teamwork", desc: "We believe that together we are stronger. We collaborate with communities, partners, volunteers, and young people to multiply our impact." },
-          ].map(({ icon, title, desc }) => (
+            { icon: ShieldCheck, title: "Integrity", desc: "We do what we say and say what we mean. Every decision we make is guided by honesty, ethics, and accountability." },
+            { icon: Zap, title: "Commitment", desc: "We are passionately committed to our mission and to the children, families, and communities we serve — even when the work is hard." },
+            { icon: Globe, title: "Diversity & Inclusion", desc: "We celebrate the diversity of every individual and create a culture of belonging where every child and team member feels valued and respected." },
+            { icon: Eye, title: "Transparency & Accountability", desc: "We are open and honest about our work, our finances, and our impact, so that donors, partners, and communities can trust us completely." },
+            { icon: Lightbulb, title: "Innovation", desc: "We are committed to finding creative, effective, and scalable solutions to the complex challenge of educational inequality." },
+            { icon: Users, title: "Teamwork", desc: "We believe that together we are stronger. We collaborate with communities, partners, volunteers, and young people to multiply our impact." },
+          ].map(({ icon: Icon, title, desc }) => (
             <div key={title} className="bg-white border border-border rounded-2xl p-6 hover:shadow-md hover:border-primary/30 transition-all">
-              <div className="text-3xl mb-3">{icon}</div>
+              <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3">
+                <Icon className="w-5 h-5 text-primary" />
+              </div>
               <h3 className="font-bold text-primary text-lg mb-2">{title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">{desc}</p>
             </div>
@@ -203,17 +205,19 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
         </p>
         <div className="grid sm:grid-cols-2 gap-5">
           {[
-            { num: "01", title: "Self-Awareness", icon: "🧠", desc: "We help children understand their strengths, values, and purpose. A young person who knows themselves is equipped to navigate challenges with confidence." },
-            { num: "02", title: "Strategic Networks", icon: "🔗", desc: "We connect children and youth with mentors, peers, and professionals who broaden their horizons and open doors of opportunity." },
-            { num: "03", title: "Solution-Oriented Thinking", icon: "💡", desc: "We train young people to approach challenges as opportunities. Through problem-solving workshops and leadership programs, we develop creative, resilient thinkers." },
-            { num: "04", title: "Breaking Cycles of Poverty", icon: "🔓", desc: "By equipping children with education, skills, and confidence, we help them become the first in their family to break generational patterns of poverty." },
-            { num: "05", title: "Ethical Leadership", icon: "⚖️", desc: "We instill integrity, accountability, and servant leadership — because the next generation must lead with both competence and character." },
-            { num: "06", title: "Digital Fluency", icon: "💻", desc: "In a rapidly changing world, digital literacy is essential. We give young people the foundational skills to participate in and shape the digital economy." },
-            { num: "07", title: "Intentional Collaboration", icon: "🤝", desc: "We develop the ability to work across differences and build meaningful partnerships — because collective action creates the most lasting change." },
-          ].map(({ num, title, icon, desc }) => (
+            { num: "01", title: "Self-Awareness", icon: Brain, desc: "We help children understand their strengths, values, and purpose. A young person who knows themselves is equipped to navigate challenges with confidence." },
+            { num: "02", title: "Strategic Networks", icon: Link2, desc: "We connect children and youth with mentors, peers, and professionals who broaden their horizons and open doors of opportunity." },
+            { num: "03", title: "Solution-Oriented Thinking", icon: Lightbulb, desc: "We train young people to approach challenges as opportunities. Through problem-solving workshops and leadership programs, we develop creative, resilient thinkers." },
+            { num: "04", title: "Breaking Cycles of Poverty", icon: Unlock, desc: "By equipping children with education, skills, and confidence, we help them become the first in their family to break generational patterns of poverty." },
+            { num: "05", title: "Ethical Leadership", icon: Scale, desc: "We instill integrity, accountability, and servant leadership — because the next generation must lead with both competence and character." },
+            { num: "06", title: "Digital Fluency", icon: Monitor, desc: "In a rapidly changing world, digital literacy is essential. We give young people the foundational skills to participate in and shape the digital economy." },
+            { num: "07", title: "Intentional Collaboration", icon: Users, desc: "We develop the ability to work across differences and build meaningful partnerships — because collective action creates the most lasting change." },
+          ].map(({ num, title, icon: Icon, desc }) => (
             <div key={num} className="bg-white border border-border rounded-2xl p-6 hover:shadow-md hover:border-primary/30 transition-all">
               <div className="flex items-center gap-3 mb-3">
-                <span className="text-2xl">{icon}</span>
+                <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+                  <Icon className="w-4 h-4 text-primary" />
+                </div>
                 <span className="text-xs font-black text-secondary">{num}</span>
               </div>
               <h3 className="font-bold text-primary text-lg mb-2">{title}</h3>

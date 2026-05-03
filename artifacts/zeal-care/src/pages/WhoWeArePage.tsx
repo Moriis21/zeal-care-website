@@ -2,6 +2,7 @@ import { useParams } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { navConfig } from "@/lib/nav-config";
 import { Link } from "wouter";
+import { User, Building2, Scroll, BarChart2, Users, Search, Eye, ClipboardList, GraduationCap, Trophy, Mail, Inbox } from "lucide-react";
 
 const section = navConfig.find((s) => s.path === "/who-we-are")!;
 
@@ -60,14 +61,16 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
         <p className="text-muted-foreground leading-relaxed text-lg">Zeal Care is a team of passionate young people united by a shared mission: to ensure that every underprivileged child in Liberia and across Africa has the chance to learn, grow, and lead.</p>
         <div className="grid sm:grid-cols-2 gap-5">
           {[
-            { label: "Our Leadership", path: "/who-we-are/leadership", icon: "👤", desc: "Meet the dedicated team driving Zeal Care's mission forward." },
-            { label: "Board of Advisors", path: "/who-we-are/board", icon: "🏛️", desc: "Expert advisors guiding our strategy and governance." },
-            { label: "Our History", path: "/who-we-are/history", icon: "📜", desc: "From a 2017 survey to a legally registered NGO in 2025." },
-            { label: "Finance & Accountability", path: "/who-we-are/finance", icon: "📊", desc: "Our innovative financial system ensures full transparency." },
-          ].map(({ label, path, icon, desc }) => (
+            { label: "Our Leadership", path: "/who-we-are/leadership", icon: User, desc: "Meet the dedicated team driving Zeal Care's mission forward." },
+            { label: "Board of Advisors", path: "/who-we-are/board", icon: Building2, desc: "Expert advisors guiding our strategy and governance." },
+            { label: "Our History", path: "/who-we-are/history", icon: Scroll, desc: "From a 2017 survey to a legally registered NGO in 2025." },
+            { label: "Finance & Accountability", path: "/who-we-are/finance", icon: BarChart2, desc: "Our innovative financial system ensures full transparency." },
+          ].map(({ label, path, icon: Icon, desc }) => (
             <Link key={label} href={path}>
               <div className="bg-white border border-border rounded-2xl p-6 hover:shadow-md hover:border-primary/30 transition-all cursor-pointer h-full">
-                <div className="text-3xl mb-3">{icon}</div>
+                <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3">
+                  <Icon className="w-5 h-5 text-primary" />
+                </div>
                 <h3 className="font-bold text-primary mb-2">{label}</h3>
                 <p className="text-muted-foreground text-sm">{desc}</p>
               </div>
@@ -88,7 +91,7 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
             <div key={person.name} className="bg-white border border-border rounded-2xl overflow-hidden hover:shadow-md transition-all">
               <div className="md:flex">
                 <div className="md:w-56 flex-shrink-0">
-                  <img src={person.img} alt={person.name} className="w-full h-56 md:h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23061A32'/%3E%3Ctext x='100' y='115' font-size='60' text-anchor='middle' fill='%23F5C619'%3E👤%3C/text%3E%3C/svg%3E"; }} />
+                  <img src={person.img} alt={person.name} className="w-full h-56 md:h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23061A32'/%3E%3Ccircle cx='100' cy='80' r='40' fill='%23F5C619'/%3E%3Ccircle cx='100' cy='200' r='70' fill='%23F5C619'/%3E%3C/svg%3E"; }} />
                 </div>
                 <div className="p-6 flex-1">
                   <div className="inline-block bg-secondary/20 text-primary text-xs font-bold px-3 py-1 rounded-full mb-3">{person.role}</div>
@@ -169,7 +172,11 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
         <p className="text-muted-foreground leading-relaxed">We couldn't do our work without all the committed individuals and organizations partnering with Zeal Care to ensure that underprivileged children across Liberia and Africa can learn, thrive, and become independent, influential change leaders tomorrow.</p>
         <p className="text-muted-foreground leading-relaxed">We recognize the generosity of individuals, communities, schools, corporations, foundations, and non-governmental bodies who have supported Zeal Care's grassroots-led program at all levels. Together, we are improving lives and livelihoods for underprivileged children, students, and young people in their communities.</p>
         <div className="bg-secondary/10 border border-secondary/30 rounded-2xl p-8 text-center">
-          <p className="text-3xl mb-3">🤝</p>
+          <div className="flex justify-center mb-3">
+            <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center">
+              <Users className="w-7 h-7 text-primary" />
+            </div>
+          </div>
           <p className="font-bold text-primary mb-2">Partnership Opportunities Available</p>
           <p className="text-muted-foreground mb-5 text-sm">Zeal Care is actively seeking mission-aligned partners for 2026. Be among the first to partner with a fast-growing, impact-driven organization.</p>
           <Link href="/igniting-potential/become-a-partner">
@@ -212,7 +219,11 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
     content: (
       <div className="space-y-8">
         <div className="bg-secondary/10 border border-secondary/30 rounded-2xl p-8 text-center">
-          <div className="text-5xl mb-4">🏆</div>
+          <div className="flex justify-center mb-4">
+            <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center">
+              <Trophy className="w-8 h-8 text-secondary" />
+            </div>
+          </div>
           <h3 className="font-black text-primary text-xl mb-3">Coming Soon</h3>
           <p className="text-muted-foreground">Zeal Care is a young and rapidly growing organization. We have not yet received formal organizational awards, but our impact speaks for itself — 105+ children sponsored, 100% retention rate, and communities transformed.</p>
         </div>
@@ -277,13 +288,15 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
         <p className="text-muted-foreground leading-relaxed">Zeal Care's financial processes ensure we are accountable to the underprivileged children we serve and the donors who invest and trust in us. Our partner communities and schools are our stakeholders, whose members match donor resources with time and resources of their own.</p>
         <div className="space-y-5">
           {[
-            { icon: "🔍", title: "Transparent Tracking", desc: "Our system starts with an educational survey for the selection process. Once a child is approved for support, their full entitlement is tracked through our data monitoring system, with volunteers using mobile phones to record and report data." },
-            { icon: "👀", title: "Regular Field Visits", desc: "Zeal Care staff make regular visits to each school and community. They meet with volunteer groups to ensure that funds are used for their intended purpose and that records provide a clear audit trail." },
-            { icon: "📋", title: "Annual Auditing", desc: "The audit process traces funds from the time of donation to the time it reaches a child. Evidence is gathered by inspecting finance records and interviewing sponsored children to confirm they received their full entitlements." },
-            { icon: "🎓", title: "Continuous Training", desc: "A continuous training program supports this framework. Financial training covers strong planning skills, sound maintenance of records, robust internal controls, and regular internal audit and monitoring." },
-          ].map(({ icon, title, desc }) => (
+            { icon: Search, title: "Transparent Tracking", desc: "Our system starts with an educational survey for the selection process. Once a child is approved for support, their full entitlement is tracked through our data monitoring system, with volunteers using mobile phones to record and report data." },
+            { icon: Eye, title: "Regular Field Visits", desc: "Zeal Care staff make regular visits to each school and community. They meet with volunteer groups to ensure that funds are used for their intended purpose and that records provide a clear audit trail." },
+            { icon: ClipboardList, title: "Annual Auditing", desc: "The audit process traces funds from the time of donation to the time it reaches a child. Evidence is gathered by inspecting finance records and interviewing sponsored children to confirm they received their full entitlements." },
+            { icon: GraduationCap, title: "Continuous Training", desc: "A continuous training program supports this framework. Financial training covers strong planning skills, sound maintenance of records, robust internal controls, and regular internal audit and monitoring." },
+          ].map(({ icon: Icon, title, desc }) => (
             <div key={title} className="bg-white border border-border rounded-2xl p-6 hover:shadow-md transition-all">
-              <div className="text-2xl mb-3">{icon}</div>
+              <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3">
+                <Icon className="w-5 h-5 text-primary" />
+              </div>
               <h3 className="font-bold text-primary mb-2">{title}</h3>
               <p className="text-muted-foreground leading-relaxed text-sm">{desc}</p>
             </div>
@@ -307,7 +320,11 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
         <p className="text-muted-foreground leading-relaxed text-lg">We're a team of passionate people united by our shared goals: to help children thrive and grow as future leaders, and to transform national education systems through strategic partnerships.</p>
         <p className="text-muted-foreground leading-relaxed">Working at Zeal Care is more than just a job; it's a chance to be part of something bigger. Whether you're a seasoned development professional or eager to prove social skills, you'll find purpose, collaboration, and meaning in the work we do together.</p>
         <div className="bg-secondary/10 border border-secondary/30 rounded-2xl p-8 text-center">
-          <div className="text-5xl mb-4">📬</div>
+          <div className="flex justify-center mb-4">
+            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+              <Inbox className="w-8 h-8 text-primary" />
+            </div>
+          </div>
           <p className="font-bold text-primary text-xl mb-2">No Open Positions Right Now</p>
           <p className="text-muted-foreground mb-5">We don't have any open vacancies at the moment, but we are always looking for passionate people. Send us your details and we'll be in touch when a role that matches your skills opens up.</p>
           <a href="mailto:info@zealcare.org" className="inline-block bg-primary text-white px-8 py-3 rounded-full font-bold hover:bg-primary/90 transition-colors">Send Your CV</a>
@@ -328,7 +345,11 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
           <p className="text-white/80">Zeal Care is committed to ethical, transparent procurement that delivers maximum value for the children we serve.</p>
         </div>
         <div className="bg-secondary/10 border border-secondary/30 rounded-2xl p-8 text-center">
-          <div className="text-5xl mb-4">📋</div>
+          <div className="flex justify-center mb-4">
+            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+              <ClipboardList className="w-8 h-8 text-primary" />
+            </div>
+          </div>
           <p className="font-bold text-primary text-xl mb-2">No Active Tenders</p>
           <p className="text-muted-foreground mb-5">There are no active procurement opportunities at this time. Please check back regularly or contact us to be notified when new tenders are published.</p>
           <a href="mailto:info@zealcare.org" className="inline-block bg-primary text-white px-8 py-3 rounded-full font-bold hover:bg-primary/90 transition-colors">Register Your Interest</a>
