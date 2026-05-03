@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import aboutMission from "@assets/Our_Mission_1777770914049.jpeg";
+import aboutPhilosophy from "@assets/Our_Philosophy_1777770914049.jpeg";
 
 export function About() {
   return (
@@ -16,8 +18,8 @@ export function About() {
           >
             <div className="grid grid-cols-2 gap-4">
               <img 
-                src="/about-tech-lab.png" 
-                alt="African children in tech lab" 
+                src={aboutMission}
+                alt="Zeal Care team working in the field" 
                 className="col-span-2 rounded-2xl shadow-lg w-full h-[300px] object-cover"
                 data-testid="img-about-1"
               />
@@ -26,8 +28,8 @@ export function About() {
                 <span className="font-semibold uppercase tracking-wider text-sm">Years of Impact</span>
               </div>
               <img 
-                src="/hero-students-cheering.png" 
-                alt="Students" 
+                src={aboutPhilosophy}
+                alt="Zeal Care students with backpacks" 
                 className="rounded-2xl shadow-lg w-full h-[200px] object-cover"
                 data-testid="img-about-2"
               />

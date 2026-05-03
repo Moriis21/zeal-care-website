@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import joinBg from "@assets/Social_Justice_1777770914049.jpeg";
 
 export function JoinUs() {
   return (
@@ -7,11 +8,11 @@ export function JoinUs() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="/join-us-bg.png" 
-          alt="Children running" 
+          src={joinBg}
+          alt="Zeal Care community gathering" 
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-[#1A44C0]/80 mix-blend-multiply"></div>
+        <div className="absolute inset-0 bg-[#061A32]/75"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent"></div>
       </div>
 
