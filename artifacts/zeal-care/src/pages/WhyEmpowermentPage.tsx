@@ -1,6 +1,7 @@
 import { useParams } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { navConfig } from "@/lib/nav-config";
+import { Scale, TrendingUp, GraduationCap, Briefcase, Home, Globe } from "lucide-react";
 
 const section = navConfig.find((s) => s.path === "/why-empowerment")!;
 
@@ -22,11 +23,13 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
         </p>
         <div className="grid sm:grid-cols-2 gap-6">
           {[
-            { title: "Social Justice", path: "/why-empowerment/social-justice", icon: "⚖️", desc: "Education is a human right. We stand with underprivileged children to ensure they are not left behind by the systems that should protect them." },
-            { title: "Economic Development", path: "/why-empowerment/economic-development", icon: "📈", desc: "An educated generation is an economically resilient generation. We invest in futures that will lift entire communities out of poverty." },
-          ].map(({ title, icon, desc }) => (
+            { title: "Social Justice", path: "/why-empowerment/social-justice", icon: Scale, desc: "Education is a human right. We stand with underprivileged children to ensure they are not left behind by the systems that should protect them." },
+            { title: "Economic Development", path: "/why-empowerment/economic-development", icon: TrendingUp, desc: "An educated generation is an economically resilient generation. We invest in futures that will lift entire communities out of poverty." },
+          ].map(({ title, icon: Icon, desc }) => (
             <div key={title} className="bg-white border border-border rounded-2xl p-6 hover:shadow-md hover:border-primary/30 transition-all">
-              <div className="text-3xl mb-3">{icon}</div>
+              <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3">
+                <Icon className="w-5 h-5 text-primary" />
+              </div>
               <h3 className="font-bold text-primary text-xl mb-3">{title}</h3>
               <p className="text-muted-foreground leading-relaxed">{desc}</p>
             </div>
@@ -41,7 +44,9 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
     content: (
       <div className="space-y-8">
         <div className="bg-primary rounded-2xl p-8 text-white">
-          <span className="text-5xl mb-4 block">⚖️</span>
+          <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mb-6">
+            <Scale className="w-8 h-8 text-secondary" />
+          </div>
           <p className="text-xl font-bold leading-relaxed">
             Education is a fundamental human right. No child should be denied access to learning because of where they were born or how much their family earns.
           </p>
@@ -74,7 +79,9 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
     content: (
       <div className="space-y-8">
         <div className="bg-primary rounded-2xl p-8 text-white">
-          <span className="text-5xl mb-4 block">📈</span>
+          <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mb-6">
+            <TrendingUp className="w-8 h-8 text-secondary" />
+          </div>
           <p className="text-xl font-bold leading-relaxed">
             When you educate one child, you educate many. Every child supported through Zeal Care will go on to help at least two others — multiplying your impact far into the future.
           </p>
@@ -84,13 +91,15 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
         </p>
         <div className="grid sm:grid-cols-2 gap-5">
           {[
-            { icon: "🎓", title: "Breaking the Poverty Cycle", desc: "When children complete their education, they are far less likely to live in poverty as adults. They earn more, invest in their own children's education, and contribute to their local economy." },
-            { icon: "👩‍💼", title: "Workforce Development", desc: "Through our entrepreneurship, STEM, and digital education programs, we are preparing young people for the jobs and businesses of tomorrow — many of which don't yet exist." },
-            { icon: "🏘️", title: "Community Economic Growth", desc: "Educated communities are more economically productive. Local businesses grow, community leaders emerge, and the entire ecosystem benefits from a more skilled and confident population." },
-            { icon: "🌍", title: "Regional Impact", desc: "Liberia's economic future depends on the quality of its next generation. Zeal Care's investment in today's children is an investment in Liberia's national development for decades to come." },
-          ].map(({ icon, title, desc }) => (
+            { icon: GraduationCap, title: "Breaking the Poverty Cycle", desc: "When children complete their education, they are far less likely to live in poverty as adults. They earn more, invest in their own children's education, and contribute to their local economy." },
+            { icon: Briefcase, title: "Workforce Development", desc: "Through our entrepreneurship, STEM, and digital education programs, we are preparing young people for the jobs and businesses of tomorrow — many of which don't yet exist." },
+            { icon: Home, title: "Community Economic Growth", desc: "Educated communities are more economically productive. Local businesses grow, community leaders emerge, and the entire ecosystem benefits from a more skilled and confident population." },
+            { icon: Globe, title: "Regional Impact", desc: "Liberia's economic future depends on the quality of its next generation. Zeal Care's investment in today's children is an investment in Liberia's national development for decades to come." },
+          ].map(({ icon: Icon, title, desc }) => (
             <div key={title} className="bg-white border border-border rounded-2xl p-6 hover:shadow-md transition-all">
-              <div className="text-2xl mb-3">{icon}</div>
+              <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3">
+                <Icon className="w-5 h-5 text-primary" />
+              </div>
               <h3 className="font-bold text-primary mb-2">{title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">{desc}</p>
             </div>

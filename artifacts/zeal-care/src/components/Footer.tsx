@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Facebook, Twitter, Instagram, Linkedin, Send, CheckCircle, Loader2 } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin, Send, CheckCircle, Loader2, MapPin, Mail, Phone } from "lucide-react";
 
 function NewsletterForm() {
   const [email, setEmail] = useState("");
@@ -93,26 +93,24 @@ export function Footer() {
 
           {/* Brand */}
           <div className="col-span-1 md:col-span-2 lg:col-span-1">
-            <div className="text-2xl font-extrabold flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 rounded-full bg-secondary text-primary flex items-center justify-center">
-                Z
-              </div>
-              ZEAL CARE
+            <div className="text-2xl font-extrabold flex items-center gap-2.5 mb-6">
+              <img src="/logo.png" alt="Zeal Care" className="h-8 w-auto object-contain" />
+              <span className="text-white">ZEAL CARE</span>
             </div>
             <p className="text-primary-foreground/70 mb-6 text-sm leading-relaxed">
               Igniting Potential, Inspiring Change. Empowering Africa's future leaders through education, mentorship, and technology.
             </p>
             <div className="flex gap-3">
-              <a href="#" className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all hover:scale-110" data-testid="link-social-facebook">
+              <a href="https://www.facebook.com/profile.php?id=61561063778243" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all hover:scale-110" data-testid="link-social-facebook">
                 <Facebook className="w-4 h-4" />
               </a>
               <a href="#" className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all hover:scale-110" data-testid="link-social-twitter">
                 <Twitter className="w-4 h-4" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all hover:scale-110" data-testid="link-social-instagram">
+              <a href="https://www.instagram.com/zealcare2024" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all hover:scale-110" data-testid="link-social-instagram">
                 <Instagram className="w-4 h-4" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all hover:scale-110" data-testid="link-social-linkedin">
+              <a href="https://www.linkedin.com/company/zeal-care" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all hover:scale-110" data-testid="link-social-linkedin">
                 <Linkedin className="w-4 h-4" />
               </a>
             </div>
@@ -159,15 +157,15 @@ export function Footer() {
             <h4 className="font-black text-sm mb-6 uppercase tracking-widest text-white">Contact Info</h4>
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-3 text-primary-foreground/60">
-                <span className="mt-0.5">📍</span>
+                <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#F5C619]" />
                 <span>Monrovia, Liberia</span>
               </li>
               <li className="flex items-start gap-3 text-primary-foreground/60">
-                <span className="mt-0.5">✉️</span>
+                <Mail className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#F5C619]" />
                 <a href="mailto:info@zealcare.org" className="hover:text-[#F5C619] transition-colors">info@zealcare.org</a>
               </li>
               <li className="flex items-start gap-3 text-primary-foreground/60">
-                <span className="mt-0.5">📞</span>
+                <Phone className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#F5C619]" />
                 <a href="tel:+231886727619" className="hover:text-[#F5C619] transition-colors">+231 886 727 619</a>
               </li>
             </ul>

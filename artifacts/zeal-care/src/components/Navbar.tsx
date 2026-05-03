@@ -74,7 +74,7 @@ export function Navbar() {
         <div className="container mx-auto px-4 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className={`flex items-center gap-2.5 font-extrabold text-xl ${textColor} hover:opacity-90 transition-opacity`} data-testid="link-logo">
-            <div className={`w-9 h-9 rounded-full flex items-center justify-center font-black text-lg ${isScrolled ? "bg-primary text-white" : "bg-secondary text-primary"}`}>Z</div>
+            <img src="/logo.png" alt="Zeal Care" className="h-9 w-auto object-contain" />
             <span>ZEAL CARE</span>
           </Link>
 

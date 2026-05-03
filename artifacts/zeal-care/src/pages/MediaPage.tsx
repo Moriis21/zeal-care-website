@@ -1,6 +1,7 @@
 import { useParams } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { navConfig } from "@/lib/nav-config";
+import { Newspaper, Star, Film, Camera, Calendar, BookOpen, GraduationCap, ClipboardList, Sparkles, Gift } from "lucide-react";
 
 const section = navConfig.find((s) => s.path === "/media")!;
 
@@ -118,20 +119,21 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
         <p className="text-muted-foreground leading-relaxed text-lg">Stay informed about Zeal Care's latest news, success stories, photos, and events as we continue to ignite potential and inspire change across Liberia.</p>
         <div className="grid sm:grid-cols-2 gap-5">
           {[
-            { label: "Newsroom", path: "/media/newsroom", icon: "📰", desc: "Latest news, updates, and announcements from Zeal Care." },
-            { label: "Success Stories", path: "/media/stories", icon: "⭐", desc: "Inspiring stories of the children whose lives have been transformed." },
-            { label: "Video", path: "/media/video", icon: "🎬", desc: "Watch our impact stories and program highlights." },
-            { label: "Photo Gallery", path: "/media/gallery", icon: "📷", desc: "A visual journey through our programs and communities." },
-            { label: "Events & Calendar", path: "/media/events", icon: "📅", desc: "Upcoming events and activities from Zeal Care." },
-          ].map(({ label, icon, desc }) => (
+            { label: "Newsroom", path: "/media/newsroom", icon: Newspaper, desc: "Latest news, updates, and announcements from Zeal Care." },
+            { label: "Success Stories", path: "/media/stories", icon: Star, desc: "Inspiring stories of the children whose lives have been transformed." },
+            { label: "Video", path: "/media/video", icon: Film, desc: "Watch our impact stories and program highlights." },
+            { label: "Photo Gallery", path: "/media/gallery", icon: Camera, desc: "A visual journey through our programs and communities." },
+            { label: "Events & Calendar", path: "/media/events", icon: Calendar, desc: "Upcoming events and activities from Zeal Care." },
+          ].map(({ label, icon: Icon, desc }) => (
             <div key={label} className="bg-white border border-border rounded-2xl p-6 hover:shadow-md hover:border-primary/30 transition-all">
-              <div className="text-3xl mb-3">{icon}</div>
+              <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3">
+                <Icon className="w-5 h-5 text-primary" />
+              </div>
               <h3 className="font-bold text-primary mb-2">{label}</h3>
               <p className="text-muted-foreground text-sm">{desc}</p>
             </div>
           ))}
         </div>
-        {/* Featured image */}
         <img src="/attached_assets/pdf_images/img-055.jpg" alt="Zeal Care team" className="w-full rounded-2xl object-cover max-h-80" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
       </div>
     ),
@@ -191,7 +193,11 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
           </div>
         </div>
         <div className="bg-primary/5 border border-primary/20 rounded-2xl p-8 text-center">
-          <div className="text-5xl mb-4">📖</div>
+          <div className="flex justify-center mb-4">
+            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+              <BookOpen className="w-8 h-8 text-primary" />
+            </div>
+          </div>
           <p className="font-bold text-primary text-xl mb-2">More Stories Coming Soon</p>
           <p className="text-muted-foreground mb-5">We are documenting the journeys of all 105+ children in our programs. Check back for new stories of transformation and hope.</p>
           <a href="mailto:info@zealcare.org" className="inline-block bg-primary text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-primary/90 transition-colors">Share Your Story</a>
@@ -208,7 +214,11 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
           <p className="text-white/80">Watch our stories of transformation, community programs, and the children whose lives are being changed through education.</p>
         </div>
         <div className="bg-secondary/10 border border-secondary/30 rounded-2xl p-12 text-center">
-          <div className="text-6xl mb-4">🎬</div>
+          <div className="flex justify-center mb-4">
+            <div className="w-20 h-20 bg-secondary/20 rounded-full flex items-center justify-center">
+              <Film className="w-10 h-10 text-secondary" />
+            </div>
+          </div>
           <p className="font-bold text-primary text-xl mb-2">Videos Coming Soon</p>
           <p className="text-muted-foreground mb-5">We are currently working on video documentation of our programs and impact stories. Follow us on social media to be the first to see our videos.</p>
           <div className="flex flex-wrap gap-3 justify-center">
@@ -271,13 +281,15 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
           <h3 className="font-black text-primary text-xl mb-5">Recent Events</h3>
           <div className="space-y-4">
             {[
-              { date: "Dec 2025", title: "Christmas Celebration with 100+ Kids", desc: "Celebrated Christmas with over 100 children at the Chicken Soup Factory community, distributing food packages, Christmas hats, and school materials.", icon: "🎄" },
-              { date: "Nov 22–25, 2025", title: "Starz University 8th Annual Special Honors & Graduation", desc: "Zeal Care team members Mohammed Soko Kamara and William Mammie graduated, with Mohammed receiving two prestigious university awards.", icon: "🎓" },
-              { date: "Sep 3, 2025", title: "Phase Two Beneficiary Interviews — West Point", desc: "Conducted interviews with 25 shortlisted candidates from West Point, Zone 405, for the 2025–2026 academic year sponsorship.", icon: "📋" },
-              { date: "Sep 14, 2024", title: "First Beneficiaries Presentation — Chicken Soup Factory", desc: "Revealed the first batch of 4 Zeal Care beneficiaries for the 2024/2025 academic year, presenting them with school materials and uniforms.", icon: "🎉" },
-            ].map(({ date, title, desc, icon }) => (
+              { date: "Dec 2025", title: "Christmas Celebration with 100+ Kids", desc: "Celebrated Christmas with over 100 children at the Chicken Soup Factory community, distributing food packages, Christmas hats, and school materials.", icon: Gift },
+              { date: "Nov 22–25, 2025", title: "Starz University 8th Annual Special Honors & Graduation", desc: "Zeal Care team members Mohammed Soko Kamara and William Mammie graduated, with Mohammed receiving two prestigious university awards.", icon: GraduationCap },
+              { date: "Sep 3, 2025", title: "Phase Two Beneficiary Interviews — West Point", desc: "Conducted interviews with 25 shortlisted candidates from West Point, Zone 405, for the 2025–2026 academic year sponsorship.", icon: ClipboardList },
+              { date: "Sep 14, 2024", title: "First Beneficiaries Presentation — Chicken Soup Factory", desc: "Revealed the first batch of 4 Zeal Care beneficiaries for the 2024/2025 academic year, presenting them with school materials and uniforms.", icon: Sparkles },
+            ].map(({ date, title, desc, icon: Icon }) => (
               <div key={title} className="flex gap-4 bg-white border border-border rounded-2xl p-5 hover:shadow-md transition-all">
-                <div className="text-3xl flex-shrink-0">{icon}</div>
+                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Icon className="w-6 h-6 text-primary" />
+                </div>
                 <div>
                   <p className="text-xs font-bold text-secondary mb-1">{date}</p>
                   <h4 className="font-bold text-primary mb-2">{title}</h4>
@@ -290,7 +302,11 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
 
         {/* Upcoming */}
         <div className="bg-secondary/10 border border-secondary/30 rounded-2xl p-8 text-center">
-          <div className="text-5xl mb-4">📅</div>
+          <div className="flex justify-center mb-4">
+            <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center">
+              <Calendar className="w-8 h-8 text-secondary" />
+            </div>
+          </div>
           <p className="font-bold text-primary text-xl mb-2">Upcoming Events</p>
           <p className="text-muted-foreground mb-5">No events are currently scheduled. Follow us on social media or sign up for our newsletter to be notified of upcoming events.</p>
           <a href="mailto:info@zealcare.org" className="inline-block bg-primary text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-primary/90 transition-colors">Get Notified</a>
