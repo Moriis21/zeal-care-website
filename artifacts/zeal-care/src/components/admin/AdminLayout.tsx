@@ -5,7 +5,9 @@ import {
   Menu, ChevronRight, Mail, MessageSquare, FileText,
 } from "lucide-react";
 
-const NAV = [
+type NavItem = { path: string; label: string; icon: React.FC<{ className?: string }> };
+
+const NAV: NavItem[] = [
   { path: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { path: "/admin/children", label: "Children", icon: Users },
   { path: "/admin/donations", label: "Donations", icon: Heart },
@@ -20,7 +22,12 @@ function logout() {
   window.location.href = "/admin";
 }
 
-export function AdminLayout({ children }: { children: ReactNode }) {
+interface AdminLayoutProps {
+  children: ReactNode;
+  unreadMessages?: number;
+}
+
+export function AdminLayout({ children, unreadMessages = 0 }: AdminLayoutProps) {
   const [location] = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -65,6 +72,7 @@ export function AdminLayout({ children }: { children: ReactNode }) {
         <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
           {NAV.map(({ path, label, icon: Icon }) => {
             const active = location === path || location.startsWith(path + "/");
+            const isMessages = path === "/admin/messages";
             return (
               <Link
                 key={path}
@@ -77,7 +85,12 @@ export function AdminLayout({ children }: { children: ReactNode }) {
                 }`}
               >
                 <Icon className="w-4 h-4 flex-shrink-0" />
-                {label}
+                <span className="flex-1">{label}</span>
+                {isMessages && unreadMessages > 0 && !active && (
+                  <span className="bg-[#F5C619] text-[#061A32] text-[10px] font-black px-1.5 py-0.5 rounded-full min-w-[18px] text-center">
+                    {unreadMessages > 99 ? "99+" : unreadMessages}
+                  </span>
+                )}
                 {active && <ChevronRight className="w-4 h-4 ml-auto" />}
               </Link>
             );
@@ -120,6 +133,12 @@ export function AdminLayout({ children }: { children: ReactNode }) {
               {activeNav?.label ?? "Admin"}
             </h1>
           </div>
+          {unreadMessages > 0 && (
+            <Link href="/admin/messages" className="flex items-center gap-1.5 text-xs font-bold text-[#1A44C0] bg-[#1A44C0]/10 px-3 py-1.5 rounded-full hover:bg-[#1A44C0]/20 transition-colors">
+              <MessageSquare className="w-3.5 h-3.5" />
+              {unreadMessages} unread
+            </Link>
+          )}
           <div className="flex items-center gap-2 text-xs text-slate-400 font-semibold">
             <div className="w-2 h-2 bg-green-400 rounded-full" />
             Admin

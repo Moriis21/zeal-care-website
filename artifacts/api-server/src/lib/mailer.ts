@@ -415,6 +415,56 @@ export async function sendWelcomeEmail(email: string, name?: string): Promise<vo
   }
 }
 
+/* ─── Admin reply to contact message ─── */
+export async function sendReplyEmail(opts: {
+  to: string; name: string; subject?: string; originalMessage: string; replyText: string;
+}): Promise<{ sent: boolean; error?: string }> {
+  const transporter = createTransporter();
+  if (!transporter) return { sent: false, error: "Email not configured" };
+  const firstName = opts.name.split(" ")[0];
+  const subjectLine = opts.subject ? `Re: ${opts.subject}` : "Re: Your message to Zeal Care";
+  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"/></head>
+<body style="margin:0;padding:0;background:#f1f5f9;font-family:'Helvetica Neue',Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="padding:32px 16px;"><tr><td align="center">
+    <table width="600" cellpadding="0" cellspacing="0" style="background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
+      <tr><td style="background:#061A32;padding:24px 36px;">
+        <table width="100%"><tr>
+          <td><div style="width:36px;height:36px;background:#F5C619;border-radius:50%;display:inline-block;text-align:center;line-height:36px;font-weight:900;font-size:16px;color:#061A32;vertical-align:middle;margin-right:10px;">Z</div>
+          <span style="color:#fff;font-size:18px;font-weight:900;vertical-align:middle;">ZEAL CARE</span></td>
+        </tr></table>
+      </td></tr>
+      <tr><td style="padding:32px 36px;">
+        <h2 style="margin:0 0 6px;color:#061A32;font-size:20px;font-weight:900;">Hi ${firstName},</h2>
+        <p style="margin:0 0 24px;color:#64748b;font-size:14px;">Thank you for reaching out to Zeal Care. Here is our response to your message.</p>
+        <div style="background:#f8fafc;border-left:4px solid #1A44C0;border-radius:8px;padding:20px 24px;margin-bottom:28px;">
+          <p style="margin:0;color:#334155;font-size:15px;line-height:1.8;white-space:pre-wrap;">${opts.replyText}</p>
+        </div>
+        <p style="margin:0 0 24px;color:#64748b;font-size:14px;">If you have further questions, please don't hesitate to reply to this email or contact us below.</p>
+        ${opts.originalMessage ? `<div style="background:#f1f5f9;border-radius:8px;padding:16px 20px;">
+          <p style="margin:0 0 8px;font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.5px;">Your original message</p>
+          <p style="margin:0;color:#94a3b8;font-size:13px;line-height:1.7;white-space:pre-wrap;">${opts.originalMessage}</p>
+        </div>` : ""}
+      </td></tr>
+      <tr><td style="background:#f8fafc;padding:20px 36px;border-top:1px solid #e2e8f0;text-align:center;">
+        <p style="margin:0;color:#94a3b8;font-size:12px;">Questions? Reply to this email or call us at +231 886 727 619</p>
+        <p style="margin:4px 0 0;color:#94a3b8;font-size:11px;">Zeal Care · Monrovia, Liberia · info@zealcare.org</p>
+      </td></tr>
+    </table>
+  </td></tr></table>
+</body></html>`;
+  try {
+    await transporter.sendMail({
+      from: senderFrom(),
+      to: opts.to,
+      subject: subjectLine,
+      html,
+    });
+    return { sent: true };
+  } catch (err) {
+    return { sent: false, error: String(err) };
+  }
+}
+
 /* ─── Contact message notification ─── */
 export async function sendContactNotification(msg: {
   name: string; email: string; subject?: string; message: string;
