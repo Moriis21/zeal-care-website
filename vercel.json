@@ -1,32 +1,5 @@
 {
   "version": 2,
-  "buildCommand": "pnpm --filter @workspace/zeal-care run build",
-  "outputDirectory": "artifacts/zeal-care/dist/public",
-  "installCommand": "pnpm install --frozen-lockfile",
-  "functions": {
-    "api/index.ts": {
-      "memory": 1024,
-      "maxDuration": 30
-    }
-  },
-  "rewrites": [
-    { "source": "/api/:path*", "destination": "/api/index" },
-    { "source": "/((?!api/).*)", "destination": "/index.html" }
-  ],
-  "headers": [
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Access-Control-Allow-Methods", "value": "GET,POST,PUT,PATCH,DELETE,OPTIONS" },
-        { "key": "Access-Control-Allow-Headers", "value": "Content-Type,Authorization" }
-      ]
-    },
-    {
-      "source": "/assets/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
-      ]
-    }
-  ]
+  "buildCommand": "bash scripts/vercel-build.sh",
+  "installCommand": "pnpm install --frozen-lockfile"
 }
