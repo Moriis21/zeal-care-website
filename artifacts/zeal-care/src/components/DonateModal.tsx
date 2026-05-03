@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { X, CheckCircle, Smartphone, Building2, CreditCard, MoreHorizontal, ChevronRight, Heart, User } from "lucide-react";
+import { X, CheckCircle, Smartphone, Building2, CreditCard, MoreHorizontal, ChevronRight, Heart, Phone, Zap } from "lucide-react";
 import { useDonate } from "@/context/DonateContext";
 import { useRecordDonation } from "@/hooks/useDonationStats";
 import { useSponsorChild } from "@/hooks/useChildren";
@@ -26,16 +26,26 @@ const getImpact = (amount: number): string => {
   return impactMap[7200];
 };
 
-type PaymentMethod = "mobile" | "bank" | "card" | "other";
+type PaymentMethod = "mobile" | "momo" | "bank" | "card" | "other";
 
-const paymentMethods: { id: PaymentMethod; label: string; icon: React.ReactNode; shortLabel: string }[] = [
+const paymentMethods: { id: PaymentMethod; label: string; icon: React.ReactNode; shortLabel: string; badge?: string }[] = [
   { id: "mobile", label: "Mobile Money", shortLabel: "Mobile", icon: <Smartphone className="w-5 h-5" /> },
+  { id: "momo", label: "MTN MoMo API", shortLabel: "MTN MoMo", icon: <Zap className="w-5 h-5" />, badge: "Soon" },
   { id: "bank", label: "Bank Transfer", shortLabel: "Bank", icon: <Building2 className="w-5 h-5" /> },
   { id: "card", label: "Card", shortLabel: "Card", icon: <CreditCard className="w-5 h-5" /> },
   { id: "other", label: "Other", shortLabel: "Other", icon: <MoreHorizontal className="w-5 h-5" /> },
 ];
 
 const paymentDetails: Record<PaymentMethod, { title: string; instructions: string[]; note?: string }> = {
+  momo: {
+    title: "MTN Mobile Money — Direct Payment",
+    instructions: [
+      "We'll send a payment prompt directly to your MTN MoMo number",
+      "You approve the payment on your phone — no shortcodes needed",
+      "Payment is confirmed instantly and securely via the MTN MoMo API",
+    ],
+    note: "This feature is coming soon. Register your interest below and we'll notify you the moment it goes live.",
+  },
   mobile: {
     title: "Mobile Money (Orange Money — Liberia)",
     instructions: [
@@ -87,6 +97,7 @@ export function DonateModal() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [nameOrOrg, setNameOrOrg] = useState("");
+  const [momoPhone, setMomoPhone] = useState("");
 
   useEffect(() => {
     if (isOpen) {
@@ -144,6 +155,7 @@ export function DonateModal() {
       setEmail("");
       setMessage("");
       setNameOrOrg("");
+      setMomoPhone("");
     }, 300);
   };
 
@@ -232,22 +244,63 @@ export function DonateModal() {
               {/* Payment Method */}
               <div>
                 <label className="block text-sm font-bold text-primary mb-3">Payment Method</label>
-                <div className="grid grid-cols-4 gap-2">
+                <div className="grid grid-cols-3 gap-2">
                   {paymentMethods.map((pm) => (
                     <button
                       key={pm.id}
                       onClick={() => setMethod(pm.id)}
-                      className={`flex flex-col items-center gap-1.5 py-3 px-2 rounded-xl text-xs font-bold transition-all duration-150 ${
+                      className={`relative flex flex-col items-center gap-1.5 py-3 px-2 rounded-xl text-xs font-bold transition-all duration-150 ${
                         method === pm.id
-                          ? "bg-primary text-white shadow-md"
+                          ? pm.id === "momo"
+                            ? "bg-yellow-400 text-yellow-900 shadow-md"
+                            : "bg-primary text-white shadow-md"
                           : "bg-primary/8 text-primary hover:bg-primary/15 border border-border"
                       }`}
                     >
+                      {pm.badge && (
+                        <span className="absolute -top-1.5 -right-1.5 bg-yellow-400 text-yellow-900 text-[9px] font-black px-1.5 py-0.5 rounded-full leading-none">
+                          {pm.badge}
+                        </span>
+                      )}
                       {pm.icon}
                       <span>{pm.shortLabel}</span>
                     </button>
                   ))}
                 </div>
+
+                {/* MTN MoMo Coming Soon panel */}
+                {method === "momo" && (
+                  <div className="mt-3 rounded-2xl border-2 border-yellow-400 bg-yellow-50 overflow-hidden">
+                    {/* Banner */}
+                    <div className="bg-yellow-400 px-4 py-2.5 flex items-center gap-2">
+                      <Zap className="w-4 h-4 text-yellow-900 flex-shrink-0" />
+                      <p className="text-yellow-900 font-black text-sm">MTN MoMo Direct Pay — Coming Soon</p>
+                    </div>
+                    <div className="px-4 py-4 space-y-3">
+                      <p className="text-sm text-yellow-900 leading-relaxed">
+                        We're integrating the <strong>MTN MoMo API</strong> so you can pay directly from this page — no shortcodes, no manual steps. A payment prompt will be pushed to your phone and you approve it with one tap.
+                      </p>
+                      <div className="space-y-1">
+                        <label className="block text-xs font-bold text-yellow-900">
+                          Your MTN MoMo Number <span className="font-normal opacity-70">(we'll notify you when it goes live)</span>
+                        </label>
+                        <div className="flex items-center gap-2 bg-white border-2 border-yellow-300 rounded-xl px-3 py-2.5">
+                          <Phone className="w-4 h-4 text-yellow-600 flex-shrink-0" />
+                          <input
+                            type="tel"
+                            placeholder="+231 77 000 0000"
+                            value={momoPhone}
+                            onChange={(e) => setMomoPhone(e.target.value)}
+                            className="flex-1 text-sm font-semibold text-primary bg-transparent outline-none placeholder:text-muted-foreground"
+                          />
+                        </div>
+                      </div>
+                      <p className="text-[11px] text-yellow-800 bg-yellow-100 border border-yellow-300 rounded-lg px-3 py-2 leading-relaxed">
+                        📱 In the meantime, you can still donate via <strong>Orange Money</strong> using the shortcode option above. We'll switch to MTN MoMo API as soon as our credentials are approved.
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Name */}
@@ -290,10 +343,23 @@ export function DonateModal() {
               <button
                 onClick={handleConfirm}
                 disabled={effectiveAmount <= 0}
-                className="w-full bg-secondary text-primary py-4 rounded-2xl font-black text-base hover:bg-secondary/90 transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:scale-[1.01] active:scale-[0.99]"
+                className={`w-full py-4 rounded-2xl font-black text-base transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:scale-[1.01] active:scale-[0.99] ${
+                  method === "momo"
+                    ? "bg-yellow-400 text-yellow-900 hover:bg-yellow-300"
+                    : "bg-secondary text-primary hover:bg-secondary/90"
+                }`}
               >
-                Confirm Donation of ${effectiveAmount > 0 ? effectiveAmount.toLocaleString() : "—"}
-                <ChevronRight className="w-5 h-5" />
+                {method === "momo" ? (
+                  <>
+                    <Zap className="w-5 h-5" />
+                    Register My Interest — ${effectiveAmount > 0 ? effectiveAmount.toLocaleString() : "—"}
+                  </>
+                ) : (
+                  <>
+                    Confirm Donation of ${effectiveAmount > 0 ? effectiveAmount.toLocaleString() : "—"}
+                    <ChevronRight className="w-5 h-5" />
+                  </>
+                )}
               </button>
 
               <p className="text-center text-xs text-muted-foreground">
@@ -340,6 +406,16 @@ export function DonateModal() {
                 )}
               </div>
 
+              {/* MoMo interest note on confirm step */}
+              {method === "momo" && momoPhone && (
+                <div className="bg-yellow-50 border border-yellow-300 rounded-xl p-3.5 flex gap-2 items-start">
+                  <Phone className="w-4 h-4 text-yellow-600 flex-shrink-0 mt-0.5" />
+                  <p className="text-xs text-yellow-900 leading-relaxed">
+                    <span className="font-bold">MTN MoMo number registered:</span> {momoPhone}. We'll send you a payment request as soon as the MTN MoMo API goes live.
+                  </p>
+                </div>
+              )}
+
               <div className="flex gap-3">
                 <button
                   onClick={() => setStep("form")}
@@ -349,9 +425,13 @@ export function DonateModal() {
                 </button>
                 <button
                   onClick={handlePaymentSent}
-                  className="flex-[2] bg-primary text-white py-3 rounded-2xl font-bold text-sm hover:bg-primary/90 transition-all shadow-md hover:shadow-lg"
+                  className={`flex-[2] py-3 rounded-2xl font-bold text-sm transition-all shadow-md hover:shadow-lg ${
+                    method === "momo"
+                      ? "bg-yellow-400 text-yellow-900 hover:bg-yellow-300"
+                      : "bg-primary text-white hover:bg-primary/90"
+                  }`}
                 >
-                  I've Sent the Payment ✓
+                  {method === "momo" ? "⚡ Register My Interest" : "I've Sent the Payment ✓"}
                 </button>
               </div>
             </div>
