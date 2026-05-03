@@ -1,7 +1,7 @@
 import { Router, type IRouter } from "express";
 import { readStats, writeStats } from "./donationStats";
 import { appendDonation } from "../lib/donationLog";
-import { sendDonationNotification } from "../lib/mailer";
+import { sendDonationNotification, sendThankYouEmail } from "../lib/mailer";
 
 const router: IRouter = Router();
 
@@ -39,13 +39,16 @@ router.post("/donations/record", (req, res) => {
 
   req.log.info({ donationAmount, childrenAdded }, "Donation recorded");
 
-  void sendDonationNotification({
+  const payload = {
     amount: donationAmount,
     donorName: donorName ?? "",
     donorEmail: donorEmail ?? "",
     method: method ?? "other",
     childName, childId, message,
-  });
+  };
+
+  void sendDonationNotification(payload);
+  void sendThankYouEmail(payload);
 
   res.json(updated);
 });
