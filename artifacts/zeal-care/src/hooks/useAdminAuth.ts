@@ -16,7 +16,7 @@ export function useAdminAuth() {
     setChecked(true);
   }, [navigate]);
 
-  const authHeaders = token
+  const authHeaders: Record<string, string> = token
     ? { Authorization: `Bearer ${token}`, "Content-Type": "application/json" }
     : { "Content-Type": "application/json" };
 

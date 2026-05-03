@@ -6,6 +6,7 @@ import { navConfig } from "@/lib/nav-config";
 import { useDonate } from "@/context/DonateContext";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { useSiteContent, DEFAULT_CONTENT } from "@/hooks/useSiteContent";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -15,6 +16,8 @@ export function Navbar() {
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [location] = useLocation();
   const { t } = useTranslation();
+  const { data: content } = useSiteContent();
+  const s = content?.settings ?? DEFAULT_CONTENT.settings;
 
   const navSectionLabels: Record<string, string> = {
     "About Us": t("nav.aboutUs"),
@@ -61,17 +64,17 @@ export function Navbar() {
         <div className="bg-primary/90 backdrop-blur-sm text-white text-xs py-2 px-4 border-b border-white/10">
           <div className="container mx-auto flex flex-wrap justify-between items-center gap-2">
             <div className="flex items-center gap-5">
-              <a href="mailto:info@zealcare.org" className="flex items-center gap-1.5 hover:text-secondary transition-colors">
+              <a href={`mailto:${s.email}`} className="flex items-center gap-1.5 hover:text-secondary transition-colors">
                 <Mail className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">info@zealcare.org</span>
+                <span className="hidden sm:inline">{s.email}</span>
               </a>
-              <a href="tel:+231886727619" className="flex items-center gap-1.5 hover:text-secondary transition-colors">
+              <a href={`tel:${s.phone.replace(/\s/g, "")}`} className="flex items-center gap-1.5 hover:text-secondary transition-colors">
                 <Phone className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">+231 886 727 619</span>
+                <span className="hidden sm:inline">{s.phone}</span>
               </a>
               <span className="hidden md:flex items-center gap-1.5 text-white/70">
                 <MapPin className="w-3.5 h-3.5" />
-                Monrovia, Liberia
+                {s.address}
               </span>
             </div>
             <div className="flex items-center gap-3">
