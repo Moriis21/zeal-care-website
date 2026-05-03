@@ -1,0 +1,22 @@
+Layout & Grid System
+​Hero Section: Features a high-impact split-screen layout. One side contains a bold, two-part heading and a clear Call-to-Action (CTA) button; the other side features a large, organic-shaped image mask showcasing high-quality photography.
+​Impact Bar: A dedicated section immediately following the hero, using a four-column grid to display key statistics (e.g., Reach, Support, Meals) with clean icons and large typography.
+​Page Previews: Use a consistent 12-column grid system that transitions smoothly into a vertical stack for mobile. Content should be grouped in distinct, high-contrast sections with generous white space.
+​2. Component Hierarchy
+​Navigation: A sticky top header with a centered logo, horizontal link menu, and a prominent, high-contrast 'Donate' button.
+​Information Cards: Implement structured cards for 'Our Programs' using a multi-column layout. Each card should contain a thumbnail image, a short title, and a brief description.
+​Galleries: Use an asymmetrical masonry grid for 'Moments That Matter' to create visual interest and emotional connection.
+​Footer: A clean, four-column footer containing:
+​Organization mission and social icons.
+​Quick links menu.
+​Contact details (phone, email, physical address).
+​A newsletter subscription field with a full-width button.
+​3. Device Responsiveness (Size & Scaling)
+​Desktop: Fixed-width container for content (e.g., 1200px max) with wide gutters.
+​Tablet: Side-by-side grids should collapse into 2-column layouts. Sidebar menus move into a hidden 'hamburger' menu.
+​Mobile-First Approach: All multi-column sections (Stats, Programs, Team) must stack vertically. Font sizes for headers should scale dynamically to ensure readability on small screens without excessive scrolling.
+​4. Micro-Interactions & UX Principles
+​Entry Animations: Implement 'Smooth Fade In' and 'Slide Up on Scroll' for all section headings and image blocks.
+​Button States: Buttons should feature a 'Hover Lift' or scale effect to signify interactivity.
+​Feedback Loops: Include designated areas for 'Success Feedback' (e.g., a checkmark and 'Thank You' message) and subtle loading animations (e.g., pulsating logo).
+​Accessibility: Prioritize a strong visual hierarchy and high-contrast typography (using clean sans-serif fonts like Poppins) to ensure the site is inclusive for all users."
