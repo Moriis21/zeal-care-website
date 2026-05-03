@@ -192,9 +192,7 @@ export function Footer() {
           {/* ── Brand column ── */}
           <div>
             <Link href="/" className="inline-flex items-center gap-3 mb-6 group">
-              <div className="w-12 h-12 rounded-full bg-[#F5C619] flex items-center justify-center shadow-lg shadow-[#F5C619]/20 group-hover:scale-105 transition-transform">
-                <img src="/logo.png" alt="Zeal Care" className="h-7 w-auto object-contain" />
-              </div>
+              <img src="/logo.png" alt="Zeal Care" className="h-10 w-auto object-contain group-hover:scale-105 transition-transform" />
               <span className="text-xl font-black tracking-wide text-white">ZEAL CARE</span>
             </Link>
 
