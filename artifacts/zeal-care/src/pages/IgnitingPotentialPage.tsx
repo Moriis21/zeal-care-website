@@ -130,13 +130,32 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
           </div>
           <p className="font-black text-primary text-xl mb-2">Ready to Make a Difference?</p>
           <p className="text-muted-foreground mb-5">When you educate one child, you educate many. Every child you support through Zeal Care will go on to help at least two others, multiplying your impact far into the future.</p>
-          <div className="space-y-3">
+          <div className="space-y-4">
             <p className="font-semibold text-primary">Contact us to donate:</p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a href="mailto:info@zealcare.org" className="bg-primary text-white px-6 py-3 rounded-full font-bold hover:bg-primary/90 transition-colors text-sm">Email: info@zealcare.org</a>
               <a href="tel:+231886727619" className="bg-secondary text-primary px-6 py-3 rounded-full font-bold hover:bg-secondary/90 transition-colors text-sm">Call: +231 886 727 619</a>
             </div>
-            <p className="text-muted-foreground text-sm">Dial <strong>*156*3*0887071690#</strong> for mobile money (Liberia)</p>
+            {/* Orange Money */}
+            <div className="bg-white border border-border rounded-2xl p-5 text-left space-y-3">
+              <div className="flex items-center gap-2 mb-1">
+                <div className="w-7 h-7 rounded-full bg-orange-500 flex items-center justify-center flex-shrink-0">
+                  <span className="text-white font-black text-xs">OM</span>
+                </div>
+                <p className="font-black text-primary">Orange Money (Liberia)</p>
+              </div>
+              <div className="grid sm:grid-cols-2 gap-3">
+                <div className="bg-orange-50 border border-orange-200 rounded-xl px-4 py-3">
+                  <p className="text-xs font-bold text-orange-700 uppercase tracking-wide mb-1">Pay in USD</p>
+                  <p className="font-black text-primary text-sm tracking-wider">*144*164*7811005#</p>
+                </div>
+                <div className="bg-orange-50 border border-orange-200 rounded-xl px-4 py-3">
+                  <p className="text-xs font-bold text-orange-700 uppercase tracking-wide mb-1">Pay in LRD</p>
+                  <p className="font-black text-primary text-sm tracking-wider">*144*253*7811005#</p>
+                </div>
+              </div>
+              <p className="text-xs text-muted-foreground">After paying, email <strong>zealcare24@gmail.com</strong> with your name and transaction ID for confirmation.</p>
+            </div>
           </div>
         </div>
       </div>

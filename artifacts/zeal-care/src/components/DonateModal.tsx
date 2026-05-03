@@ -37,13 +37,14 @@ const paymentMethods: { id: PaymentMethod; label: string; icon: React.ReactNode;
 
 const paymentDetails: Record<PaymentMethod, { title: string; instructions: string[]; note?: string }> = {
   mobile: {
-    title: "Mobile Money (Liberia)",
+    title: "Mobile Money (Orange Money — Liberia)",
     instructions: [
-      "Dial *156*3*0887071690# on your phone to donate via mobile money",
-      "Or send to: +231 886 727 619 (Orange Money / Lonestar MTN)",
+      "To pay in USD: Dial *144*164*7811005# on your Orange Money phone",
+      "To pay in LRD: Dial *144*253*7811005# on your Orange Money phone",
+      "Or send directly to: +231 886 727 619 (Orange Money / Lonestar MTN)",
       "Reference: Your name + 'Zeal Care Donation'",
     ],
-    note: "After donating, email zealcare24@gmail.com with your transaction ID for confirmation.",
+    note: "After donating, email zealcare24@gmail.com with your name and transaction ID for confirmation and receipt.",
   },
   bank: {
     title: "Bank Transfer",
