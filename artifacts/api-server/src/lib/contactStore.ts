@@ -46,6 +46,14 @@ export function markRead(id: string): boolean {
   return true;
 }
 
+export function markAllRead(): number {
+  const all = readMessages();
+  let count = 0;
+  for (const m of all) { if (!m.read) { m.read = true; count++; } }
+  if (count > 0) writeFileSync(FILE, JSON.stringify(all, null, 2), "utf-8");
+  return count;
+}
+
 export function deleteMessage(id: string): boolean {
   const all = readMessages();
   const filtered = all.filter((m) => m.id !== id);
