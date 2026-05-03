@@ -16,6 +16,7 @@ const WhoWeArePage = lazy(() => import("@/pages/WhoWeArePage"));
 const WhatWeDoPage = lazy(() => import("@/pages/WhatWeDoPage"));
 const IgnitingPotentialPage = lazy(() => import("@/pages/IgnitingPotentialPage"));
 const MediaPage = lazy(() => import("@/pages/MediaPage"));
+const GalleryPage = lazy(() => import("@/pages/GalleryPage"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
 // Admin routes
@@ -72,6 +73,7 @@ function PublicRouter() {
           <Route path="/igniting-potential/:section" component={IgnitingPotentialPage} />
           <Route path="/media" component={MediaPage} />
           <Route path="/media/:section" component={MediaPage} />
+          <Route path="/gallery" component={GalleryPage} />
           <Route component={NotFound} />
         </Switch>
       </Suspense>
