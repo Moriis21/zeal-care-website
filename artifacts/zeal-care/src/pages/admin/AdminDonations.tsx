@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAdminAuth } from "@/hooks/useAdminAuth";
 import { AdminLayout } from "@/components/admin/AdminLayout";
-import { Loader2, Download, Zap, Phone, User, Mail, Calendar, DollarSign } from "lucide-react";
+import { Loader2, Download, Zap, Phone, User, Mail, Send, CheckCircle, AlertTriangle } from "lucide-react";
 
 type DonationRecord = {
   id: string;
@@ -32,6 +32,7 @@ const METHOD_COLOR: Record<string, string> = {
 };
 
 type Tab = "all" | "momo";
+type NotifyStatus = "idle" | "loading" | "success" | "error";
 
 export default function AdminDonations() {
   const { checked, authHeaders } = useAdminAuth();
@@ -39,6 +40,8 @@ export default function AdminDonations() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [tab, setTab] = useState<Tab>("all");
+  const [notifyStatus, setNotifyStatus] = useState<NotifyStatus>("idle");
+  const [notifyResult, setNotifyResult] = useState<{ sent: number; skipped: number; total: number } | null>(null);
 
   useEffect(() => {
     if (!checked) return;
@@ -50,6 +53,22 @@ export default function AdminDonations() {
 
   const momoInterests = records.filter((r) => r.method === "momo");
   const allDonations = records.filter((r) => r.method !== "momo");
+
+  const notifyAll = async () => {
+    setNotifyStatus("loading");
+    setNotifyResult(null);
+    try {
+      const res = await fetch("/api/admin/momo/notify-all", {
+        method: "POST",
+        headers: authHeaders,
+      });
+      const data = await res.json() as { sent: number; skipped: number; total: number };
+      setNotifyResult(data);
+      setNotifyStatus("success");
+    } catch {
+      setNotifyStatus("error");
+    }
+  };
 
   const filtered = (tab === "momo" ? momoInterests : allDonations).filter((r) =>
     !search ||
@@ -159,17 +178,56 @@ export default function AdminDonations() {
 
         {/* MoMo tab banner */}
         {tab === "momo" && (
-          <div className="bg-yellow-50 border border-yellow-300 rounded-2xl px-5 py-4 flex gap-3 items-start">
-            <Zap className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
-            <div>
-              <p className="font-black text-yellow-900 text-sm">MTN MoMo API — Pending Integration</p>
-              <p className="text-yellow-800 text-xs mt-0.5 leading-relaxed">
-                These donors registered their interest while the MTN MoMo API is being set up. Once your credentials are approved at{" "}
-                <a href="https://momodeveloper.mtn.com" target="_blank" rel="noopener noreferrer" className="underline font-semibold">
-                  momodeveloper.mtn.com
-                </a>
-                , you can notify them and send payment requests directly to their phones. Export the list below to reach out.
-              </p>
+          <div className="bg-yellow-50 border border-yellow-300 rounded-2xl px-5 py-4 space-y-4">
+            <div className="flex gap-3 items-start">
+              <Zap className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
+              <div className="flex-1">
+                <p className="font-black text-yellow-900 text-sm">MTN MoMo API — Pending Integration</p>
+                <p className="text-yellow-800 text-xs mt-0.5 leading-relaxed">
+                  These donors registered their interest while the MTN MoMo API is being set up. Once your credentials are approved at{" "}
+                  <a href="https://momodeveloper.mtn.com" target="_blank" rel="noopener noreferrer" className="underline font-semibold">
+                    momodeveloper.mtn.com
+                  </a>
+                  , click <strong>Notify All</strong> to send each donor a personalised email telling them MTN MoMo is now live.
+                </p>
+              </div>
+            </div>
+
+            {/* Notify All button + result */}
+            <div className="flex flex-wrap items-center gap-3 pt-1 border-t border-yellow-200">
+              <button
+                onClick={() => void notifyAll()}
+                disabled={notifyStatus === "loading" || momoInterests.filter(r => r.donorEmail).length === 0}
+                className="flex items-center gap-2 bg-yellow-400 text-yellow-900 px-5 py-2.5 rounded-xl text-sm font-black hover:bg-yellow-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
+              >
+                {notifyStatus === "loading" ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <Send className="w-4 h-4" />
+                )}
+                {notifyStatus === "loading" ? "Sending…" : `Notify All ${momoInterests.filter(r => r.donorEmail).length} Donors`}
+              </button>
+
+              {notifyStatus === "success" && notifyResult && (
+                <div className="flex items-center gap-2 bg-green-50 border border-green-200 rounded-xl px-4 py-2">
+                  <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0" />
+                  <p className="text-green-800 text-xs font-semibold">
+                    ✓ {notifyResult.sent} email{notifyResult.sent !== 1 ? "s" : ""} sent
+                    {notifyResult.skipped > 0 && `, ${notifyResult.skipped} skipped (no email)`}
+                  </p>
+                </div>
+              )}
+
+              {notifyStatus === "error" && (
+                <div className="flex items-center gap-2 bg-red-50 border border-red-200 rounded-xl px-4 py-2">
+                  <AlertTriangle className="w-4 h-4 text-red-500 flex-shrink-0" />
+                  <p className="text-red-700 text-xs font-semibold">Failed — check your email settings in Admin → Settings</p>
+                </div>
+              )}
+
+              {notifyStatus === "idle" && momoInterests.filter(r => r.donorEmail).length === 0 && (
+                <p className="text-yellow-700 text-xs">No donors with email addresses yet.</p>
+              )}
             </div>
           </div>
         )}
