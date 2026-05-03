@@ -2,6 +2,7 @@ import { Router, type IRouter } from "express";
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
 import { join } from "path";
 import { childrenData, type Child } from "../data/children";
+import { sendDonationNotification } from "../lib/mailer";
 
 const router: IRouter = Router();
 
@@ -45,10 +46,29 @@ router.post("/children/:id/sponsor", (req, res) => {
     res.status(404).json({ error: "Child not found" });
     return;
   }
+
+  const { donorName, donorEmail, method, message } = req.body as {
+    donorName?: string;
+    donorEmail?: string;
+    method?: string;
+    message?: string;
+  };
+
   const sponsored = readSponsored();
   sponsored.add(id);
   writeSponsored(sponsored);
   req.log.info({ childId: id, childName: child.name }, "Child sponsored");
+
+  void sendDonationNotification({
+    amount: 150,
+    donorName: donorName ?? "",
+    donorEmail: donorEmail ?? "",
+    method: method ?? "other",
+    childName: child.name,
+    childId: id,
+    message: message,
+  });
+
   res.json({ success: true, childId: id });
 });
 

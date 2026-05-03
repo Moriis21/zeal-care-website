@@ -1,8 +1,13 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { MapPin, BookOpen, Heart, CheckCircle, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
+import { MapPin, BookOpen, Heart, CheckCircle, Loader2 } from "lucide-react";
 import { useChildren, useSponsorChild, type Child } from "@/hooks/useChildren";
 import { useDonate } from "@/context/DonateContext";
+import mosesPhoto from "@assets/image_1777773678529.png";
+
+const CHILD_PHOTOS: Record<string, string> = {
+  c003: mosesPhoto,
+};
 
 const NEEDS_COLORS: Record<string, string> = {
   "School Fees": "bg-blue-100 text-blue-700",
@@ -17,7 +22,6 @@ const NEEDS_COLORS: Record<string, string> = {
   "Counseling": "bg-indigo-100 text-indigo-700",
   "Laptop Access": "bg-cyan-100 text-cyan-700",
   "Exam Fees": "bg-red-100 text-red-700",
-  "Meals & Snacks": "bg-lime-100 text-lime-700",
 };
 
 type FilterTab = "all" | "available" | "sponsored";
@@ -27,6 +31,7 @@ function ChildCard({ child, index }: { child: Child; index: number }) {
   const isInView = useInView(ref, { once: true, margin: "-40px" });
   const { openDonate } = useDonate();
   const sponsorChild = useSponsorChild();
+  const photo = CHILD_PHOTOS[child.id];
 
   const handleSponsor = () => {
     openDonate(150, { id: child.id, name: child.name });
@@ -38,34 +43,49 @@ function ChildCard({ child, index }: { child: Child; index: number }) {
       initial={{ opacity: 0, y: 28 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.45, delay: (index % 3) * 0.08 }}
-      className={`bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-border group ${child.isSponsored ? "opacity-75" : ""}`}
+      className={`bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-border group ${child.isSponsored ? "opacity-80" : ""}`}
     >
-      {/* Avatar Header */}
+      {/* Photo / Avatar Header */}
       <div
-        className="relative h-36 flex items-center justify-center overflow-hidden"
-        style={{ background: `linear-gradient(135deg, ${child.avatarColor}33, ${child.avatarColor}99)` }}
+        className="relative h-44 flex items-center justify-center overflow-hidden"
+        style={
+          photo
+            ? {}
+            : { background: `linear-gradient(135deg, ${child.avatarColor}33, ${child.avatarColor}99)` }
+        }
       >
-        <div
-          className="w-20 h-20 rounded-full flex items-center justify-center font-black text-4xl text-white shadow-lg border-4 border-white/30"
-          style={{ backgroundColor: child.avatarColor }}
-        >
-          {child.name[0]}
-        </div>
+        {photo ? (
+          <img
+            src={photo}
+            alt={`${child.name} — Zeal Care student`}
+            className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+          />
+        ) : (
+          <div
+            className="w-20 h-20 rounded-full flex items-center justify-center font-black text-4xl text-white shadow-lg border-4 border-white/30"
+            style={{ backgroundColor: child.avatarColor }}
+          >
+            {child.name[0]}
+          </div>
+        )}
 
-        {child.isSponsored && (
+        {/* Gradient overlay for photo cards */}
+        {photo && (
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        )}
+
+        {child.isSponsored ? (
           <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-green-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">
             <CheckCircle className="w-3.5 h-3.5" />
             Sponsored
           </div>
-        )}
-
-        {!child.isSponsored && (
+        ) : (
           <div className="absolute top-3 right-3 bg-secondary text-primary text-xs font-bold px-3 py-1.5 rounded-full shadow-md">
             Needs Sponsor
           </div>
         )}
 
-        <div className="absolute bottom-3 left-3 flex items-center gap-1 text-white/80 text-xs font-semibold">
+        <div className={`absolute bottom-3 left-3 flex items-center gap-1 text-xs font-semibold ${photo ? "text-white" : "text-white/80"}`}>
           <MapPin className="w-3.5 h-3.5" />
           {child.location}
         </div>

@@ -7,6 +7,16 @@ type DonationStats = {
   lastUpdated: string;
 };
 
+export type DonationPayload = {
+  amount: number;
+  donorName?: string;
+  donorEmail?: string;
+  method?: string;
+  childName?: string;
+  childId?: string;
+  message?: string;
+};
+
 const API_BASE = "/api";
 
 async function fetchStats(): Promise<DonationStats> {
@@ -15,11 +25,11 @@ async function fetchStats(): Promise<DonationStats> {
   return res.json() as Promise<DonationStats>;
 }
 
-async function recordDonation(amount: number): Promise<DonationStats> {
+async function recordDonation(payload: DonationPayload): Promise<DonationStats> {
   const res = await fetch(`${API_BASE}/donations/record`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ amount }),
+    body: JSON.stringify(payload),
   });
   if (!res.ok) throw new Error("Failed to record donation");
   return res.json() as Promise<DonationStats>;
