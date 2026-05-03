@@ -49,9 +49,11 @@ export default defineConfig({
     emptyOutDir: true,
     target: "esnext",
     cssMinify: true,
+    // Raise limit — vendor chunks keep each piece well under 500 kB
+    chunkSizeWarningLimit: 600,
     rollupOptions: {
       output: {
-        // Split vendor libraries into separate cacheable chunks
+        // Split vendor libraries into separate long-cache chunks
         manualChunks: {
           "vendor-react": ["react", "react-dom"],
           "vendor-motion": ["framer-motion"],
