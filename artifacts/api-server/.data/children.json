@@ -1,0 +1,206 @@
+[
+  {
+    "id": "c001",
+    "name": "Emmanuel",
+    "age": 12,
+    "grade": "6th Grade",
+    "school": "West Point Community School",
+    "location": "West Point, Monrovia",
+    "story": "Emmanuel lost his father two years ago and helps his mother sell goods in the market before school each morning. He dreams of becoming a doctor to serve his community.",
+    "needs": [
+      "School Fees",
+      "Books",
+      "Uniform"
+    ],
+    "isSponsored": false,
+    "joinedYear": 2024,
+    "avatarColor": "#1A44C0"
+  },
+  {
+    "id": "c002",
+    "name": "Grace",
+    "age": 9,
+    "grade": "3rd Grade",
+    "school": "Doe Community School",
+    "location": "West Point, Monrovia",
+    "story": "Grace is the brightest student in her class but has missed weeks of school because her family cannot afford the term fees. She loves math and wants to be an engineer.",
+    "needs": [
+      "School Fees",
+      "Meals",
+      "Books"
+    ],
+    "isSponsored": true,
+    "joinedYear": 2023,
+    "avatarColor": "#7C3AED"
+  },
+  {
+    "id": "c003",
+    "name": "Moses",
+    "age": 15,
+    "grade": "9th Grade",
+    "school": "Paynesville High School",
+    "location": "Paynesville, Monrovia",
+    "story": "Moses walked 4 km to school every day until his shoes wore out. Despite hardship, he scored the highest in his district on the national exam. His goal is to study law.",
+    "needs": [
+      "School Fees",
+      "Transportation",
+      "Shoes"
+    ],
+    "isSponsored": false,
+    "joinedYear": 2024,
+    "avatarColor": "#059669"
+  },
+  {
+    "id": "c004",
+    "name": "Faith",
+    "age": 11,
+    "grade": "5th Grade",
+    "school": "JFK Memorial School",
+    "location": "Monrovia",
+    "story": "Faith is an orphan raised by her grandmother, who is too elderly to work. She writes stories in her notebook and wants to become a journalist to share Liberia's stories with the world.",
+    "needs": [
+      "School Fees",
+      "Uniform",
+      "Stationery"
+    ],
+    "isSponsored": false,
+    "joinedYear": 2024,
+    "avatarColor": "#DC2626"
+  },
+  {
+    "id": "c005",
+    "name": "James",
+    "age": 7,
+    "grade": "1st Grade",
+    "school": "West Point Community School",
+    "location": "West Point, Monrovia",
+    "story": "James started school this year thanks to Zeal Care's enrollment drive. He is curious, energetic, and already reading faster than his peers. A full sponsorship secures his education through primary.",
+    "needs": [
+      "School Fees",
+      "Books",
+      "Meals"
+    ],
+    "isSponsored": false,
+    "joinedYear": 2025,
+    "avatarColor": "#D97706"
+  },
+  {
+    "id": "c006",
+    "name": "Mary",
+    "age": 14,
+    "grade": "8th Grade",
+    "school": "Cathedral School",
+    "location": "Sinkor, Monrovia",
+    "story": "Mary is a talented artist who fills her notebooks with illustrations of her community. Her family of seven survives on less than $3 a day. Sponsoring her keeps her off the street and in school.",
+    "needs": [
+      "School Fees",
+      "Art Supplies",
+      "Uniform"
+    ],
+    "isSponsored": true,
+    "joinedYear": 2023,
+    "avatarColor": "#DB2777"
+  },
+  {
+    "id": "c007",
+    "name": "Samuel",
+    "age": 13,
+    "grade": "7th Grade",
+    "school": "ELWA Academy",
+    "location": "Paynesville, Monrovia",
+    "story": "Samuel is a natural leader who organizes a small study group for younger children after school. His family's income dried up when his father fell ill. He hopes to become a teacher.",
+    "needs": [
+      "School Fees",
+      "Books",
+      "Uniform"
+    ],
+    "isSponsored": false,
+    "joinedYear": 2024,
+    "avatarColor": "#0891B2"
+  },
+  {
+    "id": "c008",
+    "name": "Hope",
+    "age": 10,
+    "grade": "4th Grade",
+    "school": "Harbel Community School",
+    "location": "Harbel, Margibi County",
+    "story": "Hope survived a difficult early childhood and came to Zeal Care through a community referral. Her smile and resilience inspire everyone she meets. Your sponsorship is the foundation she needs to thrive.",
+    "needs": [
+      "School Fees",
+      "Meals",
+      "Counseling"
+    ],
+    "isSponsored": false,
+    "joinedYear": 2024,
+    "avatarColor": "#16A34A"
+  },
+  {
+    "id": "c009",
+    "name": "David",
+    "age": 16,
+    "grade": "10th Grade",
+    "school": "Ricks Institute",
+    "location": "Virginia, Montserrado",
+    "story": "David is a star student on track for university, but his single mother earns too little to pay high-school fees. He has passed every exam with distinction and dreams of studying computer science.",
+    "needs": [
+      "School Fees",
+      "Laptop Access",
+      "Transport"
+    ],
+    "isSponsored": true,
+    "joinedYear": 2022,
+    "avatarColor": "#7C3AED"
+  },
+  {
+    "id": "c010",
+    "name": "Esther",
+    "age": 8,
+    "grade": "2nd Grade",
+    "school": "West Point Community School",
+    "location": "West Point, Monrovia",
+    "story": "Esther is the youngest of six children. Her parents work as street vendors and struggle to pay fees for all the children. Esther loves singing and hopes to one day perform for her country.",
+    "needs": [
+      "School Fees",
+      "Uniform",
+      "Books"
+    ],
+    "isSponsored": false,
+    "joinedYear": 2025,
+    "avatarColor": "#EA580C"
+  },
+  {
+    "id": "c011",
+    "name": "Joseph",
+    "age": 17,
+    "grade": "11th Grade",
+    "school": "St. Patrick's High School",
+    "location": "Monrovia",
+    "story": "Joseph is one year away from finishing high school — a milestone that could transform his family's future. He tutors younger neighbors for free and aspires to study medicine at the University of Liberia.",
+    "needs": [
+      "School Fees",
+      "Exam Fees",
+      "Books"
+    ],
+    "isSponsored": false,
+    "joinedYear": 2023,
+    "avatarColor": "#1A44C0"
+  },
+  {
+    "id": "c012",
+    "name": "Ruth",
+    "age": 11,
+    "grade": "5th Grade",
+    "school": "Capitol Hill School",
+    "location": "Capitol Hill, Monrovia",
+    "story": "Ruth was nearly forced to drop out last term when her family couldn't pay fees. Her teacher recommended her to Zeal Care because of her exceptional reading ability. She wants to become a lawyer who fights for women's rights.",
+    "needs": [
+      "School Fees",
+      "Books",
+      "Uniform"
+    ],
+    "isSponsored": false,
+    "joinedYear": 2024,
+    "avatarColor": "#BE185D"
+  }
+]
