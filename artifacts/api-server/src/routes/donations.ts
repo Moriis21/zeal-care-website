@@ -1,12 +1,24 @@
 import { Router, type IRouter } from "express";
-import { readStats, writeStats } from "./donationStats";
-import { appendDonation } from "../lib/donationLog";
+import { appendDonation, readDonationLog } from "../lib/donationLog";
+import { readChildren } from "../lib/childrenStore";
 import { sendDonationNotification, sendThankYouEmail } from "../lib/mailer";
 
 const router: IRouter = Router();
 
-router.get("/donations/stats", (req, res) => {
-  res.json(readStats());
+function computeStats() {
+  const log = readDonationLog();
+  const children = readChildren();
+
+  const totalCount = log.length;
+  const totalAmount = log.reduce((sum, d) => sum + (d.amount ?? 0), 0);
+  const childrenSponsored = children.filter((c) => c.isSponsored).length;
+  const lastUpdated = log[0]?.timestamp ?? new Date().toISOString();
+
+  return { totalCount, totalAmount, childrenSponsored, lastUpdated };
+}
+
+router.get("/donations/stats", (_req, res) => {
+  res.json(computeStats());
 });
 
 router.post("/donations/record", (req, res) => {
@@ -18,16 +30,6 @@ router.post("/donations/record", (req, res) => {
   };
 
   const donationAmount = Number(amount) || 0;
-  const childrenAdded = donationAmount >= 150 ? Math.floor(donationAmount / 150) : 0;
-  const stats = readStats();
-
-  const updated = {
-    totalCount: stats.totalCount + 1,
-    totalAmount: stats.totalAmount + donationAmount,
-    childrenSponsored: stats.childrenSponsored + (childrenAdded > 0 ? childrenAdded : 0),
-    lastUpdated: new Date().toISOString(),
-  };
-  writeStats(updated);
 
   appendDonation({
     amount: donationAmount,
@@ -37,7 +39,7 @@ router.post("/donations/record", (req, res) => {
     childName, childId, message,
   });
 
-  req.log.info({ donationAmount, childrenAdded }, "Donation recorded");
+  req.log.info({ donationAmount }, "Donation recorded");
 
   const payload = {
     amount: donationAmount,
@@ -50,7 +52,7 @@ router.post("/donations/record", (req, res) => {
   void sendDonationNotification(payload);
   void sendThankYouEmail(payload);
 
-  res.json(updated);
+  res.json(computeStats());
 });
 
 export default router;

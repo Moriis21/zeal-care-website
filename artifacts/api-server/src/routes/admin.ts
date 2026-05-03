@@ -3,7 +3,6 @@ import { signToken, requireAdmin } from "../lib/adminAuth";
 import { readChildren, addChild, updateChild, deleteChild } from "../lib/childrenStore";
 import { readDonationLog } from "../lib/donationLog";
 import { readEmailConfig, writeEmailConfig, type EmailConfig } from "../lib/emailConfig";
-import { readStats } from "./donationStats";
 import { type Child } from "../data/children";
 import nodemailer from "nodemailer";
 
@@ -20,13 +19,16 @@ router.post("/admin/login", (req, res) => {
 });
 
 router.get("/admin/stats", requireAdmin, (_req, res) => {
-  const stats = readStats();
   const children = readChildren();
   const donations = readDonationLog();
+  const sponsoredChildren = children.filter((c) => c.isSponsored).length;
   res.json({
-    ...stats,
+    totalCount: donations.length,
+    totalAmount: donations.reduce((sum, d) => sum + (d.amount ?? 0), 0),
+    childrenSponsored: sponsoredChildren,
+    lastUpdated: donations[0]?.timestamp ?? new Date().toISOString(),
     totalChildren: children.length,
-    sponsoredChildren: children.filter((c) => c.isSponsored).length,
+    sponsoredChildren,
     availableChildren: children.filter((c) => !c.isSponsored).length,
     recentDonations: donations.slice(0, 5),
   });

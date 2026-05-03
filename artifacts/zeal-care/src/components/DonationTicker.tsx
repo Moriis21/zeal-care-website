@@ -40,7 +40,7 @@ function AnimatedNumber({
 
   return (
     <span ref={ref}>
-      {prefix}0{suffix}
+      {prefix}{value.toLocaleString()}{suffix}
     </span>
   );
 }
@@ -61,28 +61,30 @@ export function DonationTicker({ stats }: { stats: DonationStats | null }) {
     if (isInView) setIsVisible(true);
   }, [isInView]);
 
+  const schoolMonths = (stats?.childrenSponsored ?? 0) * 12;
+
   const items = [
     {
       icon: <Users className="w-7 h-7" />,
-      value: stats?.childrenSponsored ?? 124,
+      value: stats?.childrenSponsored ?? 0,
       label: "Children Sponsored",
-      suffix: "+",
+      suffix: stats?.childrenSponsored ? "+" : "",
       color: "from-secondary/20 to-secondary/5",
       iconColor: "text-secondary",
       borderColor: "border-secondary/30",
     },
     {
       icon: <Heart className="w-7 h-7" />,
-      value: stats?.totalCount ?? 47,
+      value: stats?.totalCount ?? 0,
       label: "Generous Donors",
-      suffix: "+",
+      suffix: stats?.totalCount ? "+" : "",
       color: "from-blue-500/10 to-blue-500/5",
       iconColor: "text-blue-400",
       borderColor: "border-blue-400/30",
     },
     {
       icon: <TrendingUp className="w-7 h-7" />,
-      value: stats?.totalAmount ?? 18650,
+      value: stats?.totalAmount ?? 0,
       label: "USD Raised",
       prefix: "$",
       color: "from-green-500/10 to-green-500/5",
@@ -91,9 +93,9 @@ export function DonationTicker({ stats }: { stats: DonationStats | null }) {
     },
     {
       icon: <Zap className="w-7 h-7" />,
-      value: Math.round((stats?.childrenSponsored ?? 124) * 12),
+      value: schoolMonths,
       label: "School Months Funded",
-      suffix: "+",
+      suffix: schoolMonths ? "+" : "",
       color: "from-purple-500/10 to-purple-500/5",
       iconColor: "text-purple-400",
       borderColor: "border-purple-400/30",
@@ -139,7 +141,7 @@ export function DonationTicker({ stats }: { stats: DonationStats | null }) {
           ))}
         </div>
 
-        {stats?.lastUpdated && (
+        {stats?.lastUpdated && stats.totalCount > 0 && (
           <p className="text-center text-white/30 text-xs mt-6">
             Last updated {new Date(stats.lastUpdated).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
             <PulseDot />

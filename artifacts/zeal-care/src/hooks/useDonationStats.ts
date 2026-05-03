@@ -39,7 +39,8 @@ export function useDonationStats() {
   return useQuery<DonationStats>({
     queryKey: ["donation-stats"],
     queryFn: fetchStats,
-    staleTime: 30_000,
+    staleTime: 60_000,
+    refetchInterval: 60_000,
     retry: 2,
   });
 }
