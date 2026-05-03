@@ -135,6 +135,7 @@ export function DonateModal() {
       donorName: nameOrOrg,
       donorEmail: email,
       method,
+      momoPhone: method === "momo" ? momoPhone : undefined,
       childName: sponsoredChild?.name,
       childId: sponsoredChild?.id,
       message,
