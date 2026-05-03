@@ -88,7 +88,7 @@ export const navConfig: NavSection[] = [
       { label: "Newsroom", path: "/media/newsroom" },
       { label: "Success Stories", path: "/media/stories" },
       { label: "Video", path: "/media/video" },
-      { label: "Photo Gallery", path: "/media/gallery" },
+      { label: "Photo Gallery", path: "/gallery" },
       { label: "Events & Calendar", path: "/media/events" },
     ],
   },
