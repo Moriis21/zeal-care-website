@@ -5,7 +5,7 @@ const DATA_DIR = getDataDir();
 const FILE = `${DATA_DIR}/site-content.json`;
 
 export type TeamMember = { name: string; role: string; bio: string; img?: string };
-export type BoardMember = { name: string; role: string; bio: string };
+export type BoardMember = { name: string; role: string; bio: string; img?: string };
 export type NewsItem = { date: string; title: string; desc: string };
 export type Program = { title: string; quote: string; desc: string };
 export type FAQ = { q: string; a: string };
@@ -120,7 +120,7 @@ export const DEFAULT_CONTENT: SiteContent = {
     ],
     boardMembers: [
       { name: "Jluedoe M. Bornor", role: "Education Impact Advisor", bio: "An accomplished educator and Lecturer of the Year (Starz University, 2025). Jluedoe provides strategic guidance on educational program design and child development." },
-      { name: "Mambiyea Bio", role: "Children Education Impact Advisor", bio: "Guides the design and delivery of programs that improve children's access to quality education. Focuses on assessing impact, strengthening learning outcomes, and ensuring sustainable educational development." },
+      { name: "Mambiyea W. Kapee", role: "Children Education Impact Advisor", bio: "Guides the design and delivery of programs that improve children's access to quality education. Focuses on assessing impact, strengthening learning outcomes, and ensuring sustainable educational development.", img: "/mambiyea-kapee.png" },
       { name: "Sonay Knakay Monger Mason", role: "Strategy Partnership Advisor", bio: "Holds a Graduate Diploma in Management Studies from ICM, United Kingdom. With over 20 years in telecoms and international business, Sonay builds and manages strategic collaborations that advance Zeal Care's mission." },
     ],
     newsItems: [

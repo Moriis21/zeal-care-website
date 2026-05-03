@@ -367,14 +367,18 @@ export default function AdminContent() {
                 label="Board Members"
                 items={content.whoWeAre.boardMembers.map(boardToAny)}
                 onUpdate={(items) => upd("whoWeAre")({ boardMembers: items.map(anyToBoard) })}
-                defaultItem={{ name: "", role: "", bio: "" } as AnyItem}
+                defaultItem={{ name: "", role: "", bio: "", img: "" } as AnyItem}
                 renderItem={(m) => {
                   const bm = anyToBoard(m);
                   return (
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-[#061A32] flex items-center justify-center text-[#F5C619] text-sm font-bold flex-shrink-0">
-                        {bm.name?.[0] ?? "?"}
-                      </div>
+                      {bm.img ? (
+                        <img src={bm.img} alt={bm.name} className="w-10 h-10 rounded-full object-cover object-top flex-shrink-0 border border-slate-100" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+                      ) : (
+                        <div className="w-10 h-10 rounded-full bg-[#061A32] flex items-center justify-center text-[#F5C619] text-sm font-bold flex-shrink-0">
+                          {bm.name?.[0] ?? "?"}
+                        </div>
+                      )}
                       <div>
                         <p className="font-semibold text-sm text-[#061A32]">{bm.name || "Unnamed"}</p>
                         <p className="text-xs text-slate-500">{bm.role || "No role"}</p>
@@ -392,6 +396,11 @@ export default function AdminContent() {
                         onChange={(e) => set(boardToAny({ ...bm, role: e.target.value }))} />
                       <textarea className={textareaClass} placeholder="Biography" rows={3} value={bm.bio}
                         onChange={(e) => set(boardToAny({ ...bm, bio: e.target.value }))} />
+                      <input className={inputClass} placeholder="Photo URL (e.g. /photo.png or upload via Children panel)" value={bm.img ?? ""}
+                        onChange={(e) => set(boardToAny({ ...bm, img: e.target.value }))} />
+                      {bm.img && (
+                        <img src={bm.img} alt="Preview" className="w-16 h-16 rounded-full object-cover object-top border border-slate-200" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+                      )}
                     </div>
                   );
                 }}
