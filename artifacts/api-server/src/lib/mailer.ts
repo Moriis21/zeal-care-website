@@ -176,6 +176,102 @@ function buildWelcomeHtml(email: string, name?: string): string {
 </body></html>`;
 }
 
+/* ─── MTN MoMo interest notification ─── */
+type MomoInterest = {
+  donorName: string;
+  donorEmail: string;
+  momoPhone: string;
+  amount: number;
+};
+
+function buildMomoInterestHtml(n: MomoInterest, notifyEmail: string): string {
+  const adminUrl = `https://${process.env["REPLIT_DEV_DOMAIN"] ?? "your-site"}/admin/donations`;
+  return `<!DOCTYPE html><html><head><meta charset="UTF-8"/></head>
+<body style="margin:0;padding:0;background:#f1f5f9;font-family:'Helvetica Neue',Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="padding:32px 16px;"><tr><td align="center">
+    <table width="600" cellpadding="0" cellspacing="0" style="background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
+
+      <!-- Header -->
+      <tr><td style="background:#061A32;padding:28px 36px;">
+        <table width="100%"><tr>
+          <td><div style="width:40px;height:40px;background:#F5C619;border-radius:50%;display:inline-block;text-align:center;line-height:40px;font-weight:900;font-size:18px;color:#061A32;vertical-align:middle;margin-right:10px;">Z</div>
+          <span style="color:#fff;font-size:20px;font-weight:900;vertical-align:middle;">ZEAL CARE</span></td>
+          <td align="right"><span style="background:#FBBF24;color:#78350F;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;">⚡ MTN MoMo INTEREST</span></td>
+        </tr></table>
+      </td></tr>
+
+      <!-- Hero -->
+      <tr><td style="background:linear-gradient(135deg,#92400E,#B45309);padding:32px 36px;text-align:center;">
+        <p style="margin:0 0 8px;color:rgba(255,255,255,0.7);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;">New MTN MoMo Donor Registered</p>
+        <p style="margin:0;color:#FDE68A;font-size:48px;font-weight:900;letter-spacing:-1px;">$${n.amount.toLocaleString()}</p>
+        <p style="margin:8px 0 0;color:rgba(255,255,255,0.6);font-size:13px;">Intended donation amount via MTN MoMo</p>
+      </td></tr>
+
+      <!-- Details -->
+      <tr><td style="padding:32px 36px;">
+        <h2 style="margin:0 0 20px;color:#061A32;font-size:18px;">Donor Details</h2>
+        <table width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #e2e8f0;">
+          <tr><td style="padding:10px 0;color:#64748b;font-size:14px;width:150px;">Name</td><td style="padding:10px 0;font-weight:700;color:#061A32;font-size:14px;">${n.donorName || "Anonymous"}</td></tr>
+          <tr style="border-top:1px solid #f1f5f9;"><td style="padding:10px 0;color:#64748b;font-size:14px;">MTN MoMo Number</td>
+            <td style="padding:10px 0;font-size:14px;">
+              <span style="background:#FEF3C7;color:#92400E;font-weight:900;font-size:15px;padding:4px 12px;border-radius:8px;font-family:monospace;">${n.momoPhone}</span>
+            </td>
+          </tr>
+          <tr style="border-top:1px solid #f1f5f9;"><td style="padding:10px 0;color:#64748b;font-size:14px;">Email</td><td style="padding:10px 0;font-size:14px;"><a href="mailto:${n.donorEmail}" style="color:#1A44C0;font-weight:700;">${n.donorEmail || "Not provided"}</a></td></tr>
+          <tr style="border-top:1px solid #f1f5f9;"><td style="padding:10px 0;color:#64748b;font-size:14px;">Intended Amount</td><td style="padding:10px 0;font-weight:900;color:#B45309;font-size:16px;">$${n.amount.toLocaleString()} USD</td></tr>
+        </table>
+      </td></tr>
+
+      <!-- Next steps -->
+      <tr><td style="padding:0 36px 32px;">
+        <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:12px;padding:20px 24px;">
+          <p style="margin:0 0 12px;font-weight:900;color:#92400E;font-size:14px;">⚡ What to do next</p>
+          <ul style="margin:0;padding-left:18px;color:#78350F;font-size:13px;line-height:2;">
+            <li>Complete your MTN MoMo API registration at <a href="https://momodeveloper.mtn.com" style="color:#B45309;font-weight:700;">momodeveloper.mtn.com</a></li>
+            <li>Once approved, send a payment request to <strong>${n.momoPhone}</strong></li>
+            ${n.donorEmail ? `<li>Notify ${n.donorName || "the donor"} at <a href="mailto:${n.donorEmail}" style="color:#B45309;">${n.donorEmail}</a> that the API is live</li>` : ""}
+            <li>View all MoMo interests in your <a href="${adminUrl}" style="color:#B45309;font-weight:700;">Admin → MTN MoMo Interests tab</a></li>
+          </ul>
+        </div>
+      </td></tr>
+
+      <!-- CTA -->
+      <tr><td style="padding:0 36px 36px;text-align:center;">
+        <a href="${adminUrl}" style="display:inline-block;background:#F5C619;color:#061A32;font-weight:900;font-size:14px;padding:14px 32px;border-radius:50px;text-decoration:none;letter-spacing:0.5px;">View MTN MoMo Interests →</a>
+      </td></tr>
+
+      <!-- Footer -->
+      <tr><td style="background:#f8fafc;padding:20px 36px;border-top:1px solid #e2e8f0;text-align:center;">
+        <p style="margin:0;color:#94a3b8;font-size:12px;">Zeal Care · Monrovia, Liberia · info@zealcare.org · +231 886 727 619</p>
+        <p style="margin:4px 0 0;color:#94a3b8;font-size:11px;">Automated MTN MoMo interest alert sent to ${notifyEmail}.</p>
+      </td></tr>
+
+    </table>
+  </td></tr></table>
+</body></html>`;
+}
+
+export async function sendMomoInterestNotification(interest: MomoInterest): Promise<void> {
+  const config = readEmailConfig();
+  const transporter = createTransporter();
+  if (!transporter) {
+    logger.info({ interest }, "Email not configured — MoMo interest notification skipped");
+    return;
+  }
+  const notifyTo = config.notifyEmail || config.smtpUser;
+  try {
+    await transporter.sendMail({
+      from: senderFrom(),
+      to: notifyTo,
+      subject: `⚡ MTN MoMo Interest: ${interest.donorName || "Anonymous"} — $${interest.amount.toLocaleString()}`,
+      html: buildMomoInterestHtml(interest, notifyTo),
+    });
+    logger.info({ momoPhone: interest.momoPhone, amount: interest.amount }, "MTN MoMo interest notification sent");
+  } catch (err) {
+    logger.error({ err }, "Failed to send MTN MoMo interest notification");
+  }
+}
+
 /* ─── Exported functions ─── */
 
 export async function sendDonationNotification(notification: DonationNotification): Promise<void> {
