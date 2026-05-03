@@ -118,7 +118,15 @@ export function DonateModal() {
   };
 
   const handlePaymentSent = () => {
-    recordDonation.mutate(effectiveAmount);
+    recordDonation.mutate({
+      amount: effectiveAmount,
+      donorName: nameOrOrg,
+      donorEmail: email,
+      method,
+      childName: sponsoredChild?.name,
+      childId: sponsoredChild?.id,
+      message,
+    });
     if (sponsoredChild) {
       sponsorChildMutation.mutate(sponsoredChild.id);
     }

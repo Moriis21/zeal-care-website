@@ -1,6 +1,7 @@
 import { Router, type IRouter } from "express";
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
 import { join } from "path";
+import { sendDonationNotification } from "../lib/mailer";
 
 const router: IRouter = Router();
 
@@ -35,8 +36,7 @@ function writeStats(stats: DonationStats): void {
   try {
     if (!existsSync(DATA_DIR)) mkdirSync(DATA_DIR, { recursive: true });
     writeFileSync(DATA_FILE, JSON.stringify(stats, null, 2), "utf-8");
-  } catch {
-  }
+  } catch {}
 }
 
 router.get("/donations/stats", (req, res) => {
@@ -45,7 +45,24 @@ router.get("/donations/stats", (req, res) => {
 });
 
 router.post("/donations/record", (req, res) => {
-  const { amount } = req.body as { amount?: number };
+  const {
+    amount,
+    donorName,
+    donorEmail,
+    method,
+    childName,
+    childId,
+    message,
+  } = req.body as {
+    amount?: number;
+    donorName?: string;
+    donorEmail?: string;
+    method?: string;
+    childName?: string;
+    childId?: string;
+    message?: string;
+  };
+
   const stats = readStats();
   const donationAmount = Number(amount) || 0;
   const childrenAdded = donationAmount >= 150 ? Math.floor(donationAmount / 150) : 0;
@@ -57,7 +74,19 @@ router.post("/donations/record", (req, res) => {
     lastUpdated: new Date().toISOString(),
   };
   writeStats(updated);
+
   req.log.info({ donationAmount, childrenAdded }, "Donation recorded");
+
+  void sendDonationNotification({
+    amount: donationAmount,
+    donorName: donorName ?? "",
+    donorEmail: donorEmail ?? "",
+    method: method ?? "other",
+    childName: childName,
+    childId: childId,
+    message: message,
+  });
+
   res.json(updated);
 });
 
