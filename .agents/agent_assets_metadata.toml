@@ -1,0 +1,62 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "IeYEZQWmOKRA6Cs8iKKG7"
+uri = "file://artifacts/zeal-care/public/hero-students-cheering.png"
+type = "image"
+title = "Cheering students in Africa"
+
+[[generated]]
+id = "w-Pizx6d20GuDmDc8Rzyc"
+uri = "file://artifacts/zeal-care/public/hero-student-girl.png"
+type = "image"
+title = "Confident girl holding books"
+
+[[generated]]
+id = "Wb7GLcIP989B4OUdNdJ-7"
+uri = "file://artifacts/zeal-care/public/about-tech-lab.png"
+type = "image"
+title = "African children in tech lab"
+
+[[generated]]
+id = "gAERMUW2GAlzNvPmZgeBs"
+uri = "file://artifacts/zeal-care/public/join-us-bg.png"
+type = "image"
+title = "African children running in schoolyard"
+
+[[generated]]
+id = "gnCasQhG0oZkiF1P7vR12"
+uri = "file://artifacts/zeal-care/public/program-scholar.png"
+type = "image"
+title = "Scholar Support Program"
+
+[[generated]]
+id = "i6tzBgVVuSZw4_hKYg5oZ"
+uri = "file://artifacts/zeal-care/public/program-tech.png"
+type = "image"
+title = "Tech Education Program"
+
+[[generated]]
+id = "eVGWj_eq9jPRe4vdA0v5M"
+uri = "file://artifacts/zeal-care/public/program-mentorship.png"
+type = "image"
+title = "Mentorship Program"
+
+[[generated]]
+id = "zSuEvsQBKnDkXFCrzAMLV"
+uri = "file://artifacts/zeal-care/public/program-community.png"
+type = "image"
+title = "Community Outreach Program"
+
+[[generated]]
+id = "4q7duvMXZIMe2DTZ0_mQZ"
+uri = "file://artifacts/zeal-care/public/story-amara.png"
+type = "image"
+title = "Amara Kollie portrait"
+
+[[generated]]
+id = "X_yBvrhldOTwtghYY3A3F"
+uri = "file://artifacts/zeal-care/public/story-david.png"
+type = "image"
+title = "David Mensah portrait"
