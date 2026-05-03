@@ -76,7 +76,7 @@ export function Navbar() {
             </div>
             <div className="flex items-center gap-3">
               <a href="https://www.facebook.com/profile.php?id=61561063778243" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-secondary transition-colors"><Facebook className="w-3.5 h-3.5" /></a>
-              <a href="https://www.instagram.com/zealcare2024" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-secondary transition-colors"><Instagram className="w-3.5 h-3.5" /></a>
+              <a href="https://www.instagram.com/zealcare2024?igsh=MTU2emRiMHBmd3d1Zw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-secondary transition-colors"><Instagram className="w-3.5 h-3.5" /></a>
               <a href="https://www.linkedin.com/company/zeal-care" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-secondary transition-colors"><Linkedin className="w-3.5 h-3.5" /></a>
               <div className="h-4 w-px bg-white/20 mx-1" />
               <LanguageSwitcher light />
