@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { X, CheckCircle, Smartphone, Building2, CreditCard, MoreHorizontal, ChevronRight, Heart } from "lucide-react";
 import { useDonate } from "@/context/DonateContext";
+import { useRecordDonation } from "@/hooks/useDonationStats";
 
 const PRESET_AMOUNTS = [25, 50, 150, 500, 1800, 7200];
 
@@ -102,6 +103,8 @@ export function DonateModal() {
     return () => { document.body.style.overflow = ""; };
   }, [isOpen, initialAmount]);
 
+  const recordDonation = useRecordDonation();
+
   if (!isOpen) return null;
 
   const effectiveAmount = isCustom ? (Number(customAmount) || 0) : (Number(amount) || 0);
@@ -110,6 +113,11 @@ export function DonateModal() {
   const handleConfirm = () => {
     if (effectiveAmount <= 0) return;
     setStep("confirm");
+  };
+
+  const handlePaymentSent = () => {
+    recordDonation.mutate(effectiveAmount);
+    setStep("success");
   };
 
   const handleDone = () => {
@@ -316,7 +324,7 @@ export function DonateModal() {
                   ← Back
                 </button>
                 <button
-                  onClick={() => setStep("success")}
+                  onClick={handlePaymentSent}
                   className="flex-[2] bg-primary text-white py-3 rounded-2xl font-bold text-sm hover:bg-primary/90 transition-all shadow-md hover:shadow-lg"
                 >
                   I've Sent the Payment ✓
