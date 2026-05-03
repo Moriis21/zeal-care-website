@@ -5,6 +5,22 @@ import { readDonationLog } from "../lib/donationLog";
 import { readEmailConfig, writeEmailConfig, type EmailConfig } from "../lib/emailConfig";
 import { type Child } from "../data/children";
 import nodemailer from "nodemailer";
+import multer from "multer";
+import path from "path";
+import { mkdirSync } from "fs";
+import { getDataDir } from "../lib/dataDir";
+
+const uploadsDir = path.join(getDataDir(), "uploads");
+mkdirSync(uploadsDir, { recursive: true });
+
+const storage = multer.diskStorage({
+  destination: uploadsDir,
+  filename: (_req, file, cb) => {
+    const ext = path.extname(file.originalname).toLowerCase();
+    cb(null, `${Date.now()}${ext}`);
+  },
+});
+const upload = multer({ storage, limits: { fileSize: 15 * 1024 * 1024 } });
 
 const router: IRouter = Router();
 
@@ -75,6 +91,14 @@ router.delete("/admin/children/:id", requireAdmin, (req, res) => {
   const { id } = req.params;
   const all = deleteChild(id);
   res.json({ success: true, total: all.length });
+});
+
+router.post("/admin/upload", requireAdmin, upload.single("photo"), (req, res) => {
+  if (!req.file) {
+    res.status(400).json({ error: "No file uploaded" });
+    return;
+  }
+  res.json({ url: `/api/uploads/${req.file.filename}` });
 });
 
 router.get("/admin/email-config", requireAdmin, (_req, res) => {

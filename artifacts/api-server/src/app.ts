@@ -3,6 +3,8 @@ import cors from "cors";
 import pinoHttp from "pino-http";
 import router from "./routes";
 import { logger } from "./lib/logger";
+import { join } from "path";
+import { getDataDir } from "./lib/dataDir";
 
 const app: Express = express();
 
@@ -28,6 +30,7 @@ app.use(
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/api/uploads", express.static(join(getDataDir(), "uploads")));
 
 app.use("/api", router);
 

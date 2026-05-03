@@ -1,17 +1,18 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { useToast } from "@/hooks/use-toast";
 import {
   Settings, Home, BookOpen, Users, Briefcase, Heart, Zap,
   Plus, Pencil, Trash2, Check, X, Save, ChevronDown, ChevronUp,
-  Loader2,
+  Loader2, Upload, UserCog,
 } from "lucide-react";
 import type { SiteContent, TeamMember, BoardMember, NewsItem, Program, FAQ } from "@/hooks/useSiteContent";
 import { DEFAULT_CONTENT } from "@/hooks/useSiteContent";
 
-type TabId = "settings" | "home" | "about" | "whoWeAre" | "whatWeDo" | "whyEmpowerment" | "ignitingPotential";
+type TabId = "settings" | "home" | "about" | "whoWeAre" | "whatWeDo" | "whyEmpowerment" | "ignitingPotential" | "team";
 
 const TABS: { id: TabId; label: string; icon: React.ElementType }[] = [
+  { id: "team", label: "Team Management", icon: UserCog },
   { id: "settings", label: "Site Settings", icon: Settings },
   { id: "home", label: "Home Page", icon: Home },
   { id: "about", label: "About Page", icon: BookOpen },
@@ -68,6 +69,65 @@ function CardHeader({ title, onSave, saving }: { title: string; onSave: () => vo
         {saving ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Save className="w-3.5 h-3.5" />}
         Save
       </button>
+    </div>
+  );
+}
+
+function PhotoUploader({ url, onChange, token }: { url: string; onChange: (url: string) => void; token: string }) {
+  const fileRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
+
+  const handleFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    try {
+      const fd = new FormData();
+      fd.append("photo", file);
+      const res = await fetch("/api/admin/upload", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        body: fd,
+      });
+      const data = await res.json() as { url?: string };
+      if (data.url) onChange(data.url);
+    } catch {
+      /* silent */
+    } finally {
+      setUploading(false);
+      if (fileRef.current) fileRef.current.value = "";
+    }
+  };
+
+  return (
+    <div>
+      <label className="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Photo</label>
+      <div className="flex items-start gap-3">
+        <div className="w-20 h-20 rounded-xl overflow-hidden bg-slate-100 border border-slate-200 flex-shrink-0">
+          {url ? (
+            <img src={url} alt="Preview" className="w-full h-full object-cover"
+              onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-slate-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 200 200">
+                <rect width="200" height="200" fill="#f1f5f9" />
+                <circle cx="100" cy="80" r="35" fill="#cbd5e1" />
+                <circle cx="100" cy="185" r="60" fill="#cbd5e1" />
+              </svg>
+            </div>
+          )}
+        </div>
+        <div className="flex-1 space-y-2">
+          <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={handleFile} />
+          <button type="button" onClick={() => fileRef.current?.click()} disabled={uploading}
+            className="flex items-center gap-1.5 bg-[#1A44C0] text-white px-3 py-1.5 rounded-lg text-xs font-semibold hover:bg-[#1A44C0]/90 transition-colors disabled:opacity-60 w-full justify-center">
+            {uploading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Upload className="w-3.5 h-3.5" />}
+            {uploading ? "Uploading..." : "Upload Photo"}
+          </button>
+          <input className={inputClass} placeholder="Or paste a photo URL" value={url}
+            onChange={(e) => onChange(e.target.value)} />
+        </div>
+      </div>
     </div>
   );
 }
@@ -169,11 +229,12 @@ function faqToAny(f: FAQ): AnyItem { return f as AnyItem; }
 function anyToFaq(a: AnyItem): FAQ { return a as unknown as FAQ; }
 
 export default function AdminContent() {
-  const [activeTab, setActiveTab] = useState<TabId>("settings");
+  const [activeTab, setActiveTab] = useState<TabId>("team");
   const [content, setContent] = useState<SiteContent>(DEFAULT_CONTENT);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState<string | null>(null);
   const { toast } = useToast();
+  const token = localStorage.getItem("zc_admin_token") ?? "";
 
   useEffect(() => {
     void (async () => {
@@ -192,7 +253,6 @@ export default function AdminContent() {
   const saveSection = useCallback(async (section: string, data: unknown, label: string) => {
     setSaving(section);
     try {
-      const token = localStorage.getItem("zc_admin_token") ?? "";
       const res = await fetch("/api/admin/site-content", {
         method: "PUT",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
@@ -205,7 +265,7 @@ export default function AdminContent() {
     } finally {
       setSaving(null);
     }
-  }, [toast]);
+  }, [toast, token]);
 
   const upd = <K extends keyof SiteContent>(section: K) => (patch: Partial<SiteContent[K]>) =>
     setContent((c) => ({ ...c, [section]: { ...c[section], ...patch } }));
@@ -242,6 +302,103 @@ export default function AdminContent() {
             </button>
           ))}
         </div>
+
+        {/* TEAM MANAGEMENT */}
+        {activeTab === "team" && (
+          <div className="space-y-5">
+            <div className="bg-blue-50 border border-blue-200 rounded-2xl px-5 py-4 text-sm text-blue-700">
+              Changes saved here are immediately reflected on the public <strong>Our Leadership</strong> and <strong>Board of Advisors</strong> pages. Upload a photo or paste a photo URL for each member.
+            </div>
+
+            {/* Leadership Team */}
+            <div className="bg-white rounded-2xl border border-slate-200 p-6">
+              <CardHeader title="Leadership Team" onSave={() => void saveSection("whoWeAre", content.whoWeAre, "Leadership Team")} saving={saving === "whoWeAre"} />
+              <ArrayEditor
+                label="Team Members"
+                items={content.whoWeAre.team.map(teamToAny)}
+                onUpdate={(items) => upd("whoWeAre")({ team: items.map(anyToTeam) })}
+                defaultItem={{ name: "", role: "", bio: "", img: "" } as AnyItem}
+                renderItem={(m) => {
+                  const tm = anyToTeam(m);
+                  return (
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full overflow-hidden bg-slate-100 flex-shrink-0 border border-slate-200">
+                        {tm.img ? (
+                          <img src={tm.img} alt={tm.name} className="w-full h-full object-cover"
+                            onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-slate-400 text-sm font-bold bg-[#061A32] text-[#F5C619]">
+                            {tm.name?.[0] ?? "?"}
+                          </div>
+                        )}
+                      </div>
+                      <div>
+                        <p className="font-semibold text-sm text-[#061A32]">{tm.name || "Unnamed"}</p>
+                        <p className="text-xs text-slate-500">{tm.role || "No role"}</p>
+                      </div>
+                    </div>
+                  );
+                }}
+                renderForm={(m, set) => {
+                  const tm = anyToTeam(m);
+                  return (
+                    <div className="space-y-3">
+                      <PhotoUploader
+                        url={tm.img ?? ""}
+                        onChange={(url) => set(teamToAny({ ...tm, img: url }))}
+                        token={token}
+                      />
+                      <input className={inputClass} placeholder="Full Name" value={tm.name}
+                        onChange={(e) => set(teamToAny({ ...tm, name: e.target.value }))} />
+                      <input className={inputClass} placeholder="Role / Title" value={tm.role}
+                        onChange={(e) => set(teamToAny({ ...tm, role: e.target.value }))} />
+                      <textarea className={textareaClass} placeholder="Biography" rows={4} value={tm.bio}
+                        onChange={(e) => set(teamToAny({ ...tm, bio: e.target.value }))} />
+                    </div>
+                  );
+                }}
+              />
+            </div>
+
+            {/* Board of Advisors */}
+            <div className="bg-white rounded-2xl border border-slate-200 p-6">
+              <CardHeader title="Board of Advisors" onSave={() => void saveSection("whoWeAre", content.whoWeAre, "Board of Advisors")} saving={saving === "whoWeAre"} />
+              <ArrayEditor
+                label="Board Members"
+                items={content.whoWeAre.boardMembers.map(boardToAny)}
+                onUpdate={(items) => upd("whoWeAre")({ boardMembers: items.map(anyToBoard) })}
+                defaultItem={{ name: "", role: "", bio: "" } as AnyItem}
+                renderItem={(m) => {
+                  const bm = anyToBoard(m);
+                  return (
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-[#061A32] flex items-center justify-center text-[#F5C619] text-sm font-bold flex-shrink-0">
+                        {bm.name?.[0] ?? "?"}
+                      </div>
+                      <div>
+                        <p className="font-semibold text-sm text-[#061A32]">{bm.name || "Unnamed"}</p>
+                        <p className="text-xs text-slate-500">{bm.role || "No role"}</p>
+                      </div>
+                    </div>
+                  );
+                }}
+                renderForm={(m, set) => {
+                  const bm = anyToBoard(m);
+                  return (
+                    <div className="space-y-2">
+                      <input className={inputClass} placeholder="Full Name" value={bm.name}
+                        onChange={(e) => set(boardToAny({ ...bm, name: e.target.value }))} />
+                      <input className={inputClass} placeholder="Advisory Role" value={bm.role}
+                        onChange={(e) => set(boardToAny({ ...bm, role: e.target.value }))} />
+                      <textarea className={textareaClass} placeholder="Biography" rows={3} value={bm.bio}
+                        onChange={(e) => set(boardToAny({ ...bm, bio: e.target.value }))} />
+                    </div>
+                  );
+                }}
+              />
+            </div>
+          </div>
+        )}
 
         {/* SITE SETTINGS */}
         {activeTab === "settings" && (
@@ -323,65 +480,6 @@ export default function AdminContent() {
               <Field label="History Text" value={content.whoWeAre.historyText} onChange={(v) => upd("whoWeAre")({ historyText: v })} multiline rows={4} />
               <Field label="Finance & Accountability Text" value={content.whoWeAre.financeText} onChange={(v) => upd("whoWeAre")({ financeText: v })} multiline rows={3} />
             </SectionCard>
-
-            <div className="bg-white rounded-2xl border border-slate-200 p-6">
-              <CardHeader title="Leadership Team" onSave={() => void saveSection("whoWeAre", content.whoWeAre, "Leadership Team")} saving={saving === "whoWeAre"} />
-              <ArrayEditor
-                label="Team Members"
-                items={content.whoWeAre.team.map(teamToAny)}
-                onUpdate={(items) => upd("whoWeAre")({ team: items.map(anyToTeam) })}
-                defaultItem={{ name: "", role: "", bio: "", img: "" } as AnyItem}
-                renderItem={(m) => {
-                  const tm = anyToTeam(m);
-                  return (
-                    <div>
-                      <p className="font-semibold text-sm text-[#061A32]">{tm.name || "Unnamed"}</p>
-                      <p className="text-xs text-slate-500">{tm.role || "No role"}</p>
-                    </div>
-                  );
-                }}
-                renderForm={(m, set) => {
-                  const tm = anyToTeam(m);
-                  return (
-                    <div className="space-y-2">
-                      <input className={inputClass} placeholder="Full Name" value={tm.name} onChange={(e) => set(teamToAny({ ...tm, name: e.target.value }))} />
-                      <input className={inputClass} placeholder="Role / Title" value={tm.role} onChange={(e) => set(teamToAny({ ...tm, role: e.target.value }))} />
-                      <textarea className={textareaClass} placeholder="Biography" rows={3} value={tm.bio} onChange={(e) => set(teamToAny({ ...tm, bio: e.target.value }))} />
-                      <input className={inputClass} placeholder="Image URL (optional)" value={tm.img ?? ""} onChange={(e) => set(teamToAny({ ...tm, img: e.target.value }))} />
-                    </div>
-                  );
-                }}
-              />
-            </div>
-
-            <div className="bg-white rounded-2xl border border-slate-200 p-6">
-              <CardHeader title="Board of Advisors" onSave={() => void saveSection("whoWeAre", content.whoWeAre, "Board of Advisors")} saving={saving === "whoWeAre"} />
-              <ArrayEditor
-                label="Board Members"
-                items={content.whoWeAre.boardMembers.map(boardToAny)}
-                onUpdate={(items) => upd("whoWeAre")({ boardMembers: items.map(anyToBoard) })}
-                defaultItem={{ name: "", role: "", bio: "" } as AnyItem}
-                renderItem={(m) => {
-                  const bm = anyToBoard(m);
-                  return (
-                    <div>
-                      <p className="font-semibold text-sm text-[#061A32]">{bm.name || "Unnamed"}</p>
-                      <p className="text-xs text-slate-500">{bm.role || "No role"}</p>
-                    </div>
-                  );
-                }}
-                renderForm={(m, set) => {
-                  const bm = anyToBoard(m);
-                  return (
-                    <div className="space-y-2">
-                      <input className={inputClass} placeholder="Full Name" value={bm.name} onChange={(e) => set(boardToAny({ ...bm, name: e.target.value }))} />
-                      <input className={inputClass} placeholder="Advisory Role" value={bm.role} onChange={(e) => set(boardToAny({ ...bm, role: e.target.value }))} />
-                      <textarea className={textareaClass} placeholder="Biography" rows={3} value={bm.bio} onChange={(e) => set(boardToAny({ ...bm, bio: e.target.value }))} />
-                    </div>
-                  );
-                }}
-              />
-            </div>
 
             <div className="bg-white rounded-2xl border border-slate-200 p-6">
               <CardHeader title="News & History Timeline" onSave={() => void saveSection("whoWeAre", content.whoWeAre, "News Timeline")} saving={saving === "whoWeAre"} />

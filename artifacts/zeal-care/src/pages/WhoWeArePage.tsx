@@ -4,47 +4,11 @@ import { navConfig } from "@/lib/nav-config";
 import { Link } from "wouter";
 import { User, Building2, Scroll, BarChart2, Users, Search, Eye, ClipboardList, GraduationCap, Trophy, Inbox } from "lucide-react";
 import { STRATEGIC_PARTNERS } from "@/lib/partner-logos";
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 const section = navConfig.find((s) => s.path === "/who-we-are")!;
 
-const leadership = [
-  {
-    name: "Titus S. Foko",
-    role: "Founder & Executive Director",
-    img: "/titus-foko.png",
-    bio: "Titus S. Foko is the visionary Founder and Executive Director of Zeal Care. With a background in Development Work and Community Development, he holds a BSc in Development Work from Stella Maris Polytechnic and a Certificate in Aspire Institute Leaders' Program from Boston University. Born and raised in Liberia, Titus experienced firsthand the devastating impact of educational inequality. His personal journey — from a young person who lacked access to education and mentorship to a passionate advocate for children — is the driving force behind Zeal Care. In 2017, he conducted an educational survey across communities in Montserrado, Margibi, and Bong Counties, planting the seeds that would grow into Zeal Care. He leads with vision, integrity, and an unrelenting commitment to igniting potential in every child.",
-  },
-  {
-    name: "Mohammed Soko Kamara",
-    role: "Executive Director of Marketing & Communications",
-    img: "/mohammed-kamara.png",
-    bio: "Mohammed Soko Kamara leads all marketing, communications, and public engagement strategies for Zeal Care. Holding a Bachelor's Degree in Marketing Management from Starz University, Mohammed is the voice and brand steward of the organization. He received the prestigious Starz University Excellence Award and the Starz University Honor Society Award in 2025. Mohammed ensures that Zeal Care's story reaches donors, partners, and communities around the world with clarity, authenticity, and impact.",
-  },
-  {
-    name: "Joetta C. Paye",
-    role: "Executive Director of Operations",
-    img: "/attached_assets/pdf_images/img-004.jpg",
-    bio: "Joetta C. Paye serves as the Executive Director of Operations, ensuring that Zeal Care's programs are delivered efficiently, ethically, and in alignment with our mission. She holds a BSc in Public Administration from the University of Liberia and is a skilled people manager and logistician. With her expertise in institutional management and community service, Joetta ensures that every Zeal Care initiative runs smoothly from planning to execution, maintaining the highest standards of accountability and transparency.",
-  },
-  {
-    name: "William Mammie",
-    role: "Graphic & Media Officer",
-    img: "/attached_assets/pdf_images/img-004.jpg",
-    bio: "William Mammie serves as Zeal Care's Graphic and Media Officer, responsible for the organization's visual identity, multimedia content, and media documentation. He recently earned a Bachelor's Degree in Information Technology with an Emphasis in System Administration from Starz University. William brings creativity and technical excellence to every piece of content Zeal Care produces, ensuring that our visual storytelling matches the power of our mission.",
-  },
-  {
-    name: "Beverley Chelsea Saungweme",
-    role: "Executive Director of Programs",
-    img: "/beverley-saungweme.png",
-    bio: "Beverley Chelsea Saungweme leads Zeal Care's programming strategy from Zimbabwe. She holds a Master of Science in Development Economics and is a certified PMP Professional with expertise in project management, leadership, and child advocacy. Beverley brings international development experience and a passion for education reform to Zeal Care's programs, ensuring that every initiative is evidence-based, community-centered, and aligned with global best practices.",
-  },
-];
-
-const boardMembers = [
-  { name: "Jluedoe M. Bornor", role: "Education Impact Advisor", bio: "An accomplished educator and Lecturer of the Year (Starz University, 2025). Jluedoe provides strategic guidance on educational program design and child development." },
-  { name: "Mambiyea Bio", role: "Children Education Impact Advisor", bio: "Guides the design and delivery of programs that improve children's access to quality education. Focuses on assessing impact, strengthening learning outcomes, and ensuring sustainable educational development." },
-  { name: "Sonay Knakay Monger Mason", role: "Strategy Partnership Advisor", bio: "Holds a Graduate Diploma in Management Studies from ICM, United Kingdom. With over 20 years in telecoms and international business, Sonay builds and manages strategic collaborations that advance Zeal Care's mission." },
-];
+const AVATAR_PLACEHOLDER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23061A32'/%3E%3Ccircle cx='100' cy='80' r='40' fill='%23F5C619'/%3E%3Ccircle cx='100' cy='200' r='70' fill='%23F5C619'/%3E%3C/svg%3E";
 
 const newsItems = [
   { date: "Jul–Aug 2024", title: "Educational Survey — Chicken Soup Factory", desc: "Zeal Care conducted an educational survey in Chicken Soup Factory Lorma Yard, Block D, reaching 45+ households to identify children most in need of educational support." },
@@ -82,57 +46,8 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
       </div>
     ),
   },
-  leadership: {
-    title: "Our Leadership",
-    content: (
-      <div className="space-y-8">
-        <p className="text-muted-foreground leading-relaxed text-lg">Our leadership team is made up of passionate, experienced professionals united by a shared vision: a Liberia and Africa where every child has access to quality education and the opportunity to become a leader.</p>
-        <div className="space-y-8">
-          {leadership.map((person) => (
-            <div key={person.name} className="bg-white border border-border rounded-2xl overflow-hidden hover:shadow-md transition-all">
-              <div className="md:flex">
-                <div className="md:w-56 flex-shrink-0">
-                  <img src={person.img} alt={person.name} className="w-full h-56 md:h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23061A32'/%3E%3Ccircle cx='100' cy='80' r='40' fill='%23F5C619'/%3E%3Ccircle cx='100' cy='200' r='70' fill='%23F5C619'/%3E%3C/svg%3E"; }} />
-                </div>
-                <div className="p-6 flex-1">
-                  <div className="inline-block bg-secondary/20 text-primary text-xs font-bold px-3 py-1 rounded-full mb-3">{person.role}</div>
-                  <h3 className="text-xl font-black text-primary mb-3">{person.name}</h3>
-                  <p className="text-muted-foreground leading-relaxed text-sm">{person.bio}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    ),
-  },
-  board: {
-    title: "Board of Advisors",
-    content: (
-      <div className="space-y-8">
-        <p className="text-muted-foreground leading-relaxed text-lg">Our Board of Advisors brings deep expertise in education, international development, business strategy, and community leadership. They provide invaluable guidance to ensure Zeal Care delivers maximum impact.</p>
-        <div className="space-y-5">
-          {boardMembers.map((member) => (
-            <div key={member.name} className="bg-white border border-border rounded-2xl p-6 hover:shadow-md transition-all">
-              <div className="flex items-start gap-4">
-                <div className="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white text-xl font-black flex-shrink-0">{member.name[0]}</div>
-                <div>
-                  <div className="inline-block bg-secondary/20 text-primary text-xs font-bold px-3 py-1 rounded-full mb-2">{member.role}</div>
-                  <h3 className="font-black text-primary text-lg mb-2">{member.name}</h3>
-                  <p className="text-muted-foreground leading-relaxed text-sm">{member.bio}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="bg-primary/5 border border-primary/20 rounded-2xl p-6 text-center">
-          <p className="font-bold text-primary mb-2">Join Our Advisory Board</p>
-          <p className="text-muted-foreground text-sm mb-4">Are you a leader with expertise in education, development, or social impact? We'd love to hear from you.</p>
-          <a href="mailto:info@zealcare.org" className="inline-block bg-primary text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-primary/90 transition-colors">Get in Touch</a>
-        </div>
-      </div>
-    ),
-  },
+  leadership: { title: "Our Leadership", content: null },
+  board: { title: "Board of Advisors", content: null },
   beneficiaries: {
     title: "Our Beneficiaries",
     content: (
@@ -400,7 +315,67 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
 export default function WhoWeArePage() {
   const params = useParams<{ section?: string }>();
   const sectionKey = params.section ?? "overview";
-  const content = subsections[sectionKey] ?? subsections.overview;
+  const { data: cmsData } = useSiteContent();
+
+  const team = cmsData?.whoWeAre?.team ?? [];
+  const boardMembers = cmsData?.whoWeAre?.boardMembers ?? [];
+
+  const dynamicSubsections: Record<string, { title: string; content: React.ReactNode }> = {
+    ...subsections,
+    leadership: {
+      title: "Our Leadership",
+      content: (
+        <div className="space-y-8">
+          <p className="text-muted-foreground leading-relaxed text-lg">Our leadership team is made up of passionate, experienced professionals united by a shared vision: a Liberia and Africa where every child has access to quality education and the opportunity to become a leader.</p>
+          <div className="space-y-8">
+            {team.map((person) => (
+              <div key={person.name} className="bg-white border border-border rounded-2xl overflow-hidden hover:shadow-md transition-all">
+                <div className="md:flex">
+                  <div className="md:w-56 flex-shrink-0">
+                    <img src={person.img || AVATAR_PLACEHOLDER} alt={person.name} className="w-full h-56 md:h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = AVATAR_PLACEHOLDER; }} />
+                  </div>
+                  <div className="p-6 flex-1">
+                    <div className="inline-block bg-secondary/20 text-primary text-xs font-bold px-3 py-1 rounded-full mb-3">{person.role}</div>
+                    <h3 className="text-xl font-black text-primary mb-3">{person.name}</h3>
+                    <p className="text-muted-foreground leading-relaxed text-sm">{person.bio}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ),
+    },
+    board: {
+      title: "Board of Advisors",
+      content: (
+        <div className="space-y-8">
+          <p className="text-muted-foreground leading-relaxed text-lg">Our Board of Advisors brings deep expertise in education, international development, business strategy, and community leadership. They provide invaluable guidance to ensure Zeal Care delivers maximum impact.</p>
+          <div className="space-y-5">
+            {boardMembers.map((member) => (
+              <div key={member.name} className="bg-white border border-border rounded-2xl p-6 hover:shadow-md transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white text-xl font-black flex-shrink-0">{member.name[0]}</div>
+                  <div>
+                    <div className="inline-block bg-secondary/20 text-primary text-xs font-bold px-3 py-1 rounded-full mb-2">{member.role}</div>
+                    <h3 className="font-black text-primary text-lg mb-2">{member.name}</h3>
+                    <p className="text-muted-foreground leading-relaxed text-sm">{member.bio}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="bg-primary/5 border border-primary/20 rounded-2xl p-6 text-center">
+            <p className="font-bold text-primary mb-2">Join Our Advisory Board</p>
+            <p className="text-muted-foreground text-sm mb-4">Are you a leader with expertise in education, development, or social impact? We'd love to hear from you.</p>
+            <a href="mailto:info@zealcare.org" className="inline-block bg-primary text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-primary/90 transition-colors">Get in Touch</a>
+          </div>
+        </div>
+      ),
+    },
+  };
+
+  const content = dynamicSubsections[sectionKey] ?? dynamicSubsections.overview;
 
   return (
     <PageLayout section={section} pageTitle={content.title} breadcrumb={sectionKey !== "overview" ? content.title : undefined}>
