@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 import aboutTeamGroup from "@assets/pdf_images/img-055.jpg";
 import aboutTeam from "@assets/pdf_images/img-054.jpg";
 
@@ -21,6 +21,8 @@ export function About() {
                 src={aboutTeamGroup}
                 alt="Zeal Care team with students at Esfans Academy" 
                 className="col-span-2 rounded-2xl shadow-lg w-full h-[300px] object-cover object-top"
+                loading="lazy"
+                decoding="async"
                 data-testid="img-about-1"
               />
               <div className="bg-secondary rounded-2xl p-8 flex flex-col justify-center items-center text-primary text-center shadow-lg">
@@ -31,11 +33,12 @@ export function About() {
                 src={aboutTeam}
                 alt="Zeal Care team members in yellow shirts" 
                 className="rounded-2xl shadow-lg w-full h-[200px] object-cover object-top"
+                loading="lazy"
+                decoding="async"
                 data-testid="img-about-2"
               />
             </div>
             
-            {/* Decorative dots */}
             <div className="absolute -z-10 -top-6 -left-6 w-24 h-24 bg-[radial-gradient(hsl(var(--primary))_2px,transparent_2px)] [background-size:12px_12px] opacity-20"></div>
           </motion.div>
 
@@ -62,9 +65,11 @@ export function About() {
               "When you give a child the right tools and someone who believes in them, their potential is limitless."
             </blockquote>
             
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 py-6 font-bold" data-testid="button-about-learn-more">
-              Learn More About Us
-            </Button>
+            <Link href="/about">
+              <button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 py-4 font-bold text-base transition-all hover:scale-105" data-testid="button-about-learn-more">
+                Learn More About Us →
+              </button>
+            </Link>
           </motion.div>
 
         </div>

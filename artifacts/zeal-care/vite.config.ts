@@ -6,7 +6,6 @@ import path from "path";
 const isReplit = process.env.REPL_ID !== undefined;
 const isBuild = process.env.npm_lifecycle_event === "build";
 
-// PORT is only required when running the dev server, not during `vite build`.
 const rawPort = process.env.PORT;
 const port = rawPort ? Number(rawPort) : 3000;
 
@@ -16,7 +15,6 @@ if (!isBuild && !rawPort) {
   );
 }
 
-// BASE_PATH defaults to "/" for Vercel and other standard hosts.
 const basePath = process.env.BASE_PATH ?? "/";
 
 export default defineConfig({
@@ -24,7 +22,6 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    // Replit-only plugins — skipped on Vercel and other CI/CD environments
     ...(isReplit
       ? [
           (await import("@replit/vite-plugin-runtime-error-modal")).default(),
@@ -50,6 +47,20 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    target: "esnext",
+    cssMinify: true,
+    rollupOptions: {
+      output: {
+        // Split vendor libraries into separate cacheable chunks
+        manualChunks: {
+          "vendor-react": ["react", "react-dom"],
+          "vendor-motion": ["framer-motion"],
+          "vendor-icons": ["lucide-react"],
+          "vendor-query": ["@tanstack/react-query"],
+          "vendor-router": ["wouter"],
+        },
+      },
+    },
   },
   server: {
     port,
@@ -59,10 +70,23 @@ export default defineConfig({
     fs: {
       strict: true,
     },
+    // Warm up frequently accessed modules for faster HMR
+    warmup: {
+      clientFiles: [
+        "./src/App.tsx",
+        "./src/components/Navbar.tsx",
+        "./src/components/Hero.tsx",
+        "./src/pages/Home.tsx",
+      ],
+    },
   },
   preview: {
     port,
     host: "0.0.0.0",
     allowedHosts: true,
+  },
+  // Optimize dependencies upfront
+  optimizeDeps: {
+    include: ["react", "react-dom", "framer-motion", "lucide-react", "@tanstack/react-query", "wouter"],
   },
 });

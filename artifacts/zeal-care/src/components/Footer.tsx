@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Facebook, Twitter, Instagram, Linkedin, Send, CheckCircle, Loader2, MapPin, Mail, Phone } from "lucide-react";
+import { Link, useLocation } from "wouter";
+import { Facebook, Twitter, Instagram, Linkedin, Send, CheckCircle, Loader2, MapPin, Mail, Phone, Heart } from "lucide-react";
+import { useDonate } from "@/context/DonateContext";
 
 function NewsletterForm() {
   const [email, setEmail] = useState("");
@@ -71,6 +73,64 @@ function NewsletterForm() {
   );
 }
 
+function GetInvolvedLinks() {
+  const { openDonate } = useDonate();
+  const [location] = useLocation();
+  const isHome = location === "/";
+
+  const handleContact = (e: React.MouseEvent) => {
+    if (isHome) {
+      e.preventDefault();
+      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return (
+    <ul className="space-y-3">
+      <li>
+        <button
+          onClick={() => openDonate(150)}
+          className="text-primary-foreground/60 hover:text-[#F5C619] transition-colors text-sm flex items-center gap-1.5 group"
+        >
+          <Heart className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+          Sponsor a Child
+        </button>
+      </li>
+      <li>
+        <button
+          onClick={() => openDonate()}
+          className="text-primary-foreground/60 hover:text-[#F5C619] transition-colors text-sm flex items-center gap-1.5 group"
+        >
+          <Heart className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+          Make a Donation
+        </button>
+      </li>
+      <li>
+        <Link href="/igniting-potential/become-a-partner" className="text-primary-foreground/60 hover:text-[#F5C619] transition-colors text-sm">
+          Become a Partner
+        </Link>
+      </li>
+      <li>
+        <a
+          href="mailto:zealcare24@gmail.com?subject=Volunteer%20Inquiry%20—%20Zeal%20Care"
+          className="text-primary-foreground/60 hover:text-[#F5C619] transition-colors text-sm"
+        >
+          Volunteer with Us
+        </a>
+      </li>
+      <li>
+        <a
+          href={isHome ? "#contact" : "/#contact"}
+          onClick={handleContact}
+          className="text-primary-foreground/60 hover:text-[#F5C619] transition-colors text-sm"
+        >
+          Contact Us
+        </a>
+      </li>
+    </ul>
+  );
+}
+
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -93,10 +153,10 @@ export function Footer() {
 
           {/* Brand */}
           <div className="col-span-1 md:col-span-2 lg:col-span-1">
-            <div className="text-2xl font-extrabold flex items-center gap-2.5 mb-6">
+            <Link href="/" className="text-2xl font-extrabold flex items-center gap-2.5 mb-6">
               <img src="/logo.png" alt="Zeal Care" className="h-8 w-auto object-contain" />
               <span className="text-white">ZEAL CARE</span>
-            </div>
+            </Link>
             <p className="text-primary-foreground/70 mb-6 text-sm leading-relaxed">
               Igniting Potential, Inspiring Change. Empowering Africa's future leaders through education, mentorship, and technology.
             </p>
@@ -104,7 +164,7 @@ export function Footer() {
               <a href="https://www.facebook.com/profile.php?id=61561063778243" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all hover:scale-110" data-testid="link-social-facebook">
                 <Facebook className="w-4 h-4" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all hover:scale-110" data-testid="link-social-twitter">
+              <a href="https://twitter.com/zealcare" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all hover:scale-110" data-testid="link-social-twitter">
                 <Twitter className="w-4 h-4" />
               </a>
               <a href="https://www.instagram.com/zealcare2024" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all hover:scale-110" data-testid="link-social-instagram">
@@ -128,7 +188,7 @@ export function Footer() {
                 ["Media", "/media"],
               ].map(([label, href]) => (
                 <li key={label}>
-                  <a href={href} className="text-primary-foreground/60 hover:text-[#F5C619] transition-colors text-sm">{label}</a>
+                  <Link href={href} className="text-primary-foreground/60 hover:text-[#F5C619] transition-colors text-sm">{label}</Link>
                 </li>
               ))}
             </ul>
@@ -137,19 +197,7 @@ export function Footer() {
           {/* Get Involved */}
           <div>
             <h4 className="font-black text-sm mb-6 uppercase tracking-widest text-white">Get Involved</h4>
-            <ul className="space-y-3">
-              {[
-                ["Sponsor a Child", "#"],
-                ["Make a Donation", "#"],
-                ["Become a Partner", "#"],
-                ["Volunteer with Us", "#"],
-                ["Contact Us", "#contact"],
-              ].map(([label, href]) => (
-                <li key={label}>
-                  <a href={href} className="text-primary-foreground/60 hover:text-[#F5C619] transition-colors text-sm">{label}</a>
-                </li>
-              ))}
-            </ul>
+            <GetInvolvedLinks />
           </div>
 
           {/* Contact */}
@@ -181,8 +229,8 @@ export function Footer() {
             <a href="/admin" className="ml-1 text-primary-foreground/15 hover:text-primary-foreground/35 transition-colors select-none" title="Admin">·</a>
           </p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-primary-foreground/70 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-primary-foreground/70 transition-colors">Terms of Service</a>
+            <a href="mailto:info@zealcare.org?subject=Privacy%20Policy%20Inquiry" className="hover:text-primary-foreground/70 transition-colors">Privacy Policy</a>
+            <a href="mailto:info@zealcare.org?subject=Terms%20of%20Service%20Inquiry" className="hover:text-primary-foreground/70 transition-colors">Terms of Service</a>
           </div>
         </div>
 
