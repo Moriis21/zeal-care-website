@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useSiteContent, DEFAULT_CONTENT } from "@/hooks/useSiteContent";
 
-function Counter({ end, suffix = "", duration = 2 }: { end: number, suffix?: string, duration?: number }) {
+function Counter({ end, suffix = "", duration = 2 }: { end: number; suffix?: string; duration?: number }) {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
@@ -28,12 +28,25 @@ function Counter({ end, suffix = "", duration = 2 }: { end: number, suffix?: str
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
+function parseNum(val: string): { num: number; suffix: string } {
+  const match = /^(\d+)(.*)$/.exec(val.trim());
+  if (!match) return { num: 0, suffix: val };
+  return { num: parseInt(match[1], 10), suffix: match[2] };
+}
+
 export function StatsBar() {
+  const { data: content } = useSiteContent();
+  const s = content?.settings ?? DEFAULT_CONTENT.settings;
+
+  const scholars = parseNum(s.scholarCount);
+  const schools = parseNum(s.partnerSchools);
+  const tech = parseNum(s.techHours);
+
   const stats = [
-    { value: 850, suffix: "+", label: "Active Scholars" },
+    { value: scholars.num, suffix: scholars.suffix + "+", label: "Active Scholars" },
     { value: 12, suffix: "-Year", label: "Impact Promise" },
-    { value: 50, suffix: "+", label: "Partner Schools" },
-    { value: 24, suffix: "k", label: "Tech Hours" },
+    { value: schools.num, suffix: schools.suffix + "+", label: "Partner Schools" },
+    { value: Math.round(tech.num / 1000), suffix: "k" + tech.suffix, label: "Tech Hours" },
     { value: 100, suffix: "%", label: "Transparency" },
   ];
 
@@ -42,7 +55,7 @@ export function StatsBar() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-center">
           {stats.map((stat, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -53,9 +66,8 @@ export function StatsBar() {
             >
               <div className="text-4xl md:text-5xl font-extrabold text-primary mb-2 flex items-baseline">
                 <Counter end={stat.value} suffix={stat.suffix} />
-                {stat.value === 100 && stat.label === "Transparency" ? "" : ""}
               </div>
-              <div className="text-sm font-bold text-muted-foreground uppercase tracking-wider text-center" style={{ color: '#F5C619' }}>
+              <div className="text-sm font-bold uppercase tracking-wider text-center">
                 <span className="text-primary/70">{stat.label}</span>
               </div>
             </motion.div>

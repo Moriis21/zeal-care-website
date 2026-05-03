@@ -2,7 +2,7 @@ import { type ReactNode, useState } from "react";
 import { Link, useLocation } from "wouter";
 import {
   LayoutDashboard, Users, Heart, Settings, LogOut,
-  Menu, X, ChevronRight, Mail, MessageSquare,
+  Menu, ChevronRight, Mail, MessageSquare, FileText,
 } from "lucide-react";
 
 const NAV = [
@@ -11,6 +11,7 @@ const NAV = [
   { path: "/admin/donations", label: "Donations", icon: Heart },
   { path: "/admin/messages", label: "Messages", icon: MessageSquare },
   { path: "/admin/newsletter", label: "Newsletter", icon: Mail },
+  { path: "/admin/content", label: "Page Content", icon: FileText },
   { path: "/admin/settings", label: "Email Settings", icon: Settings },
 ];
 
@@ -23,6 +24,8 @@ export function AdminLayout({ children }: { children: ReactNode }) {
   const [location] = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  const activeNav = NAV.find((n) => location === n.path || location.startsWith(n.path + "/"));
+
   return (
     <div className="min-h-screen bg-slate-50 flex font-sans">
       {/* Sidebar */}
@@ -34,7 +37,23 @@ export function AdminLayout({ children }: { children: ReactNode }) {
         {/* Logo */}
         <div className="px-6 py-5 border-b border-white/10">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-full bg-[#F5C619] flex items-center justify-center font-black text-[#061A32] text-lg">Z</div>
+            <img
+              src="/logo.png"
+              alt="Zeal Care"
+              className="h-9 w-auto object-contain flex-shrink-0"
+              onError={(e) => {
+                const el = e.currentTarget as HTMLImageElement;
+                el.style.display = "none";
+                const fallback = el.nextElementSibling as HTMLElement | null;
+                if (fallback) fallback.style.display = "flex";
+              }}
+            />
+            <div
+              className="w-9 h-9 rounded-full bg-[#F5C619] items-center justify-center font-black text-[#061A32] text-lg flex-shrink-0"
+              style={{ display: "none" }}
+            >
+              Z
+            </div>
             <div>
               <p className="font-black text-sm leading-tight">ZEAL CARE</p>
               <p className="text-white/40 text-xs">Admin Panel</p>
@@ -43,7 +62,7 @@ export function AdminLayout({ children }: { children: ReactNode }) {
         </div>
 
         {/* Nav */}
-        <nav className="flex-1 px-3 py-4 space-y-1">
+        <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
           {NAV.map(({ path, label, icon: Icon }) => {
             const active = location === path || location.startsWith(path + "/");
             return (
@@ -57,7 +76,7 @@ export function AdminLayout({ children }: { children: ReactNode }) {
                     : "text-white/60 hover:bg-white/5 hover:text-white"
                 }`}
               >
-                <Icon className="w-4.5 h-4.5 flex-shrink-0" />
+                <Icon className="w-4 h-4 flex-shrink-0" />
                 {label}
                 {active && <ChevronRight className="w-4 h-4 ml-auto" />}
               </Link>
@@ -98,7 +117,7 @@ export function AdminLayout({ children }: { children: ReactNode }) {
           </button>
           <div className="flex-1">
             <h1 className="font-black text-[#061A32] text-lg">
-              {NAV.find((n) => location === n.path || location.startsWith(n.path + "/"))?.label ?? "Admin"}
+              {activeNav?.label ?? "Admin"}
             </h1>
           </div>
           <div className="flex items-center gap-2 text-xs text-slate-400 font-semibold">

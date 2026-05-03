@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Facebook, Twitter, Instagram, Linkedin, Send, CheckCircle, Loader2, MapPin, Mail, Phone, Heart } from "lucide-react";
 import { useDonate } from "@/context/DonateContext";
+import { useSiteContent, DEFAULT_CONTENT } from "@/hooks/useSiteContent";
 
 function NewsletterForm() {
   const [email, setEmail] = useState("");
@@ -133,6 +134,15 @@ function GetInvolvedLinks() {
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const { data: content } = useSiteContent();
+  const s = content?.settings ?? DEFAULT_CONTENT.settings;
+
+  const socialLinks = [
+    { icon: Facebook, href: s.facebook || "https://www.facebook.com/profile.php?id=61561063778243", testId: "link-social-facebook" },
+    { icon: Twitter, href: s.twitter || "https://twitter.com/zealcare", testId: "link-social-twitter" },
+    { icon: Instagram, href: s.instagram || "https://www.instagram.com/zealcare2024", testId: "link-social-instagram" },
+    { icon: Linkedin, href: s.linkedin || "https://www.linkedin.com/company/zeal-care", testId: "link-social-linkedin" },
+  ];
 
   return (
     <footer className="bg-[#041224] text-primary-foreground pt-16 pb-8">
@@ -161,18 +171,11 @@ export function Footer() {
               Igniting Potential, Inspiring Change. Empowering Africa's future leaders through education, mentorship, and technology.
             </p>
             <div className="flex gap-3">
-              <a href="https://www.facebook.com/profile.php?id=61561063778243" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all hover:scale-110" data-testid="link-social-facebook">
-                <Facebook className="w-4 h-4" />
-              </a>
-              <a href="https://twitter.com/zealcare" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all hover:scale-110" data-testid="link-social-twitter">
-                <Twitter className="w-4 h-4" />
-              </a>
-              <a href="https://www.instagram.com/zealcare2024" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all hover:scale-110" data-testid="link-social-instagram">
-                <Instagram className="w-4 h-4" />
-              </a>
-              <a href="https://www.linkedin.com/company/zeal-care" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all hover:scale-110" data-testid="link-social-linkedin">
-                <Linkedin className="w-4 h-4" />
-              </a>
+              {socialLinks.map(({ icon: Icon, href, testId }) => (
+                <a key={testId} href={href} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all hover:scale-110" data-testid={testId}>
+                  <Icon className="w-4 h-4" />
+                </a>
+              ))}
             </div>
           </div>
 
@@ -206,15 +209,15 @@ export function Footer() {
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-3 text-primary-foreground/60">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#F5C619]" />
-                <span>Monrovia, Liberia</span>
+                <span>{s.address}</span>
               </li>
               <li className="flex items-start gap-3 text-primary-foreground/60">
                 <Mail className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#F5C619]" />
-                <a href="mailto:info@zealcare.org" className="hover:text-[#F5C619] transition-colors">info@zealcare.org</a>
+                <a href={`mailto:${s.email}`} className="hover:text-[#F5C619] transition-colors">{s.email}</a>
               </li>
               <li className="flex items-start gap-3 text-primary-foreground/60">
                 <Phone className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#F5C619]" />
-                <a href="tel:+231886727619" className="hover:text-[#F5C619] transition-colors">+231 886 727 619</a>
+                <a href={`tel:${s.phone.replace(/\s/g, "")}`} className="hover:text-[#F5C619] transition-colors">{s.phone}</a>
               </li>
             </ul>
           </div>
