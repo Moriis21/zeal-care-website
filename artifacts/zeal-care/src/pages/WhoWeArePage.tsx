@@ -353,10 +353,25 @@ export default function WhoWeArePage() {
           <p className="text-muted-foreground leading-relaxed text-lg">Our Board of Advisors brings deep expertise in education, international development, business strategy, and community leadership. They provide invaluable guidance to ensure Zeal Care delivers maximum impact.</p>
           <div className="space-y-5">
             {boardMembers.map((member) => (
-              <div key={member.name} className="bg-white border border-border rounded-2xl p-6 hover:shadow-md transition-all">
-                <div className="flex items-start gap-4">
-                  <div className="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white text-xl font-black flex-shrink-0">{member.name[0]}</div>
-                  <div>
+              <div key={member.name} className="bg-white border border-border rounded-2xl overflow-hidden hover:shadow-md transition-all">
+                <div className="sm:flex items-stretch">
+                  <div className="sm:w-40 flex-shrink-0">
+                    {member.img ? (
+                      <img
+                        src={member.img}
+                        alt={member.name}
+                        className="w-full h-40 sm:h-full object-cover object-top"
+                        onError={(e) => { (e.target as HTMLImageElement).src = AVATAR_PLACEHOLDER; }}
+                      />
+                    ) : (
+                      <div className="w-full h-40 sm:h-full bg-primary/10 flex items-center justify-center">
+                        <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-black">
+                          {member.name[0]}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-6 flex-1">
                     <div className="inline-block bg-secondary/20 text-primary text-xs font-bold px-3 py-1 rounded-full mb-2">{member.role}</div>
                     <h3 className="font-black text-primary text-lg mb-2">{member.name}</h3>
                     <p className="text-muted-foreground leading-relaxed text-sm">{member.bio}</p>
