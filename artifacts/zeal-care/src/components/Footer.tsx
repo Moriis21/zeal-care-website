@@ -72,7 +72,10 @@ export function Footer() {
         <hr className="border-primary-foreground/10 mb-8" />
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-primary-foreground/50 text-sm">
-          <p>&copy; {currentYear} Zeal Care. All rights reserved. Monrovia, Liberia.</p>
+          <p>
+            &copy; {currentYear} Zeal Care. All rights reserved. Monrovia, Liberia.
+            <a href="/admin" className="ml-1 text-primary-foreground/20 hover:text-primary-foreground/40 transition-colors select-none" title="Admin">·</a>
+          </p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-primary-foreground transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-primary-foreground transition-colors">Terms of Service</a>
