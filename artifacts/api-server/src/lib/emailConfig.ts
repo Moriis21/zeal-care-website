@@ -1,8 +1,8 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
-import { join } from "path";
+import { getDataDir } from "./dataDir";
 
-const DATA_DIR = join(process.cwd(), ".data");
-const CONFIG_FILE = join(DATA_DIR, "email-config.json");
+const DATA_DIR = getDataDir();
+const CONFIG_FILE = `${DATA_DIR}/email-config.json`;
 
 export type EmailConfig = {
   smtpHost: string;

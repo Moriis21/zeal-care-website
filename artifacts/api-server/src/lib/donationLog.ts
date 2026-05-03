@@ -1,8 +1,8 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
-import { join } from "path";
+import { getDataDir } from "./dataDir";
 
-const DATA_DIR = join(process.cwd(), ".data");
-const LOG_FILE = join(DATA_DIR, "donation-log.json");
+const DATA_DIR = getDataDir();
+const LOG_FILE = `${DATA_DIR}/donation-log.json`;
 
 export type DonationRecord = {
   id: string;

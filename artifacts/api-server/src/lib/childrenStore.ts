@@ -1,10 +1,10 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
-import { join } from "path";
+import { getDataDir } from "./dataDir";
 import { childrenData as SEED, type Child } from "../data/children";
 
-const DATA_DIR = join(process.cwd(), ".data");
-const CHILDREN_FILE = join(DATA_DIR, "children.json");
-const SPONSORED_FILE = join(DATA_DIR, "sponsored.json");
+const DATA_DIR = getDataDir();
+const CHILDREN_FILE = `${DATA_DIR}/children.json`;
+const SPONSORED_FILE = `${DATA_DIR}/sponsored.json`;
 
 function ensureDir(): void {
   if (!existsSync(DATA_DIR)) mkdirSync(DATA_DIR, { recursive: true });

@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "../dist/api",
+    "types": ["node"]
+  },
+  "include": ["./**/*.ts"],
+  "references": [
+    { "path": "../lib/db" },
+    { "path": "../lib/api-zod" },
+    { "path": "../artifacts/api-server" }
+  ]
+}
