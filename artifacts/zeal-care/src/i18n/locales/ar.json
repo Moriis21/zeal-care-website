@@ -1,0 +1,121 @@
+{
+  "nav": {
+    "aboutUs": "عن المنظمة",
+    "whyEmpowerment": "لماذا التمكين",
+    "whoWeAre": "من نحن",
+    "whatWeDo": "ما نفعله",
+    "ignitingPotential": "إشعال الإمكانات",
+    "media": "الإعلام",
+    "donateNow": "تبرع الآن",
+    "items": {
+      "Overview": "نظرة عامة",
+      "Our Mission": "مهمتنا",
+      "Our Vision": "رؤيتنا",
+      "Our Goals": "أهدافنا",
+      "Our Values": "قيمنا",
+      "Our Belief": "معتقداتنا",
+      "SDG Focus": "أهداف التنمية المستدامة",
+      "Characteristics We Develop": "الصفات التي نطورها",
+      "Social Justice": "العدالة الاجتماعية",
+      "Economic Development": "التنمية الاقتصادية",
+      "Our Leadership": "قيادتنا",
+      "Board of Advisors": "مجلس المستشارين",
+      "Our Beneficiaries": "المستفيدون",
+      "Our Partners": "شركاؤنا",
+      "Our History": "تاريخنا",
+      "Awards & Prizes": "الجوائز والتكريمات",
+      "Protection & Safeguarding": "الحماية والسلامة",
+      "Finance & Accountability": "المالية والمساءلة",
+      "Work for Us": "اعمل معنا",
+      "Tenders & Opportunities": "المناقصات والفرص",
+      "How We Operate": "كيف نعمل",
+      "Where We Operate": "أين نعمل",
+      "Our Programs": "برامجنا",
+      "What Sets Us Apart": "ما يميزنا",
+      "Impact in Numbers": "الأثر بالأرقام",
+      "Ways to Give": "طرق التبرع",
+      "Appeals": "نداءات التبرع",
+      "Become a Partner": "كن شريكاً",
+      "Giving FAQ": "الأسئلة الشائعة",
+      "Newsroom": "الغرفة الإعلامية",
+      "Success Stories": "قصص النجاح",
+      "Video": "فيديو",
+      "Photo Gallery": "معرض الصور",
+      "Events & Calendar": "الفعاليات والتقويم"
+    }
+  },
+  "hero": {
+    "badge": "تمكين قادة أفريقيا المستقبليين",
+    "title": "إشعال الإمكانات، إلهام التغيير.",
+    "subtitle": "نؤمن بأن كل طفل هو شرارة من العبقرية. نوفر الأدوات والإرشاد والفرص لإطلاق تلك العبقرية.",
+    "sponsorCTA": "اكفل طفلاً",
+    "impactCTA": "أثرنا",
+    "childrenLabel": "طفل مكفول"
+  },
+  "stats": {
+    "activeScholars": "الطلاب النشطون",
+    "impactPromise": "وعد التأثير",
+    "partnerSchools": "المدارس الشريكة",
+    "techHours": "ساعات التقنية",
+    "transparency": "الشفافية",
+    "yearSuffix": " سنة"
+  },
+  "contact": {
+    "badge": "تواصل معنا",
+    "title": "لنصنع التغيير معاً.",
+    "subtitle": "هل لديك سؤال أو فكرة أو تريد الشراكة معنا؟ يسعدنا سماعك.",
+    "getInTouch": "تواصل معنا",
+    "name": "الاسم الكامل",
+    "email": "البريد الإلكتروني",
+    "subject": "الموضوع",
+    "message": "رسالتك",
+    "send": "إرسال الرسالة",
+    "sending": "جارٍ الإرسال…",
+    "successTitle": "تم الإرسال!",
+    "successMsg": "شكراً للتواصل معنا. سنرد عليك خلال 24 إلى 48 ساعة.",
+    "sendAnother": "إرسال رسالة أخرى",
+    "phone": "الهاتف",
+    "location": "الموقع",
+    "followUs": "تابعنا"
+  },
+  "footer": {
+    "tagline": "إشعال الإمكانات، إلهام التغيير. تمكين قادة أفريقيا المستقبليين من خلال التعليم والإرشاد والتكنولوجيا.",
+    "quickLinks": "روابط سريعة",
+    "getInvolved": "شارك معنا",
+    "contactInfo": "معلومات الاتصال",
+    "newsletter": "ابقَ على اطلاع",
+    "newsletterDesc": "احصل على تحديثات شهرية حول تقدم أطفالنا والفعاليات وقصص الأثر.",
+    "emailPlaceholder": "بريدك الإلكتروني",
+    "subscribe": "اشترك",
+    "subscribing": "...",
+    "subscribeSuccess": "تم الاشتراك!",
+    "rights": "جميع الحقوق محفوظة.",
+    "links": {
+      "home": "الرئيسية",
+      "about": "عن المنظمة",
+      "whoWeAre": "من نحن",
+      "whatWeDo": "ما نفعله",
+      "media": "الإعلام",
+      "contact": "اتصل بنا"
+    },
+    "involved": {
+      "donate": "تبرع الآن",
+      "sponsor": "اكفل طفلاً",
+      "partner": "كن شريكاً",
+      "volunteer": "تطوع معنا",
+      "newsletter": "انضم للنشرة الإخبارية"
+    }
+  },
+  "donate": {
+    "title": "أحدث فرقاً اليوم",
+    "subtitle": "تبرعك يمول مباشرةً التعليم والوجبات والإرشاد للأطفال في ليبيريا.",
+    "monthly": "شهري",
+    "oneTime": "مرة واحدة",
+    "custom": "مبلغ مخصص",
+    "continue": "متابعة",
+    "close": "إغلاق"
+  },
+  "lang": {
+    "select": "اللغة"
+  }
+}

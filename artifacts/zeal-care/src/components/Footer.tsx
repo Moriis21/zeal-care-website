@@ -3,11 +3,13 @@ import { Link, useLocation } from "wouter";
 import { Facebook, Twitter, Instagram, Linkedin, Send, CheckCircle, Loader2, MapPin, Mail, Phone, Heart } from "lucide-react";
 import { useDonate } from "@/context/DonateContext";
 import { useSiteContent, DEFAULT_CONTENT } from "@/hooks/useSiteContent";
+import { useTranslation } from "react-i18next";
 
 function NewsletterForm() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [msg, setMsg] = useState("");
+  const { t } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,7 +24,7 @@ function NewsletterForm() {
       const data = await res.json() as { success?: boolean; alreadySubscribed?: boolean; error?: string };
       if (data.success) {
         setStatus("success");
-        setMsg(data.alreadySubscribed ? "You're already on our list — thank you!" : "You're in! Watch your inbox for updates.");
+        setMsg(data.alreadySubscribed ? "You're already on our list — thank you!" : t("footer.subscribeSuccess"));
         setEmail("");
       } else {
         setStatus("error");
@@ -50,7 +52,7 @@ function NewsletterForm() {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Your email address"
+          placeholder={t("footer.emailPlaceholder")}
           required
           className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#F5C619]/50 transition-colors"
         />
@@ -64,7 +66,7 @@ function NewsletterForm() {
           ) : (
             <Send className="w-4 h-4" />
           )}
-          Subscribe
+          {t("footer.subscribe")}
         </button>
       </div>
       {status === "error" && (
@@ -77,6 +79,7 @@ function NewsletterForm() {
 function GetInvolvedLinks() {
   const { openDonate } = useDonate();
   const [location] = useLocation();
+  const { t } = useTranslation();
   const isHome = location === "/";
 
   const handleContact = (e: React.MouseEvent) => {
@@ -94,7 +97,7 @@ function GetInvolvedLinks() {
           className="text-primary-foreground/60 hover:text-[#F5C619] transition-colors text-sm flex items-center gap-1.5 group"
         >
           <Heart className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-          Sponsor a Child
+          {t("footer.involved.sponsor")}
         </button>
       </li>
       <li>
@@ -103,12 +106,12 @@ function GetInvolvedLinks() {
           className="text-primary-foreground/60 hover:text-[#F5C619] transition-colors text-sm flex items-center gap-1.5 group"
         >
           <Heart className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-          Make a Donation
+          {t("footer.involved.donate")}
         </button>
       </li>
       <li>
         <Link href="/igniting-potential/become-a-partner" className="text-primary-foreground/60 hover:text-[#F5C619] transition-colors text-sm">
-          Become a Partner
+          {t("footer.involved.partner")}
         </Link>
       </li>
       <li>
@@ -116,7 +119,7 @@ function GetInvolvedLinks() {
           href="mailto:zealcare24@gmail.com?subject=Volunteer%20Inquiry%20—%20Zeal%20Care"
           className="text-primary-foreground/60 hover:text-[#F5C619] transition-colors text-sm"
         >
-          Volunteer with Us
+          {t("footer.involved.volunteer")}
         </a>
       </li>
       <li>
@@ -125,7 +128,7 @@ function GetInvolvedLinks() {
           onClick={handleContact}
           className="text-primary-foreground/60 hover:text-[#F5C619] transition-colors text-sm"
         >
-          Contact Us
+          {t("contact.badge")}
         </a>
       </li>
     </ul>
@@ -135,6 +138,7 @@ function GetInvolvedLinks() {
 export function Footer() {
   const currentYear = new Date().getFullYear();
   const { data: content } = useSiteContent();
+  const { t } = useTranslation();
   const s = content?.settings ?? DEFAULT_CONTENT.settings;
 
   const socialLinks = [
@@ -152,8 +156,8 @@ export function Footer() {
         <div className="bg-gradient-to-r from-[#1A44C0]/40 to-[#061A32] border border-white/10 rounded-3xl p-8 mb-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
             <div>
-              <h3 className="text-xl font-black text-white mb-1">Stay in the Loop</h3>
-              <p className="text-white/50 text-sm">Get monthly updates on our children's progress, new programs, and ways to get involved.</p>
+              <h3 className="text-xl font-black text-white mb-1">{t("footer.newsletter")}</h3>
+              <p className="text-white/50 text-sm">{t("footer.newsletterDesc")}</p>
             </div>
             <NewsletterForm />
           </div>
@@ -168,7 +172,7 @@ export function Footer() {
               <span className="text-white">ZEAL CARE</span>
             </Link>
             <p className="text-primary-foreground/70 mb-6 text-sm leading-relaxed">
-              Igniting Potential, Inspiring Change. Empowering Africa's future leaders through education, mentorship, and technology.
+              {t("footer.tagline")}
             </p>
             <div className="flex gap-3">
               {socialLinks.map(({ icon: Icon, href, testId }) => (
@@ -181,16 +185,16 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-black text-sm mb-6 uppercase tracking-widest text-white">Quick Links</h4>
+            <h4 className="font-black text-sm mb-6 uppercase tracking-widest text-white">{t("footer.quickLinks")}</h4>
             <ul className="space-y-3">
-              {[
-                ["About Us", "/about"],
-                ["Why Empowerment", "/why-empowerment"],
-                ["Our Programs", "/what-we-do"],
-                ["Impact Stories", "/igniting-potential"],
-                ["Media", "/media"],
-              ].map(([label, href]) => (
-                <li key={label}>
+              {([
+                [t("footer.links.about"), "/about"],
+                [t("nav.whyEmpowerment"), "/why-empowerment"],
+                [t("nav.whatWeDo"), "/what-we-do"],
+                [t("nav.ignitingPotential"), "/igniting-potential"],
+                [t("nav.media"), "/media"],
+              ] as [string, string][]).map(([label, href]) => (
+                <li key={href}>
                   <Link href={href} className="text-primary-foreground/60 hover:text-[#F5C619] transition-colors text-sm">{label}</Link>
                 </li>
               ))}
@@ -199,13 +203,13 @@ export function Footer() {
 
           {/* Get Involved */}
           <div>
-            <h4 className="font-black text-sm mb-6 uppercase tracking-widest text-white">Get Involved</h4>
+            <h4 className="font-black text-sm mb-6 uppercase tracking-widest text-white">{t("footer.getInvolved")}</h4>
             <GetInvolvedLinks />
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className="font-black text-sm mb-6 uppercase tracking-widest text-white">Contact Info</h4>
+            <h4 className="font-black text-sm mb-6 uppercase tracking-widest text-white">{t("footer.contactInfo")}</h4>
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-3 text-primary-foreground/60">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#F5C619]" />
@@ -228,7 +232,7 @@ export function Footer() {
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-primary-foreground/40 text-sm">
           <p>
-            &copy; {currentYear} Zeal Care. All rights reserved. Monrovia, Liberia.
+            &copy; {currentYear} Zeal Care. {t("footer.rights")} Monrovia, Liberia.
             <a href="/admin" className="ml-1 text-primary-foreground/15 hover:text-primary-foreground/35 transition-colors select-none" title="Admin">·</a>
           </p>
           <div className="flex gap-6">

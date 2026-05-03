@@ -4,6 +4,8 @@ import { Menu, X, Mail, Phone, MapPin, ChevronDown, Facebook, Instagram, Linkedi
 import { Button } from "@/components/ui/button";
 import { navConfig } from "@/lib/nav-config";
 import { useDonate } from "@/context/DonateContext";
+import { useTranslation } from "react-i18next";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -12,6 +14,18 @@ export function Navbar() {
   const [openMobileSection, setOpenMobileSection] = useState<string | null>(null);
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [location] = useLocation();
+  const { t } = useTranslation();
+
+  const navSectionLabels: Record<string, string> = {
+    "About Us": t("nav.aboutUs"),
+    "Why Empowerment": t("nav.whyEmpowerment"),
+    "Who We Are": t("nav.whoWeAre"),
+    "What We Do": t("nav.whatWeDo"),
+    "Igniting Potential": t("nav.ignitingPotential"),
+    "Media": t("nav.media"),
+  };
+
+  const navItemLabel = (label: string) => t(`nav.items.${label}`, { defaultValue: label });
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -64,6 +78,8 @@ export function Navbar() {
               <a href="https://www.facebook.com/profile.php?id=61561063778243" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-secondary transition-colors"><Facebook className="w-3.5 h-3.5" /></a>
               <a href="https://www.instagram.com/zealcare2024" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-secondary transition-colors"><Instagram className="w-3.5 h-3.5" /></a>
               <a href="https://www.linkedin.com/company/zeal-care" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-secondary transition-colors"><Linkedin className="w-3.5 h-3.5" /></a>
+              <div className="h-4 w-px bg-white/20 mx-1" />
+              <LanguageSwitcher light />
             </div>
           </div>
         </div>
@@ -82,6 +98,7 @@ export function Navbar() {
           <div className="hidden xl:flex items-center gap-1">
             {navConfig.map((section) => {
               const isActive = location.startsWith(section.path);
+              const sectionLabel = navSectionLabels[section.label] ?? section.label;
               return (
                 <div
                   key={section.label}
@@ -93,7 +110,7 @@ export function Navbar() {
                     href={section.path}
                     className={`flex items-center gap-1 px-3 py-2 rounded-md text-sm font-semibold transition-all duration-200 ${textColor} ${hoverColor} ${isActive ? "text-secondary" : ""}`}
                   >
-                    {section.label}
+                    {sectionLabel}
                     <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${openSection === section.label ? "rotate-180" : ""}`} />
                   </Link>
 
@@ -105,7 +122,7 @@ export function Navbar() {
                       onMouseLeave={handleMouseLeave}
                     >
                       <div className="bg-primary px-4 py-2.5">
-                        <p className="text-white text-xs font-bold uppercase tracking-widest">{section.label}</p>
+                        <p className="text-white text-xs font-bold uppercase tracking-widest">{sectionLabel}</p>
                       </div>
                       <div className="py-1.5">
                         {section.items.map((item) => {
@@ -116,7 +133,7 @@ export function Navbar() {
                               href={item.path}
                               className={`flex items-center px-4 py-2.5 text-sm transition-all duration-150 ${itemActive ? "bg-primary/5 text-primary font-bold border-l-4 border-secondary" : "text-gray-700 hover:bg-primary/5 hover:text-primary font-medium border-l-4 border-transparent"}`}
                             >
-                              {item.label}
+                              {navItemLabel(item.label)}
                             </Link>
                           );
                         })}
@@ -127,24 +144,33 @@ export function Navbar() {
               );
             })}
 
+            {isScrolled && (
+              <div className="mx-1">
+                <LanguageSwitcher />
+              </div>
+            )}
+
             <Button
               onClick={() => openDonate()}
               className="ml-2 bg-secondary text-primary hover:bg-secondary/90 rounded-full px-5 text-sm font-bold"
               data-testid="button-donate"
             >
-              DONATE NOW
+              {t("nav.donateNow")}
             </Button>
           </div>
 
           {/* Mobile Toggle */}
-          <button
-            className={`xl:hidden p-2 rounded-lg transition-colors ${isScrolled ? "text-primary hover:bg-primary/10" : "text-white hover:bg-white/10"}`}
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-            data-testid="button-mobile-menu"
-          >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          <div className="xl:hidden flex items-center gap-2">
+            {isScrolled && <LanguageSwitcher compact />}
+            <button
+              className={`p-2 rounded-lg transition-colors ${isScrolled ? "text-primary hover:bg-primary/10" : "text-white hover:bg-white/10"}`}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+              data-testid="button-mobile-menu"
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
@@ -157,7 +183,7 @@ export function Navbar() {
                     onClick={() => setOpenMobileSection(openMobileSection === section.label ? null : section.label)}
                     className="w-full flex items-center justify-between px-3 py-3 text-sm font-semibold text-primary hover:bg-primary/5 rounded-lg transition-colors"
                   >
-                    {section.label}
+                    {navSectionLabels[section.label] ?? section.label}
                     <ChevronDown className={`w-4 h-4 transition-transform ${openMobileSection === section.label ? "rotate-180" : ""}`} />
                   </button>
                   {openMobileSection === section.label && (
@@ -168,19 +194,25 @@ export function Navbar() {
                           href={item.path}
                           className="block px-3 py-2 text-sm text-gray-600 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors font-medium"
                         >
-                          {item.label}
+                          {navItemLabel(item.label)}
                         </Link>
                       ))}
                     </div>
                   )}
                 </div>
               ))}
-              <div className="pt-3 pb-2">
+              <div className="pt-2 pb-1 px-3">
+                <div className="flex items-center justify-between py-3 border-t border-gray-100">
+                  <span className="text-xs font-bold text-slate-400 uppercase tracking-wide">{t("lang.select")}</span>
+                  <LanguageSwitcher />
+                </div>
+              </div>
+              <div className="pt-1 pb-2">
                 <Button
                   onClick={() => { setIsMobileMenuOpen(false); openDonate(); }}
                   className="w-full bg-secondary text-primary hover:bg-secondary/90 rounded-full font-bold"
                 >
-                  DONATE NOW
+                  {t("nav.donateNow")}
                 </Button>
               </div>
             </div>

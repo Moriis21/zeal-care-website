@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, CheckCircle, Loader2, Send } from "lucide-react";
 import { useSiteContent, DEFAULT_CONTENT } from "@/hooks/useSiteContent";
+import { useTranslation } from "react-i18next";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -10,6 +11,7 @@ export function Contact() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const { data: content } = useSiteContent();
+  const { t } = useTranslation();
   const s = content?.settings ?? DEFAULT_CONTENT.settings;
 
   const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
@@ -40,9 +42,9 @@ export function Contact() {
   };
 
   const contactItems = [
-    { icon: Mail, label: "Email", value: s.email },
-    { icon: Phone, label: "Phone", value: s.phone },
-    { icon: MapPin, label: "Headquarters", value: s.address },
+    { icon: Mail, label: t("contact.email"), value: s.email },
+    { icon: Phone, label: t("contact.phone"), value: s.phone },
+    { icon: MapPin, label: t("contact.location"), value: s.address },
   ];
 
   return (
@@ -57,10 +59,10 @@ export function Contact() {
             viewport={{ once: true }}
           >
             <div className="inline-block px-3 py-1 rounded-full bg-background/10 text-background text-sm font-bold tracking-wider mb-6 uppercase">
-              Get In Touch
+              {t("contact.badge")}
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold mb-8 text-background" data-testid="heading-contact">
-              Let's create change together.
+              {t("contact.title")}
             </h2>
 
             <div className="flex flex-col gap-5 mb-12">
@@ -87,22 +89,20 @@ export function Contact() {
                 <div className="w-16 h-16 rounded-full bg-[#F5C619]/20 flex items-center justify-center mx-auto mb-4">
                   <CheckCircle className="w-8 h-8 text-[#F5C619]" />
                 </div>
-                <h3 className="text-2xl font-black text-background mb-2">Message Sent!</h3>
-                <p className="text-background/60 text-sm mb-6">
-                  Thank you for reaching out. We'll get back to you as soon as possible.
-                </p>
+                <h3 className="text-2xl font-black text-background mb-2">{t("contact.successTitle")}</h3>
+                <p className="text-background/60 text-sm mb-6">{t("contact.successMsg")}</p>
                 <button
                   onClick={() => setStatus("idle")}
                   className="bg-[#F5C619] text-[#061A32] px-6 py-3 rounded-full font-black text-sm hover:bg-[#F5C619]/90 transition-all"
                 >
-                  Send Another Message
+                  {t("contact.sendAnother")}
                 </button>
               </motion.div>
             ) : (
               <form className="space-y-5" onSubmit={handleSubmit} data-testid="form-contact">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-background/60 uppercase tracking-wider">Full Name *</label>
+                    <label className="text-xs font-bold text-background/60 uppercase tracking-wider">{t("contact.name")} *</label>
                     <input
                       value={form.name}
                       onChange={set("name")}
@@ -113,7 +113,7 @@ export function Contact() {
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-background/60 uppercase tracking-wider">Email Address *</label>
+                    <label className="text-xs font-bold text-background/60 uppercase tracking-wider">{t("contact.email")} *</label>
                     <input
                       type="email"
                       value={form.email}
@@ -126,7 +126,7 @@ export function Contact() {
                   </div>
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-background/60 uppercase tracking-wider">Subject</label>
+                  <label className="text-xs font-bold text-background/60 uppercase tracking-wider">{t("contact.subject")}</label>
                   <input
                     value={form.subject}
                     onChange={set("subject")}
@@ -135,7 +135,7 @@ export function Contact() {
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-background/60 uppercase tracking-wider">Message *</label>
+                  <label className="text-xs font-bold text-background/60 uppercase tracking-wider">{t("contact.message")} *</label>
                   <textarea
                     value={form.message}
                     onChange={set("message")}
@@ -162,7 +162,7 @@ export function Contact() {
                   ) : (
                     <Send className="w-4 h-4" />
                   )}
-                  {status === "loading" ? "Sending…" : "Send Message"}
+                  {status === "loading" ? t("contact.sending") : t("contact.send")}
                 </button>
               </form>
             )}
@@ -181,7 +181,7 @@ export function Contact() {
             <div className="grid grid-cols-2 gap-4 w-full max-w-xs">
               {[
                 { label: "Response Time", value: "< 24hrs" },
-                { label: "Languages", value: "EN / FR" },
+                { label: "Languages", value: "EN / FR / AR" },
                 { label: "Founded", value: "2017" },
                 { label: "Location", value: s.address.split(",")[1]?.trim() ?? "Monrovia" },
               ].map(({ label, value }) => (

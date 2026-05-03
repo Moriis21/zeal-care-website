@@ -1,0 +1,121 @@
+{
+  "nav": {
+    "aboutUs": "About Us",
+    "whyEmpowerment": "Why Empowerment",
+    "whoWeAre": "Who We Are",
+    "whatWeDo": "What We Do",
+    "ignitingPotential": "Igniting Potential",
+    "media": "Media",
+    "donateNow": "DONATE NOW",
+    "items": {
+      "Overview": "Overview",
+      "Our Mission": "Our Mission",
+      "Our Vision": "Our Vision",
+      "Our Goals": "Our Goals",
+      "Our Values": "Our Values",
+      "Our Belief": "Our Belief",
+      "SDG Focus": "SDG Focus",
+      "Characteristics We Develop": "Characteristics We Develop",
+      "Social Justice": "Social Justice",
+      "Economic Development": "Economic Development",
+      "Our Leadership": "Our Leadership",
+      "Board of Advisors": "Board of Advisors",
+      "Our Beneficiaries": "Our Beneficiaries",
+      "Our Partners": "Our Partners",
+      "Our History": "Our History",
+      "Awards & Prizes": "Awards & Prizes",
+      "Protection & Safeguarding": "Protection & Safeguarding",
+      "Finance & Accountability": "Finance & Accountability",
+      "Work for Us": "Work for Us",
+      "Tenders & Opportunities": "Tenders & Opportunities",
+      "How We Operate": "How We Operate",
+      "Where We Operate": "Where We Operate",
+      "Our Programs": "Our Programs",
+      "What Sets Us Apart": "What Sets Us Apart",
+      "Impact in Numbers": "Impact in Numbers",
+      "Ways to Give": "Ways to Give",
+      "Appeals": "Appeals",
+      "Become a Partner": "Become a Partner",
+      "Giving FAQ": "Giving FAQ",
+      "Newsroom": "Newsroom",
+      "Success Stories": "Success Stories",
+      "Video": "Video",
+      "Photo Gallery": "Photo Gallery",
+      "Events & Calendar": "Events & Calendar"
+    }
+  },
+  "hero": {
+    "badge": "Empowering Africa's Future Leaders",
+    "title": "Igniting Potential, Inspiring Change.",
+    "subtitle": "We believe every child is a spark of genius. We provide the tools, mentorship, and opportunities to set that genius free.",
+    "sponsorCTA": "Sponsor a Child",
+    "impactCTA": "Our Impact",
+    "childrenLabel": "Children Sponsored"
+  },
+  "stats": {
+    "activeScholars": "Active Scholars",
+    "impactPromise": "Impact Promise",
+    "partnerSchools": "Partner Schools",
+    "techHours": "Tech Hours",
+    "transparency": "Transparency",
+    "yearSuffix": "-Year"
+  },
+  "contact": {
+    "badge": "Contact Us",
+    "title": "Let's create change together.",
+    "subtitle": "Have a question, idea, or want to partner with us? We'd love to hear from you.",
+    "getInTouch": "Get In Touch",
+    "name": "Full Name",
+    "email": "Email Address",
+    "subject": "Subject",
+    "message": "Your Message",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "successTitle": "Message Sent!",
+    "successMsg": "Thank you for reaching out. We'll get back to you within 24-48 hours.",
+    "sendAnother": "Send Another Message",
+    "phone": "Phone",
+    "location": "Location",
+    "followUs": "Follow Us"
+  },
+  "footer": {
+    "tagline": "Igniting Potential, Inspiring Change. Empowering Africa's future leaders through education, mentorship, and technology.",
+    "quickLinks": "Quick Links",
+    "getInvolved": "Get Involved",
+    "contactInfo": "Contact Info",
+    "newsletter": "Stay in the Loop",
+    "newsletterDesc": "Get monthly updates on our children's progress, events, and impact stories.",
+    "emailPlaceholder": "Your email address",
+    "subscribe": "Subscribe",
+    "subscribing": "...",
+    "subscribeSuccess": "You're subscribed!",
+    "rights": "All rights reserved.",
+    "links": {
+      "home": "Home",
+      "about": "About Us",
+      "whoWeAre": "Who We Are",
+      "whatWeDo": "What We Do",
+      "media": "Media",
+      "contact": "Contact"
+    },
+    "involved": {
+      "donate": "Make a Donation",
+      "sponsor": "Sponsor a Child",
+      "partner": "Become a Partner",
+      "volunteer": "Volunteer with Us",
+      "newsletter": "Join Newsletter"
+    }
+  },
+  "donate": {
+    "title": "Make a Difference Today",
+    "subtitle": "Your donation directly funds education, meals, and mentorship for children in Liberia.",
+    "monthly": "Monthly",
+    "oneTime": "One-Time",
+    "custom": "Custom Amount",
+    "continue": "Continue",
+    "close": "Close"
+  },
+  "lang": {
+    "select": "Language"
+  }
+}
