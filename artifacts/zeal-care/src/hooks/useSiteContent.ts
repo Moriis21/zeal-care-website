@@ -25,9 +25,16 @@ export type SiteContent = {
     scholarCount: string;
     partnerSchools: string;
     techHours: string;
+    heroPrograms: string;
+    heroLanguages: string;
   };
   home: {
     heroBadge: string;
+    footerCtaBadge: string;
+    footerCtaTitle: string;
+    footerCtaSubtitle: string;
+    footerNewsletterTitle: string;
+    footerNewsletterDesc: string;
     heroTitle: string;
     heroSubtitle: string;
     heroPrimaryCTA: string;
@@ -85,9 +92,16 @@ export const DEFAULT_CONTENT: SiteContent = {
     scholarCount: "850",
     partnerSchools: "50",
     techHours: "24000",
+    heroPrograms: "12+",
+    heroLanguages: "4",
   },
   home: {
     heroBadge: "EMPOWERING AFRICA'S FUTURE LEADERS",
+    footerCtaBadge: "Get Involved",
+    footerCtaTitle: "Ready to make an impact?",
+    footerCtaSubtitle: "Your support helps us provide a future full of hope and possibility for underprivileged children in Liberia.",
+    footerNewsletterTitle: "Stay in the loop",
+    footerNewsletterDesc: "Get updates on our programs and impact stories.",
     heroTitle: "Igniting Potential, Inspiring Change.",
     heroSubtitle: "We believe every child is a spark of genius. We provide the tools, mentorship, and opportunities to set that genius free.",
     heroPrimaryCTA: "SPONSOR A CHILD",

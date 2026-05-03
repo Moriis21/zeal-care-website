@@ -96,6 +96,7 @@ export function Footer() {
   const { data: content } = useSiteContent();
   const { t } = useTranslation();
   const { openDonate } = useDonate();
+  const home = content?.home ?? DEFAULT_CONTENT.home;
   const [location] = useLocation();
   const s = content?.settings ?? DEFAULT_CONTENT.settings;
   const isHome = location === "/";
@@ -143,14 +144,13 @@ export function Footer() {
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs font-bold tracking-widest uppercase mb-5 text-white/80">
                 <Sparkles className="w-3 h-3 text-[#F5C619]" />
-                Get Involved
+                {home.footerCtaBadge}
               </div>
               <h2 className="text-3xl lg:text-4xl font-black leading-tight mb-4">
-                Ready to{" "}
-                <span className="text-[#F5C619] italic">make an impact?</span>
+                {home.footerCtaTitle}
               </h2>
               <p className="text-white/60 text-base leading-relaxed max-w-md">
-                Your support helps us provide a future full of hope and possibility for underprivileged children in Liberia.
+                {home.footerCtaSubtitle}
               </p>
             </div>
 
@@ -176,8 +176,8 @@ export function Footer() {
           <div className="mt-8 pt-8 border-t border-white/10">
             <div className="grid sm:grid-cols-2 gap-4 items-center">
               <div>
-                <p className="text-sm font-bold text-white/80 mb-0.5">Stay in the loop</p>
-                <p className="text-xs text-white/40">Get updates on our programs and impact stories.</p>
+                <p className="text-sm font-bold text-white/80 mb-0.5">{home.footerNewsletterTitle}</p>
+                <p className="text-xs text-white/40">{home.footerNewsletterDesc}</p>
               </div>
               <NewsletterInline />
             </div>
