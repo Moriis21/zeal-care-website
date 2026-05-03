@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useLocation } from "wouter";
-import { Lock, Eye, EyeOff, Loader2 } from "lucide-react";
+import { useLocation, Link } from "wouter";
+import { Lock, Eye, EyeOff, Loader2, ArrowLeft } from "lucide-react";
 
 export default function AdminLogin() {
   const [, navigate] = useLocation();
@@ -37,6 +37,18 @@ export default function AdminLogin() {
   return (
     <div className="min-h-screen bg-[#061A32] flex items-center justify-center p-4 font-sans">
       <div className="w-full max-w-md">
+
+        {/* Back to website */}
+        <div className="mb-6">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors text-sm font-semibold group"
+          >
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            Back to Website
+          </Link>
+        </div>
+
         {/* Logo */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-3 mb-3">
