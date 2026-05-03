@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import heroMain from "@assets/home_hero_page_1777770914048.jpeg";
+import heroOverlap from "@assets/hero_1777770914047.jpeg";
 
 export function Hero() {
   return (
@@ -47,8 +49,8 @@ export function Hero() {
           {/* Main Image */}
           <div className="absolute top-0 right-0 w-3/4 h-4/5 rounded-2xl overflow-hidden shadow-2xl border-4 border-background/10 z-10">
             <img 
-              src="/hero-students-cheering.png" 
-              alt="African schoolchildren cheering" 
+              src={heroMain}
+              alt="Zeal Care students in school uniform" 
               className="w-full h-full object-cover"
               data-testid="img-hero-main"
             />
@@ -57,8 +59,8 @@ export function Hero() {
           {/* Overlapping Image */}
           <div className="absolute bottom-0 left-0 w-2/3 h-2/3 rounded-2xl overflow-hidden shadow-2xl border-4 border-background z-20">
             <img 
-              src="/hero-student-girl.png" 
-              alt="Confident young African girl student" 
+              src={heroOverlap}
+              alt="Zeal Care student studying" 
               className="w-full h-full object-cover"
               data-testid="img-hero-overlap"
             />

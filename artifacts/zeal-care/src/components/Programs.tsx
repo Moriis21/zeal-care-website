@@ -1,30 +1,34 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import scholarImg from "@assets/WhatsApp_Image_2026-05-02_at_2.08.17_AM_(5)_1777770889390.jpeg";
+import techImg from "@assets/In_the_field_1777770914048.jpeg";
+import mentorshipImg from "@assets/WhatsApp_Image_2026-05-02_at_2.08.17_AM_(3)_1777770889390.jpeg";
+import communityImg from "@assets/Social_Justice_1777770914049.jpeg";
 
 export function Programs() {
   const programs = [
     {
       title: "Scholar Support",
       description: "Comprehensive scholarships covering tuition, uniforms, and daily meals for promising students.",
-      image: "/program-scholar.png",
+      image: scholarImg,
       link: "#"
     },
     {
       title: "Tech Education",
       description: "State-of-the-art computer labs teaching digital literacy, coding, and modern software skills.",
-      image: "/program-tech.png",
+      image: techImg,
       link: "#"
     },
     {
       title: "Mentorship & Leadership",
       description: "Structured programs fostering critical thinking, public speaking, and ethical leadership.",
-      image: "/program-mentorship.png",
+      image: mentorshipImg,
       link: "#"
     },
     {
       title: "Community Outreach",
       description: "Engaging families and local leaders to build supportive environments for educational success.",
-      image: "/program-community.png",
+      image: communityImg,
       link: "#"
     }
   ];
