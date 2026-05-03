@@ -272,6 +272,92 @@ export async function sendMomoInterestNotification(interest: MomoInterest): Prom
   }
 }
 
+/* ─── MTN MoMo "We're live!" donor notification ─── */
+function buildMomoLiveHtml(donorName: string, momoPhone: string, amount: number): string {
+  const firstName = (donorName || "Friend").split(" ")[0];
+  return `<!DOCTYPE html><html><head><meta charset="UTF-8"/></head>
+<body style="margin:0;padding:0;background:#f1f5f9;font-family:'Helvetica Neue',Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="padding:32px 16px;"><tr><td align="center">
+    <table width="600" cellpadding="0" cellspacing="0" style="background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
+
+      <!-- Header -->
+      <tr><td style="background:#061A32;padding:28px 36px;text-align:center;">
+        <div style="width:52px;height:52px;background:#F5C619;border-radius:50%;display:inline-block;text-align:center;line-height:52px;font-weight:900;font-size:24px;color:#061A32;margin-bottom:12px;">Z</div>
+        <p style="margin:0;color:#fff;font-size:22px;font-weight:900;letter-spacing:2px;">ZEAL CARE</p>
+        <p style="margin:4px 0 0;color:rgba(255,255,255,0.5);font-size:12px;">Igniting Potential, Inspiring Change</p>
+      </td></tr>
+
+      <!-- Hero -->
+      <tr><td style="background:linear-gradient(135deg,#B45309,#D97706);padding:36px 36px;text-align:center;">
+        <div style="font-size:48px;margin-bottom:12px;">⚡</div>
+        <h1 style="margin:0 0 8px;color:#fff;font-size:28px;font-weight:900;">MTN MoMo Pay is Live!</h1>
+        <p style="margin:0;color:rgba(255,255,255,0.85);font-size:15px;line-height:1.6;">
+          Hi ${firstName}, you registered interest in donating<br/>via MTN Mobile Money. The wait is over!
+        </p>
+      </td></tr>
+
+      <!-- Body -->
+      <tr><td style="padding:36px 36px 24px;">
+        <p style="margin:0 0 20px;color:#334155;font-size:15px;line-height:1.7;">
+          We're excited to let you know that <strong>MTN MoMo direct payment is now available</strong> on the Zeal Care website. You can now complete your donation of <strong>$${amount.toLocaleString()}</strong> with a single tap — no shortcodes needed.
+        </p>
+
+        <!-- How it works -->
+        <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:12px;padding:20px 24px;margin-bottom:24px;">
+          <p style="margin:0 0 12px;font-weight:900;color:#92400E;font-size:14px;">How to complete your donation:</p>
+          <table cellpadding="0" cellspacing="0" width="100%">
+            <tr><td style="padding:6px 0;color:#78350F;font-size:13px;"><span style="font-weight:900;color:#B45309;margin-right:8px;">1.</span>Visit the Zeal Care website and click "Donate Now"</td></tr>
+            <tr><td style="padding:6px 0;color:#78350F;font-size:13px;"><span style="font-weight:900;color:#B45309;margin-right:8px;">2.</span>Select <strong>MTN MoMo</strong> as your payment method</td></tr>
+            <tr><td style="padding:6px 0;color:#78350F;font-size:13px;"><span style="font-weight:900;color:#B45309;margin-right:8px;">3.</span>Enter your MoMo number: <span style="font-family:monospace;background:#FEF3C7;padding:2px 8px;border-radius:4px;font-weight:900;">${momoPhone}</span></td></tr>
+            <tr><td style="padding:6px 0;color:#78350F;font-size:13px;"><span style="font-weight:900;color:#B45309;margin-right:8px;">4.</span>Approve the payment prompt on your phone — done!</td></tr>
+          </table>
+        </div>
+
+        <!-- Impact reminder -->
+        <div style="background:#f8fafc;border-left:4px solid #F5C619;border-radius:8px;padding:16px 20px;margin-bottom:28px;">
+          <p style="margin:0 0 4px;font-weight:700;color:#061A32;font-size:13px;">Your $${amount.toLocaleString()} will:</p>
+          <p style="margin:0;color:#475569;font-size:13px;line-height:1.8;">💛 Sponsor a child's full education for a year<br/>📚 Cover school fees, uniforms, books & supplies<br/>🌍 Transform a life in Monrovia, Liberia</p>
+        </div>
+      </td></tr>
+
+      <!-- CTA -->
+      <tr><td style="padding:0 36px 36px;text-align:center;">
+        <a href="https://${process.env["REPLIT_DEV_DOMAIN"] ?? "zealcare.org"}/" style="display:inline-block;background:#F5C619;color:#061A32;font-weight:900;font-size:15px;padding:16px 40px;border-radius:50px;text-decoration:none;letter-spacing:0.5px;">Donate Now via MTN MoMo →</a>
+        <p style="margin:16px 0 0;color:#94a3b8;font-size:13px;">Thank you for your patience and generosity.</p>
+      </td></tr>
+
+      <!-- Footer -->
+      <tr><td style="background:#f8fafc;padding:20px 36px;border-top:1px solid #e2e8f0;text-align:center;">
+        <p style="margin:0;color:#94a3b8;font-size:12px;">Questions? Email <a href="mailto:info@zealcare.org" style="color:#1A44C0;">info@zealcare.org</a> or call +231 886 727 619</p>
+        <p style="margin:4px 0 0;color:#94a3b8;font-size:11px;">Zeal Care · Monrovia, Liberia · Empowering Africa's Future Leaders</p>
+      </td></tr>
+
+    </table>
+  </td></tr></table>
+</body></html>`;
+}
+
+export async function sendMomoLiveNotification(donor: {
+  donorName: string; donorEmail: string; momoPhone: string; amount: number;
+}): Promise<{ sent: boolean; error?: string }> {
+  if (!donor.donorEmail) return { sent: false, error: "No email address" };
+  const transporter = createTransporter();
+  if (!transporter) return { sent: false, error: "Email not configured" };
+  try {
+    await transporter.sendMail({
+      from: senderFrom(),
+      to: donor.donorEmail,
+      subject: `⚡ MTN MoMo Pay is now live on Zeal Care — complete your $${donor.amount.toLocaleString()} donation!`,
+      html: buildMomoLiveHtml(donor.donorName, donor.momoPhone, donor.amount),
+    });
+    logger.info({ donorEmail: donor.donorEmail }, "MoMo live notification sent");
+    return { sent: true };
+  } catch (err) {
+    logger.error({ err }, "Failed to send MoMo live notification");
+    return { sent: false, error: String(err) };
+  }
+}
+
 /* ─── Exported functions ─── */
 
 export async function sendDonationNotification(notification: DonationNotification): Promise<void> {

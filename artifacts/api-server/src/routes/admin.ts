@@ -2,6 +2,7 @@ import { Router, type IRouter } from "express";
 import { signToken, requireAdmin } from "../lib/adminAuth";
 import { readChildren, addChild, updateChild, deleteChild } from "../lib/childrenStore";
 import { readDonationLog } from "../lib/donationLog";
+import { sendMomoLiveNotification } from "../lib/mailer";
 import { readEmailConfig, writeEmailConfig, type EmailConfig } from "../lib/emailConfig";
 import { type Child } from "../data/children";
 import nodemailer from "nodemailer";
@@ -147,6 +148,48 @@ router.post("/admin/email-test", requireAdmin, async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: String(err) });
   }
+});
+
+router.post("/admin/momo/notify-all", requireAdmin, async (req, res) => {
+  const log = readDonationLog();
+  const momoInterests = log.filter((r) => r.method === "momo" && r.donorEmail);
+
+  if (momoInterests.length === 0) {
+    res.json({ sent: 0, skipped: 0, errors: [] });
+    return;
+  }
+
+  const results = await Promise.allSettled(
+    momoInterests.map((r) =>
+      sendMomoLiveNotification({
+        donorName: r.donorName,
+        donorEmail: r.donorEmail,
+        momoPhone: r.momoPhone ?? "",
+        amount: r.amount,
+      })
+    )
+  );
+
+  let sent = 0;
+  let skipped = 0;
+  const errors: string[] = [];
+
+  results.forEach((result, i) => {
+    if (result.status === "fulfilled") {
+      if (result.value.sent) {
+        sent++;
+      } else {
+        skipped++;
+        if (result.value.error) errors.push(`${momoInterests[i]?.donorEmail}: ${result.value.error}`);
+      }
+    } else {
+      skipped++;
+      errors.push(String(result.reason));
+    }
+  });
+
+  req.log.info({ sent, skipped }, "MTN MoMo live notifications dispatched");
+  res.json({ sent, skipped, errors, total: momoInterests.length });
 });
 
 export default router;
