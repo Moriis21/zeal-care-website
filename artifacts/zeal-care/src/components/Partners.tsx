@@ -1,40 +1,95 @@
 import { motion } from "framer-motion";
+import { STRATEGIC_PARTNERS } from "@/lib/partner-logos";
 
 export function Partners() {
-  const partners = [
-    { name: "Education Partner", type: "Global Education Fund" },
-    { name: "Tech Partner", type: "Tech For Africa" },
-    { name: "Funding Partner", type: "Liberian Development Trust" },
-    { name: "Community Partner", type: "Monrovia Youth Coalition" },
-    { name: "Corporate Partner", type: "Innovate Solutions" }
-  ];
-
   return (
-    <section className="py-20 bg-background border-t border-border">
-      <div className="container mx-auto px-4 text-center">
-        <h3 className="text-2xl font-bold text-muted-foreground mb-12 uppercase tracking-widest" data-testid="heading-partners">
-          Our Proud Partners
-        </h3>
-        
-        <div className="flex flex-wrap justify-center gap-8 md:gap-12 lg:gap-16">
-          {partners.map((partner, index) => (
+    <section className="py-24 bg-[#041224] overflow-hidden">
+      <div className="container mx-auto px-4">
+
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <div className="inline-flex items-center gap-2 bg-[#F5C619]/10 border border-[#F5C619]/30 rounded-full px-5 py-2 mb-6">
+            <div className="w-2 h-2 rounded-full bg-[#F5C619] animate-pulse" />
+            <span className="text-[#F5C619] text-sm font-bold uppercase tracking-widest">Strategic Global Ecosystem</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-4" data-testid="heading-partners">
+            Our Strategic Partners
+          </h2>
+          <p className="text-white/60 text-lg max-w-2xl mx-auto leading-relaxed">
+            Working alongside world-class organizations to amplify our impact and bring quality education to every underprivileged child in Liberia and across Africa.
+          </p>
+        </motion.div>
+
+        {/* Partner Logo Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-5 mb-12">
+          {STRATEGIC_PARTNERS.map((partner, index) => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
+              key={partner.id}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="flex flex-col items-center justify-center opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+              transition={{ delay: index * 0.08, duration: 0.5 }}
+              className="group relative"
               data-testid={`partner-logo-${index}`}
             >
-              <div className="w-32 h-16 md:w-40 md:h-20 bg-muted rounded-xl flex items-center justify-center border border-border mb-3">
-                {/* Abstract logo representation */}
-                <div className="font-bold text-xl text-muted-foreground">LOGO</div>
+              <div className="relative overflow-hidden rounded-2xl border border-white/10 hover:border-[#F5C619]/40 transition-all duration-300 hover:shadow-lg hover:shadow-[#F5C619]/10 hover:-translate-y-1">
+                {/* Logo display area */}
+                <div
+                  className="h-28 p-5 flex items-center justify-center"
+                  style={{ backgroundColor: partner.bgColor }}
+                >
+                  <div className="w-full max-w-[160px] h-16">
+                    {partner.logo}
+                  </div>
+                </div>
+
+                {/* Info strip */}
+                <div className="bg-white/5 px-4 py-3 border-t border-white/10">
+                  <p className="text-white font-bold text-sm">{partner.name}</p>
+                  <p className="text-white/40 text-xs">{partner.type}</p>
+                </div>
+
+                {/* Hover overlay */}
+                <div className="absolute inset-0 bg-[#061A32]/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-2xl p-4">
+                  <div className="text-center">
+                    <p className="text-[#F5C619] font-black text-base mb-1">{partner.name}</p>
+                    <p className="text-white/70 text-xs leading-snug mb-3">{partner.description}</p>
+                    <div className="px-3 py-1 bg-[#F5C619]/20 rounded-full inline-block">
+                      <p className="text-[#F5C619] text-xs font-semibold">{partner.type}</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <span className="text-xs font-semibold text-muted-foreground tracking-wider uppercase">{partner.name}</span>
             </motion.div>
           ))}
         </div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="bg-gradient-to-r from-[#1A44C0]/30 to-transparent border border-white/10 rounded-2xl px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4"
+        >
+          <div>
+            <p className="text-white font-bold text-lg">Become a Strategic Partner</p>
+            <p className="text-white/50 text-sm">Join world-class organizations transforming education across Africa.</p>
+          </div>
+          <a
+            href="/igniting-potential/become-a-partner"
+            className="whitespace-nowrap bg-[#F5C619] text-[#061A32] px-7 py-3 rounded-full font-black text-sm hover:bg-[#F5C619]/90 transition-all hover:scale-105"
+          >
+            Partner with Us →
+          </a>
+        </motion.div>
+
       </div>
     </section>
   );

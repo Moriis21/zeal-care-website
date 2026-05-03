@@ -2,7 +2,8 @@ import { useParams } from "wouter";
 import { PageLayout } from "@/components/PageLayout";
 import { navConfig } from "@/lib/nav-config";
 import { Link } from "wouter";
-import { User, Building2, Scroll, BarChart2, Users, Search, Eye, ClipboardList, GraduationCap, Trophy, Mail, Inbox } from "lucide-react";
+import { User, Building2, Scroll, BarChart2, Users, Search, Eye, ClipboardList, GraduationCap, Trophy, Inbox } from "lucide-react";
+import { STRATEGIC_PARTNERS } from "@/lib/partner-logos";
 
 const section = navConfig.find((s) => s.path === "/who-we-are")!;
 
@@ -168,19 +169,56 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
       <div className="space-y-8">
         <div className="bg-primary rounded-2xl p-8 text-white">
           <p className="text-2xl font-black mb-3">Together, we are supporting community-led change in slum and rural communities in Liberia and across Africa.</p>
+          <p className="text-white/75 text-base leading-relaxed">We couldn't do our work without the committed individuals and world-class organizations that make up our strategic global ecosystem.</p>
         </div>
-        <p className="text-muted-foreground leading-relaxed">We couldn't do our work without all the committed individuals and organizations partnering with Zeal Care to ensure that underprivileged children across Liberia and Africa can learn, thrive, and become independent, influential change leaders tomorrow.</p>
-        <p className="text-muted-foreground leading-relaxed">We recognize the generosity of individuals, communities, schools, corporations, foundations, and non-governmental bodies who have supported Zeal Care's grassroots-led program at all levels. Together, we are improving lives and livelihoods for underprivileged children, students, and young people in their communities.</p>
-        <div className="bg-secondary/10 border border-secondary/30 rounded-2xl p-8 text-center">
-          <div className="flex justify-center mb-3">
-            <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center">
-              <Users className="w-7 h-7 text-primary" />
+
+        {/* Strategic Global Ecosystem label */}
+        <div className="flex items-center gap-3">
+          <div className="h-px flex-1 bg-border" />
+          <span className="text-xs font-black text-secondary uppercase tracking-widest px-3">Strategic Global Ecosystem</span>
+          <div className="h-px flex-1 bg-border" />
+        </div>
+
+        {/* Partner logo grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          {STRATEGIC_PARTNERS.map((partner) => (
+            <div key={partner.id} className="group relative overflow-hidden rounded-2xl border border-border hover:border-primary/30 hover:shadow-md transition-all duration-300">
+              {/* Logo area */}
+              <div
+                className="h-24 p-4 flex items-center justify-center"
+                style={{ backgroundColor: partner.bgColor }}
+              >
+                <div className="w-full max-w-[140px] h-12">
+                  {partner.logo}
+                </div>
+              </div>
+              {/* Info strip */}
+              <div className="bg-white px-3 py-2.5 border-t border-border">
+                <p className="font-bold text-primary text-sm">{partner.name}</p>
+                <p className="text-muted-foreground text-xs leading-tight">{partner.type}</p>
+              </div>
+              {/* Hover overlay */}
+              <div className="absolute inset-0 bg-primary/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-3 rounded-2xl">
+                <div className="text-center">
+                  <p className="text-secondary font-black text-sm mb-1">{partner.name}</p>
+                  <p className="text-white/80 text-xs leading-snug">{partner.description}</p>
+                </div>
+              </div>
             </div>
+          ))}
+        </div>
+
+        <p className="text-muted-foreground leading-relaxed text-sm">
+          We recognize the generosity of individuals, communities, schools, corporations, foundations, and non-governmental bodies who have supported Zeal Care's grassroots-led program at all levels. Together, we are improving lives and livelihoods for underprivileged children, students, and young people in their communities.
+        </p>
+
+        <div className="bg-secondary/10 border border-secondary/30 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <p className="font-bold text-primary mb-1">Partnership Opportunities Available</p>
+            <p className="text-muted-foreground text-sm">Zeal Care is actively seeking mission-aligned partners for 2026.</p>
           </div>
-          <p className="font-bold text-primary mb-2">Partnership Opportunities Available</p>
-          <p className="text-muted-foreground mb-5 text-sm">Zeal Care is actively seeking mission-aligned partners for 2026. Be among the first to partner with a fast-growing, impact-driven organization.</p>
           <Link href="/igniting-potential/become-a-partner">
-            <button className="bg-primary text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-primary/90 transition-colors">Become a Partner</button>
+            <button className="whitespace-nowrap bg-primary text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-primary/90 transition-colors">Become a Partner</button>
           </Link>
         </div>
       </div>
