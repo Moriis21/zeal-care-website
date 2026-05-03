@@ -68,13 +68,15 @@ export function Gallery() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: index * 0.06, duration: 0.5 }}
+              transition={{ delay: index * 0.04, duration: 0.4 }}
               className={`${photo.span} relative rounded-2xl overflow-hidden group cursor-pointer`}
             >
               <img
                 src={photo.src}
                 alt={photo.alt}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
+                decoding="async"
               />
               {/* Hover overlay */}
               <div className="absolute inset-0 bg-[#061A32]/0 group-hover:bg-[#061A32]/50 transition-all duration-300 flex items-end p-4">
@@ -82,7 +84,6 @@ export function Gallery() {
                   {photo.alt}
                 </p>
               </div>
-              {/* Subtle gold border on hover */}
               <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-secondary/50 transition-all duration-300"></div>
             </motion.div>
           ))}

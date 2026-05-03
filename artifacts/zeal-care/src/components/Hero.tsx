@@ -48,12 +48,14 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className="relative h-[500px] lg:h-[600px] w-full hidden md:block"
         >
-          {/* Main Image */}
+          {/* Main Image — high priority: above the fold */}
           <div className="absolute top-0 right-0 w-3/4 h-4/5 rounded-2xl overflow-hidden shadow-2xl border-4 border-background/10 z-10">
             <img 
               src={heroMain}
               alt="Zeal Care students in school uniform" 
               className="w-full h-full object-cover"
+              fetchPriority="high"
+              decoding="sync"
               data-testid="img-hero-main"
             />
           </div>
@@ -64,6 +66,8 @@ export function Hero() {
               src={heroOverlap}
               alt="Zeal Care student studying" 
               className="w-full h-full object-cover"
+              fetchPriority="high"
+              decoding="sync"
               data-testid="img-hero-overlap"
             />
           </div>
