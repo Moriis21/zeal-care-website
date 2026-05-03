@@ -232,3 +232,62 @@ export async function sendWelcomeEmail(email: string, name?: string): Promise<vo
     logger.error({ err }, "Failed to send welcome email");
   }
 }
+
+/* ─── Contact message notification ─── */
+export async function sendContactNotification(msg: {
+  name: string; email: string; subject?: string; message: string;
+}): Promise<void> {
+  const config = readEmailConfig();
+  const transporter = createTransporter();
+  if (!transporter) {
+    logger.info({ from: msg.email }, "Email not configured — contact message stored only");
+    return;
+  }
+  const subjectLine = msg.subject ? `"${msg.subject}"` : "a new message";
+  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"/></head>
+<body style="margin:0;padding:0;background:#f1f5f9;font-family:'Helvetica Neue',Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="padding:32px 16px;"><tr><td align="center">
+    <table width="600" cellpadding="0" cellspacing="0" style="background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
+      <tr><td style="background:#061A32;padding:24px 36px;">
+        <table width="100%"><tr>
+          <td><div style="width:36px;height:36px;background:#F5C619;border-radius:50%;display:inline-block;text-align:center;line-height:36px;font-weight:900;font-size:16px;color:#061A32;vertical-align:middle;margin-right:10px;">Z</div>
+          <span style="color:#fff;font-size:18px;font-weight:900;vertical-align:middle;">ZEAL CARE</span></td>
+          <td align="right"><span style="background:#F5C619;color:#061A32;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;">NEW MESSAGE 💬</span></td>
+        </tr></table>
+      </td></tr>
+      <tr><td style="padding:28px 36px;">
+        <h2 style="margin:0 0 4px;color:#061A32;font-size:20px;font-weight:900;">Message from ${msg.name}</h2>
+        <p style="margin:0 0 24px;color:#64748b;font-size:14px;">via the Zeal Care Contact Form</p>
+        <table width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #e2e8f0;">
+          <tr><td style="padding:10px 0;color:#64748b;font-size:14px;width:100px;">Name</td><td style="padding:10px 0;font-weight:700;color:#061A32;font-size:14px;">${msg.name}</td></tr>
+          <tr style="border-top:1px solid #f1f5f9;"><td style="padding:10px 0;color:#64748b;font-size:14px;">Email</td><td style="padding:10px 0;font-size:14px;"><a href="mailto:${msg.email}" style="color:#1A44C0;font-weight:700;">${msg.email}</a></td></tr>
+          ${msg.subject ? `<tr style="border-top:1px solid #f1f5f9;"><td style="padding:10px 0;color:#64748b;font-size:14px;">Subject</td><td style="padding:10px 0;font-weight:700;color:#061A32;font-size:14px;">${msg.subject}</td></tr>` : ""}
+        </table>
+        <div style="margin-top:20px;background:#f8fafc;border-left:4px solid #F5C619;border-radius:8px;padding:16px 20px;">
+          <p style="margin:0 0 8px;font-size:12px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.5px;">Message</p>
+          <p style="margin:0;color:#334155;font-size:14px;line-height:1.7;white-space:pre-wrap;">${msg.message}</p>
+        </div>
+      </td></tr>
+      <tr><td style="padding:0 36px 28px;">
+        <a href="mailto:${msg.email}?subject=Re: ${msg.subject ?? "Your message to Zeal Care"}" style="display:inline-block;background:#F5C619;color:#061A32;font-weight:900;font-size:13px;padding:12px 28px;border-radius:50px;text-decoration:none;">Reply to ${msg.name} →</a>
+        <p style="margin:12px 0 0;font-size:12px;color:#94a3b8;">Or view it in your <a href="https://${process.env["REPLIT_DEV_DOMAIN"] ?? "your-site"}/admin/messages" style="color:#1A44C0;">Admin → Messages</a></p>
+      </td></tr>
+      <tr><td style="background:#f8fafc;padding:16px 36px;border-top:1px solid #e2e8f0;text-align:center;">
+        <p style="margin:0;color:#94a3b8;font-size:11px;">Automated notification sent to ${config.notifyEmail || config.smtpUser}</p>
+      </td></tr>
+    </table>
+  </td></tr></table>
+</body></html>`;
+  try {
+    await transporter.sendMail({
+      from: senderFrom(),
+      to: config.notifyEmail || config.smtpUser,
+      replyTo: msg.email,
+      subject: `💬 New Contact: ${msg.name} sent ${subjectLine}`,
+      html,
+    });
+    logger.info({ from: msg.email }, "Contact notification sent");
+  } catch (err) {
+    logger.error({ err }, "Failed to send contact notification");
+  }
+}
