@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Navbar } from "@/components/Navbar";
 import { DonateModal } from "@/components/DonateModal";
+import { BackToTop } from "@/components/BackToTop";
 import { DonateProvider } from "@/context/DonateContext";
 
 // Lazy-load ALL page routes — only the current route's JS is downloaded
@@ -55,6 +56,7 @@ function PublicRouter() {
     <>
       <Navbar />
       <DonateModal />
+      <BackToTop />
       <Suspense fallback={<PageSpinner />}>
         <Switch>
           <Route path="/" component={Home} />
