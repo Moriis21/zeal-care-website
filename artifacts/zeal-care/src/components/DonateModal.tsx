@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { X, CheckCircle, Smartphone, Building2, CreditCard, MoreHorizontal, ChevronRight, Heart } from "lucide-react";
+import { X, CheckCircle, Smartphone, Building2, CreditCard, MoreHorizontal, ChevronRight, Heart, User } from "lucide-react";
 import { useDonate } from "@/context/DonateContext";
 import { useRecordDonation } from "@/hooks/useDonationStats";
+import { useSponsorChild } from "@/hooks/useChildren";
 
 const PRESET_AMOUNTS = [25, 50, 150, 500, 1800, 7200];
 
@@ -76,7 +77,7 @@ const paymentDetails: Record<PaymentMethod, { title: string; instructions: strin
 type Step = "form" | "confirm" | "success";
 
 export function DonateModal() {
-  const { isOpen, closeDonate, initialAmount } = useDonate();
+  const { isOpen, closeDonate, initialAmount, sponsoredChild } = useDonate();
   const [step, setStep] = useState<Step>("form");
   const [amount, setAmount] = useState<number | "">(150);
   const [customAmount, setCustomAmount] = useState("");
@@ -104,6 +105,7 @@ export function DonateModal() {
   }, [isOpen, initialAmount]);
 
   const recordDonation = useRecordDonation();
+  const sponsorChildMutation = useSponsorChild();
 
   if (!isOpen) return null;
 
@@ -117,6 +119,9 @@ export function DonateModal() {
 
   const handlePaymentSent = () => {
     recordDonation.mutate(effectiveAmount);
+    if (sponsoredChild) {
+      sponsorChildMutation.mutate(sponsoredChild.id);
+    }
     setStep("success");
   };
 
@@ -143,10 +148,20 @@ export function DonateModal() {
         {/* Header */}
         <div className="bg-primary px-7 py-6 rounded-t-3xl flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center gap-3">
-            <Heart className="w-6 h-6 text-secondary fill-secondary" />
+            {sponsoredChild ? (
+              <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center font-black text-primary text-lg flex-shrink-0">
+                {sponsoredChild.name[0]}
+              </div>
+            ) : (
+              <Heart className="w-6 h-6 text-secondary fill-secondary" />
+            )}
             <div>
-              <p className="text-white font-black text-lg leading-tight">Donate to Zeal Care</p>
-              <p className="text-white/60 text-xs">Igniting Potential · Inspiring Change</p>
+              <p className="text-white font-black text-lg leading-tight">
+                {sponsoredChild ? `Sponsoring ${sponsoredChild.name}` : "Donate to Zeal Care"}
+              </p>
+              <p className="text-white/60 text-xs">
+                {sponsoredChild ? "1 full year of school · $150" : "Igniting Potential · Inspiring Change"}
+              </p>
             </div>
           </div>
           <button onClick={closeDonate} className="w-8 h-8 flex items-center justify-center rounded-full text-white/60 hover:text-white hover:bg-white/10 transition-colors" aria-label="Close">
