@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { useDonate } from "@/context/DonateContext";
 import heroMain from "@assets/home_hero_page_1777770914048.jpeg";
 import heroOverlap from "@assets/hero_1777770914047.jpeg";
 
 export function Hero() {
+  const { openDonate } = useDonate();
   return (
     <section id="home" className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden bg-primary text-primary-foreground">
       {/* Background Gradient */}
@@ -31,10 +33,10 @@ export function Hero() {
           </p>
           
           <div className="flex flex-wrap gap-4">
-            <Button size="lg" className="bg-secondary text-primary hover:bg-secondary/90 rounded-full px-8 py-6 text-lg font-bold" data-testid="button-sponsor">
+            <Button size="lg" onClick={() => openDonate(150)} className="bg-secondary text-primary hover:bg-secondary/90 rounded-full px-8 py-6 text-lg font-bold" data-testid="button-sponsor">
               SPONSOR A CHILD &rarr;
             </Button>
-            <Button size="lg" variant="outline" className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary rounded-full px-8 py-6 text-lg font-bold" data-testid="button-impact">
+            <Button size="lg" variant="outline" onClick={() => { const el = document.getElementById("about"); el?.scrollIntoView({ behavior: "smooth" }); }} className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary rounded-full px-8 py-6 text-lg font-bold" data-testid="button-impact">
               OUR IMPACT
             </Button>
           </div>

@@ -3,6 +3,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Navbar } from "@/components/Navbar";
+import { DonateModal } from "@/components/DonateModal";
+import { DonateProvider } from "@/context/DonateContext";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import AboutPage from "@/pages/AboutPage";
@@ -18,6 +20,7 @@ function Router() {
   return (
     <>
       <Navbar />
+      <DonateModal />
       <Switch>
         <Route path="/" component={Home} />
 
@@ -55,10 +58,12 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-          <Router />
-        </WouterRouter>
-        <Toaster />
+        <DonateProvider>
+          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+            <Router />
+          </WouterRouter>
+          <Toaster />
+        </DonateProvider>
       </TooltipProvider>
     </QueryClientProvider>
   );
