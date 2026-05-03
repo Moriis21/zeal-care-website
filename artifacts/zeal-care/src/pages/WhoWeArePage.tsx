@@ -35,7 +35,7 @@ const leadership = [
   {
     name: "Beverley Chelsea Saungweme",
     role: "Executive Director of Programs",
-    img: "/attached_assets/pdf_images/img-004.jpg",
+    img: "/beverley-saungweme.png",
     bio: "Beverley Chelsea Saungweme leads Zeal Care's programming strategy from Zimbabwe. She holds a Master of Science in Development Economics and is a certified PMP Professional with expertise in project management, leadership, and child advocacy. Beverley brings international development experience and a passion for education reform to Zeal Care's programs, ensuring that every initiative is evidence-based, community-centered, and aligned with global best practices.",
   },
 ];
