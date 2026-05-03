@@ -4,11 +4,6 @@ import { MapPin, BookOpen, Heart, CheckCircle, Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useChildren, useSponsorChild, type Child } from "@/hooks/useChildren";
 import { useDonate } from "@/context/DonateContext";
-import mosesPhoto from "@assets/image_1777773678529.png";
-
-const CHILD_PHOTOS: Record<string, string> = {
-  c003: mosesPhoto,
-};
 
 const NEEDS_COLORS: Record<string, string> = {
   "School Fees": "bg-blue-100 text-blue-700",
@@ -33,7 +28,6 @@ function ChildCard({ child, index }: { child: Child; index: number }) {
   const isInView = useInView(ref, { once: true, margin: "-40px" });
   const { openDonate } = useDonate();
   const sponsorChild = useSponsorChild();
-  const photo = CHILD_PHOTOS[child.id];
 
   const handleSponsor = () => {
     openDonate(150, { id: child.id, name: child.name });
@@ -49,24 +43,34 @@ function ChildCard({ child, index }: { child: Child; index: number }) {
     >
       <div
         className="relative h-44 flex items-center justify-center overflow-hidden"
-        style={photo ? {} : { background: `linear-gradient(135deg, ${child.avatarColor}33, ${child.avatarColor}99)` }}
+        style={child.photo ? {} : { background: `linear-gradient(135deg, ${child.avatarColor}33, ${child.avatarColor}99)` }}
       >
-        {photo ? (
+        {child.photo ? (
           <img
-            src={photo}
+            src={child.photo}
             alt={`${child.name} — Zeal Care student`}
             className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+            onError={(e) => {
+              const img = e.currentTarget as HTMLImageElement;
+              img.style.display = "none";
+              const parent = img.parentElement;
+              if (parent) {
+                parent.style.background = `linear-gradient(135deg, ${child.avatarColor}33, ${child.avatarColor}99)`;
+                const fallback = parent.querySelector(".avatar-fallback") as HTMLElement | null;
+                if (fallback) fallback.style.display = "flex";
+              }
+            }}
           />
-        ) : (
-          <div
-            className="w-20 h-20 rounded-full flex items-center justify-center font-black text-4xl text-white shadow-lg border-4 border-white/30"
-            style={{ backgroundColor: child.avatarColor }}
-          >
-            {child.name[0]}
-          </div>
-        )}
+        ) : null}
 
-        {photo && (
+        <div
+          className="avatar-fallback w-20 h-20 rounded-full flex items-center justify-center font-black text-4xl text-white shadow-lg border-4 border-white/30 absolute"
+          style={{ backgroundColor: child.avatarColor, display: child.photo ? "none" : "flex" }}
+        >
+          {child.name[0]}
+        </div>
+
+        {child.photo && (
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         )}
 
@@ -81,7 +85,7 @@ function ChildCard({ child, index }: { child: Child; index: number }) {
           </div>
         )}
 
-        <div className={`absolute bottom-3 left-3 flex items-center gap-1 text-xs font-semibold ${photo ? "text-white" : "text-white/80"}`}>
+        <div className={`absolute bottom-3 left-3 flex items-center gap-1 text-xs font-semibold ${child.photo ? "text-white" : "text-white/80"}`}>
           <MapPin className="w-3.5 h-3.5" />
           {child.location}
         </div>

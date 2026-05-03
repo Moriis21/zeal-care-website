@@ -10,6 +10,7 @@ export type Child = {
   isSponsored: boolean;
   joinedYear: number;
   avatarColor: string;
+  photo?: string;
 };
 
 export const childrenData: Child[] = [
@@ -51,6 +52,7 @@ export const childrenData: Child[] = [
     isSponsored: false,
     joinedYear: 2024,
     avatarColor: "#059669",
+    photo: "/moses.png",
   },
   {
     id: "c004",
