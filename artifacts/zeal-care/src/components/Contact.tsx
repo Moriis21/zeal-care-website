@@ -169,15 +169,32 @@ export function Contact() {
           </motion.div>
         </div>
 
-        {/* Right: Decorative */}
-        <div className="hidden lg:block bg-primary relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(hsl(var(--secondary))_1px,transparent_1px)] [background-size:40px_40px] opacity-10" />
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-10 px-12">
-            <div className="text-primary-foreground/20 text-center">
-              <MapPin className="w-24 h-24 mx-auto mb-4 opacity-40" />
-              <h3 className="text-3xl font-extrabold uppercase tracking-widest">Liberia</h3>
-              <p className="text-lg tracking-widest mt-1 opacity-60">West Africa</p>
-            </div>
+        {/* Right: Liberia map background */}
+        <div className="hidden lg:flex relative overflow-hidden min-h-[500px]">
+          {/* Background image */}
+          <img
+            src="/liberia-map.png"
+            alt="Liberia, West Africa"
+            className="absolute inset-0 w-full h-full object-cover object-center"
+          />
+          {/* Dark navy overlay so text stays legible */}
+          <div className="absolute inset-0 bg-[#061A32]/70" />
+          {/* Subtle dot pattern on top */}
+          <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:36px_36px]" />
+
+          {/* Content */}
+          <div className="relative z-10 flex flex-col items-center justify-center gap-10 px-12 w-full">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center"
+            >
+              <MapPin className="w-20 h-20 mx-auto mb-4 text-[#F5C619] drop-shadow-lg" />
+              <h3 className="text-4xl font-black uppercase tracking-widest text-white drop-shadow">Liberia</h3>
+              <p className="text-base tracking-[0.3em] mt-2 text-white/60 uppercase">West Africa</p>
+            </motion.div>
+
             <div className="grid grid-cols-2 gap-4 w-full max-w-xs">
               {[
                 { label: "Response Time", value: "< 24hrs" },
@@ -185,10 +202,16 @@ export function Contact() {
                 { label: "Founded", value: "2017" },
                 { label: "Location", value: s.address.split(",")[1]?.trim() ?? "Monrovia" },
               ].map(({ label, value }) => (
-                <div key={label} className="bg-white/5 rounded-2xl p-4 text-center border border-white/10">
-                  <p className="text-[#F5C619] font-black text-lg">{value}</p>
-                  <p className="text-white/40 text-xs font-semibold mt-0.5">{label}</p>
-                </div>
+                <motion.div
+                  key={label}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 text-center border border-white/20"
+                >
+                  <p className="text-[#F5C619] font-black text-lg drop-shadow">{value}</p>
+                  <p className="text-white/50 text-xs font-semibold mt-0.5 uppercase tracking-wider">{label}</p>
+                </motion.div>
               ))}
             </div>
           </div>
