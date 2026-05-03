@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { useDonate } from "@/context/DonateContext";
 import joinBg from "@assets/pdf_images/img-067.jpg";
 
 export function JoinUs() {
+  const { openDonate } = useDonate();
+
   return (
     <section id="join-us" className="relative py-32 overflow-hidden bg-[#1A44C0] text-primary-foreground">
       {/* Background Image with Overlay */}
@@ -36,10 +39,21 @@ export function JoinUs() {
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-6">
-            <Button size="lg" className="bg-secondary text-primary hover:bg-secondary/90 rounded-full px-10 py-6 text-lg font-bold" data-testid="button-sponsor-large">
+            <Button
+              size="lg"
+              onClick={() => openDonate(150)}
+              className="bg-secondary text-primary hover:bg-secondary/90 rounded-full px-10 py-6 text-lg font-bold"
+              data-testid="button-sponsor-large"
+            >
               SPONSOR A CHILD
             </Button>
-            <Button size="lg" variant="outline" className="bg-transparent border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary rounded-full px-10 py-6 text-lg font-bold" data-testid="button-volunteer">
+            <Button
+              size="lg"
+              variant="outline"
+              className="bg-transparent border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary rounded-full px-10 py-6 text-lg font-bold"
+              data-testid="button-volunteer"
+              onClick={() => window.location.href = "mailto:zealcare24@gmail.com?subject=Volunteer Inquiry"}
+            >
               VOLUNTEER NOW
             </Button>
           </div>

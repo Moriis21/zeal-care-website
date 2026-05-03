@@ -3,6 +3,7 @@ import { Link, useLocation } from "wouter";
 import { Menu, X, Mail, Phone, MapPin, ChevronDown, Facebook, Instagram, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { navConfig } from "@/lib/nav-config";
+import { useDonate } from "@/context/DonateContext";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -33,6 +34,7 @@ export function Navbar() {
     closeTimeoutRef.current = setTimeout(() => setOpenSection(null), 120);
   };
 
+  const { openDonate } = useDonate();
   const isHomePage = location === "/" || location === "";
   const navBg = isScrolled ? "bg-white shadow-md" : isHomePage ? "bg-transparent" : "bg-primary";
   const textColor = isScrolled ? "text-primary" : "text-white";
@@ -125,11 +127,13 @@ export function Navbar() {
               );
             })}
 
-            <Link href="/igniting-potential/ways-to-give">
-              <Button className="ml-2 bg-secondary text-primary hover:bg-secondary/90 rounded-full px-5 text-sm font-bold" data-testid="button-donate">
-                DONATE NOW
-              </Button>
-            </Link>
+            <Button
+              onClick={() => openDonate()}
+              className="ml-2 bg-secondary text-primary hover:bg-secondary/90 rounded-full px-5 text-sm font-bold"
+              data-testid="button-donate"
+            >
+              DONATE NOW
+            </Button>
           </div>
 
           {/* Mobile Toggle */}
@@ -172,11 +176,12 @@ export function Navbar() {
                 </div>
               ))}
               <div className="pt-3 pb-2">
-                <Link href="/igniting-potential/ways-to-give">
-                  <Button className="w-full bg-secondary text-primary hover:bg-secondary/90 rounded-full font-bold">
-                    DONATE NOW
-                  </Button>
-                </Link>
+                <Button
+                  onClick={() => { setIsMobileMenuOpen(false); openDonate(); }}
+                  className="w-full bg-secondary text-primary hover:bg-secondary/90 rounded-full font-bold"
+                >
+                  DONATE NOW
+                </Button>
               </div>
             </div>
           </div>
