@@ -12,6 +12,7 @@ export type Child = {
   isSponsored: boolean;
   joinedYear: number;
   avatarColor: string;
+  photo?: string;
 };
 
 const API_BASE = "/api";

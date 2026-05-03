@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAdminAuth } from "@/hooks/useAdminAuth";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import {
   Loader2, Plus, Pencil, Trash2, X, CheckCircle, Users,
-  HeartHandshake, UserCheck, UserX,
+  HeartHandshake, UserCheck, UserX, Upload, Camera,
 } from "lucide-react";
 
 type Child = {
@@ -21,6 +21,7 @@ type Child = {
   sponsorAmount?: number;
   joinedYear: number;
   avatarColor: string;
+  photo?: string;
 };
 
 const AVATAR_COLORS = [
@@ -30,22 +31,105 @@ const AVATAR_COLORS = [
 
 const EMPTY: Omit<Child, "id"> = {
   name: "", age: 10, grade: "", school: "", location: "Monrovia, Liberia",
-  story: "", needs: [], isSponsored: false, joinedYear: new Date().getFullYear(), avatarColor: "#1A44C0",
+  story: "", needs: [], isSponsored: false, joinedYear: new Date().getFullYear(),
+  avatarColor: "#1A44C0", photo: "",
 };
 
 type Tab = "all" | "available" | "sponsored";
 
+const inputCls = "w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-[#1A44C0]";
+
+function PhotoUploader({ url, onChange, token }: {
+  url: string;
+  onChange: (url: string) => void;
+  token: string;
+}) {
+  const fileRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
+
+  const handleFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    try {
+      const fd = new FormData();
+      fd.append("photo", file);
+      const res = await fetch("/api/admin/upload", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        body: fd,
+      });
+      const data = await res.json() as { url?: string };
+      if (data.url) onChange(data.url);
+    } catch {
+      /* silent */
+    } finally {
+      setUploading(false);
+      if (fileRef.current) fileRef.current.value = "";
+    }
+  };
+
+  return (
+    <div>
+      <label className="block text-xs font-bold text-slate-600 mb-2">Profile Photo</label>
+      <div className="flex items-start gap-3">
+        {/* Preview */}
+        <div className="w-20 h-20 rounded-2xl overflow-hidden bg-slate-100 border-2 border-dashed border-slate-200 flex-shrink-0 relative">
+          {url ? (
+            <img src={url} alt="Preview" className="w-full h-full object-cover"
+              onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+          ) : (
+            <div className="w-full h-full flex flex-col items-center justify-center text-slate-300 gap-1">
+              <Camera className="w-6 h-6" />
+              <span className="text-xs">No photo</span>
+            </div>
+          )}
+        </div>
+        {/* Controls */}
+        <div className="flex-1 space-y-2">
+          <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={handleFile} />
+          <button
+            type="button"
+            onClick={() => fileRef.current?.click()}
+            disabled={uploading}
+            className="flex items-center justify-center gap-1.5 w-full bg-[#1A44C0] text-white px-3 py-2 rounded-xl text-xs font-semibold hover:bg-[#1A44C0]/90 transition-colors disabled:opacity-60"
+          >
+            {uploading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Upload className="w-3.5 h-3.5" />}
+            {uploading ? "Uploading…" : "Upload Photo"}
+          </button>
+          <input
+            className={inputCls}
+            placeholder="Or paste a photo URL"
+            value={url}
+            onChange={(e) => onChange(e.target.value)}
+          />
+          {url && (
+            <button
+              type="button"
+              onClick={() => onChange("")}
+              className="text-xs text-red-400 hover:text-red-600 font-semibold"
+            >
+              Remove photo
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ChildModal({
-  child, onClose, onSave,
+  child, onClose, onSave, token,
 }: {
   child: Partial<Child> | null;
   onClose: () => void;
   onSave: (data: Partial<Child>) => Promise<void>;
+  token: string;
 }) {
   const [form, setForm] = useState<Partial<Child>>(child ?? EMPTY);
   const [needsInput, setNeedsInput] = useState((child?.needs ?? []).join(", "));
   const [saving, setSaving] = useState(false);
-  const [activeTab, setActiveTab] = useState<"profile" | "sponsorship">("profile");
+  const [activeTab, setActiveTab] = useState<"profile" | "photo" | "sponsorship">("profile");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,7 +148,7 @@ function ChildModal({
           setForm((f) => ({ ...f, [key]: type === "number" ? Number(e.target.value) : e.target.value }))
         }
         placeholder={placeholder}
-        className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-[#1A44C0]"
+        className={inputCls}
         required={key === "name"}
       />
     </div>
@@ -73,14 +157,26 @@ function ChildModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+        {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
-          <h3 className="font-black text-[#061A32]">{child?.id ? `Edit — ${child.name}` : "Add New Child"}</h3>
+          <div className="flex items-center gap-3">
+            {form.photo ? (
+              <img src={form.photo} alt="" className="w-10 h-10 rounded-full object-cover border-2 border-slate-100"
+                onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+            ) : (
+              <div className="w-10 h-10 rounded-full flex items-center justify-center font-black text-lg text-white"
+                style={{ backgroundColor: form.avatarColor ?? "#1A44C0" }}>
+                {form.name?.[0] ?? "?"}
+              </div>
+            )}
+            <h3 className="font-black text-[#061A32]">{child?.id ? `Edit — ${child.name}` : "Add New Child"}</h3>
+          </div>
           <button onClick={onClose} className="text-slate-400 hover:text-slate-600"><X className="w-5 h-5" /></button>
         </div>
 
         {/* Tabs */}
         <div className="flex border-b border-slate-100 px-6">
-          {(["profile", "sponsorship"] as const).map((t) => (
+          {(["profile", "photo", "sponsorship"] as const).map((t) => (
             <button
               key={t}
               type="button"
@@ -91,13 +187,14 @@ function ChildModal({
                   : "border-transparent text-slate-400 hover:text-slate-600"
               }`}
             >
-              {t === "sponsorship" ? "Sponsorship" : "Profile"}
+              {t === "photo" ? "📷 Photo" : t === "sponsorship" ? "Sponsorship" : "Profile"}
             </button>
           ))}
         </div>
 
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
-          {activeTab === "profile" ? (
+          {/* PROFILE TAB */}
+          {activeTab === "profile" && (
             <>
               <div className="grid grid-cols-2 gap-3">
                 {inp("Full Name *", "name")}
@@ -110,9 +207,10 @@ function ChildModal({
               <div>
                 <label className="block text-xs font-bold text-slate-600 mb-1">Story</label>
                 <textarea
-                  rows={3}
+                  rows={4}
                   value={form.story ?? ""}
                   onChange={(e) => setForm((f) => ({ ...f, story: e.target.value }))}
+                  placeholder="The child's background and why they need support…"
                   className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-[#1A44C0] resize-none"
                 />
               </div>
@@ -122,11 +220,12 @@ function ChildModal({
                   value={needsInput}
                   onChange={(e) => setNeedsInput(e.target.value)}
                   placeholder="e.g. School Fees, Books, Uniform"
-                  className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-[#1A44C0]"
+                  className={inputCls}
                 />
+                <p className="text-xs text-slate-400 mt-1">Options: School Fees, Books, Uniform, Meals, Transport, Shoes, Stationery, Counseling, Laptop Access, Exam Fees</p>
               </div>
               <div>
-                <label className="block text-xs font-bold text-slate-600 mb-2">Avatar Color</label>
+                <label className="block text-xs font-bold text-slate-600 mb-2">Avatar Color (fallback when no photo)</label>
                 <div className="flex gap-2 flex-wrap">
                   {AVATAR_COLORS.map((c) => (
                     <button
@@ -142,9 +241,34 @@ function ChildModal({
                 </div>
               </div>
             </>
-          ) : (
+          )}
+
+          {/* PHOTO TAB */}
+          {activeTab === "photo" && (
+            <div className="space-y-5">
+              <div className="bg-blue-50 border border-blue-200 rounded-xl px-4 py-3 text-sm text-blue-700">
+                The photo appears on the public <strong>Sponsor a Child</strong> section. Upload a clear portrait photo for best results.
+              </div>
+              <PhotoUploader
+                url={form.photo ?? ""}
+                onChange={(url) => setForm((f) => ({ ...f, photo: url }))}
+                token={token}
+              />
+              {form.photo && (
+                <div className="rounded-2xl overflow-hidden border border-slate-200">
+                  <p className="text-xs font-bold text-slate-500 px-3 py-2 bg-slate-50 border-b border-slate-100 uppercase tracking-wide">Live Preview</p>
+                  <div className="h-48">
+                    <img src={form.photo} alt="Preview" className="w-full h-full object-cover object-top"
+                      onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* SPONSORSHIP TAB */}
+          {activeTab === "sponsorship" && (
             <>
-              {/* Sponsorship tab */}
               <div className="bg-slate-50 rounded-2xl p-4 space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
@@ -184,7 +308,7 @@ function ChildModal({
                     value={form.sponsorName ?? ""}
                     onChange={(e) => setForm((f) => ({ ...f, sponsorName: e.target.value }))}
                     placeholder="e.g. John & Mary Smith"
-                    className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-[#1A44C0]"
+                    className={inputCls}
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-3">
@@ -194,7 +318,7 @@ function ChildModal({
                       type="date"
                       value={form.sponsorDate ?? ""}
                       onChange={(e) => setForm((f) => ({ ...f, sponsorDate: e.target.value }))}
-                      className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-[#1A44C0]"
+                      className={inputCls}
                     />
                   </div>
                   <div>
@@ -204,7 +328,7 @@ function ChildModal({
                       value={form.sponsorAmount ?? ""}
                       onChange={(e) => setForm((f) => ({ ...f, sponsorAmount: Number(e.target.value) }))}
                       placeholder="150"
-                      className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-[#1A44C0]"
+                      className={inputCls}
                     />
                   </div>
                 </div>
@@ -218,7 +342,7 @@ function ChildModal({
             </>
           )}
 
-          <div className="flex gap-3 pt-2">
+          <div className="flex gap-3 pt-2 border-t border-slate-100">
             <button
               type="button"
               onClick={onClose}
@@ -242,7 +366,8 @@ function ChildModal({
 }
 
 export default function AdminChildren() {
-  const { checked, authHeaders } = useAdminAuth();
+  const { checked, authHeaders, token: rawToken } = useAdminAuth();
+  const token = rawToken ?? "";
   const [children, setChildren] = useState<Child[]>([]);
   const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState<Partial<Child> | null | false>(false);
@@ -263,11 +388,15 @@ export default function AdminChildren() {
   const handleSave = async (data: Partial<Child>) => {
     if (modal && (modal as Child).id) {
       await fetch(`/api/admin/children/${(modal as Child).id}`, {
-        method: "PUT", headers: authHeaders, body: JSON.stringify(data),
+        method: "PUT",
+        headers: { ...authHeaders, "Content-Type": "application/json" },
+        body: JSON.stringify(data),
       });
     } else {
       await fetch("/api/admin/children", {
-        method: "POST", headers: authHeaders, body: JSON.stringify(data),
+        method: "POST",
+        headers: { ...authHeaders, "Content-Type": "application/json" },
+        body: JSON.stringify(data),
       });
     }
     await reload();
@@ -283,7 +412,7 @@ export default function AdminChildren() {
   const handleToggleSponsored = async (child: Child) => {
     await fetch(`/api/admin/children/${child.id}`, {
       method: "PUT",
-      headers: authHeaders,
+      headers: { ...authHeaders, "Content-Type": "application/json" },
       body: JSON.stringify({ isSponsored: !child.isSponsored }),
     });
     await reload();
@@ -315,7 +444,12 @@ export default function AdminChildren() {
   return (
     <AdminLayout>
       {modal !== false && (
-        <ChildModal child={modal} onClose={() => setModal(false)} onSave={handleSave} />
+        <ChildModal
+          child={modal}
+          onClose={() => setModal(false)}
+          onSave={handleSave}
+          token={token}
+        />
       )}
 
       <div className="space-y-5">
@@ -340,6 +474,12 @@ export default function AdminChildren() {
             <Plus className="w-4 h-4" />
             Add Child
           </button>
+        </div>
+
+        {/* Info banner */}
+        <div className="bg-blue-50 border border-blue-200 rounded-xl px-4 py-3 text-sm text-blue-700 flex items-center gap-2">
+          <Camera className="w-4 h-4 flex-shrink-0" />
+          <span>Each child can have a profile photo that appears on the public <strong>Sponsor a Child</strong> section. Click <strong>Edit</strong> then the <strong>📷 Photo</strong> tab to upload.</span>
         </div>
 
         {/* Tabs */}
@@ -387,38 +527,59 @@ export default function AdminChildren() {
                   child.isSponsored ? "border-green-200" : "border-slate-200"
                 }`}
               >
-                {/* Card header */}
-                <div
-                  className="h-20 flex items-center px-5 gap-4"
-                  style={{ background: `linear-gradient(135deg,${child.avatarColor}22,${child.avatarColor}55)` }}
-                >
-                  <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center font-black text-2xl text-white flex-shrink-0"
-                    style={{ backgroundColor: child.avatarColor }}
-                  >
-                    {child.name[0]}
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="font-black text-[#061A32] truncate">{child.name}</p>
-                    <p className="text-xs text-slate-500">{child.grade} · Age {child.age}</p>
-                  </div>
-                  <div className="flex-shrink-0">
+                {/* Card header — photo or gradient */}
+                <div className="relative h-32 overflow-hidden">
+                  {child.photo ? (
+                    <img src={child.photo} alt={child.name}
+                      className="w-full h-full object-cover object-top"
+                      onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+                  ) : (
+                    <div
+                      className="w-full h-full flex items-center justify-center"
+                      style={{ background: `linear-gradient(135deg,${child.avatarColor}22,${child.avatarColor}55)` }}
+                    >
+                      <div
+                        className="w-16 h-16 rounded-full flex items-center justify-center font-black text-3xl text-white"
+                        style={{ backgroundColor: child.avatarColor }}
+                      >
+                        {child.name[0]}
+                      </div>
+                    </div>
+                  )}
+                  {child.photo && (
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  )}
+                  {/* Status badge */}
+                  <div className="absolute top-2 right-2">
                     {child.isSponsored ? (
-                      <span className="flex items-center gap-1 bg-green-100 text-green-700 text-xs font-bold px-2.5 py-1 rounded-full">
-                        <CheckCircle className="w-3.5 h-3.5" /> Sponsored
+                      <span className="flex items-center gap-1 bg-green-500 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow">
+                        <CheckCircle className="w-3 h-3" /> Sponsored
                       </span>
                     ) : (
-                      <span className="flex items-center gap-1 bg-amber-100 text-amber-700 text-xs font-bold px-2.5 py-1 rounded-full">
-                        <HeartHandshake className="w-3.5 h-3.5" /> Available
+                      <span className="flex items-center gap-1 bg-[#F5C619] text-[#061A32] text-xs font-bold px-2.5 py-1 rounded-full shadow">
+                        <HeartHandshake className="w-3 h-3" /> Available
                       </span>
                     )}
                   </div>
+                  {/* Name overlay when photo */}
+                  {child.photo && (
+                    <div className="absolute bottom-2 left-3">
+                      <p className="text-white font-black text-base drop-shadow">{child.name}</p>
+                      <p className="text-white/80 text-xs">{child.grade} · Age {child.age}</p>
+                    </div>
+                  )}
                 </div>
 
                 {/* Card body */}
-                <div className="px-5 py-4">
+                <div className="px-4 py-3">
+                  {!child.photo && (
+                    <div className="mb-1">
+                      <p className="font-black text-[#061A32]">{child.name}</p>
+                      <p className="text-xs text-slate-500">{child.grade} · Age {child.age}</p>
+                    </div>
+                  )}
                   <p className="text-xs text-slate-400 font-medium mb-1">{child.school}</p>
-                  <p className="text-sm text-slate-600 line-clamp-2 mb-2">{child.story}</p>
+                  <p className="text-sm text-slate-600 line-clamp-2 mb-3">{child.story}</p>
 
                   {/* Sponsor info */}
                   {child.isSponsored && child.sponsorName && (
@@ -429,6 +590,18 @@ export default function AdminChildren() {
                         {child.sponsorDate ? ` · ${new Date(child.sponsorDate).toLocaleDateString("en-US", { month: "short", year: "numeric" })}` : ""}
                         {child.sponsorAmount ? ` · $${child.sponsorAmount}/yr` : ""}
                       </span>
+                    </div>
+                  )}
+
+                  {/* Needs tags */}
+                  {child.needs.length > 0 && (
+                    <div className="flex flex-wrap gap-1 mb-3">
+                      {child.needs.slice(0, 3).map((n) => (
+                        <span key={n} className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full font-medium">{n}</span>
+                      ))}
+                      {child.needs.length > 3 && (
+                        <span className="text-xs bg-slate-100 text-slate-400 px-2 py-0.5 rounded-full font-medium">+{child.needs.length - 3}</span>
+                      )}
                     </div>
                   )}
 
