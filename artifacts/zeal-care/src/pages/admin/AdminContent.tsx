@@ -443,6 +443,8 @@ export default function AdminContent() {
                 <Field label="Communities Reached" value={content.settings.impactCommunities} onChange={(v) => upd("settings")({ impactCommunities: v })} />
                 <Field label="Years of Impact" value={content.settings.impactYears} onChange={(v) => upd("settings")({ impactYears: v })} />
                 <Field label="Countries" value={content.settings.impactCountries} onChange={(v) => upd("settings")({ impactCountries: v })} />
+                <Field label="Programs Running (hero strip)" value={content.settings.heroPrograms} onChange={(v) => upd("settings")({ heroPrograms: v })} />
+                <Field label="Languages Supported (hero strip)" value={content.settings.heroLanguages} onChange={(v) => upd("settings")({ heroLanguages: v })} />
               </div>
             </SectionCard>
           </div>
@@ -465,6 +467,16 @@ export default function AdminContent() {
               <Field label="Mission Text" value={content.home.missionText} onChange={(v) => upd("home")({ missionText: v })} multiline rows={3} />
               <Field label="About Title" value={content.home.aboutTitle} onChange={(v) => upd("home")({ aboutTitle: v })} />
               <Field label="About Text" value={content.home.aboutText} onChange={(v) => upd("home")({ aboutText: v })} multiline rows={4} />
+            </SectionCard>
+            <SectionCard title="Footer Call-to-Action Banner" onSave={() => void saveSection("home", content.home, "Footer CTA")} saving={saving === "home"}>
+              <p className="text-xs text-slate-400">This is the bold banner at the top of the footer on every page.</p>
+              <Field label="Badge Label (small pill text)" value={content.home.footerCtaBadge} onChange={(v) => upd("home")({ footerCtaBadge: v })} />
+              <Field label="Headline" value={content.home.footerCtaTitle} onChange={(v) => upd("home")({ footerCtaTitle: v })} />
+              <Field label="Subtitle" value={content.home.footerCtaSubtitle} onChange={(v) => upd("home")({ footerCtaSubtitle: v })} multiline rows={2} />
+              <div className="grid sm:grid-cols-2 gap-4">
+                <Field label="Newsletter Strip Title" value={content.home.footerNewsletterTitle} onChange={(v) => upd("home")({ footerNewsletterTitle: v })} />
+                <Field label="Newsletter Strip Description" value={content.home.footerNewsletterDesc} onChange={(v) => upd("home")({ footerNewsletterDesc: v })} />
+              </div>
             </SectionCard>
           </div>
         )}

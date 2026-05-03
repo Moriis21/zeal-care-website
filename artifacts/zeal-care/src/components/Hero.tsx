@@ -108,8 +108,8 @@ export function Hero() {
             <div className="flex items-center gap-6 mt-10 pt-8 border-t border-white/10">
               {[
                 { value: content?.settings.impactChildren ?? "105+", label: t("hero.childrenLabel") },
-                { value: "12+", label: "Programs Running" },
-                { value: "4", label: "Languages Supported" },
+                { value: content?.settings.heroPrograms ?? "12+", label: "Programs Running" },
+                { value: content?.settings.heroLanguages ?? "4", label: "Languages Supported" },
               ].map(({ value, label }) => (
                 <div key={label} className="text-center">
                   <p className="text-2xl font-black text-secondary leading-none">{value}</p>
