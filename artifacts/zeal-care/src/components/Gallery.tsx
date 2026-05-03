@@ -12,8 +12,10 @@ import img065 from "@assets/pdf_images/img-065.jpg";
 import img078 from "@assets/pdf_images/img-078.jpg";
 import img085 from "@assets/pdf_images/img-085.jpg";
 import img045 from "@assets/pdf_images/img-045.jpg";
+const elumRadio = "/elum-radio-interview.png";
 
 const photos = [
+  { src: elumRadio, alt: "Zeal Care team live on ELUM 98.7 FM discussing phase launch and sponsorship", span: "col-span-2 row-span-1" },
   { src: img058, alt: "Student raising hand in class at Esfans Academy", span: "col-span-1 row-span-2" },
   { src: img040, alt: "Esfans Academy school building exterior", span: "col-span-2 row-span-1" },
   { src: img059, alt: "Children proudly displaying their Zeal Care backpacks", span: "col-span-1 row-span-1" },
