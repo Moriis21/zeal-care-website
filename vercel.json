@@ -1,9 +1,8 @@
 {
   "version": 2,
-  "framework": "vite",
   "buildCommand": "pnpm --filter @workspace/zeal-care run build",
   "outputDirectory": "artifacts/zeal-care/dist/public",
-  "installCommand": "pnpm install",
+  "installCommand": "pnpm install --frozen-lockfile",
   "functions": {
     "api/index.ts": {
       "memory": 1024,
