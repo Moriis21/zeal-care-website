@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Navbar } from "@/components/Navbar";
 import { DonateModal } from "@/components/DonateModal";
 import { DonateProvider } from "@/context/DonateContext";
+import { SocialFloatingBar } from "@/components/SocialFloatingBar";
 
 // Lazy-load ALL page routes — only the current route's JS is downloaded
 const Home = lazy(() => import("@/pages/Home"));
@@ -55,6 +56,7 @@ function PublicRouter() {
     <>
       <Navbar />
       <DonateModal />
+      <SocialFloatingBar />
       <Suspense fallback={<PageSpinner />}>
         <Switch>
           <Route path="/" component={Home} />
