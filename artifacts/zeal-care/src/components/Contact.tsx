@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, CheckCircle, Loader2, Send } from "lucide-react";
+import { useSiteContent, DEFAULT_CONTENT } from "@/hooks/useSiteContent";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -8,6 +9,8 @@ export function Contact() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const { data: content } = useSiteContent();
+  const s = content?.settings ?? DEFAULT_CONTENT.settings;
 
   const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
@@ -36,6 +39,12 @@ export function Contact() {
     }
   };
 
+  const contactItems = [
+    { icon: Mail, label: "Email", value: s.email },
+    { icon: Phone, label: "Phone", value: s.phone },
+    { icon: MapPin, label: "Headquarters", value: s.address },
+  ];
+
   return (
     <section id="contact" className="bg-foreground text-background">
       <div className="grid lg:grid-cols-2">
@@ -55,11 +64,7 @@ export function Contact() {
             </h2>
 
             <div className="flex flex-col gap-5 mb-12">
-              {[
-                { icon: Mail, label: "Email", value: "info@zealcare.org" },
-                { icon: Phone, label: "Phone", value: "+231 886 727 619" },
-                { icon: MapPin, label: "Headquarters", value: "Monrovia, Liberia" },
-              ].map(({ icon: Icon, label, value }) => (
+              {contactItems.map(({ icon: Icon, label, value }) => (
                 <div key={label} className="flex items-center gap-4 text-background/80">
                   <div className="w-12 h-12 rounded-full bg-background/10 flex items-center justify-center text-secondary flex-shrink-0">
                     <Icon className="w-5 h-5" />
@@ -178,7 +183,7 @@ export function Contact() {
                 { label: "Response Time", value: "< 24hrs" },
                 { label: "Languages", value: "EN / FR" },
                 { label: "Founded", value: "2017" },
-                { label: "Location", value: "Monrovia" },
+                { label: "Location", value: s.address.split(",")[1]?.trim() ?? "Monrovia" },
               ].map(({ label, value }) => (
                 <div key={label} className="bg-white/5 rounded-2xl p-4 text-center border border-white/10">
                   <p className="text-[#F5C619] font-black text-lg">{value}</p>

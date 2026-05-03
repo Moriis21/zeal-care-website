@@ -25,6 +25,7 @@ const AdminDonations = lazy(() => import("@/pages/admin/AdminDonations"));
 const AdminSettings = lazy(() => import("@/pages/admin/AdminSettings"));
 const AdminNewsletter = lazy(() => import("@/pages/admin/AdminNewsletter"));
 const AdminMessages = lazy(() => import("@/pages/admin/AdminMessages"));
+const AdminContent = lazy(() => import("@/pages/admin/AdminContent"));
 
 const PageSpinner = () => (
   <div className="min-h-screen flex items-center justify-center bg-background">
@@ -86,6 +87,7 @@ function AdminRouter() {
         <Route path="/admin/donations" component={AdminDonations} />
         <Route path="/admin/messages" component={AdminMessages} />
         <Route path="/admin/newsletter" component={AdminNewsletter} />
+        <Route path="/admin/content" component={AdminContent} />
         <Route path="/admin/settings" component={AdminSettings} />
         <Route component={AdminLogin} />
       </Switch>
