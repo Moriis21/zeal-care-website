@@ -12,6 +12,7 @@ export type DonationPayload = {
   donorName?: string;
   donorEmail?: string;
   method?: string;
+  momoPhone?: string;
   childName?: string;
   childId?: string;
   message?: string;

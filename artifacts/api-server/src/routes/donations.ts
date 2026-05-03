@@ -23,10 +23,10 @@ router.get("/donations/stats", (_req, res) => {
 
 router.post("/donations/record", (req, res) => {
   const {
-    amount, donorName, donorEmail, method, childName, childId, message,
+    amount, donorName, donorEmail, method, momoPhone, childName, childId, message,
   } = req.body as {
     amount?: number; donorName?: string; donorEmail?: string;
-    method?: string; childName?: string; childId?: string; message?: string;
+    method?: string; momoPhone?: string; childName?: string; childId?: string; message?: string;
   };
 
   const donationAmount = Number(amount) || 0;
@@ -36,7 +36,7 @@ router.post("/donations/record", (req, res) => {
     donorName: donorName ?? "",
     donorEmail: donorEmail ?? "",
     method: method ?? "other",
-    childName, childId, message,
+    momoPhone, childName, childId, message,
   });
 
   req.log.info({ donationAmount }, "Donation recorded");
