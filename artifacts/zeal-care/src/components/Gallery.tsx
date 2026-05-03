@@ -1,7 +1,9 @@
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 import img036 from "@assets/pdf_images/img-036.jpg";
 import img040 from "@assets/pdf_images/img-040.jpg";
@@ -56,6 +58,17 @@ const photos = [
 
 export function Gallery() {
   const { t } = useTranslation();
+  const { data: content } = useSiteContent();
+
+  const cmsPhotos = useMemo(() =>
+    (content?.gallery?.photos ?? []).map((p) => ({
+      src: p.url,
+      alt: p.alt,
+      span: "col-span-1 row-span-1",
+    })),
+  [content?.gallery?.photos]);
+
+  const allPhotos = useMemo(() => [...cmsPhotos, ...photos], [cmsPhotos]);
 
   return (
     <section id="gallery" className="py-24 bg-[#061A32]">
@@ -91,7 +104,7 @@ export function Gallery() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[220px] gap-4">
-          {photos.map((photo, index) => (
+          {allPhotos.map((photo, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.95 }}
