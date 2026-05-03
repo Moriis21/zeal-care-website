@@ -144,7 +144,7 @@ export function Footer() {
   const socialLinks = [
     { icon: Facebook, href: s.facebook || "https://www.facebook.com/profile.php?id=61561063778243", testId: "link-social-facebook" },
     { icon: Twitter, href: s.twitter || "https://twitter.com/zealcare", testId: "link-social-twitter" },
-    { icon: Instagram, href: s.instagram || "https://www.instagram.com/zealcare2024", testId: "link-social-instagram" },
+    { icon: Instagram, href: s.instagram || "https://www.instagram.com/zealcare2024?igsh=MTU2emRiMHBmd3d1Zw==", testId: "link-social-instagram" },
     { icon: Linkedin, href: s.linkedin || "https://www.linkedin.com/company/zeal-care", testId: "link-social-linkedin" },
   ];
 

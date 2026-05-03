@@ -231,7 +231,7 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
           <p className="text-muted-foreground mb-5">We are currently working on video documentation of our programs and impact stories. Follow us on social media to be the first to see our videos.</p>
           <div className="flex flex-wrap gap-3 justify-center">
             <a href="https://www.facebook.com/profile.php?id=61561063778243" target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white px-5 py-2.5 rounded-full font-bold text-sm hover:bg-blue-700 transition-colors">Facebook</a>
-            <a href="https://www.instagram.com/zealcare2024" target="_blank" rel="noopener noreferrer" className="bg-pink-600 text-white px-5 py-2.5 rounded-full font-bold text-sm hover:bg-pink-700 transition-colors">Instagram</a>
+            <a href="https://www.instagram.com/zealcare2024?igsh=MTU2emRiMHBmd3d1Zw==" target="_blank" rel="noopener noreferrer" className="bg-pink-600 text-white px-5 py-2.5 rounded-full font-bold text-sm hover:bg-pink-700 transition-colors">Instagram</a>
             <a href="https://www.linkedin.com/company/zeal-care" target="_blank" rel="noopener noreferrer" className="bg-blue-700 text-white px-5 py-2.5 rounded-full font-bold text-sm hover:bg-blue-800 transition-colors">LinkedIn</a>
           </div>
         </div>
@@ -278,7 +278,7 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
           <p className="font-bold text-primary mb-2">Follow Us for More Photos</p>
           <p className="text-muted-foreground text-sm mb-4">We regularly share photos from our programs, community visits, and events on our social media channels.</p>
           <div className="flex flex-wrap gap-3 justify-center">
-            <a href="https://www.instagram.com/zealcare2024" target="_blank" rel="noopener noreferrer" className="bg-pink-600 text-white px-5 py-2.5 rounded-full font-bold text-sm hover:bg-pink-700 transition-colors">@zealcare2024</a>
+            <a href="https://www.instagram.com/zealcare2024?igsh=MTU2emRiMHBmd3d1Zw==" target="_blank" rel="noopener noreferrer" className="bg-pink-600 text-white px-5 py-2.5 rounded-full font-bold text-sm hover:bg-pink-700 transition-colors">@zealcare2024</a>
             <a href="https://www.facebook.com/profile.php?id=61561063778243" target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white px-5 py-2.5 rounded-full font-bold text-sm hover:bg-blue-700 transition-colors">Facebook Page</a>
           </div>
         </div>
