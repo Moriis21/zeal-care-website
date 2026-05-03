@@ -39,8 +39,11 @@ export default function AdminLogin() {
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-[#F5C619] rounded-full flex items-center justify-center font-black text-[#061A32] text-3xl mx-auto mb-4">Z</div>
-          <h1 className="text-white font-black text-2xl">Zeal Care Admin</h1>
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <img src="/logo.png" alt="Zeal Care" className="h-14 w-auto object-contain drop-shadow-lg" />
+          </div>
+          <h1 className="text-white font-black text-2xl tracking-wide">ZEAL CARE</h1>
+          <p className="text-[#F5C619] text-xs font-bold uppercase tracking-widest mt-1">Admin Portal</p>
           <p className="text-white/40 text-sm mt-1">Sign in to manage your website</p>
         </div>
 
