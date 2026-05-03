@@ -4,15 +4,17 @@ import { useToast } from "@/hooks/use-toast";
 import {
   Settings, Home, BookOpen, Users, Briefcase, Heart, Zap,
   Plus, Pencil, Trash2, Check, X, Save, ChevronDown, ChevronUp,
-  Loader2, Upload, UserCog,
+  Loader2, Upload, UserCog, Images,
 } from "lucide-react";
-import type { SiteContent, TeamMember, BoardMember, NewsItem, Program, FAQ } from "@/hooks/useSiteContent";
+import type { SiteContent, TeamMember, BoardMember, NewsItem, Program, FAQ, GalleryPhoto } from "@/hooks/useSiteContent";
 import { DEFAULT_CONTENT } from "@/hooks/useSiteContent";
+import { GALLERY_CATEGORIES } from "@/pages/GalleryPage";
 
-type TabId = "settings" | "home" | "about" | "whoWeAre" | "whatWeDo" | "whyEmpowerment" | "ignitingPotential" | "team";
+type TabId = "settings" | "home" | "about" | "whoWeAre" | "whatWeDo" | "whyEmpowerment" | "ignitingPotential" | "team" | "gallery";
 
 const TABS: { id: TabId; label: string; icon: React.ElementType }[] = [
   { id: "team", label: "Team Management", icon: UserCog },
+  { id: "gallery", label: "Gallery Photos", icon: Images },
   { id: "settings", label: "Site Settings", icon: Settings },
   { id: "home", label: "Home Page", icon: Home },
   { id: "about", label: "About Page", icon: BookOpen },
@@ -227,6 +229,8 @@ function programToAny(p: Program): AnyItem { return p as AnyItem; }
 function anyToProgram(a: AnyItem): Program { return a as unknown as Program; }
 function faqToAny(f: FAQ): AnyItem { return f as AnyItem; }
 function anyToFaq(a: AnyItem): FAQ { return a as unknown as FAQ; }
+function galleryToAny(g: GalleryPhoto): AnyItem { return g as AnyItem; }
+function anyToGallery(a: AnyItem): GalleryPhoto { return a as unknown as GalleryPhoto; }
 
 export default function AdminContent() {
   const [activeTab, setActiveTab] = useState<TabId>("team");
@@ -401,6 +405,75 @@ export default function AdminContent() {
                       {bm.img && (
                         <img src={bm.img} alt="Preview" className="w-16 h-16 rounded-full object-cover object-top border border-slate-200" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
                       )}
+                    </div>
+                  );
+                }}
+              />
+            </div>
+          </div>
+        )}
+
+        {/* GALLERY PHOTOS */}
+        {activeTab === "gallery" && (
+          <div className="space-y-5">
+            <div className="bg-blue-50 border border-blue-200 rounded-2xl px-5 py-4 text-sm text-blue-700">
+              Upload new photos to appear on the <strong>Gallery page</strong>. These appear above the built-in photos. The 27 original site photos always show automatically — use this panel to add new ones.
+            </div>
+            <div className="bg-white rounded-2xl border border-slate-200 p-6">
+              <CardHeader title="Gallery Photos" onSave={() => void saveSection("gallery", content.gallery, "Gallery Photos")} saving={saving === "gallery"} />
+              <ArrayEditor
+                label="Photos"
+                items={(content.gallery?.photos ?? []).map(galleryToAny)}
+                onUpdate={(items) => {
+                  const photos = items.map(anyToGallery);
+                  setContent((c) => ({ ...c, gallery: { ...c.gallery, photos } }));
+                }}
+                defaultItem={{ url: "", alt: "", category: "Programs & Education" } as AnyItem}
+                renderItem={(g) => {
+                  const photo = anyToGallery(g);
+                  return (
+                    <div className="flex items-center gap-3">
+                      <div className="w-14 h-14 rounded-xl overflow-hidden bg-slate-100 border border-slate-200 flex-shrink-0">
+                        {photo.url ? (
+                          <img src={photo.url} alt={photo.alt} className="w-full h-full object-cover"
+                            onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-slate-300">
+                            <Images className="w-5 h-5" />
+                          </div>
+                        )}
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-sm font-semibold text-[#061A32] truncate">{photo.alt || "No caption"}</p>
+                        <span className="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#1A44C0]/10 text-[#1A44C0] mt-1">
+                          {photo.category}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                }}
+                renderForm={(g, set) => {
+                  const photo = anyToGallery(g);
+                  return (
+                    <div className="space-y-3">
+                      <PhotoUploader
+                        url={photo.url}
+                        onChange={(url) => set(galleryToAny({ ...photo, url }))}
+                        token={token}
+                      />
+                      <input className={inputClass} placeholder="Caption / Description" value={photo.alt}
+                        onChange={(e) => set(galleryToAny({ ...photo, alt: e.target.value }))} />
+                      <div>
+                        <label className="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-1.5">Category</label>
+                        <select
+                          value={photo.category}
+                          onChange={(e) => set(galleryToAny({ ...photo, category: e.target.value }))}
+                          className={inputClass}>
+                          {GALLERY_CATEGORIES.filter((c) => c !== "All").map((cat) => (
+                            <option key={cat} value={cat}>{cat}</option>
+                          ))}
+                        </select>
+                      </div>
                     </div>
                   );
                 }}

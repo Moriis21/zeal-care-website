@@ -5,6 +5,7 @@ export type BoardMember = { name: string; role: string; bio: string; img?: strin
 export type NewsItem = { date: string; title: string; desc: string };
 export type Program = { title: string; quote: string; desc: string };
 export type FAQ = { q: string; a: string };
+export type GalleryPhoto = { url: string; alt: string; category: string };
 
 export type SiteContent = {
   settings: {
@@ -70,6 +71,9 @@ export type SiteContent = {
     overviewText: string;
     bodyText: string;
     faqs: FAQ[];
+  };
+  gallery: {
+    photos: GalleryPhoto[];
   };
 };
 
@@ -137,6 +141,9 @@ export const DEFAULT_CONTENT: SiteContent = {
     overviewText: "With your support, we can ignite the endless potential of underprivileged children in Liberia and across Africa.",
     bodyText: "Your support today can help a child secure an education and create the future they imagine for themselves.",
     faqs: [],
+  },
+  gallery: {
+    photos: [],
   },
 };
 
