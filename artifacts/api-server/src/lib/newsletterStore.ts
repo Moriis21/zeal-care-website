@@ -1,8 +1,8 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
-import { join } from "path";
+import { getDataDir } from "./dataDir";
 
-const DATA_DIR = join(process.cwd(), ".data");
-const FILE = join(DATA_DIR, "newsletter.json");
+const DATA_DIR = getDataDir();
+const FILE = `${DATA_DIR}/newsletter.json`;
 
 export type Subscriber = {
   email: string;
