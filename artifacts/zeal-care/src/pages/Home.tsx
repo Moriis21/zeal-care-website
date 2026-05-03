@@ -6,6 +6,7 @@ import { WhyEmpowerment } from "@/components/WhyEmpowerment";
 import { Programs } from "@/components/Programs";
 import { Gallery } from "@/components/Gallery";
 import { Stories } from "@/components/Stories";
+import { SponsorAChild } from "@/components/SponsorAChild";
 import { JoinUs } from "@/components/JoinUs";
 import { Partners } from "@/components/Partners";
 import { Contact } from "@/components/Contact";
@@ -25,6 +26,7 @@ export default function Home() {
         <Programs />
         <Gallery />
         <Stories />
+        <SponsorAChild />
         <JoinUs />
         <Partners />
         <Contact />
