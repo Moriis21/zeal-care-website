@@ -7,6 +7,13 @@ const section = navConfig.find((s) => s.path === "/media")!;
 
 const newsItems = [
   {
+    date: "May 2026",
+    title: "Zeal Care on ELUM 98.7 FM — Phase Launch, Fundraising & Sponsorship Packages",
+    category: "Media",
+    img: "/elum-radio-interview.png",
+    body: "Zeal Care's Executive Director of Marketing & Communication and our Volunteer Fundraising Officer joined ELUM 98.7 FM (The United Methodist Radio) in studio to discuss our exciting phase launch, current fundraising efforts, and sponsorship packages. The broadcast reached thousands of listeners across Liberia, spreading our mission to ignite potential and inspire change in the lives of underprivileged children.",
+  },
+  {
     date: "Jul–Aug 2024",
     title: "Zeal Care Staff Conducted an Educational Survey in Chicken Soup Factory",
     category: "Community",
@@ -86,6 +93,7 @@ const newsItems = [
 ];
 
 const galleryImages = [
+  "/elum-radio-interview.png",
   "/attached_assets/pdf_images/img-055.jpg",
   "/attached_assets/pdf_images/img-054.jpg",
   "/attached_assets/pdf_images/img-059.jpg",
@@ -229,11 +237,21 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
         </div>
         {/* ELUM Radio feature */}
         <div className="bg-white border border-border rounded-2xl overflow-hidden hover:shadow-md transition-all">
-          <img src="/attached_assets/pdf_images/img-078.jpg" alt="ELUM 98.7 FM" className="w-full h-56 object-cover" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+          <div className="relative">
+            <img src="/elum-radio-interview.png" alt="Zeal Care on ELUM 98.7 FM" className="w-full h-64 object-cover object-top" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#061A32]/60 via-transparent to-transparent" />
+            <div className="absolute bottom-4 left-4 right-4">
+              <span className="inline-block bg-[#F5C619] text-[#061A32] text-xs font-black px-3 py-1 rounded-full">LIVE ON AIR · ELUM 98.7 FM</span>
+            </div>
+          </div>
           <div className="p-6">
-            <div className="inline-block bg-secondary/20 text-primary text-xs font-bold px-3 py-1 rounded-full mb-3">RADIO FEATURE</div>
-            <h3 className="font-black text-primary text-xl mb-2">Zeal Care on ELUM 98.7 FM</h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">Zeal Care's work has been featured on ELUM 98.7 FM, one of Liberia's popular radio stations, amplifying our message of educational empowerment to communities across the country.</p>
+            <h3 className="font-black text-primary text-xl mb-2">Phase Launch, Fundraising & Sponsorship Packages</h3>
+            <p className="text-muted-foreground text-sm leading-relaxed mb-4">Our Executive Director of Marketing & Communication and Volunteer Fundraising Officer appeared live on ELUM 98.7 FM — The United Methodist Radio — to discuss Zeal Care's exciting phase launch, fundraising efforts, and sponsorship packages available for supporters who want to transform a child's life.</p>
+            <div className="flex flex-wrap gap-2">
+              <span className="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-full">Phase Launch</span>
+              <span className="bg-yellow-50 text-yellow-700 text-xs font-bold px-3 py-1 rounded-full">Fundraising</span>
+              <span className="bg-green-50 text-green-700 text-xs font-bold px-3 py-1 rounded-full">Sponsorship Packages</span>
+            </div>
           </div>
         </div>
       </div>
