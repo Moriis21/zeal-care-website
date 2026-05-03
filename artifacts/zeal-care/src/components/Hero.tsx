@@ -2,17 +2,27 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useDonate } from "@/context/DonateContext";
 import { useSiteContent, DEFAULT_CONTENT } from "@/hooks/useSiteContent";
+import { useTranslation } from "react-i18next";
 import heroMain from "@assets/home_hero_page_1777770914048.jpeg";
 import heroOverlap from "@assets/hero_1777770914047.jpeg";
 
 export function Hero() {
   const { openDonate } = useDonate();
   const { data: content } = useSiteContent();
+  const { t, i18n } = useTranslation();
+  const isEnglish = i18n.language.startsWith("en");
+
   const home = content?.home ?? DEFAULT_CONTENT.home;
 
-  const [titleMain, titleAccent] = home.heroTitle.includes(",")
-    ? [home.heroTitle.split(",")[0] + ",", home.heroTitle.split(",").slice(1).join(",").trim()]
-    : [home.heroTitle, ""];
+  const heroTitle   = isEnglish ? home.heroTitle   : t("hero.title");
+  const heroSubtitle = isEnglish ? home.heroSubtitle : t("hero.subtitle");
+  const heroBadge    = isEnglish ? home.heroBadge   : t("hero.badge");
+  const sponsorCTA   = isEnglish ? home.heroPrimaryCTA   : t("hero.sponsorCTA");
+  const impactCTA    = isEnglish ? home.heroSecondaryCTA : t("hero.impactCTA");
+
+  const [titleMain, titleAccent] = heroTitle.includes(",")
+    ? [heroTitle.split(",")[0] + ",", heroTitle.split(",").slice(1).join(",").trim()]
+    : [heroTitle, ""];
 
   return (
     <section id="home" className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden bg-primary text-primary-foreground">
@@ -28,7 +38,7 @@ export function Hero() {
           className="max-w-2xl"
         >
           <div className="inline-block px-4 py-1.5 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 text-sm font-semibold tracking-wider mb-6" data-testid="badge-hero">
-            {home.heroBadge}
+            {heroBadge}
           </div>
 
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6" data-testid="heading-hero">
@@ -42,7 +52,7 @@ export function Hero() {
           </h1>
 
           <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 leading-relaxed max-w-lg" data-testid="text-hero-desc">
-            {home.heroSubtitle}
+            {heroSubtitle}
           </p>
 
           <div className="flex flex-wrap gap-4">
@@ -52,7 +62,7 @@ export function Hero() {
               className="bg-secondary text-primary hover:bg-secondary/90 rounded-full px-8 py-6 text-lg font-bold"
               data-testid="button-sponsor"
             >
-              {home.heroPrimaryCTA} &rarr;
+              {sponsorCTA} &rarr;
             </Button>
             <Button
               size="lg"
@@ -61,7 +71,7 @@ export function Hero() {
               className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary rounded-full px-8 py-6 text-lg font-bold"
               data-testid="button-impact"
             >
-              {home.heroSecondaryCTA}
+              {impactCTA}
             </Button>
           </div>
         </motion.div>
@@ -101,7 +111,7 @@ export function Hero() {
             className="absolute top-8 left-0 z-30 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 px-5 py-4"
           >
             <p className="text-2xl font-black text-white">{content?.settings.impactChildren ?? "105+"}</p>
-            <p className="text-white/70 text-xs font-semibold">Children Sponsored</p>
+            <p className="text-white/70 text-xs font-semibold">{t("hero.childrenLabel")}</p>
           </motion.div>
         </motion.div>
       </div>

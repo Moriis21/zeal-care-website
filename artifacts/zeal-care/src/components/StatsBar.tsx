@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 import { useInView } from "framer-motion";
 import { useSiteContent, DEFAULT_CONTENT } from "@/hooks/useSiteContent";
+import { useTranslation } from "react-i18next";
 
 function Counter({ end, suffix = "", duration = 2 }: { end: number; suffix?: string; duration?: number }) {
   const [count, setCount] = useState(0);
@@ -36,6 +37,7 @@ function parseNum(val: string): { num: number; suffix: string } {
 
 export function StatsBar() {
   const { data: content } = useSiteContent();
+  const { t } = useTranslation();
   const s = content?.settings ?? DEFAULT_CONTENT.settings;
 
   const scholars = parseNum(s.scholarCount);
@@ -43,11 +45,11 @@ export function StatsBar() {
   const tech = parseNum(s.techHours);
 
   const stats = [
-    { value: scholars.num, suffix: scholars.suffix + "+", label: "Active Scholars" },
-    { value: 12, suffix: "-Year", label: "Impact Promise" },
-    { value: schools.num, suffix: schools.suffix + "+", label: "Partner Schools" },
-    { value: Math.round(tech.num / 1000), suffix: "k" + tech.suffix, label: "Tech Hours" },
-    { value: 100, suffix: "%", label: "Transparency" },
+    { value: scholars.num, suffix: scholars.suffix + "+", label: t("stats.activeScholars") },
+    { value: 12, suffix: t("stats.yearSuffix"), label: t("stats.impactPromise") },
+    { value: schools.num, suffix: schools.suffix + "+", label: t("stats.partnerSchools") },
+    { value: Math.round(tech.num / 1000), suffix: "k" + tech.suffix, label: t("stats.techHours") },
+    { value: 100, suffix: "%", label: t("stats.transparency") },
   ];
 
   return (

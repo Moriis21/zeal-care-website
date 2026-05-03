@@ -1,0 +1,121 @@
+{
+  "nav": {
+    "aboutUs": "À Propos de Nous",
+    "whyEmpowerment": "Pourquoi l'Autonomisation",
+    "whoWeAre": "Qui Sommes-Nous",
+    "whatWeDo": "Ce Que Nous Faisons",
+    "ignitingPotential": "Allumer le Potentiel",
+    "media": "Médias",
+    "donateNow": "FAIRE UN DON",
+    "items": {
+      "Overview": "Aperçu",
+      "Our Mission": "Notre Mission",
+      "Our Vision": "Notre Vision",
+      "Our Goals": "Nos Objectifs",
+      "Our Values": "Nos Valeurs",
+      "Our Belief": "Notre Conviction",
+      "SDG Focus": "Focus ODD",
+      "Characteristics We Develop": "Caractéristiques Développées",
+      "Social Justice": "Justice Sociale",
+      "Economic Development": "Développement Économique",
+      "Our Leadership": "Notre Direction",
+      "Board of Advisors": "Conseil d'Administration",
+      "Our Beneficiaries": "Nos Bénéficiaires",
+      "Our Partners": "Nos Partenaires",
+      "Our History": "Notre Histoire",
+      "Awards & Prizes": "Prix et Récompenses",
+      "Protection & Safeguarding": "Protection & Sauvegarde",
+      "Finance & Accountability": "Finances & Responsabilité",
+      "Work for Us": "Travailler avec Nous",
+      "Tenders & Opportunities": "Appels d'Offres",
+      "How We Operate": "Comment Nous Fonctionnons",
+      "Where We Operate": "Où Nous Opérons",
+      "Our Programs": "Nos Programmes",
+      "What Sets Us Apart": "Ce Qui Nous Distingue",
+      "Impact in Numbers": "Impact en Chiffres",
+      "Ways to Give": "Façons de Donner",
+      "Appeals": "Appels aux Dons",
+      "Become a Partner": "Devenir Partenaire",
+      "Giving FAQ": "FAQ sur les Dons",
+      "Newsroom": "Salle de Presse",
+      "Success Stories": "Histoires de Succès",
+      "Video": "Vidéo",
+      "Photo Gallery": "Galerie Photos",
+      "Events & Calendar": "Événements & Calendrier"
+    }
+  },
+  "hero": {
+    "badge": "Autonomiser les Futurs Leaders d'Afrique",
+    "title": "Allumer le Potentiel, Inspirer le Changement.",
+    "subtitle": "Nous croyons que chaque enfant est une étincelle de génie. Nous fournissons les outils, le mentorat et les opportunités pour libérer ce génie.",
+    "sponsorCTA": "Parrainer un Enfant",
+    "impactCTA": "Notre Impact",
+    "childrenLabel": "Enfants Parrainés"
+  },
+  "stats": {
+    "activeScholars": "Étudiants Actifs",
+    "impactPromise": "Promesse d'Impact",
+    "partnerSchools": "Écoles Partenaires",
+    "techHours": "Heures Tech",
+    "transparency": "Transparence",
+    "yearSuffix": " An"
+  },
+  "contact": {
+    "badge": "Contactez-Nous",
+    "title": "Créons ensemble le changement.",
+    "subtitle": "Vous avez une question, une idée ou souhaitez nous rejoindre ? Nous serions ravis de vous entendre.",
+    "getInTouch": "Prendre Contact",
+    "name": "Nom Complet",
+    "email": "Adresse E-mail",
+    "subject": "Sujet",
+    "message": "Votre Message",
+    "send": "Envoyer le Message",
+    "sending": "Envoi en cours…",
+    "successTitle": "Message Envoyé !",
+    "successMsg": "Merci de nous avoir contactés. Nous vous répondrons dans les 24 à 48 heures.",
+    "sendAnother": "Envoyer un Autre Message",
+    "phone": "Téléphone",
+    "location": "Localisation",
+    "followUs": "Suivez-Nous"
+  },
+  "footer": {
+    "tagline": "Allumer le Potentiel, Inspirer le Changement. Autonomiser les futurs leaders d'Afrique par l'éducation, le mentorat et la technologie.",
+    "quickLinks": "Liens Rapides",
+    "getInvolved": "S'impliquer",
+    "contactInfo": "Coordonnées",
+    "newsletter": "Restez Informé",
+    "newsletterDesc": "Recevez des mises à jour mensuelles sur les progrès de nos enfants, les événements et les histoires d'impact.",
+    "emailPlaceholder": "Votre adresse e-mail",
+    "subscribe": "S'abonner",
+    "subscribing": "...",
+    "subscribeSuccess": "Vous êtes abonné !",
+    "rights": "Tous droits réservés.",
+    "links": {
+      "home": "Accueil",
+      "about": "À Propos",
+      "whoWeAre": "Qui Sommes-Nous",
+      "whatWeDo": "Ce Que Nous Faisons",
+      "media": "Médias",
+      "contact": "Contact"
+    },
+    "involved": {
+      "donate": "Faire un Don",
+      "sponsor": "Parrainer un Enfant",
+      "partner": "Devenir Partenaire",
+      "volunteer": "Bénévoles avec Nous",
+      "newsletter": "Rejoindre la Newsletter"
+    }
+  },
+  "donate": {
+    "title": "Faites la Différence Aujourd'hui",
+    "subtitle": "Votre don finance directement l'éducation, les repas et le mentorat des enfants au Libéria.",
+    "monthly": "Mensuel",
+    "oneTime": "Unique",
+    "custom": "Montant Personnalisé",
+    "continue": "Continuer",
+    "close": "Fermer"
+  },
+  "lang": {
+    "select": "Langue"
+  }
+}
