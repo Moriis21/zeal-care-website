@@ -20,6 +20,7 @@ const AdminDashboard = lazy(() => import("@/pages/admin/AdminDashboard"));
 const AdminChildren = lazy(() => import("@/pages/admin/AdminChildren"));
 const AdminDonations = lazy(() => import("@/pages/admin/AdminDonations"));
 const AdminSettings = lazy(() => import("@/pages/admin/AdminSettings"));
+const AdminNewsletter = lazy(() => import("@/pages/admin/AdminNewsletter"));
 
 const queryClient = new QueryClient();
 
@@ -56,6 +57,7 @@ function AdminRouter() {
         <Route path="/admin/dashboard" component={AdminDashboard} />
         <Route path="/admin/children" component={AdminChildren} />
         <Route path="/admin/donations" component={AdminDonations} />
+        <Route path="/admin/newsletter" component={AdminNewsletter} />
         <Route path="/admin/settings" component={AdminSettings} />
         <Route component={AdminLogin} />
       </Switch>
