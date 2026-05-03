@@ -1,4 +1,5 @@
 import { Router, type IRouter } from "express";
+import { rateLimit } from "express-rate-limit";
 import { signToken, requireAdmin } from "../lib/adminAuth";
 import { readChildren, addChild, updateChild, deleteChild } from "../lib/childrenStore";
 import { readDonationLog } from "../lib/donationLog";
@@ -10,6 +11,14 @@ import multer from "multer";
 import path from "path";
 import { mkdirSync } from "fs";
 import { getDataDir } from "../lib/dataDir";
+
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 10,
+  message: { error: "Too many login attempts. Please wait 15 minutes and try again." },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 const uploadsDir = path.join(getDataDir(), "uploads");
 mkdirSync(uploadsDir, { recursive: true });
@@ -25,7 +34,7 @@ const upload = multer({ storage, limits: { fileSize: 15 * 1024 * 1024 } });
 
 const router: IRouter = Router();
 
-router.post("/admin/login", (req, res) => {
+router.post("/admin/login", loginLimiter, (req, res) => {
   const { password } = req.body as { password?: string };
   const expected = process.env["ADMIN_PASSWORD"] ?? "zealcare2024";
   if (!password || password !== expected) {
@@ -79,7 +88,7 @@ router.post("/admin/children", requireAdmin, (req, res) => {
 });
 
 router.put("/admin/children/:id", requireAdmin, (req, res) => {
-  const { id } = req.params;
+  const id = String(req.params.id);
   try {
     const all = updateChild(id, req.body as Partial<Child>);
     res.json({ success: true, total: all.length });
@@ -89,7 +98,7 @@ router.put("/admin/children/:id", requireAdmin, (req, res) => {
 });
 
 router.delete("/admin/children/:id", requireAdmin, (req, res) => {
-  const { id } = req.params;
+  const id = String(req.params.id);
   const all = deleteChild(id);
   res.json({ success: true, total: all.length });
 });

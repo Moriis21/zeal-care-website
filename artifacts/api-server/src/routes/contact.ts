@@ -28,12 +28,12 @@ router.get("/admin/messages", requireAdmin, (_req, res) => {
 });
 
 router.patch("/admin/messages/:id/read", requireAdmin, (req, res) => {
-  const ok = markRead(req.params.id);
+  const ok = markRead(String(req.params.id));
   ok ? res.json({ success: true }) : res.status(404).json({ error: "Not found" });
 });
 
 router.delete("/admin/messages/:id", requireAdmin, (req, res) => {
-  const ok = deleteMessage(req.params.id);
+  const ok = deleteMessage(String(req.params.id));
   ok ? res.json({ success: true }) : res.status(404).json({ error: "Not found" });
 });
 

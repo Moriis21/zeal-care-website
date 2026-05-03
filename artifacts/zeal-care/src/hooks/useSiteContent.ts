@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 export type TeamMember = { name: string; role: string; bio: string; img?: string };
-export type BoardMember = { name: string; role: string; bio: string };
+export type BoardMember = { name: string; role: string; bio: string; img?: string };
 export type NewsItem = { date: string; title: string; desc: string };
 export type Program = { title: string; quote: string; desc: string };
 export type FAQ = { q: string; a: string };
