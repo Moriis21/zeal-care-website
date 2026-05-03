@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Facebook, Twitter, Instagram, Linkedin, Send, CheckCircle, Loader2, MapPin, Mail, Phone, Heart } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Send, CheckCircle, Loader2, MapPin, Mail, Phone, Heart, ArrowUpRight, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 import { useDonate } from "@/context/DonateContext";
 import { useSiteContent, DEFAULT_CONTENT } from "@/hooks/useSiteContent";
 import { useTranslation } from "react-i18next";
 
-function NewsletterForm() {
+function NewsletterInline() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [msg, setMsg] = useState("");
-  const { t } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,11 +24,11 @@ function NewsletterForm() {
       const data = await res.json() as { success?: boolean; alreadySubscribed?: boolean; error?: string };
       if (data.success) {
         setStatus("success");
-        setMsg(data.alreadySubscribed ? "You're already on our list — thank you!" : t("footer.subscribeSuccess"));
+        setMsg(data.alreadySubscribed ? "You're already on our list!" : "You're subscribed — thank you!");
         setEmail("");
       } else {
         setStatus("error");
-        setMsg(data.error ?? "Something went wrong. Please try again.");
+        setMsg(data.error ?? "Something went wrong.");
       }
     } catch {
       setStatus("error");
@@ -38,7 +38,7 @@ function NewsletterForm() {
 
   if (status === "success") {
     return (
-      <div className="flex items-center gap-3 bg-[#F5C619]/10 border border-[#F5C619]/30 rounded-2xl px-5 py-4">
+      <div className="flex items-center gap-3 bg-[#F5C619]/15 border border-[#F5C619]/30 rounded-2xl px-5 py-3.5">
         <CheckCircle className="w-5 h-5 text-[#F5C619] flex-shrink-0" />
         <p className="text-sm text-white/80 font-semibold">{msg}</p>
       </div>
@@ -46,40 +46,58 @@ function NewsletterForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3">
-      <div className="flex gap-2">
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder={t("footer.emailPlaceholder")}
-          required
-          className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#F5C619]/50 transition-colors"
-        />
-        <button
-          type="submit"
-          disabled={status === "loading" || !email}
-          className="bg-[#F5C619] text-[#061A32] px-5 py-3 rounded-xl font-black text-sm hover:bg-[#F5C619]/90 transition-all disabled:opacity-50 flex items-center gap-2 whitespace-nowrap"
-        >
-          {status === "loading" ? (
-            <Loader2 className="w-4 h-4 animate-spin" />
-          ) : (
-            <Send className="w-4 h-4" />
-          )}
-          {t("footer.subscribe")}
-        </button>
-      </div>
+    <form onSubmit={handleSubmit} className="flex gap-2">
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Your email address"
+        required
+        className="flex-1 min-w-0 bg-white/8 border border-white/15 rounded-xl px-4 py-3 text-sm text-white placeholder-white/35 focus:outline-none focus:border-[#F5C619]/60 transition-colors"
+      />
+      <button
+        type="submit"
+        disabled={status === "loading" || !email}
+        className="bg-[#F5C619] text-[#061A32] px-5 py-3 rounded-xl font-black text-sm hover:bg-[#F5C619]/90 transition-all disabled:opacity-50 flex items-center gap-1.5 shrink-0"
+      >
+        {status === "loading" ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+        <span className="hidden sm:inline">Subscribe</span>
+      </button>
       {status === "error" && (
-        <p className="text-red-400 text-xs font-semibold">{msg}</p>
+        <p className="absolute mt-14 text-red-400 text-xs font-semibold">{msg}</p>
       )}
     </form>
   );
 }
 
-function GetInvolvedLinks() {
+const ColHeader = ({ label }: { label: string }) => (
+  <div className="flex items-center gap-2 mb-6">
+    <span className="w-2 h-2 rounded-full bg-[#F5C619] flex-shrink-0" />
+    <h4 className="font-black text-xs uppercase tracking-[0.2em] text-white/90">{label}</h4>
+  </div>
+);
+
+const FooterLink = ({ href, children, onClick }: { href?: string; children: React.ReactNode; onClick?: () => void }) => {
+  const base = "flex items-center gap-2 text-white/50 hover:text-[#F5C619] transition-colors text-sm group py-0.5";
+  const dash = <span className="text-white/20 group-hover:text-[#F5C619]/60 transition-colors">—</span>;
+  if (onClick) return (
+    <button onClick={onClick} className={base}>{dash}{children}</button>
+  );
+  if (href?.startsWith("/")) return (
+    <Link href={href} className={base}>{dash}{children}</Link>
+  );
+  return (
+    <a href={href} className={base}>{dash}{children}</a>
+  );
+};
+
+export function Footer() {
+  const currentYear = new Date().getFullYear();
+  const { data: content } = useSiteContent();
+  const { t } = useTranslation();
   const { openDonate } = useDonate();
   const [location] = useLocation();
-  const { t } = useTranslation();
+  const s = content?.settings ?? DEFAULT_CONTENT.settings;
   const isHome = location === "/";
 
   const handleContact = (e: React.MouseEvent) => {
@@ -89,166 +107,220 @@ function GetInvolvedLinks() {
     }
   };
 
-  return (
-    <ul className="space-y-3">
-      <li>
-        <button
-          onClick={() => openDonate(150)}
-          className="text-primary-foreground/60 hover:text-[#F5C619] transition-colors text-sm flex items-center gap-1.5 group"
-        >
-          <Heart className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-          {t("footer.involved.sponsor")}
-        </button>
-      </li>
-      <li>
-        <button
-          onClick={() => openDonate()}
-          className="text-primary-foreground/60 hover:text-[#F5C619] transition-colors text-sm flex items-center gap-1.5 group"
-        >
-          <Heart className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-          {t("footer.involved.donate")}
-        </button>
-      </li>
-      <li>
-        <Link href="/igniting-potential/become-a-partner" className="text-primary-foreground/60 hover:text-[#F5C619] transition-colors text-sm">
-          {t("footer.involved.partner")}
-        </Link>
-      </li>
-      <li>
-        <a
-          href="mailto:zealcare24@gmail.com?subject=Volunteer%20Inquiry%20—%20Zeal%20Care"
-          className="text-primary-foreground/60 hover:text-[#F5C619] transition-colors text-sm"
-        >
-          {t("footer.involved.volunteer")}
-        </a>
-      </li>
-      <li>
-        <a
-          href={isHome ? "#contact" : "/#contact"}
-          onClick={handleContact}
-          className="text-primary-foreground/60 hover:text-[#F5C619] transition-colors text-sm"
-        >
-          {t("contact.badge")}
-        </a>
-      </li>
-    </ul>
-  );
-}
-
-export function Footer() {
-  const currentYear = new Date().getFullYear();
-  const { data: content } = useSiteContent();
-  const { t } = useTranslation();
-  const s = content?.settings ?? DEFAULT_CONTENT.settings;
-
   const socialLinks = [
-    { icon: Facebook, href: s.facebook || "https://www.facebook.com/profile.php?id=61561063778243", testId: "link-social-facebook" },
-    { icon: Twitter, href: s.twitter || "https://twitter.com/zealcare", testId: "link-social-twitter" },
-    { icon: Instagram, href: s.instagram || "https://www.instagram.com/zealcare2024?igsh=MTU2emRiMHBmd3d1Zw==", testId: "link-social-instagram" },
-    { icon: Linkedin, href: s.linkedin || "https://www.linkedin.com/company/zeal-care", testId: "link-social-linkedin" },
+    { icon: Facebook, href: s.facebook || "https://www.facebook.com/profile.php?id=61561063778243", label: "Facebook" },
+    { icon: Instagram, href: s.instagram || "https://www.instagram.com/zealcare2024?igsh=MTU2emRiMHBmd3d1Zw==", label: "Instagram" },
+    { icon: Linkedin, href: s.linkedin || "https://www.linkedin.com/company/zeal-care", label: "LinkedIn" },
   ];
 
   return (
-    <footer className="bg-[#041224] text-primary-foreground pt-16 pb-8">
-      <div className="container mx-auto px-4">
+    <footer className="relative bg-[#061A32] text-white overflow-hidden">
 
-        {/* Newsletter bar */}
-        <div className="bg-gradient-to-r from-[#1A44C0]/40 to-[#061A32] border border-white/10 rounded-3xl p-8 mb-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+      {/* ── Dot texture overlay ── */}
+      <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:28px_28px] pointer-events-none" />
+
+      {/* ── Glow blobs ── */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#1A44C0]/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-[#F5C619]/6 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="relative z-10 container mx-auto px-6 lg:px-8">
+
+        {/* ══════════════════════════════════════════
+            CTA BANNER
+        ══════════════════════════════════════════ */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#1A44C0]/60 to-[#061A32]/80 border border-white/10 backdrop-blur-sm p-10 lg:p-12 mt-0 pt-16"
+          style={{ marginTop: 0 }}
+        >
+          {/* Decorative gold circle */}
+          <div className="absolute -top-6 right-12 w-20 h-20 bg-[#F5C619] rounded-full opacity-90 shadow-lg shadow-[#F5C619]/30" />
+          <div className="absolute -top-2 right-8 w-8 h-8 bg-[#F5C619]/40 rounded-full blur-sm" />
+
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
-              <h3 className="text-xl font-black text-white mb-1">{t("footer.newsletter")}</h3>
-              <p className="text-white/50 text-sm">{t("footer.newsletterDesc")}</p>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs font-bold tracking-widest uppercase mb-5 text-white/80">
+                <Sparkles className="w-3 h-3 text-[#F5C619]" />
+                Get Involved
+              </div>
+              <h2 className="text-3xl lg:text-4xl font-black leading-tight mb-4">
+                Ready to{" "}
+                <span className="text-[#F5C619] italic">make an impact?</span>
+              </h2>
+              <p className="text-white/60 text-base leading-relaxed max-w-md">
+                Your support helps us provide a future full of hope and possibility for underprivileged children in Liberia.
+              </p>
             </div>
-            <NewsletterForm />
+
+            <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-4 lg:items-end xl:items-center lg:justify-end">
+              <button
+                onClick={() => openDonate(150)}
+                className="group flex items-center justify-center gap-2 bg-[#F5C619] text-[#061A32] px-8 py-4 rounded-2xl font-black text-sm hover:bg-[#F5C619]/90 hover:scale-105 transition-all shadow-xl shadow-[#F5C619]/20"
+              >
+                <Heart className="w-4 h-4 fill-current" />
+                Become a Donor
+              </button>
+              <a
+                href="mailto:zealcare24@gmail.com?subject=Volunteer%20Inquiry%20—%20Zeal%20Care"
+                className="group flex items-center justify-center gap-2 border-2 border-white/30 text-white px-8 py-4 rounded-2xl font-black text-sm hover:border-white/70 hover:bg-white/8 transition-all"
+              >
+                Volunteer Now
+                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </a>
+            </div>
           </div>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          {/* Newsletter strip inside banner */}
+          <div className="mt-8 pt-8 border-t border-white/10">
+            <div className="grid sm:grid-cols-2 gap-4 items-center">
+              <div>
+                <p className="text-sm font-bold text-white/80 mb-0.5">Stay in the loop</p>
+                <p className="text-xs text-white/40">Get updates on our programs and impact stories.</p>
+              </div>
+              <NewsletterInline />
+            </div>
+          </div>
+        </motion.div>
 
-          {/* Brand */}
-          <div className="col-span-1 md:col-span-2 lg:col-span-1">
-            <Link href="/" className="text-2xl font-extrabold flex items-center gap-2.5 mb-6">
-              <img src="/logo.png" alt="Zeal Care" className="h-8 w-auto object-contain" />
-              <span className="text-white">ZEAL CARE</span>
+        {/* ══════════════════════════════════════════
+            MAIN FOOTER GRID
+        ══════════════════════════════════════════ */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1.2fr] gap-12 py-16 border-b border-white/8">
+
+          {/* ── Brand column ── */}
+          <div>
+            <Link href="/" className="inline-flex items-center gap-3 mb-6 group">
+              <div className="w-12 h-12 rounded-full bg-[#F5C619] flex items-center justify-center shadow-lg shadow-[#F5C619]/20 group-hover:scale-105 transition-transform">
+                <img src="/logo.png" alt="Zeal Care" className="h-7 w-auto object-contain" />
+              </div>
+              <span className="text-xl font-black tracking-wide text-white">ZEAL CARE</span>
             </Link>
-            <p className="text-primary-foreground/70 mb-6 text-sm leading-relaxed">
+
+            <p className="text-white/50 text-sm leading-relaxed mb-7 max-w-xs">
               {t("footer.tagline")}
             </p>
-            <div className="flex gap-3">
-              {socialLinks.map(({ icon: Icon, href, testId }) => (
-                <a key={testId} href={href} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all hover:scale-110" data-testid={testId}>
-                  <Icon className="w-4 h-4" />
-                </a>
-              ))}
+
+            <div className="mb-5">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-white/30 mb-3">Follow the Journey</p>
+              <div className="flex gap-2">
+                {socialLinks.map(({ icon: Icon, href, label }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="w-9 h-9 rounded-xl bg-white/6 border border-white/10 flex items-center justify-center hover:bg-[#F5C619] hover:border-[#F5C619] hover:text-[#061A32] transition-all hover:scale-110"
+                  >
+                    <Icon className="w-4 h-4" />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* ── Organization ── */}
           <div>
-            <h4 className="font-black text-sm mb-6 uppercase tracking-widest text-white">{t("footer.quickLinks")}</h4>
-            <ul className="space-y-3">
-              {([
-                [t("footer.links.about"), "/about"],
-                [t("nav.whyEmpowerment"), "/why-empowerment"],
-                [t("nav.whatWeDo"), "/what-we-do"],
-                [t("nav.ignitingPotential"), "/igniting-potential"],
-                [t("nav.media"), "/media"],
-              ] as [string, string][]).map(([label, href]) => (
-                <li key={href}>
-                  <Link href={href} className="text-primary-foreground/60 hover:text-[#F5C619] transition-colors text-sm">{label}</Link>
-                </li>
-              ))}
+            <ColHeader label="Organization" />
+            <ul className="space-y-2.5">
+              <li><FooterLink href="/about">{t("footer.links.about")}</FooterLink></li>
+              <li><FooterLink href="/who-we-are">{t("nav.whoWeAre")}</FooterLink></li>
+              <li><FooterLink href="/about/our-values">Our Values</FooterLink></li>
+              <li><FooterLink href="/about/accountability">Accountability</FooterLink></li>
+              <li><FooterLink href="/about/our-goals">Our Goals</FooterLink></li>
             </ul>
           </div>
 
-          {/* Get Involved */}
+          {/* ── Impact ── */}
           <div>
-            <h4 className="font-black text-sm mb-6 uppercase tracking-widest text-white">{t("footer.getInvolved")}</h4>
-            <GetInvolvedLinks />
+            <ColHeader label="Impact" />
+            <ul className="space-y-2.5">
+              <li><FooterLink href="/what-we-do">{t("nav.whatWeDo")}</FooterLink></li>
+              <li><FooterLink href="/why-empowerment">{t("nav.whyEmpowerment")}</FooterLink></li>
+              <li><FooterLink href="/media">News & Stories</FooterLink></li>
+              <li><FooterLink href="/igniting-potential">Ways to Give</FooterLink></li>
+              <li><FooterLink onClick={() => openDonate(150)}>Sponsor a Child</FooterLink></li>
+            </ul>
           </div>
 
-          {/* Contact */}
+          {/* ── Get in touch ── */}
           <div>
-            <h4 className="font-black text-sm mb-6 uppercase tracking-widest text-white">{t("footer.contactInfo")}</h4>
-            <ul className="space-y-4 text-sm">
-              <li className="flex items-start gap-3 text-primary-foreground/60">
-                <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#F5C619]" />
-                <span>{s.address}</span>
+            <ColHeader label="Get in Touch" />
+            <ul className="space-y-4">
+              <li>
+                <a
+                  href={`https://maps.google.com/?q=${encodeURIComponent(s.address)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-3 text-white/50 hover:text-[#F5C619] transition-colors group"
+                >
+                  <div className="w-8 h-8 rounded-xl bg-white/6 border border-white/10 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-[#F5C619]/15 group-hover:border-[#F5C619]/30 transition-all">
+                    <MapPin className="w-3.5 h-3.5 text-[#F5C619]" />
+                  </div>
+                  <span className="text-sm leading-relaxed">{s.address}</span>
+                </a>
               </li>
-              <li className="flex items-start gap-3 text-primary-foreground/60">
-                <Mail className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#F5C619]" />
-                <a href={`mailto:${s.email}`} className="hover:text-[#F5C619] transition-colors">{s.email}</a>
+              <li>
+                <a
+                  href={`tel:${s.phone.replace(/\s/g, "")}`}
+                  className="flex items-center gap-3 text-white/50 hover:text-[#F5C619] transition-colors group"
+                >
+                  <div className="w-8 h-8 rounded-xl bg-white/6 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-[#F5C619]/15 group-hover:border-[#F5C619]/30 transition-all">
+                    <Phone className="w-3.5 h-3.5 text-[#F5C619]" />
+                  </div>
+                  <span className="text-sm">{s.phone}</span>
+                </a>
               </li>
-              <li className="flex items-start gap-3 text-primary-foreground/60">
-                <Phone className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#F5C619]" />
-                <a href={`tel:${s.phone.replace(/\s/g, "")}`} className="hover:text-[#F5C619] transition-colors">{s.phone}</a>
+              <li>
+                <a
+                  href={`mailto:${s.email}`}
+                  className="flex items-center gap-3 text-white/50 hover:text-[#F5C619] transition-colors group"
+                >
+                  <div className="w-8 h-8 rounded-xl bg-white/6 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-[#F5C619]/15 group-hover:border-[#F5C619]/30 transition-all">
+                    <Mail className="w-3.5 h-3.5 text-[#F5C619]" />
+                  </div>
+                  <span className="text-sm">{s.email}</span>
+                </a>
               </li>
             </ul>
+
+            {/* Contact Us link */}
+            <a
+              href={isHome ? "#contact" : "/#contact"}
+              onClick={handleContact}
+              className="inline-flex items-center gap-2 mt-6 text-xs font-black uppercase tracking-widest text-[#F5C619]/70 hover:text-[#F5C619] transition-colors group"
+            >
+              Send us a message
+              <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
           </div>
 
         </div>
 
-        <hr className="border-primary-foreground/10 mb-8" />
-
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-primary-foreground/40 text-sm">
+        {/* ══════════════════════════════════════════
+            BOTTOM BAR
+        ══════════════════════════════════════════ */}
+        <div className="py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-white/30 text-xs">
           <p>
-            &copy; {currentYear} Zeal Care. {t("footer.rights")} Monrovia, Liberia.
-            <a href="/admin" className="ml-1 text-primary-foreground/15 hover:text-primary-foreground/35 transition-colors select-none" title="Admin">·</a>
+            &copy; {currentYear} Zeal Care. All rights reserved. Monrovia, Liberia.
+            <a href="/admin" className="ml-2 opacity-20 hover:opacity-40 transition-opacity select-none" title="Admin">·</a>
           </p>
-          <p className="text-primary-foreground/30 text-xs">
+          <p>
             Built by{" "}
             <a
               href="https://wa.me/231770787020"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-foreground/50 hover:text-[#F5C619] transition-colors font-semibold"
+              className="text-white/50 hover:text-[#F5C619] transition-colors font-semibold"
             >
               Morris L. Dorley Jr
             </a>
           </p>
-          <div className="flex gap-6">
-            <a href="mailto:info@zealcare.org?subject=Privacy%20Policy%20Inquiry" className="hover:text-primary-foreground/70 transition-colors">Privacy Policy</a>
-            <a href="mailto:info@zealcare.org?subject=Terms%20of%20Service%20Inquiry" className="hover:text-primary-foreground/70 transition-colors">Terms of Service</a>
+          <div className="flex gap-5">
+            <a href="mailto:info@zealcare.org?subject=Privacy%20Policy%20Inquiry" className="hover:text-white/60 transition-colors">Privacy Policy</a>
+            <a href="mailto:info@zealcare.org?subject=Terms%20of%20Service%20Inquiry" className="hover:text-white/60 transition-colors">Terms of Service</a>
           </div>
         </div>
 
