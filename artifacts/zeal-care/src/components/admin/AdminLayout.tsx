@@ -2,13 +2,14 @@ import { type ReactNode, useState } from "react";
 import { Link, useLocation } from "wouter";
 import {
   LayoutDashboard, Users, Heart, Settings, LogOut,
-  Menu, X, ChevronRight, Mail,
+  Menu, X, ChevronRight, Mail, MessageSquare,
 } from "lucide-react";
 
 const NAV = [
   { path: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { path: "/admin/children", label: "Children", icon: Users },
   { path: "/admin/donations", label: "Donations", icon: Heart },
+  { path: "/admin/messages", label: "Messages", icon: MessageSquare },
   { path: "/admin/newsletter", label: "Newsletter", icon: Mail },
   { path: "/admin/settings", label: "Email Settings", icon: Settings },
 ];
