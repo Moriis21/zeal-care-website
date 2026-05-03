@@ -235,6 +235,17 @@ export function Footer() {
             &copy; {currentYear} Zeal Care. {t("footer.rights")} Monrovia, Liberia.
             <a href="/admin" className="ml-1 text-primary-foreground/15 hover:text-primary-foreground/35 transition-colors select-none" title="Admin">·</a>
           </p>
+          <p className="text-primary-foreground/30 text-xs">
+            Built by{" "}
+            <a
+              href="https://wa.me/231770787020"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary-foreground/50 hover:text-[#F5C619] transition-colors font-semibold"
+            >
+              Morris L. Dorley Jr
+            </a>
+          </p>
           <div className="flex gap-6">
             <a href="mailto:info@zealcare.org?subject=Privacy%20Policy%20Inquiry" className="hover:text-primary-foreground/70 transition-colors">Privacy Policy</a>
             <a href="mailto:info@zealcare.org?subject=Terms%20of%20Service%20Inquiry" className="hover:text-primary-foreground/70 transition-colors">Terms of Service</a>
