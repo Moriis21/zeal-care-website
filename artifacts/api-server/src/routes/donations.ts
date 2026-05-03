@@ -1,7 +1,7 @@
 import { Router, type IRouter } from "express";
 import { appendDonation, readDonationLog } from "../lib/donationLog";
 import { readChildren } from "../lib/childrenStore";
-import { sendDonationNotification, sendThankYouEmail } from "../lib/mailer";
+import { sendDonationNotification, sendThankYouEmail, sendMomoInterestNotification } from "../lib/mailer";
 
 const router: IRouter = Router();
 
@@ -49,8 +49,17 @@ router.post("/donations/record", (req, res) => {
     childName, childId, message,
   };
 
-  void sendDonationNotification(payload);
-  void sendThankYouEmail(payload);
+  if (method === "momo") {
+    void sendMomoInterestNotification({
+      donorName: donorName ?? "",
+      donorEmail: donorEmail ?? "",
+      momoPhone: momoPhone ?? "",
+      amount: donationAmount,
+    });
+  } else {
+    void sendDonationNotification(payload);
+    void sendThankYouEmail(payload);
+  }
 
   res.json(computeStats());
 });
