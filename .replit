@@ -26,3 +26,11 @@ externalPort = 8080
 [[ports]]
 localPort = 19171
 externalPort = 80
+
+[userenv]
+
+[userenv.shared]
+SMTP_USER = "zealcare24@gmail.com"
+SMTP_HOST = "smtp.gmail.com"
+SMTP_PORT = "587"
+NOTIFY_EMAIL = "zealcare24@gmail.com"
