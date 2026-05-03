@@ -11,13 +11,13 @@ const leadership = [
   {
     name: "Titus S. Foko",
     role: "Founder & Executive Director",
-    img: "/attached_assets/pdf_images/img-001.jpg",
+    img: "/titus-foko.png",
     bio: "Titus S. Foko is the visionary Founder and Executive Director of Zeal Care. With a background in Development Work and Community Development, he holds a BSc in Development Work from Stella Maris Polytechnic and a Certificate in Aspire Institute Leaders' Program from Boston University. Born and raised in Liberia, Titus experienced firsthand the devastating impact of educational inequality. His personal journey — from a young person who lacked access to education and mentorship to a passionate advocate for children — is the driving force behind Zeal Care. In 2017, he conducted an educational survey across communities in Montserrado, Margibi, and Bong Counties, planting the seeds that would grow into Zeal Care. He leads with vision, integrity, and an unrelenting commitment to igniting potential in every child.",
   },
   {
     name: "Mohammed Soko Kamara",
     role: "Executive Director of Marketing & Communications",
-    img: "/attached_assets/pdf_images/img-004.jpg",
+    img: "/mohammed-kamara.png",
     bio: "Mohammed Soko Kamara leads all marketing, communications, and public engagement strategies for Zeal Care. Holding a Bachelor's Degree in Marketing Management from Starz University, Mohammed is the voice and brand steward of the organization. He received the prestigious Starz University Excellence Award and the Starz University Honor Society Award in 2025. Mohammed ensures that Zeal Care's story reaches donors, partners, and communities around the world with clarity, authenticity, and impact.",
   },
   {
