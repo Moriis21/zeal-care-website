@@ -66,20 +66,32 @@
     "badge": "Qui Sommes-Nous",
     "heading": "Allumer le génie en chaque enfant.",
     "yearsImpact": "Ans d'Impact",
-    "p1": "Zeal Care est une organisation à but non lucratif dont le siège est à Monrovia, au Libéria. Nous nous consacrons à l'autonomisation des futurs leaders africains grâce à une éducation complète, un mentorat ciblé et un accès essentiel à la technologie.",
-    "p2": "Nous avons noué des partenariats avec des communautés locales — notamment Esfans Academy à West Point Zone 405 — pour lever les obstacles à la réussite. Nous ne nous contentons pas de fournir des ressources ; nous construisons des voies pour que les enfants découvrent leur potentiel et transforment leurs communautés.",
+    "p1": "Zeal Care est une organisation à but non lucratif enregistrée qui aide les enfants défavorisés de 4 à 17 ans issus de familles à faibles ou sans revenus à réussir académiquement, à développer leur confiance sociale et leur bien-être émotionnel. Zeal Care est engagée en faveur de l'inclusivité et de la création d'opportunités qui élèvent les vies et inspirent l'espoir d'un avenir plus équitable.",
+    "p2": "Zeal Care est entièrement dirigée par des jeunes passionnés par la création d'un changement positif dans la société. Nous travaillons en partenariat avec des communautés de bidonvilles et rurales, des écoles, des donateurs et des organisations pour garantir que chaque enfant défavorisé ait accès à une éducation de qualité et aux compétences nécessaires.",
     "quote": "Quand vous donnez à un enfant les bons outils et quelqu'un qui croit en lui, son potentiel est sans limites.",
     "learnMore": "En Savoir Plus →"
   },
   "why": {
     "badge": "Pourquoi l'Autonomisation",
-    "heading": "Une Approche Globale du Changement",
-    "subtitle": "Nous nous attaquons aux causes profondes des inégalités à travers quatre piliers essentiels, créant une base solide pour la réussite.",
+    "heading": "Chaque Enfant Porte un Génie Inexploité.",
+    "subtitle": "Pour les enfants de 4 à 17 ans issus de familles à faibles revenus, les opportunités sont souvent limitées non par les capacités, mais par les circonstances. Zeal Care comble ces lacunes tôt.",
     "features": [
-      { "title": "Accès à l'Éducation", "desc": "Fournir des bourses, des fournitures scolaires et éliminer les barrières financières pour que chaque enfant puisse aller à l'école." },
-      { "title": "Compétences Technologiques", "desc": "Doter les élèves de laboratoires informatiques modernes et de cours de codage pour les préparer à l'économie numérique." },
-      { "title": "Programmes de Mentorat", "desc": "Associer les jeunes à des modèles dévoués qui guident leur développement personnel et professionnel." },
-      { "title": "Impact Communautaire", "desc": "Créer des programmes locaux durables qui élèvent des quartiers entiers, pas seulement des individus." }
+      {
+        "title": "Alphabétisation et Apprentissage",
+        "desc": "Renforcer les compétences académiques fondamentales pour que chaque enfant puisse lire, écrire et apprendre à son niveau — première étape vers une indépendance durable."
+      },
+      {
+        "title": "Sensibilisation Numérique et Technologie",
+        "desc": "Introduire les outils numériques, le codage et les programmes TIC pour préparer les enfants au marché du travail moderne et à l'économie numérique mondiale."
+      },
+      {
+        "title": "Mentorat et Compétences de Vie",
+        "desc": "Fournir un mentorat, une intelligence émotionnelle et des compétences de vie pour que les jeunes puissent relever les défis avec confiance et résilience."
+      },
+      {
+        "title": "Environnements Sûrs et Inclusifs",
+        "desc": "Créer des espaces où chaque enfant — quelle que soit son origine, son genre ou ses capacités — se sent valorisé, protégé et habilité à s'épanouir."
+      }
     ]
   },
   "programs": {
@@ -257,7 +269,7 @@
       "emailBtn": "Email : info@zealcare.org",
       "callBtn": "Appel : +231 886 727 619",
       "afterPayment": "Après le paiement, envoyez un email à",
-      "afterPaymentEmail": "zealcare24@gmail.com",
+      "afterPaymentEmail": "info@zealcare.org",
       "afterPaymentSuffix": "avec votre nom et votre ID de transaction pour confirmation.",
       "payInUSD": "Payer en USD",
       "payInLRD": "Payer en LRD",

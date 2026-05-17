@@ -66,20 +66,32 @@
     "badge": "Who We Are",
     "heading": "Igniting the genius in every child.",
     "yearsImpact": "Years of Impact",
-    "p1": "Zeal Care is a nonprofit organization headquartered in Monrovia, Liberia. We are dedicated to empowering Africa's future leaders through comprehensive education, focused mentorship, and crucial technology access.",
-    "p2": "We have partnered with local communities — including Esfans Academy at West Point Zone 405 — to break down barriers to success. We don't just provide resources; we build pathways for children to discover their potential and transform their communities.",
+    "p1": "Zeal Care is a registered nonprofit organization that empowers underprivileged children ages 4 to 17 from low- or no-income families to achieve academic success, social confidence, and emotional well-being. Zeal Care is committed to inclusivity and creating opportunities that uplift lives and inspire hope for a brighter, more equitable future.",
+    "p2": "Zeal Care is run entirely by young people who are passionate about creating positive change in society. We work in partnership with slum and rural communities, schools, donors, and organizations to ensure every underprivileged child has access to quality education and the skills needed to become an independent, influential changemaker.",
     "quote": "When you give a child the right tools and someone who believes in them, their potential is limitless.",
     "learnMore": "Learn More About Us →"
   },
   "why": {
     "badge": "Why Empowerment",
-    "heading": "A Holistic Approach to Change",
-    "subtitle": "We address the root causes of inequality through four core pillars, creating a comprehensive foundation for success.",
+    "heading": "Every Child Carries Untapped Greatness.",
+    "subtitle": "For children ages 4–17 from low or no-income families, opportunity is often limited not by ability, but by circumstance. Zeal Care closes those gaps early — creating pathways where none existed before.",
     "features": [
-      { "title": "Education Access", "desc": "Providing scholarships, school supplies, and removing financial barriers so every child can attend school." },
-      { "title": "Technology Skills", "desc": "Equipping students with modern computer labs and coding classes to prepare them for the digital economy." },
-      { "title": "Mentorship Programs", "desc": "Pairing youth with dedicated role models who guide their personal and professional development." },
-      { "title": "Community Impact", "desc": "Building sustainable local programs that uplift entire neighborhoods, not just individuals." }
+      {
+        "title": "Foundational Literacy & Learning",
+        "desc": "Strengthening core academic skills so every child can read, write, and learn at grade level — the first step toward lasting independence."
+      },
+      {
+        "title": "Digital Awareness & Technology",
+        "desc": "Introducing digital tools, coding, and ICT programs to prepare children for the modern workforce and the global digital economy."
+      },
+      {
+        "title": "Mentorship & Life Skills",
+        "desc": "Providing mentorship, emotional intelligence, and life-skills development so young people can navigate challenges with confidence and resilience."
+      },
+      {
+        "title": "Safe & Inclusive Environments",
+        "desc": "Creating spaces where every child — regardless of background, gender, or ability — feels valued, protected, and empowered to grow."
+      }
     ]
   },
   "programs": {
@@ -88,10 +100,26 @@
     "viewAll": "View All Programs",
     "learnMore": "Learn more",
     "items": [
-      { "title": "Scholar Support", "desc": "Comprehensive scholarships covering tuition, school supplies, uniforms, and backpacks for promising students who need it most." },
-      { "title": "Tech Education", "desc": "State-of-the-art computer labs teaching digital literacy, coding, and modern software skills to prepare youth for the digital economy." },
-      { "title": "Classroom Engagement", "desc": "Active school visits and interactive learning sessions that inspire curiosity, build confidence, and make education exciting." },
-      { "title": "Community Outreach", "desc": "Engaging families, local leaders, and households to build supportive environments where every child's education is valued." }
+      {
+        "title": "Education Sponsorship, Support & Advocacy",
+        "desc": "Empowering underprivileged children aged 4–17 who live in slums and rural communities. We provide registration, tuition, school supplies, uniforms, shoes, and advocate for inclusive education — especially for children with disabilities.",
+        "quote": "The best way to fight poverty is to empower people through access to quality education. – John Legend"
+      },
+      {
+        "title": "Leadership Development Programs",
+        "desc": "Structured initiatives developing personal growth, mentorship, coaching, communication, problem-solving, and emotional intelligence for children, students, and Zeal Care volunteers through training, seminars, and summits.",
+        "quote": "If your actions inspire others to dream more, learn more, do more, and become more, you are a leader. – John Quincy Adams"
+      },
+      {
+        "title": "Entrepreneurship Programs",
+        "desc": "Training underprivileged children, students, and young people with the knowledge, skills, and mindset to identify business opportunities, develop new ventures, and manage growth through seminars, summits, and workshops.",
+        "quote": "It's not about ideas. It's about making ideas happen. – Scott Belsky"
+      },
+      {
+        "title": "Career Paths in STEM & Digital Education",
+        "desc": "Collaborating with high schools to provide information and resources on STEM career pathways, plus digital literacy training through bootcamps, coding programs, ICT seminars, and awareness campaigns.",
+        "quote": "The illiterate of the 21st century will not be those who cannot read and write, but those who cannot learn, unlearn, and relearn. – Alvin Toffler"
+      }
     ]
   },
   "sponsor": {
@@ -127,10 +155,10 @@
     "subtitle": "Real children. Real families. Real change. These are the faces behind our mission.",
     "age": "Age",
     "quotes": [
-      "Before Zeal Care, I didn't know if I could finish school. Now I have a uniform, books, and people who believe in me.",
-      "Zeal Care gave me a backpack and school supplies. For the first time, I felt like I truly belonged in the classroom.",
-      "I love going to school now. My teacher says I'm one of the best readers in the class. Thank you, Zeal Care!",
-      "My family could not afford school fees. Because of Zeal Care, I can learn and dream about my future."
+      "Before Zeal Care, I didn't know if I could finish school. Now I have books, a uniform, and people who believe in me. I want to be a doctor one day.",
+      "Zeal Care gave me a backpack and school supplies, but they also gave me hope. My teacher says I am one of the best students in class.",
+      "I love going to school now. The people at Zeal Care are always there for us. I want to grow up and help children just like they helped me.",
+      "My family could not afford school fees. Zeal Care stepped in and now I go to school every day. I am learning and I am proud."
     ]
   },
   "ticker": {
@@ -257,7 +285,7 @@
       "emailBtn": "Email: info@zealcare.org",
       "callBtn": "Call: +231 886 727 619",
       "afterPayment": "After paying, email",
-      "afterPaymentEmail": "zealcare24@gmail.com",
+      "afterPaymentEmail": "info@zealcare.org",
       "afterPaymentSuffix": "with your name and transaction ID for confirmation.",
       "payInUSD": "Pay in USD",
       "payInLRD": "Pay in LRD",

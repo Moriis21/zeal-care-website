@@ -163,7 +163,7 @@ export function Footer() {
                 {t("footer.becomeaDonor")}
               </button>
               <a
-                href="mailto:zealcare24@gmail.com?subject=Volunteer%20Inquiry%20—%20Zeal%20Care"
+                href="mailto:info@zealcare.org?subject=Volunteer%20Inquiry%20—%20Zeal%20Care"
                 className="group flex items-center justify-center gap-2 border-2 border-white/30 text-white px-8 py-4 rounded-2xl font-black text-sm hover:border-white/70 hover:bg-white/8 transition-all"
               >
                 {t("footer.volunteerNow")}

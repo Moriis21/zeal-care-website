@@ -122,12 +122,12 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
         </p>
         <div className="grid sm:grid-cols-2 gap-5">
           {[
-            { icon: ShieldCheck, title: "Integrity", desc: "We do what we say and say what we mean. Every decision we make is guided by honesty, ethics, and accountability." },
-            { icon: Zap, title: "Commitment", desc: "We are passionately committed to our mission and to the children, families, and communities we serve — even when the work is hard." },
-            { icon: Globe, title: "Diversity & Inclusion", desc: "We celebrate the diversity of every individual and create a culture of belonging where every child and team member feels valued and respected." },
-            { icon: Eye, title: "Transparency & Accountability", desc: "We are open and honest about our work, our finances, and our impact, so that donors, partners, and communities can trust us completely." },
-            { icon: Lightbulb, title: "Innovation", desc: "We are committed to finding creative, effective, and scalable solutions to the complex challenge of educational inequality." },
-            { icon: Users, title: "Teamwork", desc: "We believe that together we are stronger. We collaborate with communities, partners, volunteers, and young people to multiply our impact." },
+            { icon: ShieldCheck, title: "Integrity", desc: "We fulfill our commitments and conduct ourselves in a way that is true to our identity." },
+            { icon: Heart, title: "Commitment to Community Services", desc: "We strive to create equal opportunities, foster growth, and inspire lifelong learning, ensuring every child can achieve their full potential and inspire change." },
+            { icon: Globe, title: "Diversity & Inclusion", desc: "We seek to empower under-resourced children, regardless of their ethnic and religious backgrounds, by accepting the diverse ways of life and opinions found within a multicultural environment. We respect and actively encourage the contribution of every individual and the inclusion of every child." },
+            { icon: Eye, title: "Transparency & Accountability", desc: "We uphold a culture of total accountability. The Zeal Care team is committed to transparency in every decision, ensuring our internal processes and external actions are perfectly aligned. We take full responsibility for the outcomes of our work." },
+            { icon: Lightbulb, title: "Innovation", desc: "We embrace creativity, adaptability, and new ideas to enhance our initiative so that every child has the opportunity to succeed and members to grow." },
+            { icon: Users, title: "Teamwork", desc: "We believe that collaboration, shared goals, and mutual respect are the engines of the change we seek. Together with communities, educators, donors, partners, and volunteers, we are bridging the gap for under-resourced children, maximizing our impact so that every child can thrive and succeed." },
           ].map(({ icon: Icon, title, desc }) => (
             <div key={title} className="bg-white border border-border rounded-2xl p-6 hover:shadow-md hover:border-primary/30 transition-all">
               <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3">
@@ -148,7 +148,7 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
         <div className="bg-primary rounded-2xl p-8 text-white">
           <Heart className="w-10 h-10 text-secondary mb-4" />
           <p className="text-xl font-bold leading-relaxed">
-            We believe that education is the most powerful weapon for social change, and that every child — regardless of their circumstances — deserves the opportunity to unlock their God-given potential.
+            We believe that education, leadership, entrepreneurship, and digital literacy are essential foundations. Everyone deserves access to these tools to build a fulfilling life and contribute to the world around them.
           </p>
         </div>
         <div className="space-y-5">
@@ -205,13 +205,13 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
         </p>
         <div className="grid sm:grid-cols-2 gap-5">
           {[
-            { num: "01", title: "Self-Awareness", icon: Brain, desc: "We help children understand their strengths, values, and purpose. A young person who knows themselves is equipped to navigate challenges with confidence." },
-            { num: "02", title: "Strategic Networks", icon: Link2, desc: "We connect children and youth with mentors, peers, and professionals who broaden their horizons and open doors of opportunity." },
-            { num: "03", title: "Solution-Oriented Thinking", icon: Lightbulb, desc: "We train young people to approach challenges as opportunities. Through problem-solving workshops and leadership programs, we develop creative, resilient thinkers." },
-            { num: "04", title: "Breaking Cycles of Poverty", icon: Unlock, desc: "By equipping children with education, skills, and confidence, we help them become the first in their family to break generational patterns of poverty." },
-            { num: "05", title: "Ethical Leadership", icon: Scale, desc: "We instill integrity, accountability, and servant leadership — because the next generation must lead with both competence and character." },
-            { num: "06", title: "Digital Fluency", icon: Monitor, desc: "In a rapidly changing world, digital literacy is essential. We give young people the foundational skills to participate in and shape the digital economy." },
-            { num: "07", title: "Intentional Collaboration", icon: Users, desc: "We develop the ability to work across differences and build meaningful partnerships — because collective action creates the most lasting change." },
+            { num: "01", title: "Self-Awareness", icon: Brain, desc: "Education starts with the self. We provide the space for young people to recognize their unique strengths and emotions, building the confidence and emotional intelligence necessary to lead their own lives." },
+            { num: "02", title: "Strategic Networks", icon: Link2, desc: "Success is built on community. We create the opportunity for young people to access meaningful relationships and mentors, providing the social support required to open doors that were previously closed." },
+            { num: "03", title: "Solution-Oriented Thinking", icon: Lightbulb, desc: "We move beyond a passive approach. Our young people are equipped to be proactive problem-solvers who approach every challenge with the creativity and resilience needed to build practical solutions." },
+            { num: "04", title: "Breaking Cycles of Poverty", icon: Unlock, desc: "We provide access to literacy and career-readiness programs. By integrating these into our model, we offer the specific tools needed to bypass generational barriers and achieve lasting economic independence." },
+            { num: "05", title: "Ethical Leadership", icon: Scale, desc: "We facilitate the development of leaders with integrity. Our beneficiaries gain the perspective needed to make decisions based on empathy and the collective good, ensuring they lead by example." },
+            { num: "06", title: "Digital Fluency", icon: Monitor, desc: "In a tech-driven world, we ensure children are creators, not just consumers. We provide access to the technical mastery and digital tools needed to compete and innovate in the global economy." },
+            { num: "07", title: "Intentional Collaboration", icon: Users, desc: "Meaningful change is a team sport. We provide a multicultural environment where beneficiaries and volunteers learn to work across differences and respect diverse opinions — a skill that hugely increases their future employability." },
           ].map(({ num, title, icon: Icon, desc }) => (
             <div key={num} className="bg-white border border-border rounded-2xl p-6 hover:shadow-md hover:border-primary/30 transition-all">
               <div className="flex items-center gap-3 mb-3">

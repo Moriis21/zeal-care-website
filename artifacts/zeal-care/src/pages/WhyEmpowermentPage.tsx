@@ -12,14 +12,17 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
       <div className="space-y-8">
         <div className="bg-primary rounded-2xl p-8 text-white">
           <p className="text-xl font-bold leading-relaxed">
-            "As the most effective strategy to tackle poverty and inequality, Zeal Care multiplies educational opportunities for underprivileged children and supports young people to become leaders of change."
+            At Zeal Care, we believe every child carries untapped greatness.
           </p>
         </div>
         <p className="text-muted-foreground leading-relaxed text-lg">
-          Empowerment is not charity — it is a fundamental act of justice. When we empower a child with education, we are not giving them a handout; we are giving them a hand up. We are returning to them what was always theirs: the right to learn, to grow, and to determine their own future.
+          For children ages 4 to 17 from low or no-income families, opportunity is often limited not by ability, but by circumstance. In many underserved communities in Liberia and across Africa, children lack access to quality learning support, digital tools, mentorship, and safe spaces to grow.
         </p>
         <p className="text-muted-foreground leading-relaxed">
-          Zeal Care's work is rooted in a deep conviction that poverty and inequality are not inevitable. They are the result of systems and structures that can be changed. Education is the most powerful tool we have to disrupt these systems from within, by investing in the people most affected by them.
+          To Zeal Care, empowerment means closing those gaps early — by strengthening foundational literacy and learning skills, introducing digital awareness and technology exposure, providing mentorship and life skills development, and creating safe and inclusive environments where confidence can grow. When the right support reaches the right child at the right time, transformation becomes possible — not only for that child, but for families and entire communities.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Zeal Care bases its work and policies on the principles enshrined in many binding international human rights instruments, including the Universal Declaration of Human Rights; the Convention on the Rights of the Child; United Nations General Assembly Resolution S-27/2: A World Fit for Children; and the International Labor Organization Minimum Age Convention 138 of 1973.
         </p>
         <div className="grid sm:grid-cols-2 gap-6">
           {[
@@ -68,8 +71,23 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
           ))}
         </div>
         <div className="bg-primary/5 border border-primary/20 rounded-2xl p-6">
-          <p className="font-bold text-primary mb-2">Did You Know?</p>
-          <p className="text-muted-foreground">In Liberia, many children in slum communities like Chicken Soup Factory and West Point have never set foot in a classroom. Zeal Care's survey in 2024 found that some children as old as 11 years had never attended school. These are not statistics — they are children with names, dreams, and infinite potential.</p>
+          <p className="font-bold text-primary mb-3">Our 2024–2025 Field Survey Findings</p>
+          <p className="text-muted-foreground mb-4">Zeal Care's 2024 educational survey in Chicken Soup Factory and 2025 survey in West Point Community Zone 405 revealed:</p>
+          <div className="grid sm:grid-cols-2 gap-3">
+            {[
+              { stat: "73%", label: "had no access to a computer or digital learning device" },
+              { stat: "57%", label: "dropped out of high school (ages 12–15) due to financial constraints" },
+              { stat: "33%", label: "never enrolled in school at all — age 10 had the highest rate" },
+              { stat: "49%", label: "were reading below grade level" },
+              { stat: "55%+", label: "had no structured academic support outside school hours" },
+            ].map(({ stat, label }) => (
+              <div key={stat} className="bg-white border border-border rounded-xl p-4 flex items-start gap-3">
+                <span className="text-2xl font-black text-primary flex-shrink-0">{stat}</span>
+                <p className="text-sm text-muted-foreground leading-snug">{label}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-muted-foreground text-sm mt-4 italic">We intentionally prioritize children from underserved communities because justice means ensuring each child receives what they need to succeed — not simply treating everyone the same.</p>
         </div>
       </div>
     ),

@@ -67,7 +67,7 @@ export function JoinUs() {
               variant="outline"
               className="bg-transparent border-2 border-white/40 text-white hover:bg-white/10 rounded-full px-7 py-3 text-sm font-bold h-auto transition-all"
               data-testid="button-volunteer"
-              onClick={() => { window.location.href = "mailto:zealcare24@gmail.com?subject=Volunteer Inquiry"; }}
+              onClick={() => { window.location.href = "mailto:info@zealcare.org?subject=Volunteer Inquiry"; }}
             >
               {t("joinus.volunteerCTA")}
             </Button>
