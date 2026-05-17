@@ -6,15 +6,15 @@ export function Partners() {
   const { t } = useTranslation();
 
   return (
-    <section className="py-24 bg-[#041224] overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section className="py-20 md:py-24 bg-[#061A32] overflow-hidden">
+      <div className="container mx-auto px-5 sm:px-6">
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-14"
         >
           <div className="inline-flex items-center gap-2 bg-[#F5C619]/10 border border-[#F5C619]/30 rounded-full px-5 py-2 mb-6">
             <div className="w-2 h-2 rounded-full bg-[#F5C619] animate-pulse" />

@@ -9,49 +9,65 @@ export function JoinUs() {
   const { t } = useTranslation();
 
   return (
-    <section id="join-us" className="relative py-24 md:py-32 overflow-hidden bg-[#1A44C0] text-primary-foreground">
+    <section id="join-us" className="relative py-20 md:py-28 overflow-hidden text-primary-foreground">
+      {/* Background image with dark overlay */}
       <div className="absolute inset-0 z-0">
-        <img 
+        <img
           src={joinBg}
-          alt="Zeal Care team with children in the community" 
-          className="w-full h-full object-cover"
+          alt="Zeal Care team with children in the community"
+          className="w-full h-full object-cover object-center"
+          loading="lazy"
+          decoding="async"
         />
-        <div className="absolute inset-0 bg-[#061A32]/75"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent"></div>
+        {/* Two-layer overlay: brand navy + gradient for readability */}
+        <div className="absolute inset-0 bg-[#061A32]/78" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#061A32]/60 via-transparent to-transparent" />
       </div>
 
-      <div className="container relative z-10 mx-auto px-4 text-center max-w-4xl">
+      {/* Content */}
+      <div className="relative z-10 container mx-auto px-5 sm:px-6 text-center max-w-3xl">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.65 }}
         >
-          <div className="inline-block px-4 py-1.5 rounded-full bg-secondary text-primary text-sm font-bold tracking-wider mb-8 uppercase" data-testid="badge-join">
+          {/* Badge */}
+          <div
+            className="inline-block px-4 py-1.5 rounded-full bg-secondary text-primary text-xs font-bold tracking-widest mb-6 uppercase"
+            data-testid="badge-join"
+          >
             {t("joinus.badge")}
           </div>
-          
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-extrabold mb-6 md:mb-8 leading-tight drop-shadow-lg" data-testid="heading-join">
+
+          {/* Heading */}
+          <h2
+            className="font-extrabold mb-4 leading-tight text-balance"
+            style={{ fontSize: "clamp(2rem, 5.5vw, 3.75rem)" }}
+            data-testid="heading-join"
+          >
             {t("joinus.heading")}
           </h2>
-          
-          <p className="text-lg sm:text-xl md:text-2xl text-primary-foreground/90 mb-10 md:mb-12 leading-relaxed max-w-2xl mx-auto drop-shadow-md">
+
+          {/* Sub-copy */}
+          <p className="text-base md:text-lg text-white/75 mb-8 leading-relaxed max-w-xl mx-auto">
             {t("joinus.subtitle")}
           </p>
-          
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
+
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
             <Button
               onClick={() => openDonate(150)}
-              className="bg-secondary text-primary hover:bg-secondary/90 rounded-full px-7 py-3 text-base font-bold h-auto"
+              className="bg-secondary text-primary hover:bg-secondary/90 rounded-full px-7 py-3 text-sm font-bold h-auto shadow-lg hover:scale-105 transition-transform"
               data-testid="button-sponsor-large"
             >
               {t("joinus.sponsorCTA")}
             </Button>
             <Button
               variant="outline"
-              className="bg-transparent border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary rounded-full px-7 py-3 text-base font-bold h-auto"
+              className="bg-transparent border-2 border-white/40 text-white hover:bg-white/10 rounded-full px-7 py-3 text-sm font-bold h-auto transition-all"
               data-testid="button-volunteer"
-              onClick={() => window.location.href = "mailto:zealcare24@gmail.com?subject=Volunteer Inquiry"}
+              onClick={() => { window.location.href = "mailto:zealcare24@gmail.com?subject=Volunteer Inquiry"; }}
             >
               {t("joinus.volunteerCTA")}
             </Button>

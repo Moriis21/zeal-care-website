@@ -71,10 +71,10 @@ export function Gallery() {
   const allPhotos = useMemo(() => [...cmsPhotos, ...photos], [cmsPhotos]);
 
   return (
-    <section id="gallery" className="py-24 bg-[#061A32]">
+    <section id="gallery" className="py-20 md:py-24 bg-[#061A32]">
       <div className="container mx-auto px-4">
 
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-10 md:mb-12 px-5 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

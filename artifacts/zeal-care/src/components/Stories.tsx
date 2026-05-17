@@ -19,10 +19,10 @@ export function Stories() {
   const STORY_DATA = STORY_META.map((s, i) => ({ ...s, quote: quotes[i] ?? "" }));
 
   return (
-    <section id="stories" className="py-24 bg-foreground text-background">
-      <div className="container mx-auto px-4">
-        
-        <div className="text-center max-w-3xl mx-auto mb-16">
+    <section id="stories" className="py-20 md:py-24 bg-foreground text-background">
+      <div className="container mx-auto px-5 sm:px-6">
+
+        <div className="text-center max-w-2xl mx-auto mb-10 md:mb-12">
           <div className="inline-block px-3 py-1 rounded-full bg-background/10 text-background text-sm font-bold tracking-wider mb-4 uppercase">
             {t("stories.badge")}
           </div>
@@ -34,7 +34,7 @@ export function Stories() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 max-w-7xl mx-auto">
           {STORY_DATA.map((story, index) => (
             <motion.div
               key={index}

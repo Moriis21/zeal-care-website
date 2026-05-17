@@ -15,12 +15,8 @@ function Counter({ end, suffix = "", duration = 2 }: { end: number; suffix?: str
     const increment = end / (duration * 60);
     const timer = setInterval(() => {
       start += increment;
-      if (start >= end) {
-        setCount(end);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
+      if (start >= end) { setCount(end); clearInterval(timer); }
+      else { setCount(Math.floor(start)); }
     }, 1000 / 60);
     return () => clearInterval(timer);
   }, [end, duration, isInView]);
@@ -40,36 +36,39 @@ export function StatsBar() {
   const s = content?.settings ?? DEFAULT_CONTENT.settings;
 
   const scholars = parseNum(s.scholarCount);
-  const schools = parseNum(s.partnerSchools);
-  const tech = parseNum(s.techHours);
+  const schools  = parseNum(s.partnerSchools);
+  const tech     = parseNum(s.techHours);
 
   const stats = [
     { value: scholars.num, suffix: scholars.suffix + "+", label: t("stats.activeScholars") },
-    { value: 12, suffix: t("stats.yearSuffix"), label: t("stats.impactPromise") },
-    { value: schools.num, suffix: schools.suffix + "+", label: t("stats.partnerSchools") },
+    { value: 12,           suffix: t("stats.yearSuffix"),  label: t("stats.impactPromise")  },
+    { value: schools.num,  suffix: schools.suffix + "+",   label: t("stats.partnerSchools") },
     { value: Math.round(tech.num / 1000), suffix: "k" + tech.suffix, label: t("stats.techHours") },
-    { value: 100, suffix: "%", label: t("stats.transparency") },
+    { value: 100,          suffix: "%",                    label: t("stats.transparency")   },
   ];
 
   return (
-    <section className="bg-background py-12 relative z-20 -mt-10 lg:-mt-16 mx-4 md:mx-auto max-w-7xl rounded-2xl shadow-xl border border-border">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-center">
+    <section className="bg-background py-10 border-b border-border">
+      <div className="container mx-auto px-5 sm:px-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8 text-center">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              className="flex flex-col items-center"
+              transition={{ delay: index * 0.08, duration: 0.45 }}
+              className={`flex flex-col items-center ${
+                /* hide the 5th stat on 2-col grid so it doesn't orphan */
+                index === 4 ? "col-span-2 sm:col-span-1" : ""
+              }`}
               data-testid={`stat-item-${index}`}
             >
-              <div className="text-4xl md:text-5xl font-extrabold text-primary mb-2 flex items-baseline">
+              <div className="text-3xl md:text-4xl font-extrabold text-primary mb-1 tabular-nums">
                 <Counter end={stat.value} suffix={stat.suffix} />
               </div>
-              <div className="text-sm font-bold uppercase tracking-wider text-center">
-                <span className="text-primary/70">{stat.label}</span>
+              <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground text-center leading-snug max-w-[10ch]">
+                {stat.label}
               </div>
             </motion.div>
           ))}
