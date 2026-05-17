@@ -65,26 +65,26 @@ export function Navbar() {
           <div className="bg-white text-primary text-xs py-2 px-4">
             <div className="container mx-auto flex flex-wrap justify-between items-center gap-2">
               <div className="flex items-center gap-5">
-                <a href={`mailto:${s.email}`} className="flex items-center gap-1.5 hover:text-[#1A44C0] transition-colors font-medium">
-                  <Mail className="w-3.5 h-3.5 text-[#1A44C0]" />
+                <a href={`mailto:${s.email}`} className="flex items-center gap-1.5 hover:text-[#0B5FA8] transition-colors font-medium">
+                  <Mail className="w-3.5 h-3.5 text-[#0B5FA8]" />
                   <span className="hidden sm:inline">{s.email}</span>
                 </a>
                 <span className="hidden sm:block w-px h-3.5 bg-gray-300" />
-                <a href={`tel:${s.phone.replace(/\s/g, "")}`} className="flex items-center gap-1.5 hover:text-[#1A44C0] transition-colors font-medium">
-                  <Phone className="w-3.5 h-3.5 text-[#1A44C0]" />
+                <a href={`tel:${s.phone.replace(/\s/g, "")}`} className="flex items-center gap-1.5 hover:text-[#0B5FA8] transition-colors font-medium">
+                  <Phone className="w-3.5 h-3.5 text-[#0B5FA8]" />
                   <span className="hidden sm:inline">{s.phone}</span>
                 </a>
                 <span className="hidden md:block w-px h-3.5 bg-gray-300" />
                 <span className="hidden md:flex items-center gap-1.5 text-gray-500">
-                  <MapPin className="w-3.5 h-3.5 text-[#1A44C0]" />
+                  <MapPin className="w-3.5 h-3.5 text-[#0B5FA8]" />
                   {s.address}
                 </span>
               </div>
               <div className="flex items-center gap-3">
                 <span className="hidden sm:block text-xs font-bold text-gray-400 uppercase tracking-widest">Social:</span>
-                <a href="https://www.facebook.com/profile.php?id=61561063778243" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-primary hover:text-[#1A44C0] transition-colors"><Facebook className="w-3.5 h-3.5" /></a>
-                <a href="https://www.instagram.com/zealcare2024?igsh=MTU2emRiMHBmd3d1Zw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-primary hover:text-[#1A44C0] transition-colors"><Instagram className="w-3.5 h-3.5" /></a>
-                <a href="https://www.linkedin.com/company/zeal-care" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-primary hover:text-[#1A44C0] transition-colors"><Linkedin className="w-3.5 h-3.5" /></a>
+                <a href="https://www.facebook.com/profile.php?id=61561063778243" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-primary hover:text-[#0B5FA8] transition-colors"><Facebook className="w-3.5 h-3.5" /></a>
+                <a href="https://www.instagram.com/zealcare2024?igsh=MTU2emRiMHBmd3d1Zw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-primary hover:text-[#0B5FA8] transition-colors"><Instagram className="w-3.5 h-3.5" /></a>
+                <a href="https://www.linkedin.com/company/zeal-care" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-primary hover:text-[#0B5FA8] transition-colors"><Linkedin className="w-3.5 h-3.5" /></a>
                 <div className="h-4 w-px bg-gray-200 mx-1" />
                 <LanguageSwitcher light />
               </div>

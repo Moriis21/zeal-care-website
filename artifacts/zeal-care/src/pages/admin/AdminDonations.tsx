@@ -132,11 +132,11 @@ export default function AdminDonations() {
             placeholder="Search donor, email, phone…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#1A44C0] w-64"
+            className="border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#0B5FA8] w-64"
           />
           <button
             onClick={exportCsv}
-            className="flex items-center gap-2 bg-[#061A32] text-white px-4 py-2.5 rounded-xl text-sm font-bold hover:bg-[#1A44C0] transition-colors"
+            className="flex items-center gap-2 bg-[#061A32] text-white px-4 py-2.5 rounded-xl text-sm font-bold hover:bg-[#0B5FA8] transition-colors"
           >
             <Download className="w-4 h-4" />
             Export CSV
@@ -149,7 +149,7 @@ export default function AdminDonations() {
             onClick={() => setTab("all")}
             className={`px-4 py-2.5 text-sm font-bold border-b-2 transition-colors ${
               tab === "all"
-                ? "border-[#1A44C0] text-[#1A44C0]"
+                ? "border-[#0B5FA8] text-[#0B5FA8]"
                 : "border-transparent text-slate-400 hover:text-slate-600"
             }`}
           >
@@ -242,7 +242,7 @@ export default function AdminDonations() {
               </p>
             </div>
             <div className="bg-white rounded-2xl border border-slate-200 p-4 text-center">
-              <p className="text-2xl font-black text-[#1A44C0]">${total.toLocaleString()}</p>
+              <p className="text-2xl font-black text-[#0B5FA8]">${total.toLocaleString()}</p>
               <p className="text-xs text-slate-400 font-semibold">
                 {tab === "momo" ? "Intended Amount" : "Total Amount"}
               </p>
@@ -262,7 +262,7 @@ export default function AdminDonations() {
 
         {loading ? (
           <div className="flex items-center justify-center h-48">
-            <Loader2 className="w-7 h-7 animate-spin text-[#1A44C0]" />
+            <Loader2 className="w-7 h-7 animate-spin text-[#0B5FA8]" />
           </div>
         ) : filtered.length === 0 ? (
           <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center text-slate-400">
@@ -319,7 +319,7 @@ export default function AdminDonations() {
                       <Mail className="w-3.5 h-3.5 text-slate-400 flex-shrink-0" />
                       <a
                         href={`mailto:${r.donorEmail}`}
-                        className="text-xs text-slate-500 hover:text-[#1A44C0] transition-colors truncate"
+                        className="text-xs text-slate-500 hover:text-[#0B5FA8] transition-colors truncate"
                       >
                         {r.donorEmail}
                       </a>
@@ -365,7 +365,7 @@ export default function AdminDonations() {
                         <p className="font-bold text-[#061A32]">{r.donorName || "Anonymous"}</p>
                         {r.donorEmail && <p className="text-xs text-slate-400">{r.donorEmail}</p>}
                       </td>
-                      <td className="px-5 py-3.5 font-black text-[#1A44C0]">${r.amount.toLocaleString()}</td>
+                      <td className="px-5 py-3.5 font-black text-[#0B5FA8]">${r.amount.toLocaleString()}</td>
                       <td className="px-5 py-3.5">
                         <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${METHOD_COLOR[r.method] ?? "bg-slate-100 text-slate-600"}`}>
                           {METHOD_LABEL[r.method] ?? r.method}

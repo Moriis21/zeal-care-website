@@ -24,7 +24,7 @@ const TABS: { id: TabId; label: string; icon: React.ElementType }[] = [
   { id: "ignitingPotential", label: "Igniting Potential", icon: Zap },
 ];
 
-const inputClass = "w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1A44C0]/30 focus:border-[#1A44C0]";
+const inputClass = "w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0B5FA8]/30 focus:border-[#0B5FA8]";
 const textareaClass = `${inputClass} resize-none`;
 
 function Field({ label, value, onChange, multiline = false, rows = 3 }: {
@@ -35,10 +35,10 @@ function Field({ label, value, onChange, multiline = false, rows = 3 }: {
       <label className="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-1.5">{label}</label>
       {multiline ? (
         <textarea rows={rows} value={value} onChange={(e) => onChange(e.target.value)}
-          className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#1A44C0]/30 focus:border-[#1A44C0] transition-colors resize-none" />
+          className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0B5FA8]/30 focus:border-[#0B5FA8] transition-colors resize-none" />
       ) : (
         <input value={value} onChange={(e) => onChange(e.target.value)}
-          className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#1A44C0]/30 focus:border-[#1A44C0] transition-colors" />
+          className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0B5FA8]/30 focus:border-[#0B5FA8] transition-colors" />
       )}
     </div>
   );
@@ -52,7 +52,7 @@ function SectionCard({ title, children, onSave, saving }: {
       <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
         <h3 className="font-bold text-[#061A32]">{title}</h3>
         <button onClick={onSave} disabled={saving}
-          className="flex items-center gap-2 bg-[#1A44C0] text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-[#1A44C0]/90 transition-colors disabled:opacity-60">
+          className="flex items-center gap-2 bg-[#0B5FA8] text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-[#0B5FA8]/90 transition-colors disabled:opacity-60">
           {saving ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Save className="w-3.5 h-3.5" />}
           Save
         </button>
@@ -67,7 +67,7 @@ function CardHeader({ title, onSave, saving }: { title: string; onSave: () => vo
     <div className="flex items-center justify-between mb-4">
       <h3 className="font-bold text-[#061A32]">{title}</h3>
       <button onClick={onSave} disabled={saving}
-        className="flex items-center gap-2 bg-[#1A44C0] text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-[#1A44C0]/90 transition-colors disabled:opacity-60">
+        className="flex items-center gap-2 bg-[#0B5FA8] text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-[#0B5FA8]/90 transition-colors disabled:opacity-60">
         {saving ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Save className="w-3.5 h-3.5" />}
         Save
       </button>
@@ -122,7 +122,7 @@ function PhotoUploader({ url, onChange, token }: { url: string; onChange: (url: 
         <div className="flex-1 space-y-2">
           <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={handleFile} />
           <button type="button" onClick={() => fileRef.current?.click()} disabled={uploading}
-            className="flex items-center gap-1.5 bg-[#1A44C0] text-white px-3 py-1.5 rounded-lg text-xs font-semibold hover:bg-[#1A44C0]/90 transition-colors disabled:opacity-60 w-full justify-center">
+            className="flex items-center gap-1.5 bg-[#0B5FA8] text-white px-3 py-1.5 rounded-lg text-xs font-semibold hover:bg-[#0B5FA8]/90 transition-colors disabled:opacity-60 w-full justify-center">
             {uploading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Upload className="w-3.5 h-3.5" />}
             {uploading ? "Uploading..." : "Upload Photo"}
           </button>
@@ -171,7 +171,7 @@ function ArrayEditor({ label, items, onUpdate, renderItem, renderForm, defaultIt
     <div>
       <div className="flex items-center justify-between mb-3">
         <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">{label} ({items.length})</label>
-        <button onClick={startAdd} className="flex items-center gap-1.5 text-xs font-semibold text-[#1A44C0] hover:text-[#1A44C0]/80 transition-colors">
+        <button onClick={startAdd} className="flex items-center gap-1.5 text-xs font-semibold text-[#0B5FA8] hover:text-[#0B5FA8]/80 transition-colors">
           <Plus className="w-3.5 h-3.5" /> Add
         </button>
       </div>
@@ -186,7 +186,7 @@ function ArrayEditor({ label, items, onUpdate, renderItem, renderForm, defaultIt
               <div className="p-4 bg-blue-50 space-y-3">
                 {renderForm(draft, setDraft)}
                 <div className="flex gap-2">
-                  <button onClick={saveEdit} className="flex items-center gap-1.5 bg-[#1A44C0] text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><Check className="w-3 h-3" /> Save</button>
+                  <button onClick={saveEdit} className="flex items-center gap-1.5 bg-[#0B5FA8] text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><Check className="w-3 h-3" /> Save</button>
                   <button onClick={cancelEdit} className="flex items-center gap-1.5 text-slate-500 px-3 py-1.5 rounded-lg text-xs font-semibold hover:bg-slate-100"><X className="w-3 h-3" /> Cancel</button>
                 </div>
               </div>
@@ -198,7 +198,7 @@ function ArrayEditor({ label, items, onUpdate, renderItem, renderForm, defaultIt
                 </div>
                 <div className="flex-1 min-w-0">{renderItem(item, idx)}</div>
                 <div className="flex gap-1.5 flex-shrink-0">
-                  <button onClick={() => startEdit(idx)} className="p-1.5 text-slate-400 hover:text-[#1A44C0] hover:bg-blue-50 rounded-lg transition-colors"><Pencil className="w-3.5 h-3.5" /></button>
+                  <button onClick={() => startEdit(idx)} className="p-1.5 text-slate-400 hover:text-[#0B5FA8] hover:bg-blue-50 rounded-lg transition-colors"><Pencil className="w-3.5 h-3.5" /></button>
                   <button onClick={() => remove(idx)} className="p-1.5 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"><Trash2 className="w-3.5 h-3.5" /></button>
                 </div>
               </div>
@@ -209,7 +209,7 @@ function ArrayEditor({ label, items, onUpdate, renderItem, renderForm, defaultIt
           <div className="p-4 bg-blue-50 space-y-3">
             {renderForm(draft, setDraft)}
             <div className="flex gap-2">
-              <button onClick={saveAdd} className="flex items-center gap-1.5 bg-[#1A44C0] text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><Check className="w-3 h-3" /> Add</button>
+              <button onClick={saveAdd} className="flex items-center gap-1.5 bg-[#0B5FA8] text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><Check className="w-3 h-3" /> Add</button>
               <button onClick={cancelEdit} className="flex items-center gap-1.5 text-slate-500 px-3 py-1.5 rounded-lg text-xs font-semibold hover:bg-slate-100"><X className="w-3 h-3" /> Cancel</button>
             </div>
           </div>
@@ -278,7 +278,7 @@ export default function AdminContent() {
     return (
       <AdminLayout>
         <div className="flex items-center justify-center h-64">
-          <Loader2 className="w-8 h-8 animate-spin text-[#1A44C0]" />
+          <Loader2 className="w-8 h-8 animate-spin text-[#0B5FA8]" />
         </div>
       </AdminLayout>
     );
@@ -298,7 +298,7 @@ export default function AdminContent() {
             <button key={id} onClick={() => setActiveTab(id)}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                 activeTab === id
-                  ? "bg-[#1A44C0] text-white shadow-sm"
+                  ? "bg-[#0B5FA8] text-white shadow-sm"
                   : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-50"
               }`}>
               <Icon className="w-4 h-4" />
@@ -445,7 +445,7 @@ export default function AdminContent() {
                       </div>
                       <div className="min-w-0">
                         <p className="text-sm font-semibold text-[#061A32] truncate">{photo.alt || "No caption"}</p>
-                        <span className="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#1A44C0]/10 text-[#1A44C0] mt-1">
+                        <span className="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#0B5FA8]/10 text-[#0B5FA8] mt-1">
                           {photo.category}
                         </span>
                       </div>

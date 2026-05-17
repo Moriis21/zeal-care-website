@@ -55,12 +55,14 @@
     "languagesSupported": "اللغات المدعومة"
   },
   "stats": {
-    "activeScholars": "الطلاب النشطون",
+    "activeScholars": "الأطفال المكفولون",
     "impactPromise": "وعد التأثير",
     "partnerSchools": "المدارس الشريكة",
     "techHours": "ساعات التقنية",
     "transparency": "الشفافية",
-    "yearSuffix": " سنة"
+    "yearSuffix": " سنة",
+    "corePrograms": "البرامج الأساسية",
+    "communities": "المجتمعات المخدومة"
   },
   "about": {
     "badge": "من نحن",

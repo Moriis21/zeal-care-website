@@ -73,7 +73,7 @@ export function BackToTop() {
           </svg>
 
           {/* Centre disc */}
-          <div className="absolute inset-[5px] rounded-full bg-[#061A32] flex items-center justify-center group-hover:bg-[#1A44C0] transition-colors duration-300">
+          <div className="absolute inset-[5px] rounded-full bg-[#061A32] flex items-center justify-center group-hover:bg-[#0B5FA8] transition-colors duration-300">
             {/* Animated chevron arrow */}
             <motion.svg
               width="16"

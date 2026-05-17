@@ -25,19 +25,19 @@ type Child = {
 };
 
 const AVATAR_COLORS = [
-  "#1A44C0", "#7C3AED", "#059669", "#DC2626",
+  "#0B5FA8", "#7C3AED", "#059669", "#DC2626",
   "#D97706", "#DB2777", "#0891B2", "#16A34A", "#EA580C", "#BE185D",
 ];
 
 const EMPTY: Omit<Child, "id"> = {
   name: "", age: 10, grade: "", school: "", location: "Monrovia, Liberia",
   story: "", needs: [], isSponsored: false, joinedYear: new Date().getFullYear(),
-  avatarColor: "#1A44C0", photo: "",
+  avatarColor: "#0B5FA8", photo: "",
 };
 
 type Tab = "all" | "available" | "sponsored";
 
-const inputCls = "w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-[#1A44C0]";
+const inputCls = "w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-[#0B5FA8]";
 
 function PhotoUploader({ url, onChange, token }: {
   url: string;
@@ -92,7 +92,7 @@ function PhotoUploader({ url, onChange, token }: {
             type="button"
             onClick={() => fileRef.current?.click()}
             disabled={uploading}
-            className="flex items-center justify-center gap-1.5 w-full bg-[#1A44C0] text-white px-3 py-2 rounded-xl text-xs font-semibold hover:bg-[#1A44C0]/90 transition-colors disabled:opacity-60"
+            className="flex items-center justify-center gap-1.5 w-full bg-[#0B5FA8] text-white px-3 py-2 rounded-xl text-xs font-semibold hover:bg-[#0B5FA8]/90 transition-colors disabled:opacity-60"
           >
             {uploading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Upload className="w-3.5 h-3.5" />}
             {uploading ? "Uploading…" : "Upload Photo"}
@@ -165,7 +165,7 @@ function ChildModal({
                 onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
             ) : (
               <div className="w-10 h-10 rounded-full flex items-center justify-center font-black text-lg text-white"
-                style={{ backgroundColor: form.avatarColor ?? "#1A44C0" }}>
+                style={{ backgroundColor: form.avatarColor ?? "#0B5FA8" }}>
                 {form.name?.[0] ?? "?"}
               </div>
             )}
@@ -183,7 +183,7 @@ function ChildModal({
               onClick={() => setActiveTab(t)}
               className={`py-3 px-4 text-sm font-bold border-b-2 transition-colors capitalize ${
                 activeTab === t
-                  ? "border-[#1A44C0] text-[#1A44C0]"
+                  ? "border-[#0B5FA8] text-[#0B5FA8]"
                   : "border-transparent text-slate-400 hover:text-slate-600"
               }`}
             >
@@ -211,7 +211,7 @@ function ChildModal({
                   value={form.story ?? ""}
                   onChange={(e) => setForm((f) => ({ ...f, story: e.target.value }))}
                   placeholder="The child's background and why they need support…"
-                  className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-[#1A44C0] resize-none"
+                  className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-[#0B5FA8] resize-none"
                 />
               </div>
               <div>
@@ -465,7 +465,7 @@ export default function AdminChildren() {
             placeholder="Search by name, school, sponsor…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#1A44C0] w-56"
+            className="border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#0B5FA8] w-56"
           />
           <button
             onClick={() => setModal(EMPTY)}
@@ -491,7 +491,7 @@ export default function AdminChildren() {
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all ${
                 tab === key
                   ? "bg-[#061A32] text-white"
-                  : "bg-white border border-slate-200 text-slate-500 hover:border-[#1A44C0] hover:text-[#1A44C0]"
+                  : "bg-white border border-slate-200 text-slate-500 hover:border-[#0B5FA8] hover:text-[#0B5FA8]"
               }`}
             >
               <Icon className="w-4 h-4" />
@@ -509,7 +509,7 @@ export default function AdminChildren() {
 
         {loading ? (
           <div className="flex items-center justify-center h-48">
-            <Loader2 className="w-7 h-7 animate-spin text-[#1A44C0]" />
+            <Loader2 className="w-7 h-7 animate-spin text-[#0B5FA8]" />
           </div>
         ) : filtered.length === 0 ? (
           <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center">

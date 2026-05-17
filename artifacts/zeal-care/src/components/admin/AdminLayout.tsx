@@ -80,7 +80,7 @@ export function AdminLayout({ children, unreadMessages = 0 }: AdminLayoutProps) 
                 onClick={() => setSidebarOpen(false)}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all ${
                   active
-                    ? "bg-[#1A44C0] text-white"
+                    ? "bg-[#0B5FA8] text-white"
                     : "text-white/60 hover:bg-white/5 hover:text-white"
                 }`}
               >
@@ -134,7 +134,7 @@ export function AdminLayout({ children, unreadMessages = 0 }: AdminLayoutProps) 
             </h1>
           </div>
           {unreadMessages > 0 && (
-            <Link href="/admin/messages" className="flex items-center gap-1.5 text-xs font-bold text-[#1A44C0] bg-[#1A44C0]/10 px-3 py-1.5 rounded-full hover:bg-[#1A44C0]/20 transition-colors">
+            <Link href="/admin/messages" className="flex items-center gap-1.5 text-xs font-bold text-[#0B5FA8] bg-[#0B5FA8]/10 px-3 py-1.5 rounded-full hover:bg-[#0B5FA8]/20 transition-colors">
               <MessageSquare className="w-3.5 h-3.5" />
               {unreadMessages} unread
             </Link>

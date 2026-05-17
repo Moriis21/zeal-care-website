@@ -71,7 +71,7 @@ export function Partners() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="bg-gradient-to-r from-[#1A44C0]/30 to-transparent border border-white/10 rounded-2xl px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4"
+          className="bg-gradient-to-r from-[#0B5FA8]/30 to-transparent border border-white/10 rounded-2xl px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4"
         >
           <div>
             <p className="text-white font-bold text-lg">{t("partners.ctaHeading")}</p>

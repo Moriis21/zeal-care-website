@@ -157,7 +157,7 @@ export default function AdminMessages() {
             <h2 className="text-2xl font-black text-[#061A32] flex items-center gap-2">
               Messages
               {unreadCount > 0 && (
-                <span className="bg-[#1A44C0] text-white text-xs font-black px-2.5 py-1 rounded-full">
+                <span className="bg-[#0B5FA8] text-white text-xs font-black px-2.5 py-1 rounded-full">
                   {unreadCount} new
                 </span>
               )}
@@ -169,7 +169,7 @@ export default function AdminMessages() {
               <button
                 onClick={() => void handleMarkAllRead()}
                 disabled={markingAllRead}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-500 border border-slate-200 bg-white hover:border-[#1A44C0] hover:text-[#1A44C0] transition-all"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-500 border border-slate-200 bg-white hover:border-[#0B5FA8] hover:text-[#0B5FA8] transition-all"
               >
                 {markingAllRead ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <MarkAllIcon className="w-3.5 h-3.5" />}
                 Mark all read
@@ -177,7 +177,7 @@ export default function AdminMessages() {
             )}
             <button
               onClick={() => void reload()}
-              className="p-2 rounded-xl text-slate-400 border border-slate-200 bg-white hover:border-[#1A44C0] hover:text-[#1A44C0] transition-all"
+              className="p-2 rounded-xl text-slate-400 border border-slate-200 bg-white hover:border-[#0B5FA8] hover:text-[#0B5FA8] transition-all"
               title="Refresh"
             >
               <RefreshCw className="w-4 h-4" />
@@ -188,7 +188,7 @@ export default function AdminMessages() {
                 placeholder="Search messages…"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="border border-slate-200 rounded-xl pl-9 pr-4 py-2 text-sm focus:outline-none focus:border-[#1A44C0] w-48"
+                className="border border-slate-200 rounded-xl pl-9 pr-4 py-2 text-sm focus:outline-none focus:border-[#0B5FA8] w-48"
               />
               {search && (
                 <button onClick={() => setSearch("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-300 hover:text-slate-500">
@@ -208,12 +208,12 @@ export default function AdminMessages() {
               className={`px-4 py-2 rounded-xl text-sm font-bold capitalize transition-all ${
                 filter === f
                   ? "bg-[#061A32] text-white"
-                  : "bg-white border border-slate-200 text-slate-500 hover:border-[#1A44C0] hover:text-[#1A44C0]"
+                  : "bg-white border border-slate-200 text-slate-500 hover:border-[#0B5FA8] hover:text-[#0B5FA8]"
               }`}
             >
               {f}
               {f === "unread" && unreadCount > 0 && (
-                <span className={`ml-1.5 text-xs font-black ${filter === "unread" ? "text-[#F5C619]" : "text-[#1A44C0]"}`}>
+                <span className={`ml-1.5 text-xs font-black ${filter === "unread" ? "text-[#F5C619]" : "text-[#0B5FA8]"}`}>
                   {unreadCount}
                 </span>
               )}
@@ -223,7 +223,7 @@ export default function AdminMessages() {
 
         {loading ? (
           <div className="flex items-center justify-center h-48">
-            <Loader2 className="w-7 h-7 animate-spin text-[#1A44C0]" />
+            <Loader2 className="w-7 h-7 animate-spin text-[#0B5FA8]" />
           </div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
@@ -243,10 +243,10 @@ export default function AdminMessages() {
                     onClick={() => void handleOpen(msg)}
                     className={`rounded-2xl border p-4 cursor-pointer transition-all hover:shadow-sm ${
                       selected?.id === msg.id
-                        ? "border-[#1A44C0] bg-[#1A44C0]/5 shadow-sm"
+                        ? "border-[#0B5FA8] bg-[#0B5FA8]/5 shadow-sm"
                         : msg.read
                         ? "border-slate-200 bg-white hover:border-slate-300"
-                        : "border-[#1A44C0]/30 bg-blue-50/50 hover:border-[#1A44C0]/50"
+                        : "border-[#0B5FA8]/30 bg-blue-50/50 hover:border-[#0B5FA8]/50"
                     }`}
                   >
                     <div className="flex items-start gap-3">
@@ -255,7 +255,7 @@ export default function AdminMessages() {
                         <div className="flex items-center justify-between gap-2 mb-0.5">
                           <p className={`text-sm truncate ${msg.read ? "font-semibold text-slate-700" : "font-black text-[#061A32]"}`}>
                             {msg.name}
-                            {!msg.read && <Circle className="w-2 h-2 text-[#1A44C0] fill-[#1A44C0] inline ml-1.5 mb-0.5" />}
+                            {!msg.read && <Circle className="w-2 h-2 text-[#0B5FA8] fill-[#0B5FA8] inline ml-1.5 mb-0.5" />}
                           </p>
                           <p className="text-xs text-slate-400 whitespace-nowrap flex-shrink-0">{timeAgo(msg.timestamp)}</p>
                         </div>
@@ -280,7 +280,7 @@ export default function AdminMessages() {
                     <Initials name={selected.name} />
                     <div className="flex-1 min-w-0">
                       <p className="font-black text-[#061A32] text-base leading-tight">{selected.name}</p>
-                      <a href={`mailto:${selected.email}`} className="text-[#1A44C0] text-xs hover:underline">{selected.email}</a>
+                      <a href={`mailto:${selected.email}`} className="text-[#0B5FA8] text-xs hover:underline">{selected.email}</a>
                     </div>
                     <div className="flex items-center gap-1.5 ml-2 flex-shrink-0">
                       <span className="text-xs text-slate-400 hidden sm:block">
@@ -331,7 +331,7 @@ export default function AdminMessages() {
                       value={replyText}
                       onChange={(e) => setReplyText(e.target.value)}
                       placeholder={`Write your reply to ${selected.name.split(" ")[0]}…`}
-                      className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm resize-none focus:outline-none focus:border-[#1A44C0] transition-colors placeholder:text-slate-300"
+                      className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm resize-none focus:outline-none focus:border-[#0B5FA8] transition-colors placeholder:text-slate-300"
                     />
                     {replyStatus && (
                       <div className={`flex items-start gap-2 mt-2 px-3 py-2 rounded-xl text-xs font-semibold ${
@@ -345,14 +345,14 @@ export default function AdminMessages() {
                       <button
                         onClick={() => void handleReply()}
                         disabled={replySending || !replyText.trim()}
-                        className="flex items-center gap-2 bg-[#1A44C0] text-white px-5 py-2.5 rounded-xl font-black text-sm hover:bg-[#1A44C0]/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="flex items-center gap-2 bg-[#0B5FA8] text-white px-5 py-2.5 rounded-xl font-black text-sm hover:bg-[#0B5FA8]/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {replySending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
                         {replySending ? "Sending…" : "Send Reply"}
                       </button>
                       <a
                         href={`mailto:${selected.email}?subject=${encodeURIComponent(selected.subject ? `Re: ${selected.subject}` : "Re: Your message to Zeal Care")}&body=${encodeURIComponent(replyText || "")}`}
-                        className="text-xs text-slate-400 hover:text-[#1A44C0] font-semibold transition-colors"
+                        className="text-xs text-slate-400 hover:text-[#0B5FA8] font-semibold transition-colors"
                       >
                         Open in email client →
                       </a>

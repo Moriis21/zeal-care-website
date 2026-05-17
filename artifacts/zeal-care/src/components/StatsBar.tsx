@@ -41,9 +41,9 @@ export function StatsBar() {
 
   const stats = [
     { value: scholars.num, suffix: scholars.suffix + "+", label: t("stats.activeScholars") },
-    { value: 12,           suffix: t("stats.yearSuffix"),  label: t("stats.impactPromise")  },
+    { value: 5,            suffix: "",                     label: t("stats.corePrograms")   },
     { value: schools.num,  suffix: schools.suffix + "+",   label: t("stats.partnerSchools") },
-    { value: Math.round(tech.num / 1000), suffix: "k" + tech.suffix, label: t("stats.techHours") },
+    { value: 3,            suffix: "+",                    label: t("stats.communities")    },
     { value: 100,          suffix: "%",                    label: t("stats.transparency")   },
   ];
 

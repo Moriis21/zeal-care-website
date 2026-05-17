@@ -73,10 +73,10 @@ const BASE_PHOTOS: Photo[] = [
 export const GALLERY_CATEGORIES: Category[] = ["All", "Programs & Education", "Children's Stories", "Community", "Media & Events", "Team"];
 
 const CATEGORY_COLORS: Record<Exclude<Category, "All">, string> = {
-  "Programs & Education": "#1A44C0",
+  "Programs & Education": "#0B5FA8",
   "Children's Stories": "#F5C619",
   "Community": "#061A32",
-  "Media & Events": "#1A44C0",
+  "Media & Events": "#0B5FA8",
   "Team": "#061A32",
 };
 
@@ -140,9 +140,9 @@ export default function GalleryPage() {
       {/* Hero */}
       <section className="relative bg-[#061A32] pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 opacity-10"
-          style={{ backgroundImage: "radial-gradient(circle at 20% 50%, #1A44C0 0%, transparent 60%), radial-gradient(circle at 80% 20%, #F5C619 0%, transparent 50%)" }} />
+          style={{ backgroundImage: "radial-gradient(circle at 20% 50%, #0B5FA8 0%, transparent 60%), radial-gradient(circle at 80% 20%, #F5C619 0%, transparent 50%)" }} />
         <div className="absolute top-12 right-20 w-40 h-40 border border-[#F5C619]/20 rounded-full" />
-        <div className="absolute bottom-8 left-16 w-24 h-24 border border-[#1A44C0]/30 rounded-full" />
+        <div className="absolute bottom-8 left-16 w-24 h-24 border border-[#0B5FA8]/30 rounded-full" />
 
         <div className="container mx-auto px-4 relative">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl">

@@ -72,7 +72,7 @@ export default function AdminSettings() {
     return (
       <AdminLayout>
         <div className="flex items-center justify-center h-48">
-          <Loader2 className="w-7 h-7 animate-spin text-[#1A44C0]" />
+          <Loader2 className="w-7 h-7 animate-spin text-[#0B5FA8]" />
         </div>
       </AdminLayout>
     );
@@ -86,7 +86,7 @@ export default function AdminSettings() {
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#1A44C0] transition-colors"
+        className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#0B5FA8] transition-colors"
       />
     </div>
   );
@@ -104,7 +104,7 @@ export default function AdminSettings() {
             <label className="flex items-center gap-2 cursor-pointer">
               <div
                 onClick={() => setConfig((c) => c ? { ...c, enabled: !c.enabled } : c)}
-                className={`relative w-11 h-6 rounded-full transition-colors ${config.enabled ? "bg-[#1A44C0]" : "bg-slate-200"}`}
+                className={`relative w-11 h-6 rounded-full transition-colors ${config.enabled ? "bg-[#0B5FA8]" : "bg-slate-200"}`}
               >
                 <div className={`absolute top-1 w-4 h-4 rounded-full bg-white shadow transition-transform ${config.enabled ? "translate-x-6" : "translate-x-1"}`} />
               </div>
@@ -129,7 +129,7 @@ export default function AdminSettings() {
                 value={smtpPass}
                 onChange={(e) => setSmtpPass(e.target.value)}
                 placeholder={config.smtpPassSet ? "Leave blank to keep current password" : "Enter Gmail App Password…"}
-                className="w-full border border-slate-200 rounded-xl px-4 py-3 pr-12 text-sm focus:outline-none focus:border-[#1A44C0] transition-colors"
+                className="w-full border border-slate-200 rounded-xl px-4 py-3 pr-12 text-sm focus:outline-none focus:border-[#0B5FA8] transition-colors"
               />
               <button
                 type="button"

@@ -72,13 +72,13 @@ export default function AdminNewsletter() {
               placeholder="Search name or email…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="border border-slate-200 rounded-xl pl-9 pr-4 py-2.5 text-sm focus:outline-none focus:border-[#1A44C0] w-56"
+              className="border border-slate-200 rounded-xl pl-9 pr-4 py-2.5 text-sm focus:outline-none focus:border-[#0B5FA8] w-56"
             />
           </div>
           <button
             onClick={exportCsv}
             disabled={filtered.length === 0}
-            className="flex items-center gap-2 bg-[#061A32] text-white px-4 py-2.5 rounded-xl text-sm font-bold hover:bg-[#1A44C0] transition-colors disabled:opacity-40"
+            className="flex items-center gap-2 bg-[#061A32] text-white px-4 py-2.5 rounded-xl text-sm font-bold hover:bg-[#0B5FA8] transition-colors disabled:opacity-40"
           >
             <Download className="w-4 h-4" />
             Export CSV
@@ -88,8 +88,8 @@ export default function AdminNewsletter() {
         {/* Stats row */}
         <div className="grid grid-cols-3 gap-3">
           <div className="bg-white rounded-2xl border border-slate-200 p-5 flex items-center gap-4">
-            <div className="w-10 h-10 bg-[#1A44C0]/10 rounded-xl flex items-center justify-center">
-              <Users className="w-5 h-5 text-[#1A44C0]" />
+            <div className="w-10 h-10 bg-[#0B5FA8]/10 rounded-xl flex items-center justify-center">
+              <Users className="w-5 h-5 text-[#0B5FA8]" />
             </div>
             <div>
               <p className="text-2xl font-black text-[#061A32]">{subscribers.length}</p>
@@ -124,7 +124,7 @@ export default function AdminNewsletter() {
 
         {loading ? (
           <div className="flex items-center justify-center h-48">
-            <Loader2 className="w-7 h-7 animate-spin text-[#1A44C0]" />
+            <Loader2 className="w-7 h-7 animate-spin text-[#0B5FA8]" />
           </div>
         ) : filtered.length === 0 ? (
           <div className="bg-white rounded-2xl border border-slate-200 p-14 text-center">
@@ -170,7 +170,7 @@ export default function AdminNewsletter() {
 }
 
 function stringToColor(str: string): string {
-  const colors = ["#1A44C0", "#7C3AED", "#059669", "#DC2626", "#D97706", "#DB2777", "#0891B2", "#EA580C"];
+  const colors = ["#0B5FA8", "#7C3AED", "#059669", "#DC2626", "#D97706", "#DB2777", "#0891B2", "#EA580C"];
   let hash = 0;
   for (let i = 0; i < str.length; i++) hash = str.charCodeAt(i) + ((hash << 5) - hash);
   return colors[Math.abs(hash) % colors.length];

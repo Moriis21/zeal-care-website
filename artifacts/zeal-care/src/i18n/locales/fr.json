@@ -55,12 +55,14 @@
     "languagesSupported": "Langues Supportées"
   },
   "stats": {
-    "activeScholars": "Étudiants Actifs",
+    "activeScholars": "Enfants Parrainés",
     "impactPromise": "Promesse d'Impact",
     "partnerSchools": "Écoles Partenaires",
     "techHours": "Heures Tech",
     "transparency": "Transparence",
-    "yearSuffix": " An"
+    "yearSuffix": " An",
+    "corePrograms": "Programmes Principaux",
+    "communities": "Communautés Servies"
   },
   "about": {
     "badge": "Qui Sommes-Nous",

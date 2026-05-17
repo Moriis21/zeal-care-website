@@ -121,7 +121,7 @@ export function Footer() {
       <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:28px_28px] pointer-events-none" />
 
       {/* ── Glow blobs ── */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#1A44C0]/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#0B5FA8]/20 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-[#F5C619]/6 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 container mx-auto px-6 lg:px-8">
@@ -133,7 +133,7 @@ export function Footer() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#1A44C0]/60 to-[#061A32]/80 border border-white/10 backdrop-blur-sm p-10 lg:p-12 mt-0 pt-16"
+          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0B5FA8]/60 to-[#061A32]/80 border border-white/10 backdrop-blur-sm p-10 lg:p-12 mt-0 pt-16"
           style={{ marginTop: 0 }}
         >
           {/* Decorative gold circle */}
