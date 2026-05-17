@@ -1,6 +1,72 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
 import { getDataDir } from "./dataDir";
 
+// ── Vercel KV persistence via Upstash REST API ──────────────────────────────
+// Uses the KV_REST_API_URL + KV_REST_API_TOKEN env vars that Vercel sets
+// automatically when you add a KV store from the Vercel dashboard.
+// No extra packages needed — uses native Node.js fetch.
+// Falls back to the file-system store for local dev (no env vars set).
+
+const KV_KEY = "zeal:site-content:v1";
+
+function getKVConfig(): { url: string; token: string } | null {
+  const url   = process.env["KV_REST_API_URL"];
+  const token = process.env["KV_REST_API_TOKEN"];
+  if (!url || !token) return null;
+  return { url: url.replace(/\/$/, ""), token };
+}
+
+async function kvGet(key: string): Promise<Partial<SiteContent> | null> {
+  const cfg = getKVConfig();
+  if (!cfg) return null;
+  try {
+    const res = await fetch(`${cfg.url}/get/${encodeURIComponent(key)}`, {
+      headers: { Authorization: `Bearer ${cfg.token}` },
+    });
+    if (!res.ok) return null;
+    const body = await res.json() as { result: string | null };
+    if (!body.result) return null;
+    return JSON.parse(body.result) as Partial<SiteContent>;
+  } catch (e) {
+    console.error("[siteContent] KV get error:", e);
+    return null;
+  }
+}
+
+async function kvSet(key: string, value: SiteContent): Promise<void> {
+  const cfg = getKVConfig();
+  if (!cfg) return;
+  try {
+    const serialized = JSON.stringify(value);
+    await fetch(`${cfg.url}/set/${encodeURIComponent(key)}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${cfg.token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify([serialized]),
+    });
+  } catch (e) {
+    console.error("[siteContent] KV set error:", e);
+  }
+}
+
+// ── Async read/write ─────────────────────────────────────────────────────────
+export async function readContentAsync(): Promise<SiteContent> {
+  const stored = await kvGet(KV_KEY);
+  if (stored) return deepMerge(DEFAULT_CONTENT, stored);
+  return readContent(); // file-system fallback (local dev)
+}
+
+export async function patchContentAsync(patch: Partial<SiteContent>): Promise<SiteContent> {
+  const current = await readContentAsync();
+  const updated  = deepMerge(current, patch);
+  await kvSet(KV_KEY, updated);
+  writeContent(updated); // also update file for local dev
+  return updated;
+}
+
+// ── Sync file-system store (local dev / fallback) ───────────────────────────
 const DATA_DIR = getDataDir();
 const FILE = `${DATA_DIR}/site-content.json`;
 

@@ -1,17 +1,22 @@
 import { Router, type IRouter } from "express";
-import { readContent, patchContent, type SiteContent } from "../lib/siteContentStore";
+import { readContentAsync, patchContentAsync, type SiteContent } from "../lib/siteContentStore";
 import { requireAdmin } from "../lib/adminAuth";
 
 const router: IRouter = Router();
 
-router.get("/site-content", (_req, res) => {
-  res.json(readContent());
+// Public — returns full site content (with KV persistence on Vercel)
+router.get("/site-content", (_req, res, next) => {
+  readContentAsync()
+    .then((content) => res.json(content))
+    .catch(next);
 });
 
-router.put("/admin/site-content", requireAdmin, (req, res) => {
+// Admin — deep-merges a partial patch and persists it
+router.put("/admin/site-content", requireAdmin, (req, res, next) => {
   const patch = req.body as Partial<SiteContent>;
-  const updated = patchContent(patch);
-  res.json({ success: true, content: updated });
+  patchContentAsync(patch)
+    .then((updated) => res.json({ success: true, content: updated }))
+    .catch(next);
 });
 
 export default router;
