@@ -77,23 +77,23 @@
   --elevate-1: rgba(0,0,0, .03);
   --elevate-2: rgba(0,0,0, .08);
 
-  /* Official brand colors: Blue #0B5FA8 · Yellow #F5C518 · Navy #061A32 */
+  /* Official brand colors from logo: Blue #09609A · Yellow #FBD308 */
   --background: 0 0% 100%;
   --foreground: 215 77% 11%;
-  --primary: 208 87% 35%;          /* Official brand blue #0B5FA8 */
+  --primary: 204 89% 32%;          /* Exact logo blue  #09609A */
   --primary-foreground: 0 0% 100%;
-  --secondary: 46 91% 54%;         /* Official brand yellow #F5C518 */
+  --secondary: 50 97% 51%;         /* Exact logo yellow #FBD308 */
   --secondary-foreground: 215 77% 11%;
   --muted: 210 20% 93%;
   --muted-foreground: 215 18% 42%;
-  --accent: 46 91% 54%;
+  --accent: 50 97% 51%;
   --accent-foreground: 215 77% 11%;
   --card: 0 0% 100%;
   --card-foreground: 215 77% 11%;
   --card-border: 210 20% 90%;
   --border: 210 20% 90%;
   --input: 210 20% 90%;
-  --ring: 208 87% 35%;
+  --ring: 204 89% 32%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
   --popover: 0 0% 100%;
@@ -161,9 +161,9 @@
 
   --background: 215 77% 11%;
   --foreground: 0 0% 100%;
-  --primary: 208 87% 50%;          /* Lighter brand blue for dark mode */
+  --primary: 204 89% 48%;          /* Lighter logo blue for dark mode */
   --primary-foreground: 0 0% 100%;
-  --secondary: 46 91% 54%;
+  --secondary: 50 97% 51%;
   --secondary-foreground: 215 77% 11%;
   --muted: 215 40% 20%;
   --muted-foreground: 210 20% 90%;

@@ -38,8 +38,8 @@ function NewsletterInline() {
 
   if (status === "success") {
     return (
-      <div className="flex items-center gap-3 bg-[#F5C619]/15 border border-[#F5C619]/30 rounded-2xl px-5 py-3.5">
-        <CheckCircle className="w-5 h-5 text-[#F5C619] flex-shrink-0" />
+      <div className="flex items-center gap-3 bg-[#FBD308]/15 border border-[#FBD308]/30 rounded-2xl px-5 py-3.5">
+        <CheckCircle className="w-5 h-5 text-[#FBD308] flex-shrink-0" />
         <p className="text-sm text-white/80 font-semibold">{msg}</p>
       </div>
     );
@@ -53,12 +53,12 @@ function NewsletterInline() {
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Your email address"
         required
-        className="flex-1 min-w-0 bg-white/8 border border-white/15 rounded-xl px-4 py-3 text-sm text-white placeholder-white/35 focus:outline-none focus:border-[#F5C619]/60 transition-colors"
+        className="flex-1 min-w-0 bg-white/8 border border-white/15 rounded-xl px-4 py-3 text-sm text-white placeholder-white/35 focus:outline-none focus:border-[#FBD308]/60 transition-colors"
       />
       <button
         type="submit"
         disabled={status === "loading" || !email}
-        className="bg-[#F5C619] text-[#061A32] px-5 py-3 rounded-xl font-black text-sm hover:bg-[#F5C619]/90 transition-all disabled:opacity-50 flex items-center gap-1.5 shrink-0"
+        className="bg-[#FBD308] text-[#061A32] px-5 py-3 rounded-xl font-black text-sm hover:bg-[#FBD308]/90 transition-all disabled:opacity-50 flex items-center gap-1.5 shrink-0"
       >
         {status === "loading" ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
         <span className="hidden sm:inline">Subscribe</span>
@@ -72,14 +72,14 @@ function NewsletterInline() {
 
 const ColHeader = ({ label }: { label: string }) => (
   <div className="flex items-center gap-2 mb-6">
-    <span className="w-2 h-2 rounded-full bg-[#F5C619] flex-shrink-0" />
+    <span className="w-2 h-2 rounded-full bg-[#FBD308] flex-shrink-0" />
     <h4 className="font-black text-xs uppercase tracking-[0.2em] text-white/90">{label}</h4>
   </div>
 );
 
 const FooterLink = ({ href, children, onClick }: { href?: string; children: React.ReactNode; onClick?: () => void }) => {
-  const base = "flex items-center gap-2 text-white/50 hover:text-[#F5C619] transition-colors text-sm group py-0.5";
-  const dash = <span className="text-white/20 group-hover:text-[#F5C619]/60 transition-colors">—</span>;
+  const base = "flex items-center gap-2 text-white/50 hover:text-[#FBD308] transition-colors text-sm group py-0.5";
+  const dash = <span className="text-white/20 group-hover:text-[#FBD308]/60 transition-colors">—</span>;
   if (onClick) return (
     <button onClick={onClick} className={base}>{dash}{children}</button>
   );
@@ -121,8 +121,8 @@ export function Footer() {
       <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:28px_28px] pointer-events-none" />
 
       {/* ── Glow blobs ── */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#0B5FA8]/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-[#F5C619]/6 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#09609A]/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-[#FBD308]/6 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 container mx-auto px-6 lg:px-8">
 
@@ -133,17 +133,17 @@ export function Footer() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0B5FA8]/60 to-[#061A32]/80 border border-white/10 backdrop-blur-sm p-10 lg:p-12 mt-0 pt-16"
+          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#09609A]/60 to-[#061A32]/80 border border-white/10 backdrop-blur-sm p-10 lg:p-12 mt-0 pt-16"
           style={{ marginTop: 0 }}
         >
           {/* Decorative gold circle */}
-          <div className="absolute -top-6 right-12 w-20 h-20 bg-[#F5C619] rounded-full opacity-90 shadow-lg shadow-[#F5C619]/30" />
-          <div className="absolute -top-2 right-8 w-8 h-8 bg-[#F5C619]/40 rounded-full blur-sm" />
+          <div className="absolute -top-6 right-12 w-20 h-20 bg-[#FBD308] rounded-full opacity-90 shadow-lg shadow-[#FBD308]/30" />
+          <div className="absolute -top-2 right-8 w-8 h-8 bg-[#FBD308]/40 rounded-full blur-sm" />
 
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs font-bold tracking-widest uppercase mb-5 text-white/80">
-                <Sparkles className="w-3 h-3 text-[#F5C619]" />
+                <Sparkles className="w-3 h-3 text-[#FBD308]" />
                 {home.footerCtaBadge}
               </div>
               <h2 className="text-3xl lg:text-4xl font-black leading-tight mb-4">
@@ -157,7 +157,7 @@ export function Footer() {
             <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-4 lg:items-end xl:items-center lg:justify-end">
               <button
                 onClick={() => openDonate(150)}
-                className="group flex items-center justify-center gap-2 bg-[#F5C619] text-[#061A32] px-8 py-4 rounded-2xl font-black text-sm hover:bg-[#F5C619]/90 hover:scale-105 transition-all shadow-xl shadow-[#F5C619]/20"
+                className="group flex items-center justify-center gap-2 bg-[#FBD308] text-[#061A32] px-8 py-4 rounded-2xl font-black text-sm hover:bg-[#FBD308]/90 hover:scale-105 transition-all shadow-xl shadow-[#FBD308]/20"
               >
                 <Heart className="w-4 h-4 fill-current" />
                 {t("footer.becomeaDonor")}
@@ -210,7 +210,7 @@ export function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="w-9 h-9 rounded-xl bg-white/6 border border-white/10 flex items-center justify-center hover:bg-[#F5C619] hover:border-[#F5C619] hover:text-[#061A32] transition-all hover:scale-110"
+                    className="w-9 h-9 rounded-xl bg-white/6 border border-white/10 flex items-center justify-center hover:bg-[#FBD308] hover:border-[#FBD308] hover:text-[#061A32] transition-all hover:scale-110"
                   >
                     <Icon className="w-4 h-4" />
                   </a>
@@ -252,10 +252,10 @@ export function Footer() {
                   href={`https://maps.google.com/?q=${encodeURIComponent(s.address)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start gap-3 text-white/50 hover:text-[#F5C619] transition-colors group"
+                  className="flex items-start gap-3 text-white/50 hover:text-[#FBD308] transition-colors group"
                 >
-                  <div className="w-8 h-8 rounded-xl bg-white/6 border border-white/10 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-[#F5C619]/15 group-hover:border-[#F5C619]/30 transition-all">
-                    <MapPin className="w-3.5 h-3.5 text-[#F5C619]" />
+                  <div className="w-8 h-8 rounded-xl bg-white/6 border border-white/10 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-[#FBD308]/15 group-hover:border-[#FBD308]/30 transition-all">
+                    <MapPin className="w-3.5 h-3.5 text-[#FBD308]" />
                   </div>
                   <span className="text-sm leading-relaxed">{s.address}</span>
                 </a>
@@ -263,10 +263,10 @@ export function Footer() {
               <li>
                 <a
                   href={`tel:${s.phone.replace(/\s/g, "")}`}
-                  className="flex items-center gap-3 text-white/50 hover:text-[#F5C619] transition-colors group"
+                  className="flex items-center gap-3 text-white/50 hover:text-[#FBD308] transition-colors group"
                 >
-                  <div className="w-8 h-8 rounded-xl bg-white/6 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-[#F5C619]/15 group-hover:border-[#F5C619]/30 transition-all">
-                    <Phone className="w-3.5 h-3.5 text-[#F5C619]" />
+                  <div className="w-8 h-8 rounded-xl bg-white/6 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-[#FBD308]/15 group-hover:border-[#FBD308]/30 transition-all">
+                    <Phone className="w-3.5 h-3.5 text-[#FBD308]" />
                   </div>
                   <span className="text-sm">{s.phone}</span>
                 </a>
@@ -274,10 +274,10 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${s.email}`}
-                  className="flex items-center gap-3 text-white/50 hover:text-[#F5C619] transition-colors group"
+                  className="flex items-center gap-3 text-white/50 hover:text-[#FBD308] transition-colors group"
                 >
-                  <div className="w-8 h-8 rounded-xl bg-white/6 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-[#F5C619]/15 group-hover:border-[#F5C619]/30 transition-all">
-                    <Mail className="w-3.5 h-3.5 text-[#F5C619]" />
+                  <div className="w-8 h-8 rounded-xl bg-white/6 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-[#FBD308]/15 group-hover:border-[#FBD308]/30 transition-all">
+                    <Mail className="w-3.5 h-3.5 text-[#FBD308]" />
                   </div>
                   <span className="text-sm">{s.email}</span>
                 </a>
@@ -288,7 +288,7 @@ export function Footer() {
             <a
               href={isHome ? "#contact" : "/#contact"}
               onClick={handleContact}
-              className="inline-flex items-center gap-2 mt-6 text-xs font-black uppercase tracking-widest text-[#F5C619]/70 hover:text-[#F5C619] transition-colors group"
+              className="inline-flex items-center gap-2 mt-6 text-xs font-black uppercase tracking-widest text-[#FBD308]/70 hover:text-[#FBD308] transition-colors group"
             >
               {t("footer.sendMessage")}
               <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -311,7 +311,7 @@ export function Footer() {
               href="https://wa.me/231770787020"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white/50 hover:text-[#F5C619] transition-colors font-semibold"
+              className="text-white/50 hover:text-[#FBD308] transition-colors font-semibold"
             >
               Morris L. Dorley Jr
             </a>

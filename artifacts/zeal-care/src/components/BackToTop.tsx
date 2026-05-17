@@ -46,7 +46,7 @@ export function BackToTop() {
             width={size}
             height={size}
             className="absolute inset-0 -rotate-90"
-            style={{ filter: "drop-shadow(0 0 6px #F5C61988)" }}
+            style={{ filter: "drop-shadow(0 0 6px #FBD30888)" }}
           >
             {/* Track */}
             <circle
@@ -64,7 +64,7 @@ export function BackToTop() {
               cy={size / 2}
               r={r}
               fill="none"
-              stroke="#F5C619"
+              stroke="#FBD308"
               strokeWidth={stroke}
               strokeLinecap="round"
               strokeDasharray={`${dash} ${circ}`}
@@ -73,7 +73,7 @@ export function BackToTop() {
           </svg>
 
           {/* Centre disc */}
-          <div className="absolute inset-[5px] rounded-full bg-[#061A32] flex items-center justify-center group-hover:bg-[#0B5FA8] transition-colors duration-300">
+          <div className="absolute inset-[5px] rounded-full bg-[#061A32] flex items-center justify-center group-hover:bg-[#09609A] transition-colors duration-300">
             {/* Animated chevron arrow */}
             <motion.svg
               width="16"
@@ -85,7 +85,7 @@ export function BackToTop() {
             >
               <path
                 d="M8 12 L3 7 L5 5 L8 8 L11 5 L13 7 Z"
-                fill="#F5C619"
+                fill="#FBD308"
                 style={{ transform: "scaleY(-1)", transformOrigin: "50% 50%" }}
               />
             </motion.svg>

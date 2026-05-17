@@ -14,7 +14,7 @@ export const navConfig: NavSection[] = [
   {
     label: "About Us",
     path: "/about",
-    color: "#0B5FA8",
+    color: "#09609A",
     items: [
       { label: "Overview", path: "/about" },
       { label: "Our Mission", path: "/about/mission" },
@@ -39,7 +39,7 @@ export const navConfig: NavSection[] = [
   {
     label: "Who We Are",
     path: "/who-we-are",
-    color: "#0B5FA8",
+    color: "#09609A",
     items: [
       { label: "Overview", path: "/who-we-are" },
       { label: "Our Leadership", path: "/who-we-are/leadership" },
@@ -70,7 +70,7 @@ export const navConfig: NavSection[] = [
   {
     label: "Igniting Potential",
     path: "/igniting-potential",
-    color: "#0B5FA8",
+    color: "#09609A",
     items: [
       { label: "Overview", path: "/igniting-potential" },
       { label: "Ways to Give", path: "/igniting-potential/ways-to-give" },

@@ -55,7 +55,7 @@ export default function AdminLogin() {
             <img src="/logo.png" alt="Zeal Care" className="h-14 w-auto object-contain drop-shadow-lg" />
           </div>
           <h1 className="text-white font-black text-2xl tracking-wide">ZEAL CARE</h1>
-          <p className="text-[#F5C619] text-xs font-bold uppercase tracking-widest mt-1">Admin Portal</p>
+          <p className="text-[#FBD308] text-xs font-bold uppercase tracking-widest mt-1">Admin Portal</p>
           <p className="text-white/40 text-sm mt-1">Sign in to manage your website</p>
         </div>
 
@@ -76,7 +76,7 @@ export default function AdminLogin() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Admin password"
-              className="w-full border-2 border-slate-200 rounded-xl px-4 py-3 pr-12 text-sm focus:outline-none focus:border-[#0B5FA8] transition-colors"
+              className="w-full border-2 border-slate-200 rounded-xl px-4 py-3 pr-12 text-sm focus:outline-none focus:border-[#09609A] transition-colors"
               autoFocus
             />
             <button
@@ -95,7 +95,7 @@ export default function AdminLogin() {
           <button
             type="submit"
             disabled={loading || !password}
-            className="w-full bg-[#F5C619] text-[#061A32] py-3.5 rounded-xl font-black text-sm hover:bg-[#F5C619]/90 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+            className="w-full bg-[#FBD308] text-[#061A32] py-3.5 rounded-xl font-black text-sm hover:bg-[#FBD308]/90 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
           >
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
             Sign In

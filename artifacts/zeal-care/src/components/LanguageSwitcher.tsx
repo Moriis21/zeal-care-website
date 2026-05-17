@@ -136,7 +136,7 @@ export function LanguageSwitcher({ compact = false, light = false }: Props) {
                   onClick={() => changeLanguage(lang.code)}
                   className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm transition-colors ${
                     isActive
-                      ? "bg-[#0B5FA8]/8 text-[#0B5FA8] font-bold"
+                      ? "bg-[#09609A]/8 text-[#09609A] font-bold"
                       : "text-slate-700 hover:bg-slate-50 font-medium"
                   }`}
                   dir={lang.code === "ar" ? "rtl" : "ltr"}
@@ -146,7 +146,7 @@ export function LanguageSwitcher({ compact = false, light = false }: Props) {
                     {lang.nativeLabel}
                   </span>
                   {isActive && (
-                    <span className="w-2 h-2 rounded-full bg-[#0B5FA8] flex-shrink-0" />
+                    <span className="w-2 h-2 rounded-full bg-[#09609A] flex-shrink-0" />
                   )}
                 </button>
               );

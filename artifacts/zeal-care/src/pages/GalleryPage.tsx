@@ -73,10 +73,10 @@ const BASE_PHOTOS: Photo[] = [
 export const GALLERY_CATEGORIES: Category[] = ["All", "Programs & Education", "Children's Stories", "Community", "Media & Events", "Team"];
 
 const CATEGORY_COLORS: Record<Exclude<Category, "All">, string> = {
-  "Programs & Education": "#0B5FA8",
-  "Children's Stories": "#F5C619",
+  "Programs & Education": "#09609A",
+  "Children's Stories": "#FBD308",
   "Community": "#061A32",
-  "Media & Events": "#0B5FA8",
+  "Media & Events": "#09609A",
   "Team": "#061A32",
 };
 
@@ -140,18 +140,18 @@ export default function GalleryPage() {
       {/* Hero */}
       <section className="relative bg-[#061A32] pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 opacity-10"
-          style={{ backgroundImage: "radial-gradient(circle at 20% 50%, #0B5FA8 0%, transparent 60%), radial-gradient(circle at 80% 20%, #F5C619 0%, transparent 50%)" }} />
-        <div className="absolute top-12 right-20 w-40 h-40 border border-[#F5C619]/20 rounded-full" />
-        <div className="absolute bottom-8 left-16 w-24 h-24 border border-[#0B5FA8]/30 rounded-full" />
+          style={{ backgroundImage: "radial-gradient(circle at 20% 50%, #09609A 0%, transparent 60%), radial-gradient(circle at 80% 20%, #FBD308 0%, transparent 50%)" }} />
+        <div className="absolute top-12 right-20 w-40 h-40 border border-[#FBD308]/20 rounded-full" />
+        <div className="absolute bottom-8 left-16 w-24 h-24 border border-[#09609A]/30 rounded-full" />
 
         <div className="container mx-auto px-4 relative">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#F5C619]/15 border border-[#F5C619]/30 text-[#F5C619] text-xs font-bold tracking-widest uppercase mb-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FBD308]/15 border border-[#FBD308]/30 text-[#FBD308] text-xs font-bold tracking-widest uppercase mb-5">
               <Images className="w-3.5 h-3.5" />
               Photo Gallery
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-5">
-              Moments of <span className="text-[#F5C619] italic">Impact</span>
+              Moments of <span className="text-[#FBD308] italic">Impact</span>
             </h1>
             <p className="text-white/60 text-lg leading-relaxed max-w-xl">
               Every photograph tells the story of a child's potential being ignited.
@@ -159,19 +159,19 @@ export default function GalleryPage() {
             </p>
             <div className="flex items-center gap-6 mt-8 pt-8 border-t border-white/10">
               <div>
-                <p className="text-2xl font-black text-[#F5C619]">{allPhotos.length}</p>
+                <p className="text-2xl font-black text-[#FBD308]">{allPhotos.length}</p>
                 <p className="text-white/40 text-xs font-semibold uppercase tracking-wider mt-0.5">Photos</p>
               </div>
               <div className="w-px h-8 bg-white/10" />
               <div>
-                <p className="text-2xl font-black text-[#F5C619]">{GALLERY_CATEGORIES.length - 1}</p>
+                <p className="text-2xl font-black text-[#FBD308]">{GALLERY_CATEGORIES.length - 1}</p>
                 <p className="text-white/40 text-xs font-semibold uppercase tracking-wider mt-0.5">Categories</p>
               </div>
               {cmsPhotos.length > 0 && (
                 <>
                   <div className="w-px h-8 bg-white/10" />
                   <div>
-                    <p className="text-2xl font-black text-[#F5C619]">{cmsPhotos.length}</p>
+                    <p className="text-2xl font-black text-[#FBD308]">{cmsPhotos.length}</p>
                     <p className="text-white/40 text-xs font-semibold uppercase tracking-wider mt-0.5">New Uploads</p>
                   </div>
                 </>
@@ -220,13 +220,13 @@ export default function GalleryPage() {
                   <div className="absolute inset-0 bg-[#061A32]/0 group-hover:bg-[#061A32]/55 transition-all duration-300 flex flex-col justify-end p-4">
                     <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <span className="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full mb-2"
-                        style={{ backgroundColor: `${CATEGORY_COLORS[photo.category]}33`, color: "#F5C619" }}>
+                        style={{ backgroundColor: `${CATEGORY_COLORS[photo.category]}33`, color: "#FBD308" }}>
                         {photo.category}
                       </span>
                       <p className="text-white text-xs font-medium leading-snug line-clamp-2">{photo.alt}</p>
                     </div>
                   </div>
-                  <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#F5C619]/40 transition-all duration-300 pointer-events-none" />
+                  <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#FBD308]/40 transition-all duration-300 pointer-events-none" />
                 </motion.div>
               ))}
             </motion.div>
@@ -259,7 +259,7 @@ export default function GalleryPage() {
               <img src={filtered[lightboxIdx].src} alt={filtered[lightboxIdx].alt}
                 className="max-h-[78vh] max-w-full object-contain rounded-xl shadow-2xl" />
               <div className="text-center">
-                <span className="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#F5C619]/20 text-[#F5C619] mb-2">
+                <span className="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#FBD308]/20 text-[#FBD308] mb-2">
                   {filtered[lightboxIdx].category}
                 </span>
                 <p className="text-white/70 text-sm max-w-lg">{filtered[lightboxIdx].alt}</p>

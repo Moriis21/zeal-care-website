@@ -55,7 +55,7 @@ export default function AdminDashboard() {
     return (
       <AdminLayout>
         <div className="flex items-center justify-center h-64">
-          <Loader2 className="w-8 h-8 animate-spin text-[#0B5FA8]" />
+          <Loader2 className="w-8 h-8 animate-spin text-[#09609A]" />
         </div>
       </AdminLayout>
     );
@@ -105,7 +105,7 @@ export default function AdminDashboard() {
               <div className="divide-y divide-slate-50">
                 {stats.recentDonations.map((d) => (
                   <div key={d.id} className="px-6 py-4 flex items-center gap-4">
-                    <div className="w-9 h-9 rounded-full bg-[#F5C619]/20 flex items-center justify-center font-black text-[#061A32] text-sm flex-shrink-0">
+                    <div className="w-9 h-9 rounded-full bg-[#FBD308]/20 flex items-center justify-center font-black text-[#061A32] text-sm flex-shrink-0">
                       {(d.donorName || "A")[0].toUpperCase()}
                     </div>
                     <div className="flex-1 min-w-0">
@@ -116,7 +116,7 @@ export default function AdminDashboard() {
                       </p>
                     </div>
                     <div className="text-right">
-                      <p className="font-black text-[#0B5FA8]">${d.amount.toLocaleString()}</p>
+                      <p className="font-black text-[#09609A]">${d.amount.toLocaleString()}</p>
                       <p className="text-xs text-slate-400">{new Date(d.timestamp).toLocaleDateString()}</p>
                     </div>
                   </div>
@@ -131,12 +131,12 @@ export default function AdminDashboard() {
               <h3 className="font-black text-[#061A32] flex items-center gap-2">
                 Contact Messages
                 {unreadCount > 0 && (
-                  <span className="bg-[#0B5FA8] text-white text-xs font-black px-2 py-0.5 rounded-full">
+                  <span className="bg-[#09609A] text-white text-xs font-black px-2 py-0.5 rounded-full">
                     {unreadCount} new
                   </span>
                 )}
               </h3>
-              <Link href="/admin/messages" className="text-xs font-bold text-[#0B5FA8] hover:underline">
+              <Link href="/admin/messages" className="text-xs font-bold text-[#09609A] hover:underline">
                 View all →
               </Link>
             </div>
@@ -153,7 +153,7 @@ export default function AdminDashboard() {
                 </div>
                 <p className="text-slate-500 text-sm font-semibold">All caught up!</p>
                 <p className="text-slate-400 text-xs mt-1">{messages.length} message{messages.length !== 1 ? "s" : ""} total, all read.</p>
-                <Link href="/admin/messages" className="inline-block mt-3 text-xs font-bold text-[#0B5FA8] hover:underline">
+                <Link href="/admin/messages" className="inline-block mt-3 text-xs font-bold text-[#09609A] hover:underline">
                   View all messages →
                 </Link>
               </div>
@@ -162,7 +162,7 @@ export default function AdminDashboard() {
                 {recentUnread.map((m) => (
                   <Link key={m.id} href="/admin/messages">
                     <div className="px-6 py-4 flex items-center gap-3 hover:bg-slate-50 transition-colors cursor-pointer">
-                      <div className="w-2 h-2 rounded-full bg-[#0B5FA8] flex-shrink-0" />
+                      <div className="w-2 h-2 rounded-full bg-[#09609A] flex-shrink-0" />
                       <div className="flex-1 min-w-0">
                         <p className="font-black text-sm text-[#061A32] truncate">{m.name}</p>
                         <p className="text-xs text-slate-400 truncate">{m.subject ?? m.email}</p>
@@ -175,7 +175,7 @@ export default function AdminDashboard() {
                 ))}
                 {unreadCount > 3 && (
                   <div className="px-6 py-3 text-center">
-                    <Link href="/admin/messages" className="text-xs font-bold text-[#0B5FA8] hover:underline">
+                    <Link href="/admin/messages" className="text-xs font-bold text-[#09609A] hover:underline">
                       +{unreadCount - 3} more unread message{unreadCount - 3 !== 1 ? "s" : ""} →
                     </Link>
                   </div>

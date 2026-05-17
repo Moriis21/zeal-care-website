@@ -241,7 +241,7 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
             <img src="/elum-radio-interview.png" alt="Zeal Care on ELUM 98.7 FM" className="w-full h-64 object-cover object-top" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
             <div className="absolute inset-0 bg-gradient-to-t from-[#061A32]/60 via-transparent to-transparent" />
             <div className="absolute bottom-4 left-4 right-4">
-              <span className="inline-block bg-[#F5C619] text-[#061A32] text-xs font-black px-3 py-1 rounded-full">LIVE ON AIR · ELUM 98.7 FM</span>
+              <span className="inline-block bg-[#FBD308] text-[#061A32] text-xs font-black px-3 py-1 rounded-full">LIVE ON AIR · ELUM 98.7 FM</span>
             </div>
           </div>
           <div className="p-6">

@@ -56,7 +56,7 @@ export function AdminLayout({ children, unreadMessages = 0 }: AdminLayoutProps) 
               }}
             />
             <div
-              className="w-9 h-9 rounded-full bg-[#F5C619] items-center justify-center font-black text-[#061A32] text-lg flex-shrink-0"
+              className="w-9 h-9 rounded-full bg-[#FBD308] items-center justify-center font-black text-[#061A32] text-lg flex-shrink-0"
               style={{ display: "none" }}
             >
               Z
@@ -80,14 +80,14 @@ export function AdminLayout({ children, unreadMessages = 0 }: AdminLayoutProps) 
                 onClick={() => setSidebarOpen(false)}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all ${
                   active
-                    ? "bg-[#0B5FA8] text-white"
+                    ? "bg-[#09609A] text-white"
                     : "text-white/60 hover:bg-white/5 hover:text-white"
                 }`}
               >
                 <Icon className="w-4 h-4 flex-shrink-0" />
                 <span className="flex-1">{label}</span>
                 {isMessages && unreadMessages > 0 && !active && (
-                  <span className="bg-[#F5C619] text-[#061A32] text-[10px] font-black px-1.5 py-0.5 rounded-full min-w-[18px] text-center">
+                  <span className="bg-[#FBD308] text-[#061A32] text-[10px] font-black px-1.5 py-0.5 rounded-full min-w-[18px] text-center">
                     {unreadMessages > 99 ? "99+" : unreadMessages}
                   </span>
                 )}
@@ -134,7 +134,7 @@ export function AdminLayout({ children, unreadMessages = 0 }: AdminLayoutProps) 
             </h1>
           </div>
           {unreadMessages > 0 && (
-            <Link href="/admin/messages" className="flex items-center gap-1.5 text-xs font-bold text-[#0B5FA8] bg-[#0B5FA8]/10 px-3 py-1.5 rounded-full hover:bg-[#0B5FA8]/20 transition-colors">
+            <Link href="/admin/messages" className="flex items-center gap-1.5 text-xs font-bold text-[#09609A] bg-[#09609A]/10 px-3 py-1.5 rounded-full hover:bg-[#09609A]/20 transition-colors">
               <MessageSquare className="w-3.5 h-3.5" />
               {unreadMessages} unread
             </Link>

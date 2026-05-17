@@ -37,7 +37,7 @@ const PageSpinner = () => (
 
 const AdminSpinner = () => (
   <div className="min-h-screen bg-[#061A32] flex items-center justify-center">
-    <div className="w-10 h-10 border-4 border-[#F5C619] border-t-transparent rounded-full animate-spin" />
+    <div className="w-10 h-10 border-4 border-[#FBD308] border-t-transparent rounded-full animate-spin" />
   </div>
 );
 

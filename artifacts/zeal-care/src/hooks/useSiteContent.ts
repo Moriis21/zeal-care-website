@@ -125,8 +125,70 @@ export const DEFAULT_CONTENT: SiteContent = {
     overviewText: "Zeal Care is a team of passionate young people united by a shared mission: to ensure that every underprivileged child in Liberia and across Africa has the chance to learn, grow, and lead.",
     historyText: "In 2017, Titus S. Foko conducted an educational survey across communities, planting the seeds that would grow into Zeal Care. The organization was legally registered in 2025.",
     financeText: "Zeal Care maintains an innovative financial system that ensures full transparency and accountability. Every donation is tracked and allocated directly to our core programs.",
-    team: [],
-    boardMembers: [],
+    team: [
+      {
+        name: "Titus S. Foko",
+        role: "Founder | Executive Director",
+        img: "/titus-foko.png",
+        bio: "Titus S. Foko is a professional Telecommunications Engineer and social impact leader with eight years of leadership experience and six years of professional practice. He started his career at Lonestar Cell MTN Liberia. Titus obtained a Bachelor Degree in Telecommunication Engineering, along with several other certificates in leadership. He is also an IT professional and Data Analyst.\n\nHe is the Founder and Executive Director of Zeal Care, where he leads the organization's vision to empower underprivileged children and underserved communities through education sponsorship, leadership development, entrepreneurship, career paths in STEM, and digital education. He works closely with the Board of Advisors and Executive Directors to govern and execute the organization goals.\n\nTitus is an advocate of empowerment of children, disabled, and young people for education, leadership, and entrepreneurship. Driven by his passion for leadership and service to the community, he has been recognized with multiple honors, including the Starz University Leadership Award, the Starz University Honors Society Award, and Ambassadorial honors.\n\nHe is an alumnus of Aspire Institute in the USA, where he obtained certificates in leadership and AI-Integrated Leadership, Millennium Campus Network, Frontier Tech Leaders, and several other institutions. In 2021, Titus received and was bestowed ambassadorial honors from Think Africa Foundation and the Young Africa Leadership Development Institute.\n\nTitus is a faith-driven person who leverages his diverse skills in engineering, technology, and leadership to drive social impact success, leading with intention and purpose to build a more inclusive, supportive, and compassionate society for children, young people, and underserved communities.",
+      },
+      {
+        name: "Mohammed Soko Kamara",
+        role: "Co-Founder | Executive Director of Marketing & Communications",
+        img: "/mohammed-kamara.png",
+        bio: "Mohammed Soko Kamara is a dynamic social entrepreneur and community leader dedicated to empowering young people and underserved communities. As Co-Founder and Executive Director of Marketing and Communications at Zeal Care, Mohammed drives strategic outreach, engagement, and impact-driven storytelling that amplifies the organization's mission.\n\nHis passion for education, leadership, and service has earned him multiple academic honors, including the Starz University Excellence Award and the Starz University Honor Society Award. Mohammed earned his bachelor's degree in Marketing Management and several other certificates in leadership and entrepreneurship. He is also an alumnus of the Aspire Institute in the USA.\n\nMohammed's leadership blends creativity, purpose, and a relentless focus on positive change.",
+      },
+      {
+        name: "Joetta C. Paye",
+        role: "Executive Director of Talent Management",
+        img: "",
+        bio: "Joetta C. Paye is an Economist with a postgraduate certificate in Multilateral Diplomacy from the Gabriel L. Dennis Foreign Service Institute. She brings over 8 years of strategic experience in corporate and community development sectors, with expertise in negotiation, big data analytics, accountable leadership, design thinking, and project management. A graduate of AMEU (BSc in Economics, cum laude).\n\nJoetta is passionate about empowering children and young people through education and health. She is an alumna of the Young African Leaders Initiative (YALI), Young Political Leadership School Africa (YPLSA), and the Amazon Leaders Initiative.",
+      },
+      {
+        name: "Beverley Chelsea Saungweme",
+        role: "Co-Founder | Executive Director of International Affairs",
+        img: "/beverley-saungweme.png",
+        bio: "Beverley Chelsea Saungweme earned her bachelor's degree in mechanical engineering. A graduate of the Aspire Leaders Program 2024, she rekindled her desire to give back to society by helping underprivileged children.\n\nShe believes that building the Africa we want requires investing in the next generation through education. Through Zeal Care, she is committed to working as part of a team to empower future generations by ensuring access to education.",
+      },
+      {
+        name: "William Mammie",
+        role: "Acting Executive Director of Operations",
+        img: "",
+        bio: "William Mammie is a creative, open-minded professional who blends technology, design, and communication to solve real-world problems. He holds a BSc in Information Technology with an emphasis in System Administration. With a passion for brand design, William brings ideas to life through thoughtful visuals, UX/UI design, and digital marketing.\n\nFor William, creativity is more than a skill; it is how he approaches and solves problems.",
+      },
+    ],
+    boardMembers: [
+      {
+        name: "Jluedoe M. Bornor",
+        role: "Acting Board Chairperson",
+        img: "",
+        bio: "Jluedoe Matilda Bornor is an accomplished Information and Communications Engineer (MSc.) with over a decade of leadership in digital transformation and strategic IT management. As a Business Architect at Lonestar Cell MTN, she excels in optimizing complex infrastructure and steering high-performing teams within multinational environments.\n\nShe is also the Founder & Executive Director of Blooming Kaleidoscope, a nonprofit dedicated to empowering autistic and neurodivergent children in Liberia. In her role as Chairperson, she provides strategic leadership, governance oversight, and long-term vision for Zeal Care.",
+      },
+      {
+        name: "Yewande Olaiya-Oni",
+        role: "Project Advisor",
+        img: "",
+        bio: "Yewande holds an MSc in Project Management from the University of Liverpool, a Postgraduate Diploma in Business Administration from the University of Leicester, and a B.Tech in Physics Electronics. She is a certified Project Management Professional with over two decades of experience in telecommunications across MTN Nigeria and MTN Liberia.\n\nAs Project Advisor, she provides strategic guidance to executive directors to support effective planning, implementation, and evaluation of projects.",
+      },
+      {
+        name: "Reginald K. Reeves II",
+        role: "Community Development Advisor",
+        img: "",
+        bio: "Reginald K. Reeves II is a Civil Engineer (BSc., ASc.) with over sixteen years of professional experience in the design, supervision, and implementation of infrastructure projects across Liberia. He is the CEO of Dream-Joy Group of Companies.\n\nAt Zeal Care, he serves as Community Development Advisor, connecting Zeal Care with NGOs and local communities to identify needs, build strong partnerships, and promote inclusive participation.",
+      },
+      {
+        name: "Mambiyea W. Kapee",
+        role: "Children Education Impact Advisor",
+        img: "/mambiyea-kapee.png",
+        bio: "In her role as Children Education Impact Advisor, she guides the design and delivery of programs that improve children's access to quality education. She focuses on assessing impact, strengthening learning outcomes, and ensuring sustainable educational development for underprivileged children and communities.",
+      },
+      {
+        name: "Sonay Knakay Monger Mason",
+        role: "Strategy Partnership Advisor",
+        img: "",
+        bio: "Sonay Knakay Monger Mason holds a Graduate Diploma in Management Studies from ICM, United Kingdom, and is an expert in Roaming and Interconnection with over 20 years' experience in the Telecoms Industry.\n\nAs Strategy Partnership Advisor, she builds and manages strategic collaborations that advance Zeal Care's mission and social impact, aligning partners, resources, and strategies to drive sustainable growth.",
+      },
+    ],
     newsItems: [],
   },
   whatWeDo: {

@@ -25,19 +25,19 @@ type Child = {
 };
 
 const AVATAR_COLORS = [
-  "#0B5FA8", "#7C3AED", "#059669", "#DC2626",
+  "#09609A", "#7C3AED", "#059669", "#DC2626",
   "#D97706", "#DB2777", "#0891B2", "#16A34A", "#EA580C", "#BE185D",
 ];
 
 const EMPTY: Omit<Child, "id"> = {
   name: "", age: 10, grade: "", school: "", location: "Monrovia, Liberia",
   story: "", needs: [], isSponsored: false, joinedYear: new Date().getFullYear(),
-  avatarColor: "#0B5FA8", photo: "",
+  avatarColor: "#09609A", photo: "",
 };
 
 type Tab = "all" | "available" | "sponsored";
 
-const inputCls = "w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-[#0B5FA8]";
+const inputCls = "w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-[#09609A]";
 
 function PhotoUploader({ url, onChange, token }: {
   url: string;
@@ -92,7 +92,7 @@ function PhotoUploader({ url, onChange, token }: {
             type="button"
             onClick={() => fileRef.current?.click()}
             disabled={uploading}
-            className="flex items-center justify-center gap-1.5 w-full bg-[#0B5FA8] text-white px-3 py-2 rounded-xl text-xs font-semibold hover:bg-[#0B5FA8]/90 transition-colors disabled:opacity-60"
+            className="flex items-center justify-center gap-1.5 w-full bg-[#09609A] text-white px-3 py-2 rounded-xl text-xs font-semibold hover:bg-[#09609A]/90 transition-colors disabled:opacity-60"
           >
             {uploading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Upload className="w-3.5 h-3.5" />}
             {uploading ? "Uploading…" : "Upload Photo"}
@@ -165,7 +165,7 @@ function ChildModal({
                 onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
             ) : (
               <div className="w-10 h-10 rounded-full flex items-center justify-center font-black text-lg text-white"
-                style={{ backgroundColor: form.avatarColor ?? "#0B5FA8" }}>
+                style={{ backgroundColor: form.avatarColor ?? "#09609A" }}>
                 {form.name?.[0] ?? "?"}
               </div>
             )}
@@ -183,7 +183,7 @@ function ChildModal({
               onClick={() => setActiveTab(t)}
               className={`py-3 px-4 text-sm font-bold border-b-2 transition-colors capitalize ${
                 activeTab === t
-                  ? "border-[#0B5FA8] text-[#0B5FA8]"
+                  ? "border-[#09609A] text-[#09609A]"
                   : "border-transparent text-slate-400 hover:text-slate-600"
               }`}
             >
@@ -211,7 +211,7 @@ function ChildModal({
                   value={form.story ?? ""}
                   onChange={(e) => setForm((f) => ({ ...f, story: e.target.value }))}
                   placeholder="The child's background and why they need support…"
-                  className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-[#0B5FA8] resize-none"
+                  className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-[#09609A] resize-none"
                 />
               </div>
               <div>
@@ -353,7 +353,7 @@ function ChildModal({
             <button
               type="submit"
               disabled={saving}
-              className="flex-[2] bg-[#F5C619] text-[#061A32] rounded-xl py-2.5 text-sm font-black hover:bg-[#F5C619]/90 flex items-center justify-center gap-2 disabled:opacity-60"
+              className="flex-[2] bg-[#FBD308] text-[#061A32] rounded-xl py-2.5 text-sm font-black hover:bg-[#FBD308]/90 flex items-center justify-center gap-2 disabled:opacity-60"
             >
               {saving && <Loader2 className="w-4 h-4 animate-spin" />}
               {child?.id ? "Save Changes" : "Add Child"}
@@ -465,11 +465,11 @@ export default function AdminChildren() {
             placeholder="Search by name, school, sponsor…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#0B5FA8] w-56"
+            className="border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#09609A] w-56"
           />
           <button
             onClick={() => setModal(EMPTY)}
-            className="flex items-center gap-2 bg-[#F5C619] text-[#061A32] px-4 py-2.5 rounded-xl text-sm font-black hover:bg-[#F5C619]/90 transition-colors"
+            className="flex items-center gap-2 bg-[#FBD308] text-[#061A32] px-4 py-2.5 rounded-xl text-sm font-black hover:bg-[#FBD308]/90 transition-colors"
           >
             <Plus className="w-4 h-4" />
             Add Child
@@ -491,7 +491,7 @@ export default function AdminChildren() {
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all ${
                 tab === key
                   ? "bg-[#061A32] text-white"
-                  : "bg-white border border-slate-200 text-slate-500 hover:border-[#0B5FA8] hover:text-[#0B5FA8]"
+                  : "bg-white border border-slate-200 text-slate-500 hover:border-[#09609A] hover:text-[#09609A]"
               }`}
             >
               <Icon className="w-4 h-4" />
@@ -509,7 +509,7 @@ export default function AdminChildren() {
 
         {loading ? (
           <div className="flex items-center justify-center h-48">
-            <Loader2 className="w-7 h-7 animate-spin text-[#0B5FA8]" />
+            <Loader2 className="w-7 h-7 animate-spin text-[#09609A]" />
           </div>
         ) : filtered.length === 0 ? (
           <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center">
@@ -556,7 +556,7 @@ export default function AdminChildren() {
                         <CheckCircle className="w-3 h-3" /> Sponsored
                       </span>
                     ) : (
-                      <span className="flex items-center gap-1 bg-[#F5C619] text-[#061A32] text-xs font-bold px-2.5 py-1 rounded-full shadow">
+                      <span className="flex items-center gap-1 bg-[#FBD308] text-[#061A32] text-xs font-bold px-2.5 py-1 rounded-full shadow">
                         <HeartHandshake className="w-3 h-3" /> Available
                       </span>
                     )}

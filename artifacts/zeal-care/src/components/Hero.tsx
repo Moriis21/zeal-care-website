@@ -30,7 +30,7 @@ export function Hero() {
     <section
       id="home"
       className="relative overflow-hidden text-white"
-      style={{ background: "linear-gradient(135deg, #051829 0%, #0B5FA8 55%, #051829 100%)" }}
+      style={{ background: "linear-gradient(135deg, #051829 0%, #09609A 55%, #051829 100%)" }}
     >
       {/* Subtle grid texture */}
       <div
