@@ -86,9 +86,9 @@ export const DEFAULT_CONTENT: SiteContent = {
     impactCommunities: "3",
     impactYears: "7+",
     impactCountries: "1",
-    scholarCount: "850",
-    partnerSchools: "50",
-    techHours: "24000",
+    scholarCount: "105",
+    partnerSchools: "2",
+    techHours: "5000",
   },
   home: {
     heroBadge: "EMPOWERING AFRICA'S FUTURE LEADERS",
