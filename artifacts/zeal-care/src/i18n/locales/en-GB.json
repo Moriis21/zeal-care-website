@@ -30,8 +30,7 @@
       "Tenders & Opportunities": "Tenders & Opportunities",
       "How We Operate": "How We Operate",
       "Where We Operate": "Where We Operate",
-      "Our Programmes": "Our Programmes",
-      "Our Programs": "Our Programmes",
+      "Our Programs": "Our Programs",
       "What Sets Us Apart": "What Sets Us Apart",
       "Impact in Numbers": "Impact in Numbers",
       "Ways to Give": "Ways to Give",
@@ -51,7 +50,9 @@
     "subtitle": "We believe every child is a spark of genius. We provide the tools, mentorship, and opportunities to set that genius free.",
     "sponsorCTA": "Sponsor a Child",
     "impactCTA": "Our Impact",
-    "childrenLabel": "Children Sponsored"
+    "childrenLabel": "Children Sponsored",
+    "programsRunning": "Programs Running",
+    "languagesSupported": "Languages Supported"
   },
   "stats": {
     "activeScholars": "Active Scholars",
@@ -65,7 +66,7 @@
     "badge": "Who We Are",
     "heading": "Igniting the genius in every child.",
     "yearsImpact": "Years of Impact",
-    "p1": "Zeal Care is a nonprofit organisation headquartered in Monrovia, Liberia. We are dedicated to empowering Africa's future leaders through comprehensive education, focused mentorship, and crucial technology access.",
+    "p1": "Zeal Care is a nonprofit organization headquartered in Monrovia, Liberia. We are dedicated to empowering Africa's future leaders through comprehensive education, focused mentorship, and crucial technology access.",
     "p2": "We have partnered with local communities — including Esfans Academy at West Point Zone 405 — to break down barriers to success. We don't just provide resources; we build pathways for children to discover their potential and transform their communities.",
     "quote": "When you give a child the right tools and someone who believes in them, their potential is limitless.",
     "learnMore": "Learn More About Us →"
@@ -75,70 +76,42 @@
     "heading": "A Holistic Approach to Change",
     "subtitle": "We address the root causes of inequality through four core pillars, creating a comprehensive foundation for success.",
     "features": [
-      {
-        "title": "Education Access",
-        "desc": "Providing scholarships, school supplies, and removing financial barriers so every child can attend school."
-      },
-      {
-        "title": "Technology Skills",
-        "desc": "Equipping students with modern computer labs and coding classes to prepare them for the digital economy."
-      },
-      {
-        "title": "Mentorship Programmes",
-        "desc": "Pairing young people with dedicated role models who guide their personal and professional development."
-      },
-      {
-        "title": "Community Impact",
-        "desc": "Building sustainable local programmes that uplift entire neighbourhoods, not just individuals."
-      }
+      { "title": "Education Access", "desc": "Providing scholarships, school supplies, and removing financial barriers so every child can attend school." },
+      { "title": "Technology Skills", "desc": "Equipping students with modern computer labs and coding classes to prepare them for the digital economy." },
+      { "title": "Mentorship Programs", "desc": "Pairing youth with dedicated role models who guide their personal and professional development." },
+      { "title": "Community Impact", "desc": "Building sustainable local programs that uplift entire neighborhoods, not just individuals." }
     ]
   },
   "programs": {
     "badge": "What We Do",
-    "heading": "Programmes that build the future.",
-    "viewAll": "View All Programmes",
+    "heading": "Programs that build the future.",
+    "viewAll": "View All Programs",
     "learnMore": "Learn more",
     "items": [
-      {
-        "title": "Scholar Support",
-        "desc": "Comprehensive scholarships covering tuition, school supplies, uniforms, and backpacks for promising students who need it most."
-      },
-      {
-        "title": "Tech Education",
-        "desc": "State-of-the-art computer labs teaching digital literacy, coding, and modern software skills to prepare young people for the digital economy."
-      },
-      {
-        "title": "Classroom Engagement",
-        "desc": "Active school visits and interactive learning sessions that inspire curiosity, build confidence, and make education exciting."
-      },
-      {
-        "title": "Community Outreach",
-        "desc": "Engaging families, local leaders, and households to build supportive environments where every child's education is valued."
-      }
+      { "title": "Scholar Support", "desc": "Comprehensive scholarships covering tuition, school supplies, uniforms, and backpacks for promising students who need it most." },
+      { "title": "Tech Education", "desc": "State-of-the-art computer labs teaching digital literacy, coding, and modern software skills to prepare youth for the digital economy." },
+      { "title": "Classroom Engagement", "desc": "Active school visits and interactive learning sessions that inspire curiosity, build confidence, and make education exciting." },
+      { "title": "Community Outreach", "desc": "Engaging families, local leaders, and households to build supportive environments where every child's education is valued." }
     ]
   },
   "sponsor": {
     "badge": "Make It Personal",
     "heading": "Sponsor a Specific Child",
     "subtitle": "Every child here has a name, a dream, and a story. Choose one to support directly — your $150 covers their full year of school.",
-    "tabs": {
-      "all": "All Children",
-      "available": "Needs Sponsor",
-      "sponsored": "Already Sponsored"
-    },
+    "tabs": { "all": "All Children", "available": "Needs Sponsor", "sponsored": "Already Sponsored" },
     "sponsoredBadge": "Sponsored",
     "needsSponsorBadge": "Needs Sponsor",
     "age": "Age",
     "cta": "Sponsor",
     "perYear": "$150/yr",
     "thanksMsg": "This child is sponsored — thank you!",
-    "loading": "Loading children's profiles…",
+    "loading": "Loading children profiles…",
     "error": "Could not load profiles right now. Please try again shortly.",
     "allSponsored": "All children are sponsored! 🎉",
     "allSponsoredSub": "Your generosity has made this possible. Contact us to support the next intake.",
     "progressOf": "of",
     "stillNeed": "still need you",
-    "multipleGift": "Want to sponsor multiple children or make a general gift?",
+    "multipleGift": "Want to sponsor multiple children or give a general gift?",
     "seeOptions": "See all giving options →"
   },
   "joinus": {
@@ -152,7 +125,13 @@
     "badge": "Impact Stories",
     "heading": "Voices of the Future",
     "subtitle": "Real children. Real families. Real change. These are the faces behind our mission.",
-    "age": "Age"
+    "age": "Age",
+    "quotes": [
+      "Before Zeal Care, I didn't know if I could finish school. Now I have a uniform, books, and people who believe in me.",
+      "Zeal Care gave me a backpack and school supplies. For the first time, I felt like I truly belonged in the classroom.",
+      "I love going to school now. My teacher says I'm one of the best readers in the class. Thank you, Zeal Care!",
+      "My family could not afford school fees. Because of Zeal Care, I can learn and dream about my future."
+    ]
   },
   "ticker": {
     "badge": "Live Impact",
@@ -165,14 +144,15 @@
   "gallery": {
     "badge": "In the Field",
     "heading": "Moments of Change",
-    "subtitle": "A glimpse into the real work happening every day — in classrooms, communities, and lives across Monrovia, Liberia."
+    "subtitle": "A glimpse into the real work happening every day — in classrooms, communities, and lives across Monrovia, Liberia.",
+    "viewFull": "View Full Gallery"
   },
   "partners": {
     "badge": "Strategic Global Ecosystem",
     "heading": "Our Strategic Partners",
-    "subtitle": "Working alongside world-class organisations to amplify our impact and bring quality education to every underprivileged child in Liberia and across Africa.",
+    "subtitle": "Working alongside world-class organizations to amplify our impact and bring quality education to every underprivileged child in Liberia and across Africa.",
     "ctaHeading": "Become a Strategic Partner",
-    "ctaSub": "Join world-class organisations transforming education across Africa.",
+    "ctaSub": "Join world-class organizations transforming education across Africa.",
     "ctaBtn": "Partner with Us →"
   },
   "contact": {
@@ -185,9 +165,9 @@
     "subject": "Subject",
     "message": "Your Message",
     "send": "Send Message",
-    "sending": "Sending…",
+    "sending": "Sending...",
     "successTitle": "Message Sent!",
-    "successMsg": "Thank you for reaching out. We'll get back to you within 24–48 hours.",
+    "successMsg": "Thank you for reaching out. We'll get back to you within 24-48 hours.",
     "sendAnother": "Send Another Message",
     "phone": "Phone",
     "location": "Location",
@@ -198,6 +178,16 @@
     "quickLinks": "Quick Links",
     "getInvolved": "Get Involved",
     "contactInfo": "Contact Info",
+    "organization": "Organization",
+    "getInTouch": "Get in Touch",
+    "followJourney": "Follow the Journey",
+    "becomeaDonor": "Become a Donor",
+    "volunteerNow": "Volunteer Now",
+    "sendMessage": "Send us a message",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "builtBy": "Built by",
+    "allRights": "All rights reserved. Monrovia, Liberia.",
     "newsletter": "Stay in the Loop",
     "newsletterDesc": "Get monthly updates on our children's progress, events, and impact stories.",
     "emailPlaceholder": "Your email address",
@@ -225,12 +215,145 @@
     "title": "Make a Difference Today",
     "subtitle": "Your donation directly funds education, meals, and mentorship for children in Liberia.",
     "monthly": "Monthly",
-    "oneTime": "One-Off",
+    "oneTime": "One-Time",
     "custom": "Custom Amount",
     "continue": "Continue",
     "close": "Close"
   },
   "lang": {
     "select": "Language"
+  },
+  "giving": {
+    "overview": {
+      "title": "Igniting Potential",
+      "hero": "With your support, we can ignite the endless potential of underprivileged children in Liberia and across Africa.",
+      "mandelaQuote": "Education is the most powerful weapon which you can use to change the world.",
+      "body": "Your support today can help a child secure an education. The child will be able to create the future they imagine for themselves, their community, and Africa.",
+      "directFunding": "of every dollar we spend goes to our programs",
+      "cards": {
+        "ways": { "label": "Ways to Give", "desc": "Explore all the ways you can support Zeal Care's mission." },
+        "appeals": { "label": "Appeals", "desc": "Specific urgent campaigns that need your support right now." },
+        "partner": { "label": "Become a Partner", "desc": "Partner with us to multiply our impact for thousands of children." },
+        "faq": { "label": "Giving FAQ", "desc": "Find answers to all your questions about donating to Zeal Care." }
+      }
+    },
+    "ways": {
+      "title": "Ways to Give",
+      "hero": "Take Action Today",
+      "heroPara": "Your support today can help a child secure an education. That child will be able to create the future they imagine for themselves, their community, and Africa.",
+      "impactMeter": "Impact Meter",
+      "impactItems": [
+        { "amount": "$150", "impact": "Empowers 1 child with full school fees, uniform, books & supplies for one year" },
+        { "amount": "$500", "impact": "Empowers 2 underprivileged children for a full academic year" },
+        { "amount": "$1,800", "impact": "Empowers 3 children + full year of mentorship and skills training" },
+        { "amount": "$7,200", "impact": "Sponsors up to 25 children for a full academic year" }
+      ],
+      "howUse": "How We Use Your Donation",
+      "howUsePara": "As well as paying school fees and other essentials such as uniforms and books, your gift helps beyond the classroom — supporting students with training and resources they need to become economically independent leaders in their communities.",
+      "donationItems": ["School Fees & Registration", "Uniforms & Shoes", "Books & School Supplies", "Mentorship Programs", "Leadership Training", "Entrepreneurship Workshops"],
+      "readyTitle": "Ready to Make a Difference?",
+      "readyPara": "When you educate one child, you educate many. Every child you support through Zeal Care will go on to help at least two others, multiplying your impact far into the future.",
+      "contactPrompt": "Contact us to donate:",
+      "emailBtn": "Email: info@zealcare.org",
+      "callBtn": "Call: +231 886 727 619",
+      "afterPayment": "After paying, email",
+      "afterPaymentEmail": "zealcare24@gmail.com",
+      "afterPaymentSuffix": "with your name and transaction ID for confirmation.",
+      "payInUSD": "Pay in USD",
+      "payInLRD": "Pay in LRD",
+      "copyCode": "Copy",
+      "copied": "Copied!",
+      "iSent": "I've sent my payment",
+      "lonestarName": "Lonestar Cell MTN (Liberia)",
+      "lonestarNote": "Dial on your Lonestar MTN phone and follow the prompts.",
+      "orangeName": "Orange Money (Liberia)",
+      "orangeNote": "After paying, email zealcare24@gmail.com with your name and transaction ID.",
+      "bankTitle": "Bank Transfer",
+      "bankName": "Bank Name",
+      "bankAccountName": "Account Name",
+      "bankUSD": "Account Number (USD)",
+      "bankLRD": "Account Number (LRD)",
+      "bankNote": "Please include your name and 'Zeal Care Donation' in the transfer reference. Contact info@zealcare.org for wire transfer instructions."
+    },
+    "appeals": {
+      "title": "Appeals",
+      "hero": "Zeal Care changes underprivileged children, students, and youth through education, leadership, entrepreneurship, career path choices in STEM, and Digital Education. These critical appeals and projects need your urgent support.",
+      "supportThis": "Support This",
+      "items": [
+        {
+          "title": "No Child Should Be Left Behind in Education",
+          "urgency": "ACTIVE APPEAL",
+          "desc": "Zeal Care is seeking to expand beyond our current 105+ beneficiaries. We are currently raising funds to sponsor additional children from West Point and other slum communities in Liberia for the 2025–2026 academic year. Every child deserves the chance to learn, dream, and succeed.",
+          "target": "$7,200 sponsors 25 children"
+        },
+        {
+          "title": "School Supplies Drive",
+          "urgency": "ONGOING",
+          "desc": "Cash donations to support procurement of school materials — books, bags, pens, pencils, shoes, and uniforms for newly enrolled beneficiaries. Your gift ensures no child walks into school without the tools they need to succeed.",
+          "target": "$50 supplies one child for the year"
+        },
+        {
+          "title": "Leadership & Entrepreneurship Training Fund",
+          "urgency": "PLANNING",
+          "desc": "We are raising funds to launch our first structured Leadership Development and Entrepreneurship training program for sponsored beneficiaries and youth in partner communities.",
+          "target": "$500 trains 10 young people"
+        }
+      ]
+    },
+    "partner": {
+      "title": "Become a Partner",
+      "hero": "Partner with us to multiply the education and leadership potential of thousands of underprivileged children.",
+      "heroPara": "We see education for underprivileged children as the starting point for social change. Tackling the world's biggest issues needs the resources, innovation, and collaboration of the private sector.",
+      "body": "At Zeal Care, we build partnerships with companies, businesses, and organizations that are purpose-driven and looking for ways to engage their brand, employees, and customers with scalable change.",
+      "pathwaysTitle": "Partnership Pathways",
+      "pathways": [
+        {
+          "type": "Development Partner",
+          "items": ["Education Access, Retention & Inclusion", "Leadership Development & Civic Engagement", "Entrepreneurship and innovation training", "STEM & Digital Career Pathways"]
+        },
+        {
+          "type": "Community Advocate",
+          "items": ["Community Education Advocacy & Child Protection", "Workshop Facilitation", "Event Support", "Community & School-Based Leadership & Mentorship", "Grassroots Entrepreneurship & Life Skills"]
+        },
+        {
+          "type": "Corporate Sponsor",
+          "items": ["Underprivileged Children Education and Support", "Leadership Training & Soft Skills", "Digital literacy and basic coding funding", "STEM awareness workshops", "Brand Campaign Placement"]
+        }
+      ],
+      "formTitle": "Submit a Partnership Inquiry",
+      "formType": "Organization/Individual Name",
+      "formTypeOpt": "Select type...",
+      "formTypeOrg": "Organization",
+      "formTypeInd": "Individual",
+      "formName": "Name",
+      "formNamePh": "Your full name or organization name",
+      "formEmail": "Contact Email",
+      "formEmailPh": "your@email.com",
+      "formPathway": "Partnership Pathway",
+      "formPathwayOpt": "Select pathway...",
+      "formMessage": "Brief Message",
+      "formMessagePh": "Tell us about your organization and how you'd like to partner with Zeal Care...",
+      "formSubmit": "Submit Partnership Inquiry"
+    },
+    "faq": {
+      "title": "Giving FAQ",
+      "hero": "Find answers to all your questions about Zeal Care and donating.",
+      "items": [
+        { "q": "What is Zeal Care?", "a": "Zeal Care is a nonprofit NGO that empowers underprivileged children between the ages of 4 and 17 from low-income backgrounds to foster academic success, social confidence, and emotional well-being. The organization is committed to inclusivity and transformation to create opportunities, uplift lives, and inspire hope for a brighter and more equitable future." },
+        { "q": "How can I learn more about Zeal Care's impact?", "a": "You can stay updated on our work by exploring our website, following us on social media, or signing up for our newsletter. We regularly share updates on our ongoing projects, success stories, and community initiatives." },
+        { "q": "Where does Zeal Care's funding come from?", "a": "Our funding comes from generous donations by individuals, organizations, and partners who believe in our mission. We ensure that every contribution directly benefits the people and communities we serve." },
+        { "q": "Can I donate to support a specific county or program?", "a": "Yes, you can do this in one of two ways: donate to a specific initiative or appeal on this page, or include a note with your donation specifying the county or program. We are always happy to answer any questions about how we ensure that your funds reach the programs and/or counties you specify." },
+        { "q": "Can I volunteer or travel with Zeal Care?", "a": "Yes! We welcome volunteers who are passionate and willing to create change. If you'd like to contribute your skills, reach out to us at zealcare24@gmail.com or info@zealcare.org." },
+        { "q": "Can my organization partner with Zeal Care?", "a": "Yes! We actively seek partnerships with organizations, businesses, and institutions that align with our mission, vision, and programs. If you are interested in collaborating, email us at info@zealcare.org." },
+        { "q": "Where is Zeal Care located?", "a": "Zeal Care is based in Monrovia, Liberia. We are committed to driving impactful change across Liberia and beyond borders through our various programs." },
+        { "q": "How is my donation used?", "a": "Every donation is allocated to key impact areas such as full education sponsorship, leadership & entrepreneurship training, digital literacy skills training, workshops to help make a choice of a career path in STEM, and other impactful community initiatives. We are committed to transparency in fund allocation." },
+        { "q": "Can I make a gift by wire transfer?", "a": "Yes! Please contact our team at info@zealcare.org, and we'll send you instructions on how to make those gifts or visit our donation and igniting potential pages." },
+        { "q": "How can I get a receipt for tax purposes?", "a": "For online donations, the acknowledgment you receive via email serves as your receipt for tax purposes. For donations made by other means, the acknowledgment sent to you by post or email serves as your receipt. To request a duplicate receipt, please email info@zealcare.org with details." },
+        { "q": "Does Zeal Care share my information?", "a": "In keeping with our privacy policy, we do not transmit, transfer, or sell private information to any outside parties." },
+        { "q": "Do you accept donations of books, school supplies, clothes, or other materials outside of Liberia?", "a": "While we appreciate offers to support Zeal Care's educational initiative with supplies, we are unable to accept these kinds of gifts. Zeal Care avoids overhead and administrative costs associated with shipping donated goods. Instead, we appreciate cash transfers directly, so that our procurement and logistics team can buy the supplies children need. This policy also helps us support local businesses in Liberia and Africa." },
+        { "q": "Are there any health requirements for traveling to Liberia?", "a": "Yes! A yellow fever vaccination is required for entry into Liberia. We also recommend taking anti-malarial medication and consulting with a doctor before traveling." },
+        { "q": "How can I stay connected with Zeal Care?", "a": "You can follow us on social media (LinkedIn, Facebook, Instagram) and subscribe to our newsletter for regular updates. Links are available in our website footer." }
+      ]
+    }
   }
 }

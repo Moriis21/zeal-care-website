@@ -6,39 +6,17 @@ import ruthImg from "@assets/Ruth_Flomo_1777770889389.jpeg";
 import melvinImg from "@assets/Melvin_Jarteh_1777770889388.jpeg";
 import varscoImg from "@assets/Varsco_Harris_1777770889389.jpeg";
 
-const STORY_DATA = [
-  {
-    name: "Elishaka Fofana Donzo",
-    age: 10,
-    location: "Monrovia",
-    quote: "Before Zeal Care, I didn't know if I could finish school. Now I have books, a uniform, and people who believe in me. I want to be a doctor one day.",
-    image: elishakaImg,
-  },
-  {
-    name: "Ruth Flomo",
-    age: 12,
-    location: "Monrovia",
-    quote: "Zeal Care gave me a backpack and school supplies, but they also gave me hope. My teacher says I am one of the best students in class.",
-    image: ruthImg,
-  },
-  {
-    name: "Melvin Jarteh",
-    age: 9,
-    location: "Monrovia",
-    quote: "I love going to school now. The people at Zeal Care are always there for us. I want to grow up and help children just like they helped me.",
-    image: melvinImg,
-  },
-  {
-    name: "Varsco Harris",
-    age: 11,
-    location: "Monrovia",
-    quote: "My family could not afford school fees. Zeal Care stepped in and now I go to school every day. I am learning and I am proud.",
-    image: varscoImg,
-  },
+const STORY_META = [
+  { name: "Elishaka Fofana Donzo", age: 10, location: "Monrovia", image: elishakaImg },
+  { name: "Ruth Flomo", age: 12, location: "Monrovia", image: ruthImg },
+  { name: "Melvin Jarteh", age: 9, location: "Monrovia", image: melvinImg },
+  { name: "Varsco Harris", age: 11, location: "Monrovia", image: varscoImg },
 ];
 
 export function Stories() {
   const { t } = useTranslation();
+  const quotes = t("stories.quotes", { returnObjects: true }) as string[];
+  const STORY_DATA = STORY_META.map((s, i) => ({ ...s, quote: quotes[i] ?? "" }));
 
   return (
     <section id="stories" className="py-24 bg-foreground text-background">

@@ -30,8 +30,8 @@ export function Hero() {
       className="relative flex flex-col overflow-hidden bg-primary text-primary-foreground"
       style={{ minHeight: "100svh" }}
     >
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#061A32] via-[#1A44C0]/80 to-[#061A32]/95" />
+      {/* Background gradient — official brand blue #0B5FA8 */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#061A32] via-[#0B5FA8]/85 to-[#061A32]/95" />
 
       {/* Subtle dot texture */}
       <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:32px_32px]" />
@@ -108,8 +108,8 @@ export function Hero() {
             <div className="flex items-center gap-6 mt-10 pt-8 border-t border-white/10">
               {[
                 { value: content?.settings.impactChildren ?? "105+", label: t("hero.childrenLabel") },
-                { value: content?.settings.heroPrograms ?? "12+", label: "Programs Running" },
-                { value: content?.settings.heroLanguages ?? "4", label: "Languages Supported" },
+                { value: content?.settings.heroPrograms ?? "12+", label: t("hero.programsRunning") },
+                { value: content?.settings.heroLanguages ?? "4", label: t("hero.languagesSupported") },
               ].map(({ value, label }) => (
                 <div key={label} className="text-center">
                   <p className="text-2xl font-black text-secondary leading-none">{value}</p>

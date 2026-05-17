@@ -50,7 +50,9 @@
     "subtitle": "Nous croyons que chaque enfant est une étincelle de génie. Nous fournissons les outils, le mentorat et les opportunités pour libérer ce génie.",
     "sponsorCTA": "Parrainer un Enfant",
     "impactCTA": "Notre Impact",
-    "childrenLabel": "Enfants Parrainés"
+    "childrenLabel": "Enfants Parrainés",
+    "programsRunning": "Programmes Actifs",
+    "languagesSupported": "Langues Supportées"
   },
   "stats": {
     "activeScholars": "Étudiants Actifs",
@@ -74,22 +76,10 @@
     "heading": "Une Approche Globale du Changement",
     "subtitle": "Nous nous attaquons aux causes profondes des inégalités à travers quatre piliers essentiels, créant une base solide pour la réussite.",
     "features": [
-      {
-        "title": "Accès à l'Éducation",
-        "desc": "Fournir des bourses, des fournitures scolaires et éliminer les barrières financières pour que chaque enfant puisse aller à l'école."
-      },
-      {
-        "title": "Compétences Technologiques",
-        "desc": "Doter les élèves de laboratoires informatiques modernes et de cours de codage pour les préparer à l'économie numérique."
-      },
-      {
-        "title": "Programmes de Mentorat",
-        "desc": "Associer les jeunes à des modèles dévoués qui guident leur développement personnel et professionnel."
-      },
-      {
-        "title": "Impact Communautaire",
-        "desc": "Créer des programmes locaux durables qui élèvent des quartiers entiers, pas seulement des individus."
-      }
+      { "title": "Accès à l'Éducation", "desc": "Fournir des bourses, des fournitures scolaires et éliminer les barrières financières pour que chaque enfant puisse aller à l'école." },
+      { "title": "Compétences Technologiques", "desc": "Doter les élèves de laboratoires informatiques modernes et de cours de codage pour les préparer à l'économie numérique." },
+      { "title": "Programmes de Mentorat", "desc": "Associer les jeunes à des modèles dévoués qui guident leur développement personnel et professionnel." },
+      { "title": "Impact Communautaire", "desc": "Créer des programmes locaux durables qui élèvent des quartiers entiers, pas seulement des individus." }
     ]
   },
   "programs": {
@@ -98,33 +88,17 @@
     "viewAll": "Voir Tous les Programmes",
     "learnMore": "En savoir plus",
     "items": [
-      {
-        "title": "Soutien aux Étudiants",
-        "desc": "Des bourses complètes couvrant les frais de scolarité, les fournitures, les uniformes et les cartables pour les élèves prometteurs qui en ont le plus besoin."
-      },
-      {
-        "title": "Éducation Technologique",
-        "desc": "Des laboratoires informatiques de pointe enseignant la culture numérique, le codage et les logiciels modernes pour préparer les jeunes à l'économie numérique."
-      },
-      {
-        "title": "Engagement en Classe",
-        "desc": "Des visites scolaires actives et des séances d'apprentissage interactives qui éveillent la curiosité, renforcent la confiance et rendent l'éducation passionnante."
-      },
-      {
-        "title": "Rayonnement Communautaire",
-        "desc": "Mobiliser les familles, les leaders locaux et les ménages pour créer des environnements favorables où l'éducation de chaque enfant est valorisée."
-      }
+      { "title": "Soutien aux Étudiants", "desc": "Des bourses complètes couvrant les frais de scolarité, les fournitures, les uniformes et les cartables pour les élèves prometteurs qui en ont le plus besoin." },
+      { "title": "Éducation Technologique", "desc": "Des laboratoires informatiques de pointe enseignant la culture numérique, le codage et les logiciels modernes pour préparer les jeunes à l'économie numérique." },
+      { "title": "Engagement en Classe", "desc": "Des visites scolaires actives et des séances d'apprentissage interactives qui éveillent la curiosité, renforcent la confiance et rendent l'éducation passionnante." },
+      { "title": "Rayonnement Communautaire", "desc": "Mobiliser les familles, les leaders locaux et les ménages pour créer des environnements favorables où l'éducation de chaque enfant est valorisée." }
     ]
   },
   "sponsor": {
     "badge": "Personnalisez Votre Don",
     "heading": "Parrainer un Enfant Spécifique",
     "subtitle": "Chaque enfant ici a un nom, un rêve et une histoire. Choisissez-en un à soutenir directement — vos 150 $ couvrent toute son année scolaire.",
-    "tabs": {
-      "all": "Tous les Enfants",
-      "available": "Besoin d'un Parrain",
-      "sponsored": "Déjà Parrainé"
-    },
+    "tabs": { "all": "Tous les Enfants", "available": "Besoin d'un Parrain", "sponsored": "Déjà Parrainé" },
     "sponsoredBadge": "Parrainé",
     "needsSponsorBadge": "Besoin d'un Parrain",
     "age": "Âge",
@@ -151,7 +125,13 @@
     "badge": "Histoires d'Impact",
     "heading": "Les Voix du Futur",
     "subtitle": "De vrais enfants. De vraies familles. Un vrai changement. Ce sont les visages derrière notre mission.",
-    "age": "Âge"
+    "age": "Âge",
+    "quotes": [
+      "Avant Zeal Care, je ne savais pas si je pourrais terminer l'école. Maintenant j'ai un uniforme, des livres et des gens qui croient en moi.",
+      "Zeal Care m'a donné un cartable et des fournitures scolaires. Pour la première fois, je me suis senti(e) vraiment à ma place dans la classe.",
+      "J'adore aller à l'école maintenant. Mon professeur dit que je suis l'un des meilleurs lecteurs de la classe. Merci, Zeal Care !",
+      "Ma famille ne pouvait pas payer les frais de scolarité. Grâce à Zeal Care, je peux apprendre et rêver à mon avenir."
+    ]
   },
   "ticker": {
     "badge": "Impact en Direct",
@@ -164,7 +144,8 @@
   "gallery": {
     "badge": "Sur le Terrain",
     "heading": "Moments de Changement",
-    "subtitle": "Un aperçu du vrai travail qui se passe chaque jour — dans les salles de classe, les communautés et les vies à travers Monrovia, au Libéria."
+    "subtitle": "Un aperçu du vrai travail qui se passe chaque jour — dans les salles de classe, les communautés et les vies à travers Monrovia, au Libéria.",
+    "viewFull": "Voir la Galerie Complète"
   },
   "partners": {
     "badge": "Écosystème Mondial Stratégique",
@@ -197,6 +178,16 @@
     "quickLinks": "Liens Rapides",
     "getInvolved": "S'impliquer",
     "contactInfo": "Coordonnées",
+    "organization": "Organisation",
+    "getInTouch": "Nous Contacter",
+    "followJourney": "Suivez le Parcours",
+    "becomeaDonor": "Devenir Donateur",
+    "volunteerNow": "Bénévole Maintenant",
+    "sendMessage": "Envoyez-nous un message",
+    "privacyPolicy": "Politique de Confidentialité",
+    "termsOfService": "Conditions d'Utilisation",
+    "builtBy": "Créé par",
+    "allRights": "Tous droits réservés. Monrovia, Libéria.",
     "newsletter": "Restez Informé",
     "newsletterDesc": "Recevez des mises à jour mensuelles sur les progrès de nos enfants, les événements et les histoires d'impact.",
     "emailPlaceholder": "Votre adresse e-mail",
@@ -231,5 +222,129 @@
   },
   "lang": {
     "select": "Langue"
+  },
+  "giving": {
+    "overview": {
+      "title": "Allumer le Potentiel",
+      "hero": "Avec votre soutien, nous pouvons allumer le potentiel infini des enfants défavorisés au Libéria et à travers l'Afrique.",
+      "mandelaQuote": "L'éducation est l'arme la plus puissante que vous puissiez utiliser pour changer le monde.",
+      "body": "Votre soutien aujourd'hui peut aider un enfant à obtenir une éducation. Cet enfant pourra créer le futur qu'il imagine pour lui-même, sa communauté et l'Afrique.",
+      "directFunding": "de chaque dollar que nous dépensons va à nos programmes",
+      "cards": {
+        "ways": { "label": "Façons de Donner", "desc": "Explorez toutes les façons dont vous pouvez soutenir la mission de Zeal Care." },
+        "appeals": { "label": "Appels aux Dons", "desc": "Campagnes urgentes spécifiques qui ont besoin de votre soutien dès maintenant." },
+        "partner": { "label": "Devenir Partenaire", "desc": "Partenez avec nous pour multiplier notre impact pour des milliers d'enfants." },
+        "faq": { "label": "FAQ sur les Dons", "desc": "Trouvez des réponses à toutes vos questions sur les dons à Zeal Care." }
+      }
+    },
+    "ways": {
+      "title": "Façons de Donner",
+      "hero": "Agissez Aujourd'hui",
+      "heroPara": "Votre soutien aujourd'hui peut aider un enfant à obtenir une éducation. Cet enfant pourra créer le futur qu'il imagine pour lui-même, sa communauté et l'Afrique.",
+      "impactMeter": "Compteur d'Impact",
+      "impactItems": [
+        { "amount": "150 $", "impact": "Soutient 1 enfant avec les frais scolaires, uniforme, livres & fournitures pour un an" },
+        { "amount": "500 $", "impact": "Soutient 2 enfants défavorisés pour une année académique complète" },
+        { "amount": "1 800 $", "impact": "Soutient 3 enfants + une année complète de mentorat et formation" },
+        { "amount": "7 200 $", "impact": "Parraine jusqu'à 25 enfants pour une année académique complète" }
+      ],
+      "howUse": "Comment Nous Utilisons Votre Don",
+      "howUsePara": "En plus de payer les frais scolaires et les essentiels comme les uniformes et les livres, votre don aide au-delà de la classe — en soutenant les élèves avec la formation et les ressources dont ils ont besoin pour devenir des leaders économiquement indépendants dans leurs communautés.",
+      "donationItems": ["Frais Scolaires & Inscription", "Uniformes & Chaussures", "Livres & Fournitures Scolaires", "Programmes de Mentorat", "Formation en Leadership", "Ateliers d'Entrepreneuriat"],
+      "readyTitle": "Prêt à Faire la Différence ?",
+      "readyPara": "Quand vous éduquez un enfant, vous en éduquez plusieurs. Chaque enfant que vous soutenez via Zeal Care aidera au moins deux autres, multipliant votre impact loin dans le futur.",
+      "contactPrompt": "Contactez-nous pour faire un don :",
+      "emailBtn": "Email : info@zealcare.org",
+      "callBtn": "Appel : +231 886 727 619",
+      "afterPayment": "Après le paiement, envoyez un email à",
+      "afterPaymentEmail": "zealcare24@gmail.com",
+      "afterPaymentSuffix": "avec votre nom et votre ID de transaction pour confirmation.",
+      "payInUSD": "Payer en USD",
+      "payInLRD": "Payer en LRD",
+      "copyCode": "Copier",
+      "copied": "Copié !",
+      "iSent": "J'ai envoyé mon paiement",
+      "lonestarName": "Lonestar Cell MTN (Libéria)",
+      "lonestarNote": "Composez sur votre téléphone Lonestar MTN et suivez les instructions.",
+      "orangeName": "Orange Money (Libéria)",
+      "orangeNote": "Après le paiement, envoyez un email à zealcare24@gmail.com avec votre nom et votre ID de transaction.",
+      "bankTitle": "Virement Bancaire",
+      "bankName": "Nom de la Banque",
+      "bankAccountName": "Nom du Compte",
+      "bankUSD": "Numéro de Compte (USD)",
+      "bankLRD": "Numéro de Compte (LRD)",
+      "bankNote": "Veuillez inclure votre nom et 'Don Zeal Care' dans la référence du virement. Contactez info@zealcare.org pour les instructions de virement international."
+    },
+    "appeals": {
+      "title": "Appels aux Dons",
+      "hero": "Zeal Care change des enfants, étudiants et jeunes défavorisés à travers l'éducation, le leadership, l'entrepreneuriat, les choix de carrière en STEM et l'éducation numérique. Ces appels critiques ont besoin de votre soutien urgent.",
+      "supportThis": "Soutenir Ceci",
+      "items": [
+        {
+          "title": "Aucun Enfant Ne Doit Être Laissé Pour Compte dans l'Éducation",
+          "urgency": "APPEL ACTIF",
+          "desc": "Zeal Care cherche à s'étendre au-delà de nos 105+ bénéficiaires actuels. Nous collectons actuellement des fonds pour parrainer des enfants supplémentaires de West Point et d'autres communautés défavorisées au Libéria pour l'année académique 2025–2026.",
+          "target": "7 200 $ parraine 25 enfants"
+        },
+        {
+          "title": "Collecte de Fournitures Scolaires",
+          "urgency": "EN COURS",
+          "desc": "Dons en espèces pour soutenir l'achat de matériel scolaire — livres, sacs, stylos, crayons, chaussures et uniformes pour les nouveaux bénéficiaires.",
+          "target": "50 $ fournit un enfant pour l'année"
+        },
+        {
+          "title": "Fonds de Formation en Leadership & Entrepreneuriat",
+          "urgency": "PLANIFICATION",
+          "desc": "Nous collectons des fonds pour lancer notre premier programme structuré de Développement du Leadership et de Formation à l'Entrepreneuriat pour les bénéficiaires parrainés.",
+          "target": "500 $ forme 10 jeunes"
+        }
+      ]
+    },
+    "partner": {
+      "title": "Devenir Partenaire",
+      "hero": "Partenez avec nous pour multiplier le potentiel éducatif et de leadership de milliers d'enfants défavorisés.",
+      "heroPara": "Nous voyons l'éducation des enfants défavorisés comme le point de départ du changement social. Résoudre les plus grands problèmes du monde nécessite les ressources, l'innovation et la collaboration du secteur privé.",
+      "body": "Chez Zeal Care, nous construisons des partenariats avec des entreprises et des organisations qui sont axées sur un but et cherchent des moyens d'engager leur marque, leurs employés et leurs clients dans un changement à grande échelle.",
+      "pathwaysTitle": "Voies de Partenariat",
+      "pathways": [
+        { "type": "Partenaire de Développement", "items": ["Accès, Maintien & Inclusion Éducative", "Développement du Leadership & Engagement Civique", "Formation à l'entrepreneuriat et à l'innovation", "Parcours de Carrière STEM & Numérique"] },
+        { "type": "Défenseur Communautaire", "items": ["Plaidoyer pour l'Éducation Communautaire & Protection de l'Enfant", "Animation d'Ateliers", "Soutien aux Événements", "Leadership & Mentorat Communautaire", "Entrepreneuriat de Base & Compétences de Vie"] },
+        { "type": "Sponsor Corporatif", "items": ["Éducation et Soutien aux Enfants Défavorisés", "Formation en Leadership & Compétences Douces", "Financement de la littératie numérique et du codage de base", "Ateliers de sensibilisation STEM", "Placement de Campagne de Marque"] }
+      ],
+      "formTitle": "Soumettre une Demande de Partenariat",
+      "formType": "Nom de l'Organisation/Individu",
+      "formTypeOpt": "Sélectionner le type...",
+      "formTypeOrg": "Organisation",
+      "formTypeInd": "Individu",
+      "formName": "Nom",
+      "formNamePh": "Votre nom complet ou nom d'organisation",
+      "formEmail": "Email de Contact",
+      "formEmailPh": "votre@email.com",
+      "formPathway": "Voie de Partenariat",
+      "formPathwayOpt": "Sélectionner la voie...",
+      "formMessage": "Bref Message",
+      "formMessagePh": "Parlez-nous de votre organisation et comment vous souhaitez vous associer à Zeal Care...",
+      "formSubmit": "Soumettre la Demande de Partenariat"
+    },
+    "faq": {
+      "title": "FAQ sur les Dons",
+      "hero": "Trouvez des réponses à toutes vos questions sur Zeal Care et les dons.",
+      "items": [
+        { "q": "Qu'est-ce que Zeal Care ?", "a": "Zeal Care est une ONG à but non lucratif qui aide les enfants défavorisés entre 4 et 17 ans issus de milieux à faibles revenus à réussir académiquement, à développer leur confiance sociale et leur bien-être émotionnel." },
+        { "q": "Comment puis-je en savoir plus sur l'impact de Zeal Care ?", "a": "Vous pouvez rester informé de notre travail en explorant notre site web, en nous suivant sur les réseaux sociaux ou en vous inscrivant à notre newsletter." },
+        { "q": "D'où provient le financement de Zeal Care ?", "a": "Notre financement provient de dons généreux d'individus, d'organisations et de partenaires qui croient en notre mission." },
+        { "q": "Puis-je faire un don pour soutenir un comté ou un programme spécifique ?", "a": "Oui, vous pouvez le faire de deux façons : faire un don à une initiative spécifique sur cette page, ou inclure une note avec votre don précisant le comté ou le programme." },
+        { "q": "Puis-je faire du bénévolat ou voyager avec Zeal Care ?", "a": "Oui ! Nous accueillons les bénévoles passionnés et prêts à créer du changement. Contactez-nous à zealcare24@gmail.com ou info@zealcare.org." },
+        { "q": "Mon organisation peut-elle s'associer à Zeal Care ?", "a": "Oui ! Nous recherchons activement des partenariats avec des organisations qui s'alignent sur notre mission. Envoyez un email à info@zealcare.org." },
+        { "q": "Où est basé Zeal Care ?", "a": "Zeal Care est basé à Monrovia, au Libéria. Nous nous engageons à conduire un changement impactant à travers le Libéria et au-delà des frontières." },
+        { "q": "Comment mon don est-il utilisé ?", "a": "Chaque don est alloué à des domaines d'impact clés tels que le parrainage éducatif complet, la formation en leadership & entrepreneuriat, la formation en compétences numériques et d'autres initiatives communautaires impactantes." },
+        { "q": "Puis-je faire un don par virement bancaire ?", "a": "Oui ! Veuillez contacter notre équipe à info@zealcare.org et nous vous enverrons les instructions pour effectuer ces dons." },
+        { "q": "Comment puis-je obtenir un reçu à des fins fiscales ?", "a": "Pour les dons en ligne, la confirmation que vous recevez par email sert de reçu. Pour demander un reçu en double, envoyez un email à info@zealcare.org avec les détails." },
+        { "q": "Zeal Care partage-t-il mes informations ?", "a": "Conformément à notre politique de confidentialité, nous ne transmettons, ne transférons ni ne vendons d'informations privées à des tiers." },
+        { "q": "Acceptez-vous des dons de livres, fournitures scolaires, vêtements ou autres matériaux depuis l'extérieur du Libéria ?", "a": "Bien que nous apprécions les offres, nous ne sommes pas en mesure d'accepter ces types de dons en nature. Nous préférons les transferts en espèces directs afin de soutenir les entreprises locales au Libéria." },
+        { "q": "Existe-t-il des exigences sanitaires pour voyager au Libéria ?", "a": "Oui ! La vaccination contre la fièvre jaune est requise pour entrer au Libéria. Nous recommandons également de prendre des médicaments antipaludéens et de consulter un médecin avant de voyager." },
+        { "q": "Comment puis-je rester connecté avec Zeal Care ?", "a": "Vous pouvez nous suivre sur les réseaux sociaux (LinkedIn, Facebook, Instagram) et vous abonner à notre newsletter. Les liens sont disponibles dans le pied de page de notre site." }
+      ]
+    }
   }
 }

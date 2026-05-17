@@ -138,7 +138,7 @@ export function Gallery() {
           className="text-center mt-12"
         >
           <Link href="/gallery" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#F5C619] text-[#061A32] font-bold text-sm hover:bg-[#F5C619]/90 transition-colors shadow-lg hover:shadow-[#F5C619]/30">
-            View Full Gallery
+            {t("gallery.viewFull")}
             <ArrowRight className="w-4 h-4" />
           </Link>
         </motion.div>

@@ -160,13 +160,13 @@ export function Footer() {
                 className="group flex items-center justify-center gap-2 bg-[#F5C619] text-[#061A32] px-8 py-4 rounded-2xl font-black text-sm hover:bg-[#F5C619]/90 hover:scale-105 transition-all shadow-xl shadow-[#F5C619]/20"
               >
                 <Heart className="w-4 h-4 fill-current" />
-                Become a Donor
+                {t("footer.becomeaDonor")}
               </button>
               <a
                 href="mailto:zealcare24@gmail.com?subject=Volunteer%20Inquiry%20—%20Zeal%20Care"
                 className="group flex items-center justify-center gap-2 border-2 border-white/30 text-white px-8 py-4 rounded-2xl font-black text-sm hover:border-white/70 hover:bg-white/8 transition-all"
               >
-                Volunteer Now
+                {t("footer.volunteerNow")}
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
             </div>
@@ -201,7 +201,7 @@ export function Footer() {
             </p>
 
             <div className="mb-5">
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-white/30 mb-3">Follow the Journey</p>
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-white/30 mb-3">{t("footer.followJourney")}</p>
               <div className="flex gap-2">
                 {socialLinks.map(({ icon: Icon, href, label }) => (
                   <a
@@ -221,31 +221,31 @@ export function Footer() {
 
           {/* ── Organization ── */}
           <div>
-            <ColHeader label="Organization" />
+            <ColHeader label={t("footer.organization")} />
             <ul className="space-y-2.5">
               <li><FooterLink href="/about">{t("footer.links.about")}</FooterLink></li>
               <li><FooterLink href="/who-we-are">{t("nav.whoWeAre")}</FooterLink></li>
-              <li><FooterLink href="/about/our-values">Our Values</FooterLink></li>
-              <li><FooterLink href="/about/accountability">Accountability</FooterLink></li>
-              <li><FooterLink href="/about/our-goals">Our Goals</FooterLink></li>
+              <li><FooterLink href="/about/our-values">{t("nav.items.Our Values")}</FooterLink></li>
+              <li><FooterLink href="/about/accountability">{t("nav.items.Finance & Accountability")}</FooterLink></li>
+              <li><FooterLink href="/about/our-goals">{t("nav.items.Our Goals")}</FooterLink></li>
             </ul>
           </div>
 
           {/* ── Impact ── */}
           <div>
-            <ColHeader label="Impact" />
+            <ColHeader label={t("footer.getInvolved")} />
             <ul className="space-y-2.5">
               <li><FooterLink href="/what-we-do">{t("nav.whatWeDo")}</FooterLink></li>
               <li><FooterLink href="/why-empowerment">{t("nav.whyEmpowerment")}</FooterLink></li>
-              <li><FooterLink href="/media">News & Stories</FooterLink></li>
-              <li><FooterLink href="/igniting-potential">Ways to Give</FooterLink></li>
-              <li><FooterLink onClick={() => openDonate(150)}>Sponsor a Child</FooterLink></li>
+              <li><FooterLink href="/media">{t("nav.items.Newsroom")}</FooterLink></li>
+              <li><FooterLink href="/igniting-potential">{t("nav.items.Ways to Give")}</FooterLink></li>
+              <li><FooterLink onClick={() => openDonate(150)}>{t("footer.involved.sponsor")}</FooterLink></li>
             </ul>
           </div>
 
           {/* ── Get in touch ── */}
-          <div>
-            <ColHeader label="Get in Touch" />
+          <div data-col="contact">
+            <ColHeader label={t("footer.getInTouch")} />
             <ul className="space-y-4">
               <li>
                 <a
@@ -290,7 +290,7 @@ export function Footer() {
               onClick={handleContact}
               className="inline-flex items-center gap-2 mt-6 text-xs font-black uppercase tracking-widest text-[#F5C619]/70 hover:text-[#F5C619] transition-colors group"
             >
-              Send us a message
+              {t("footer.sendMessage")}
               <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
           </div>
@@ -302,11 +302,11 @@ export function Footer() {
         ══════════════════════════════════════════ */}
         <div className="py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-white/30 text-xs">
           <p>
-            &copy; {currentYear} Zeal Care. All rights reserved. Monrovia, Liberia.
+            &copy; {currentYear} Zeal Care. {t("footer.allRights")}
             <a href="/admin" className="ml-2 opacity-20 hover:opacity-40 transition-opacity select-none" title="Admin">·</a>
           </p>
           <p>
-            Built by{" "}
+            {t("footer.builtBy")}{" "}
             <a
               href="https://wa.me/231770787020"
               target="_blank"
@@ -317,8 +317,8 @@ export function Footer() {
             </a>
           </p>
           <div className="flex gap-5">
-            <a href="mailto:info@zealcare.org?subject=Privacy%20Policy%20Inquiry" className="hover:text-white/60 transition-colors">Privacy Policy</a>
-            <a href="mailto:info@zealcare.org?subject=Terms%20of%20Service%20Inquiry" className="hover:text-white/60 transition-colors">Terms of Service</a>
+            <a href="mailto:info@zealcare.org?subject=Privacy%20Policy%20Inquiry" className="hover:text-white/60 transition-colors">{t("footer.privacyPolicy")}</a>
+            <a href="mailto:info@zealcare.org?subject=Terms%20of%20Service%20Inquiry" className="hover:text-white/60 transition-colors">{t("footer.termsOfService")}</a>
           </div>
         </div>
 
