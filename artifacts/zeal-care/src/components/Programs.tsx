@@ -2,12 +2,13 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { useTranslation } from "react-i18next";
-import scholarImg from "@assets/pdf_images/img-059.jpg";
-import techImg from "@assets/In_the_field_1777770914048.jpeg";
-import mentorshipImg from "@assets/pdf_images/img-058.jpg";
-import communityImg from "@assets/pdf_images/img-068.jpg";
-
-const IMAGES = [scholarImg, techImg, mentorshipImg, communityImg];
+// Official program photos from /public (matches the 4 official programs per the project document)
+const IMAGES = [
+  "/program-education.jpg",   // Education Sponsorship, Support & Advocacy
+  "/program-leadership.jpg",  // Leadership Development Programs
+  "/program-stem.jpg",        // Entrepreneurship / STEM (program 3)
+  "/community-rooted.jpg",    // Community Outreach (program 4)
+];
 const LINKS = [
   "/what-we-do/education-sponsorship",
   "/what-we-do/digital-education",

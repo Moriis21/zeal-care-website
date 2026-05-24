@@ -8,7 +8,7 @@ import { useSiteContent } from "@/hooks/useSiteContent";
 
 const section = navConfig.find((s) => s.path === "/who-we-are")!;
 
-const AVATAR_PLACEHOLDER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23061A32'/%3E%3Ccircle cx='100' cy='80' r='40' fill='%23F5C619'/%3E%3Ccircle cx='100' cy='200' r='70' fill='%23F5C619'/%3E%3C/svg%3E";
+const AVATAR_PLACEHOLDER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23051829'/%3E%3Ccircle cx='100' cy='80' r='40' fill='%23FBD308'/%3E%3Ccircle cx='100' cy='200' r='70' fill='%23FBD308'/%3E%3C/svg%3E";
 
 const newsItems = [
   { date: "Jul–Aug 2024", title: "Educational Survey — Chicken Soup Factory", desc: "Zeal Care conducted an educational survey in Chicken Soup Factory Lorma Yard, Block D, reaching 45+ households to identify children most in need of educational support." },
