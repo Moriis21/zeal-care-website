@@ -215,9 +215,22 @@ export function useSiteContent() {
     queryFn: async () => {
       const res = await fetch("/api/site-content");
       if (!res.ok) throw new Error("Failed to load content");
-      return res.json() as Promise<SiteContent>;
+      const json = await res.json() as SiteContent;
+      // If the API returns empty/missing nested structures, fill them from defaults
+      return {
+        ...DEFAULT_CONTENT,
+        ...json,
+        whoWeAre: {
+          ...DEFAULT_CONTENT.whoWeAre,
+          ...(json.whoWeAre || {}),
+          team:         json.whoWeAre?.team?.length         ? json.whoWeAre.team         : DEFAULT_CONTENT.whoWeAre.team,
+          boardMembers: json.whoWeAre?.boardMembers?.length ? json.whoWeAre.boardMembers : DEFAULT_CONTENT.whoWeAre.boardMembers,
+        },
+      };
     },
     staleTime: 1000 * 60 * 5,
+    initialData: DEFAULT_CONTENT,   // ← guaranteed fallback (persists on error)
     placeholderData: DEFAULT_CONTENT,
+    retry: false,                    // don't retry on API failure (local dev has no API)
   });
 }

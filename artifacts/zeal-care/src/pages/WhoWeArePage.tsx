@@ -4,7 +4,7 @@ import { navConfig } from "@/lib/nav-config";
 import { Link } from "wouter";
 import { User, Building2, Scroll, BarChart2, Users, Search, Eye, ClipboardList, GraduationCap, Trophy, Inbox } from "lucide-react";
 import { STRATEGIC_PARTNERS } from "@/lib/partner-logos";
-import { useSiteContent } from "@/hooks/useSiteContent";
+import { useSiteContent, DEFAULT_CONTENT } from "@/hooks/useSiteContent";
 
 const section = navConfig.find((s) => s.path === "/who-we-are")!;
 
@@ -317,8 +317,12 @@ export default function WhoWeArePage() {
   const sectionKey = params.section ?? "overview";
   const { data: cmsData } = useSiteContent();
 
-  const team = cmsData?.whoWeAre?.team ?? [];
-  const boardMembers = cmsData?.whoWeAre?.boardMembers ?? [];
+  // Use CMS data if it has entries; otherwise fall back to the bundled defaults
+  // so the page is never empty (covers admin not yet populated / API down)
+  const teamRaw  = cmsData?.whoWeAre?.team         ?? [];
+  const boardRaw = cmsData?.whoWeAre?.boardMembers ?? [];
+  const team         = teamRaw.length  ? teamRaw  : DEFAULT_CONTENT.whoWeAre.team;
+  const boardMembers = boardRaw.length ? boardRaw : DEFAULT_CONTENT.whoWeAre.boardMembers;
 
   const dynamicSubsections: Record<string, { title: string; content: React.ReactNode }> = {
     ...subsections,
