@@ -42,7 +42,7 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
             </Link>
           ))}
         </div>
-        <img src="/attached_assets/pdf_images/img-054.jpg" alt="Zeal Care team" className="w-full rounded-2xl object-cover max-h-80" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+        <img src="/our-beneficiaries.jpg" alt="Zeal Care beneficiaries — children supported through full education sponsorship" className="w-full rounded-2xl object-cover max-h-80" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
       </div>
     ),
   },
@@ -74,7 +74,7 @@ const subsections: Record<string, { title: string; content: React.ReactNode }> =
           <p className="text-muted-foreground leading-relaxed">We collaborate with purpose-driven youth and organizations that champion SDGs 4, 5, 8, 10, and 17, and are willing and committed to delivering measurable social impact within their communities.</p>
           <p className="text-muted-foreground leading-relaxed">Our volunteers bring empathy, professionalism, and a strong commitment to children's development. They contribute their time, expertise, and resources to support underprivileged children, students, and young people to strengthen community education systems.</p>
         </div>
-        <img src="/attached_assets/pdf_images/img-067.jpg" alt="Zeal Care community" className="w-full rounded-2xl object-cover max-h-80" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+        <img src="/volunteers-2025.png" alt="Zeal Care 2025 volunteers on the field" className="w-full rounded-2xl object-cover max-h-80" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
       </div>
     ),
   },

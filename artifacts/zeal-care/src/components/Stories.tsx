@@ -1,16 +1,13 @@
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import elishakaImg from "@assets/Elishaka_Fofana_Donzo_1777770889388.jpeg";
-import ruthImg from "@assets/Ruth_Flomo_1777770889389.jpeg";
-import melvinImg from "@assets/Melvin_Jarteh_1777770889388.jpeg";
-import varscoImg from "@assets/Varsco_Harris_1777770889389.jpeg";
 
+// Official beneficiary headshots from /public (provided by the project team)
 const STORY_META = [
-  { name: "Elishaka Fofana Donzo", age: 10, location: "Monrovia", image: elishakaImg },
-  { name: "Ruth Flomo", age: 12, location: "Monrovia", image: ruthImg },
-  { name: "Melvin Jarteh", age: 9, location: "Monrovia", image: melvinImg },
-  { name: "Varsco Harris", age: 11, location: "Monrovia", image: varscoImg },
+  { name: "Elishaka Fofana Donzo", age: 10, location: "Monrovia", image: "/story-elishaka.jpg" },
+  { name: "Ruth Flomo",            age: 12, location: "Monrovia", image: "/story-ruth.jpg" },
+  { name: "Melvin Jarteh",         age:  9, location: "Monrovia", image: "/story-melvin.jpg" },
+  { name: "Varsco Harris",         age: 11, location: "Monrovia", image: "/story-varsco.jpg" },
 ];
 
 export function Stories() {
