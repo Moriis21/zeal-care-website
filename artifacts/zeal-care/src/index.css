@@ -226,45 +226,232 @@
   }
 }
 
-/* ── Mobile responsiveness patches ── */
+/* ============================================================
+   GLOBAL LAYOUT SYSTEM — professional NGO design
+   Container: max 1200px · Section: 80px vertical
+   Horizontal: 40px desktop · 24px tablet · 16px mobile
+   ============================================================ */
+@layer base {
+  /* Prevent horizontal scroll on every viewport */
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  /* Readable body text */
+  body {
+    line-height: 1.7;
+  }
+
+  /* All headings have professional separation */
+  h1, h2, h3, h4 {
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+
+  /* Paragraphs are readable, not too wide */
+  p {
+    line-height: 1.75;
+  }
+
+  /* Every image is fluid + never stretches */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
 @layer utilities {
-  /* Hero images: contain on small screens */
-  @media (max-width: 768px) {
-    .hero-img-stack {
-      position: static !important;
-      width: 100% !important;
-      height: 260px !important;
+
+  /* ── Container — 1200 max, centered, responsive padding ── */
+  .container,
+  .container-zc {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  @media (min-width: 768px) {
+    .container,
+    .container-zc {
+      padding-left: 24px;
+      padding-right: 24px;
     }
-    .hero-img-stack img {
-      border-radius: 1rem;
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
+  }
+  @media (min-width: 1024px) {
+    .container,
+    .container-zc {
+      padding-left: 40px;
+      padding-right: 40px;
     }
   }
 
-  /* Prevent text overflow on small screens */
+  /* ── Consistent section vertical rhythm ── */
+  .section-padding,
+  .section-y {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+  @media (min-width: 768px) {
+    .section-padding,
+    .section-y {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+  }
+
+  /* ── Readable text columns ── */
+  .prose-readable {
+    max-width: 70ch;          /* ≈ 850px at 18px */
+    line-height: 1.8;
+  }
+  .prose-readable p + p {
+    margin-top: 1.25rem;
+  }
+
+  /* ── Professional card ── */
+  .card-pro {
+    background: #fff;
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    border: 1px solid hsl(var(--border));
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-pro:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.09);
+  }
+
+  /* ── Card grid: equal heights ── */
+  .equal-grid {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .equal-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .equal-grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .equal-grid-4 { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  /* ── Image wrapper — never stretches, always clipped ── */
+  .img-frame {
+    overflow: hidden;
+    border-radius: 24px;
+    width: 100%;
+    height: auto;
+  }
+  .img-frame > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── Founder / Leader card: 350x500 image · text 700 max ── */
+  .leader-row {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: stretch;
+    background: #fff;
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    border: 1px solid hsl(var(--border));
+  }
+  .leader-photo {
+    width: 100%;
+    aspect-ratio: 7 / 10;          /* 350 / 500 */
+    max-width: 350px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 24px;
+    background: hsl(var(--muted));
+    flex-shrink: 0;
+  }
+  .leader-photo > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+  .leader-body {
+    flex: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  @media (min-width: 768px) {
+    .leader-row {
+      flex-direction: row;
+      gap: 40px;
+      align-items: center;
+      padding: 40px;
+    }
+    .leader-photo {
+      width: 350px;
+      height: 500px;
+      aspect-ratio: auto;
+      margin: 0;
+    }
+    .leader-body {
+      margin: 0;
+    }
+  }
+
+  /* ── Prevent text overflow on small screens ── */
   .text-balance {
     text-wrap: balance;
   }
 
-  /* Reduce oversized headings on mobile */
+  /* ── Tame oversized headings on mobile only ── */
   @media (max-width: 640px) {
-    h1 { font-size: clamp(1.8rem, 7vw, 2.5rem) !important; }
-    h2 { font-size: clamp(1.5rem, 5.5vw, 2rem) !important; }
+    h1 { font-size: clamp(1.75rem, 7vw, 2.4rem) !important; }
+    h2 { font-size: clamp(1.4rem, 5.5vw, 1.9rem) !important; }
+    h3 { font-size: clamp(1.15rem, 4.5vw, 1.5rem) !important; }
   }
 
-  /* Consistent section padding */
-  .section-padding {
-    @apply py-16 sm:py-20 md:py-24;
+  /* ── Floating CTAs / BackToTop: safe spacing, no overlap ── */
+  .floating-safe {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 40;
+  }
+  @media (min-width: 768px) {
+    .floating-safe {
+      bottom: 32px;
+      right: 32px;
+    }
   }
 
-  /* Card hover lift */
+  /* ── Card hover lift (legacy compat) ── */
   .card-hover {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   .card-hover:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 32px -8px hsl(var(--primary) / 0.2);
+  }
+
+  /* ── Mobile: collapse multi-column grids ── */
+  @media (max-width: 767px) {
+    .force-stack-mobile {
+      grid-template-columns: 1fr !important;
+      flex-direction: column !important;
+    }
   }
 }

@@ -9,7 +9,7 @@ export function JoinUs() {
   const { t } = useTranslation();
 
   return (
-    <section id="join-us" className="relative py-20 md:py-28 overflow-hidden text-primary-foreground">
+    <section id="join-us" className="relative section-y overflow-hidden text-primary-foreground">
       {/* Background image with dark overlay */}
       <div className="absolute inset-0 z-0">
         <img
@@ -25,7 +25,7 @@ export function JoinUs() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-5 sm:px-6 text-center max-w-3xl">
+      <div className="relative z-10 container text-center" style={{ maxWidth: 760 }}>
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}

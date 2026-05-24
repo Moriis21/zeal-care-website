@@ -38,7 +38,7 @@ export function BackToTop() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.92 }}
           aria-label="Back to top"
-          className="fixed bottom-7 right-7 z-50 rounded-full shadow-2xl focus:outline-none group"
+          className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-40 rounded-full shadow-2xl focus:outline-none group"
           style={{ width: size, height: size }}
         >
           {/* Outer progress ring */}

@@ -329,20 +329,31 @@ export default function WhoWeArePage() {
     leadership: {
       title: "Our Leadership",
       content: (
-        <div className="space-y-8">
-          <p className="text-muted-foreground leading-relaxed text-lg">Our leadership team is made up of passionate, experienced professionals united by a shared vision: a Liberia and Africa where every child has access to quality education and the opportunity to become a leader.</p>
+        <div className="space-y-10">
+          <p className="prose-readable text-muted-foreground text-base md:text-lg">
+            Our leadership team is made up of passionate, experienced professionals united by a shared vision: a Liberia and Africa where every child has access to quality education and the opportunity to become a leader.
+          </p>
           <div className="space-y-8">
             {team.map((person) => (
-              <div key={person.name} className="bg-white border border-border rounded-2xl overflow-hidden hover:shadow-md transition-all">
-                <div className="md:flex">
-                  <div className="md:w-56 flex-shrink-0">
-                    <img src={person.img || AVATAR_PLACEHOLDER} alt={person.name} className="w-full h-56 md:h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = AVATAR_PLACEHOLDER; }} />
+              <div key={person.name} className="leader-row">
+                <div className="leader-photo">
+                  <img
+                    src={person.img || AVATAR_PLACEHOLDER}
+                    alt={person.name}
+                    loading="lazy"
+                    onError={(e) => { (e.target as HTMLImageElement).src = AVATAR_PLACEHOLDER; }}
+                  />
+                </div>
+                <div className="leader-body">
+                  <div className="inline-block bg-secondary/20 text-primary text-[11px] font-bold px-3 py-1 rounded-full mb-3 self-start">
+                    {person.role}
                   </div>
-                  <div className="p-6 flex-1">
-                    <div className="inline-block bg-secondary/20 text-primary text-xs font-bold px-3 py-1 rounded-full mb-3">{person.role}</div>
-                    <h3 className="text-xl font-black text-primary mb-3">{person.name}</h3>
-                    <p className="text-muted-foreground leading-relaxed text-sm">{person.bio}</p>
-                  </div>
+                  <h3 className="text-2xl font-black text-primary mb-4 leading-tight">
+                    {person.name}
+                  </h3>
+                  <p className="text-muted-foreground leading-[1.8] text-[15px] whitespace-pre-line">
+                    {person.bio}
+                  </p>
                 </div>
               </div>
             ))}
@@ -353,33 +364,39 @@ export default function WhoWeArePage() {
     board: {
       title: "Board of Advisors",
       content: (
-        <div className="space-y-8">
-          <p className="text-muted-foreground leading-relaxed text-lg">Our Board of Advisors brings deep expertise in education, international development, business strategy, and community leadership. They provide invaluable guidance to ensure Zeal Care delivers maximum impact.</p>
-          <div className="space-y-5">
+        <div className="space-y-10">
+          <p className="prose-readable text-muted-foreground text-base md:text-lg">
+            Our Board of Advisors brings deep expertise in education, international development, business strategy, and community leadership. They provide invaluable guidance to ensure Zeal Care delivers maximum impact.
+          </p>
+          <div className="space-y-8">
             {boardMembers.map((member) => (
-              <div key={member.name} className="bg-white border border-border rounded-2xl overflow-hidden hover:shadow-md transition-all">
-                <div className="sm:flex items-stretch">
-                  <div className="sm:w-40 flex-shrink-0">
-                    {member.img ? (
-                      <img
-                        src={member.img}
-                        alt={member.name}
-                        className="w-full h-40 sm:h-full object-cover object-top"
-                        onError={(e) => { (e.target as HTMLImageElement).src = AVATAR_PLACEHOLDER; }}
-                      />
-                    ) : (
-                      <div className="w-full h-40 sm:h-full bg-primary/10 flex items-center justify-center">
-                        <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-black">
-                          {member.name[0]}
-                        </div>
+              <div key={member.name} className="leader-row">
+                <div className="leader-photo">
+                  {member.img ? (
+                    <img
+                      src={member.img}
+                      alt={member.name}
+                      loading="lazy"
+                      onError={(e) => { (e.target as HTMLImageElement).src = AVATAR_PLACEHOLDER; }}
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-primary/10 flex items-center justify-center">
+                      <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center text-white text-3xl font-black">
+                        {member.name[0]}
                       </div>
-                    )}
+                    </div>
+                  )}
+                </div>
+                <div className="leader-body">
+                  <div className="inline-block bg-secondary/20 text-primary text-[11px] font-bold px-3 py-1 rounded-full mb-3 self-start">
+                    {member.role}
                   </div>
-                  <div className="p-6 flex-1">
-                    <div className="inline-block bg-secondary/20 text-primary text-xs font-bold px-3 py-1 rounded-full mb-2">{member.role}</div>
-                    <h3 className="font-black text-primary text-lg mb-2">{member.name}</h3>
-                    <p className="text-muted-foreground leading-relaxed text-sm">{member.bio}</p>
-                  </div>
+                  <h3 className="text-2xl font-black text-primary mb-4 leading-tight">
+                    {member.name}
+                  </h3>
+                  <p className="text-muted-foreground leading-[1.8] text-[15px] whitespace-pre-line">
+                    {member.bio}
+                  </p>
                 </div>
               </div>
             ))}

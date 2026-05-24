@@ -16,22 +16,23 @@ export function Stories() {
   const STORY_DATA = STORY_META.map((s, i) => ({ ...s, quote: quotes[i] ?? "" }));
 
   return (
-    <section id="stories" className="py-20 md:py-24 bg-foreground text-background">
-      <div className="container mx-auto px-5 sm:px-6">
+    <section id="stories" className="section-y bg-foreground text-background">
+      <div className="container">
 
-        <div className="text-center max-w-2xl mx-auto mb-10 md:mb-12">
-          <div className="inline-block px-3 py-1 rounded-full bg-background/10 text-background text-sm font-bold tracking-wider mb-4 uppercase">
+        <div className="text-center max-w-2xl mx-auto mb-12 md:mb-14">
+          <div className="inline-block px-3 py-1 rounded-full bg-background/10 text-background text-xs font-bold tracking-[0.15em] mb-4 uppercase">
             {t("stories.badge")}
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-6">
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-5 tracking-tight">
             {t("stories.heading")}
           </h2>
-          <p className="text-background/70 text-lg">
+          <p className="text-background/70 text-base md:text-lg leading-[1.7]">
             {t("stories.subtitle")}
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 max-w-7xl mx-auto">
+        {/* Equal-height grid of story cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-7">
           {STORY_DATA.map((story, index) => (
             <motion.div
               key={index}
@@ -39,23 +40,23 @@ export function Stories() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
-              className="bg-background/5 p-6 rounded-3xl border border-background/10 relative flex flex-col gap-6"
+              className="bg-background/5 p-8 rounded-3xl border border-background/10 relative flex flex-col gap-5 h-full hover:bg-background/8 transition-colors"
               data-testid={`card-story-${index}`}
             >
-              <Quote className="absolute top-6 right-6 w-10 h-10 text-secondary/20" />
-              
+              <Quote className="absolute top-5 right-5 w-9 h-9 text-secondary/20" />
+
               <div className="flex items-center gap-4">
-                <div className="w-20 h-20 rounded-2xl overflow-hidden border-2 border-secondary flex-shrink-0">
-                  <img src={story.image} alt={story.name} className="w-full h-full object-cover object-top" data-testid={`img-story-${index}`} />
+                <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-secondary flex-shrink-0">
+                  <img src={story.image} alt={story.name} className="w-full h-full object-cover object-top" data-testid={`img-story-${index}`} loading="lazy" />
                 </div>
-                <div>
-                  <h4 className="font-bold text-base leading-tight">{story.name}</h4>
-                  <p className="text-background/60 text-sm">{t("stories.age")} {story.age} &bull; {story.location}</p>
+                <div className="min-w-0">
+                  <h4 className="font-bold text-[15px] leading-tight truncate">{story.name}</h4>
+                  <p className="text-background/55 text-xs mt-0.5">{t("stories.age")} {story.age} &middot; {story.location}</p>
                 </div>
               </div>
 
-              <p className="text-base font-medium leading-relaxed italic text-background/85 relative z-10 flex-1">
-                "{story.quote}"
+              <p className="text-[14px] font-medium leading-[1.75] italic text-background/80 relative z-10 flex-1">
+                &ldquo;{story.quote}&rdquo;
               </p>
             </motion.div>
           ))}

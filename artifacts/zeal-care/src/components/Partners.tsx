@@ -6,8 +6,8 @@ export function Partners() {
   const { t } = useTranslation();
 
   return (
-    <section className="py-20 md:py-24 bg-[#061A32] overflow-hidden">
-      <div className="container mx-auto px-5 sm:px-6">
+    <section className="section-y bg-[#061A32] overflow-hidden">
+      <div className="container">
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}

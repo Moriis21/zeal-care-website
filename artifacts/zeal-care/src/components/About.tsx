@@ -8,9 +8,9 @@ export function About() {
   const { t } = useTranslation();
 
   return (
-    <section id="about" className="py-20 md:py-24 bg-background overflow-hidden">
-      <div className="container mx-auto px-5 sm:px-6">
-        <div className="grid lg:grid-cols-2 gap-10 xl:gap-16 items-center">
+    <section id="about" className="section-y bg-background overflow-hidden">
+      <div className="container">
+        <div className="grid lg:grid-cols-2 gap-10 xl:gap-16 items-center force-stack-mobile">
 
           {/* ── Images ── */}
           <motion.div
@@ -18,34 +18,34 @@ export function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.65 }}
-            className="relative"
+            className="relative w-full"
           >
             <div className="grid grid-cols-2 gap-3">
               {/* Wide top image */}
-              <img
-                src={aboutTeamGroup}
-                alt="Zeal Care team with students at Esfans Academy"
-                className="col-span-2 rounded-2xl shadow-md w-full object-cover object-top"
-                style={{ height: "clamp(180px, 30vw, 280px)" }}
-                loading="lazy"
-                decoding="async"
-                data-testid="img-about-1"
-              />
+              <div className="img-frame col-span-2" style={{ aspectRatio: "16/9" }}>
+                <img
+                  src={aboutTeamGroup}
+                  alt="Zeal Care team with students at Esfans Academy"
+                  loading="lazy"
+                  decoding="async"
+                  data-testid="img-about-1"
+                />
+              </div>
               {/* Years badge */}
-              <div className="bg-secondary rounded-2xl p-5 flex flex-col justify-center items-center text-primary text-center shadow-md">
+              <div className="bg-secondary rounded-3xl p-6 flex flex-col justify-center items-center text-primary text-center shadow-md" style={{ aspectRatio: "1/1" }}>
                 <span className="text-3xl sm:text-4xl font-extrabold mb-1">5+</span>
                 <span className="font-semibold uppercase tracking-wider text-xs sm:text-sm leading-tight">{t("about.yearsImpact")}</span>
               </div>
               {/* Portrait image */}
-              <img
-                src={aboutTeam}
-                alt="Zeal Care team members in yellow shirts"
-                className="rounded-2xl shadow-md w-full object-cover object-top"
-                style={{ height: "clamp(120px, 18vw, 200px)" }}
-                loading="lazy"
-                decoding="async"
-                data-testid="img-about-2"
-              />
+              <div className="img-frame" style={{ aspectRatio: "1/1" }}>
+                <img
+                  src={aboutTeam}
+                  alt="Zeal Care team members in yellow shirts"
+                  loading="lazy"
+                  decoding="async"
+                  data-testid="img-about-2"
+                />
+              </div>
             </div>
 
             {/* Decorative dot grid */}
@@ -78,12 +78,14 @@ export function About() {
             >
               {t("about.heading")}
             </h2>
-            <p className="text-base text-muted-foreground mb-4 leading-relaxed" data-testid="text-about-p1">
-              {t("about.p1")}
-            </p>
-            <p className="text-base text-muted-foreground mb-6 leading-relaxed" data-testid="text-about-p2">
-              {t("about.p2")}
-            </p>
+            <div className="prose-readable">
+              <p className="text-base text-muted-foreground mb-5" data-testid="text-about-p1">
+                {t("about.p1")}
+              </p>
+              <p className="text-base text-muted-foreground mb-6" data-testid="text-about-p2">
+                {t("about.p2")}
+              </p>
+            </div>
 
             <blockquote
               className="border-l-4 border-secondary pl-5 mb-7 italic text-base md:text-lg font-medium text-foreground leading-relaxed"
