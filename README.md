@@ -15,7 +15,7 @@ Active monorepo
 - Express API services
 - PostgreSQL access through Drizzle ORM
 - Shared API contracts and generated clients
-- Replit and Vercel deployment configuration
+- Workspace and Vercel deployment configuration
 
 ## Technology
 
@@ -51,18 +51,14 @@ Run the website with `pnpm --filter @workspace/zeal-care dev`. Run the API servi
 
 ## Configuration
 
-No safe environment template is currently included. Review the integration modules before deployment and document the required variables in an `.env.example` file. Keep all real credentials outside version control.
+External service credentials must be supplied through local or deployment environment variables. Add a sanitized `.env.example` before onboarding additional developers. Keep all real credentials outside version control.
 
 ## Project structure
 
 | Path | Purpose |
 | --- | --- |
-| `.agents/` | Project files |
-| `.canvas/` | Project files |
-| `.vercel/` | Project files |
 | `api/` | API entry points and server code |
 | `artifacts/` | Deployable applications in the workspace |
-| `attached_assets/` | Project files |
 | `lib/` | Shared libraries and workspace packages |
 | `public/` | Static assets |
 | `scripts/` | Maintenance and build scripts |
